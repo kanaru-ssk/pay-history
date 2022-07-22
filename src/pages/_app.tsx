@@ -1,8 +1,17 @@
 import "styles/globals.css";
 import type { AppProps } from "next/app";
 
+import { AuthProvider } from "hooks/auth";
+import { initFirebase } from "libs/initFirebase";
+
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  initFirebase();
+
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  );
 }
 
 export default MyApp;
