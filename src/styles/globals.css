@@ -7,13 +7,13 @@
     @apply box-border font-sans font-light leading-7;
   }
   main {
-    @apply mx-auto max-w-3xl px-4 pb-12;
+    @apply mx-auto max-w-3xl;
   }
   section {
     @apply my-12;
   }
   h1 {
-    @apply border-gray my-8 border-b-2 py-4 text-2xl font-bold;
+    @apply my-8 border-b-2 border-gray py-4 text-2xl font-bold;
   }
   h2 {
     @apply m-4 text-xl;
