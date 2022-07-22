@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
+    "lint:fix": "yarn lint --fix && yarn format"
   },
   "dependencies": {
     "firebase": "^9.9.0",
