@@ -66,7 +66,7 @@ const Payments = ({ thisMonthData }: Props) => {
 
       <form
         onSubmit={onSumitPayment}
-        className="flex w-full items-center bg-white px-4 py-2"
+        className="sticky bottom-0 flex w-full items-center bg-white px-4 py-2"
       >
         <input
           type="text"
