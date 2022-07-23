@@ -105,8 +105,8 @@ export const createMonthlyData = async (
   return newMonthlyData;
 };
 
-// 月データ更新 : 予算
-export const updateBudget = async (
+// 月データ更新
+export const updateMonthlyData = async (
   user: User | null,
   monthlyData: MonthlyData
 ) => {
@@ -120,6 +120,7 @@ export const updateBudget = async (
   const newMonthlyData: Partial<MonthlyData> = {
     atUpdated: serverTimestamp(),
     budget: monthlyData.budget,
+    payments: monthlyData.payments,
   };
 
   await updateDoc(
