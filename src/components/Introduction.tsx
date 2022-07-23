@@ -1,22 +1,43 @@
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
+
 import type { MonthlyData } from "types/firebase";
 
 import { useAuth } from "hooks/auth";
-import { createMonthlyData } from "libs/monthlyData";
+import { createMonthlyData, pathToMonth } from "libs/monthlyData";
 
 type Props = {
   setThisMonthData: React.Dispatch<React.SetStateAction<MonthlyData | null>>;
 };
+
 const Introduction = ({ setThisMonthData }: Props) => {
   const user = useAuth();
+  const router = useRouter();
+
+  const { id } = router.query;
+
+  useEffect(() => {}, [id, router]);
 
   const onClickHundler = () => {
-    createMonthlyData(user, 10000).then((result) => {
-      setThisMonthData(result);
-    });
+    const month = pathToMonth(id);
+    if (month) {
+      createMonthlyData(user, month[1], month[0], 10000).then((result) => {
+        setThisMonthData(result);
+      });
+    }
   };
 
   return (
-    <main className="px-4">
+    <main>
+      <div className="my-12 text-center">
+        <button
+          onClick={onClickHundler}
+          className="rounded-full bg-main-color py-4 px-12 text-white"
+        >
+          予算管理を始める
+        </button>
+      </div>
       <h1>pay history</h1>
       <p>クレジットカードの予算管理、しっかり出来ていますか？</p>
       <p>
