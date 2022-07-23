@@ -51,9 +51,10 @@ const Budget = ({ thisMonthData }: Props) => {
 
   // 予算入力
   const onChangeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const removed = e.target.value.replace(/,/g, "");
     const pattern = /^\d*$/;
-    if (pattern.test(e.target.value)) {
-      const toNum = Number(e.target.value);
+    if (pattern.test(removed)) {
+      const toNum = Number(removed);
       setBudget(toNum);
       if (0 < toNum && toNum !== thisMonthData.budget) {
         setIsReady(true);
@@ -74,7 +75,7 @@ const Budget = ({ thisMonthData }: Props) => {
             <input
               type="text"
               inputMode="numeric"
-              value={budget}
+              value={budget.toLocaleString()}
               onChange={onChangeBudget}
               className="w-40 rounded border border-gray text-right"
             />
@@ -94,11 +95,15 @@ const Budget = ({ thisMonthData }: Props) => {
         </tr>
         <tr className="border-b">
           <th>支出</th>
-          <td className="w-48 text-right">{totalSpending}円</td>
+          <td className="w-48 text-right">
+            {totalSpending.toLocaleString()}円
+          </td>
         </tr>
         <tr>
           <th>残高</th>
-          <td className="w-48 text-right text-3xl">{remaining}円</td>
+          <td className="w-48 text-right text-3xl">
+            {remaining.toLocaleString()}円
+          </td>
         </tr>
       </tbody>
     </table>

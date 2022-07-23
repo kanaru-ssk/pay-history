@@ -26,9 +26,10 @@ const Payments = ({ thisMonthData }: Props) => {
 
   // 支払い入力
   const onChangeNewPayment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const removed = e.target.value.replace(/,/g, "");
     const pattern = /^\d*$/;
-    if (pattern.test(e.target.value)) {
-      const toNum = Number(e.target.value);
+    if (pattern.test(removed)) {
+      const toNum = Number(removed);
       setPrice(toNum);
       if (0 < toNum) {
         setIsReady(true);
@@ -57,7 +58,9 @@ const Payments = ({ thisMonthData }: Props) => {
                   {value.atCreated.toDate().getMonth() + 1}日
                   {value.atCreated.toDate().getDate()}日
                 </td>
-                <td className="pr-8 text-right">{value.price}円</td>
+                <td className="pr-8 text-right">
+                  {value.price.toLocaleString()}円
+                </td>
               </tr>
             );
           })}
@@ -72,7 +75,7 @@ const Payments = ({ thisMonthData }: Props) => {
           type="text"
           inputMode="numeric"
           placeholder="支出額を入力してください。"
-          value={price.toString()}
+          value={price.toLocaleString()}
           onChange={onChangeNewPayment}
           className="top-0 h-full w-full flex-1 resize-none overflow-visible rounded-3xl border-2 border-gray px-5 py-3 leading-5"
         />
