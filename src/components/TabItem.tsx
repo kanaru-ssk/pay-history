@@ -9,11 +9,10 @@ type Props = {
 const TabItem = ({ text, href, isActive }: Props) => {
   return (
     <Link href={href}>
-      <a>
+      <a className="relative mx-2 block h-12 w-12 shrink-0 py-2">
         <div
           className={
-            (isActive ? "font-bold" : "") +
-            " horizontal-rl mx-2 w-12 py-2 text-center"
+            (isActive ? "font-bold" : "") + "  horizontal-rl text-center"
           }
         >
           {text}
