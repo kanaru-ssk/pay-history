@@ -38,19 +38,23 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           .split("T")[0]
       );
     } else if (typeof id === "object") {
-      const pre = new Date(id[0]);
+      const split = id[0].split("-");
+      const toNum = split.map((value) => {
+        return Number(value);
+      });
+      const now = new Date(toNum[0], toNum[1] - 1, 1);
       setDate(
-        new Date(pre.getFullYear(), pre.getMonth() + 1, 0, 12)
+        new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
           .toISOString()
           .split("T")[0]
       );
       setFirstDate(
-        new Date(pre.getFullYear(), pre.getMonth(), 1, 12)
+        new Date(now.getFullYear(), now.getMonth(), 1, 12)
           .toISOString()
           .split("T")[0]
       );
       setLastDate(
-        new Date(pre.getFullYear(), pre.getMonth() + 1, 0, 12)
+        new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
           .toISOString()
           .split("T")[0]
       );
@@ -68,9 +72,13 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       if (id === undefined) {
         setDate(new Date().toISOString().split("T")[0]);
       } else if (typeof id === "object") {
-        const pre = new Date(id[0]);
+        const split = id[0].split("-");
+        const toNum = split.map((value) => {
+          return Number(value);
+        });
+        const now = new Date(toNum[0], toNum[1] - 1, 1);
         setDate(
-          new Date(pre.getFullYear(), pre.getMonth() + 1, 0, 12)
+          new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
             .toISOString()
             .split("T")[0]
         );
@@ -103,7 +111,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   return (
     <form
       onSubmit={onSumitPayment}
-      className="sticky bottom-0 flex w-full items-center bg-white px-4 py-2"
+      className="sticky bottom-0 flex w-full items-center gap-4 bg-white px-4 py-2"
     >
       <input
         type="date"
@@ -124,8 +132,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
 
       <button
         className={
-          (isReady ? "font-bold text-main-color" : "text-gray") +
-          " pl-3 text-right"
+          (isReady ? "font-bold text-main-color" : "text-gray") + " text-right"
         }
       >
         支払追加
