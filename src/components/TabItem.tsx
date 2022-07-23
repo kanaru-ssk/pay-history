@@ -15,7 +15,7 @@ const TabItem = ({ text, href, isActive }: Props) => {
         router.push(href, href, { shallow: true });
       }}
       className={
-        (isActive ? "font-bold" : "font-nomal") +
+        (isActive ? "font-bold" : "text-dark-gray") +
         " horizontal-rl relative mx-2 block h-12 w-12 shrink-0 py-2 text-center"
       }
     >
