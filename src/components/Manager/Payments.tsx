@@ -18,9 +18,10 @@ const Payments = ({ thisMonthData }: Props) => {
   // 支払い追加
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (thisMonthData) {
+    if (thisMonthData && isReady) {
       addPayment(authUser, thisMonthData.docId, price);
       setPrice(0);
+      setIsReady(false);
     }
   };
 
