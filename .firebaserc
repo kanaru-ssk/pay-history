@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "pay-history-dev"
-  }
+    "prd": "pay-history",
+    "dev": "pay-history-dev"
+  },
+  "targets": {}
 }
