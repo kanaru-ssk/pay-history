@@ -144,9 +144,6 @@ export const addPayment = async (
     "firebase/firestore"
   );
 
-  const day =
-    month.month === new Date().getMonth() + 1 ? new Date().getDate() : 1;
-  // const date = new Date(month.year, month.month - 1, day);
   const newPayment: Payment = {
     atCreated: Timestamp.now(),
     atUpdated: Timestamp.now(),

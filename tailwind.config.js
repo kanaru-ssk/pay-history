@@ -8,15 +8,16 @@ module.exports = {
   theme: {
     colors: {
       white: "#fff",
-      "trans-white": "hsla(0,0%,100%,.8)",
       black: "#000",
       gray: "#bbb",
       "light-gray": "#eee",
       "dark-gray": "#888",
-      red: "#b00",
+      red: "#f77",
       "main-color": "#232C93",
       "sub-color": "#C1C5FE",
       "twitter-color": "#00acee",
+      "trans-white": "hsla(0,0%,100%,.8)",
+      "trans-black": "hsla(0,0%,0%,.6)",
     },
     fontFamily: {
       sans: [

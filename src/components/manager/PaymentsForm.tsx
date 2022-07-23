@@ -117,7 +117,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           max={lastDate}
           value={date}
           onChange={onChangeDate}
-          className="h-12 w-full flex-1 rounded-3xl border-2 border-gray bg-white px-5 py-3 leading-5"
+          className="h-12 w-full flex-1 rounded-lg border-2 border-gray bg-white px-5 py-3 leading-5"
         />
 
         <input
@@ -126,7 +126,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           placeholder="支出額を入力してください。"
           value={price.toLocaleString()}
           onChange={onChangePrice}
-          className="h-12 w-full flex-1 rounded-3xl border-2 border-gray px-5 py-3 text-right leading-5"
+          className="h-12 w-full flex-1 rounded-lg border-2 border-gray px-5 py-3 text-right leading-5"
         />
       </div>
 
