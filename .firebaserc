@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "prd": "pay-history",
+    "dev": "pay-history-dev"
+  },
+  "targets": {}
+}
