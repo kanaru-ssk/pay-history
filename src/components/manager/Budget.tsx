@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { MonthlyData } from "types/firebase";
 
 import { useAuth } from "hooks/auth";
-import { updateBudget } from "libs/monthlyData";
+import { updateMonthlyData } from "libs/monthlyData";
 import { updateUser } from "libs/user";
 
 type Props = {
@@ -44,7 +44,7 @@ const Budget = ({ thisMonthData }: Props) => {
   const onClickEdit = () => {
     if (isReady) {
       updateUser(dbUser, budget);
-      updateBudget(authUser, { ...thisMonthData, budget: budget });
+      updateMonthlyData(authUser, { ...thisMonthData, budget: budget });
       setIsReady(false);
     }
   };
