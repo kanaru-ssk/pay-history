@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import type { MonthlyData } from "types/firebase";
 
 import { useAuth } from "hooks/auth";
-import { addPayment, pathToMonth } from "libs/monthlyData";
+import { addPayment } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
