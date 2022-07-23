@@ -1,20 +1,40 @@
+import { useRouter } from "next/router";
+
 import TabItem from "./TabItem";
 
-type Props = {
-  month: number;
-};
-const Tab = ({ month }: Props) => {
+const Tab = () => {
+  const router = useRouter();
+
+  const { id } = router.query;
+
+  const date = new Date();
+  const nowYear = date.getFullYear();
+  const thisMonth = date.getMonth() + 1;
+
   let months = [];
   for (let i = 1; i < 12; i++) {
-    const _month =
-      0 < month - i ? (month - i).toString() : (12 + month - i).toString();
+    const month =
+      0 < thisMonth - i
+        ? (thisMonth - i).toString()
+        : (12 + thisMonth - i).toString();
+    const path = nowYear.toString() + "-" + month;
     months.push(
-      <TabItem text={_month + "月"} href={"/data/" + _month} key={i} />
+      <TabItem
+        text={month + "月"}
+        href={"/data/" + path}
+        key={i}
+        isActive={id === path}
+      />
     );
   }
+
   return (
-    <div className="vertical-rl flex w-full flex-col overflow-scroll pr-[45vw]">
-      <TabItem text={month.toString() + "月"} href="/" />
+    <div className="vertical-rl flex w-full flex-col overflow-scroll py-2 pr-[45vw]">
+      <TabItem
+        text={thisMonth.toString() + "月"}
+        href="/"
+        isActive={id === undefined}
+      />
       {months}
     </div>
   );
