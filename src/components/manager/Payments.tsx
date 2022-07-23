@@ -59,7 +59,7 @@ const Payments = ({ thisMonthData }: Props) => {
             })}
           {thisMonthData.payments && thisMonthData.payments.length === 0 && (
             <tr>
-              <td className="text-center text-gray">
+              <td className="h-12 text-center text-gray">
                 支払いデータがありません。
               </td>
             </tr>
