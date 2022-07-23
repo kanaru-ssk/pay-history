@@ -78,7 +78,7 @@ const Payments = ({ thisMonthData }: Props) => {
         />
 
         <button className={(isReady ? "" : "text-gray") + " pl-3 text-right"}>
-          追加
+          支払追加
         </button>
       </form>
     </>
