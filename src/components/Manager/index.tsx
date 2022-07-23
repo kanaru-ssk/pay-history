@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import Budget from "./Budget";
 import Payments from "./Payments";
+import PaymentsForm from "./PaymentsForm";
 
 import type { MonthlyData } from "types/firebase";
 
@@ -49,6 +50,7 @@ const Manager = () => {
         <Budget thisMonthData={thisMonthData} />
 
         <Payments thisMonthData={thisMonthData} />
+        <PaymentsForm thisMonthData={thisMonthData} />
       </main>
     );
   }
