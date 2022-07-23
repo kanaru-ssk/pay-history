@@ -52,7 +52,8 @@ export const pathToMonth = (
     const date = new Date();
     const nowYear = date.getFullYear();
     const nowMonth = date.getMonth() + 1;
-    return [nowYear, nowMonth];
+    const nowDate = date.getDate();
+    return [nowYear, nowMonth, nowDate];
   } else if (typeof path === "string") {
     if (pattern.test(path)) {
       const split = path.split("-");
@@ -133,7 +134,8 @@ export const updateBudget = async (
 export const addPayment = async (
   user: User | null,
   month: MonthlyData,
-  price: number
+  price: number,
+  date: Date
 ) => {
   if (!user) return false;
 
@@ -143,7 +145,7 @@ export const addPayment = async (
 
   const day =
     month.month === new Date().getMonth() + 1 ? new Date().getDate() : 1;
-  const date = new Date(month.year, month.month - 1, day);
+  // const date = new Date(month.year, month.month - 1, day);
   const newPayment: Payment = {
     atCreated: Timestamp.now(),
     atUpdated: Timestamp.now(),
