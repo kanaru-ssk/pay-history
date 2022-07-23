@@ -122,7 +122,12 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         className="top-0 h-full w-full flex-1 rounded-3xl border-2 border-gray px-5 py-3 leading-5"
       />
 
-      <button className={(isReady ? "" : "text-gray") + " pl-3 text-right"}>
+      <button
+        className={
+          (isReady ? "font-bold text-main-color" : "text-gray") +
+          " pl-3 text-right"
+        }
+      >
         支払追加
       </button>
     </form>
