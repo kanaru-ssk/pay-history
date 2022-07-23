@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import "styles/globals.css";
 import type { AppProps } from "next/app";
 
@@ -10,11 +12,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   initFirebase();
 
   return (
-    <AuthProvider>
+    <>
+      <Head>
+        <link rel="icon" href="/favicon.svg" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="theme-color" content="#232C93" />
+      </Head>
+
       <Header />
-      <Tab />;
-      <Component {...pageProps} />
-    </AuthProvider>
+      <Tab />
+
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </>
   );
 }
 
