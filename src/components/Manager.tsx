@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-import Head from "next/head";
 import { useRouter } from "next/router";
 
-import type { GetServerSideProps } from "next";
 import type { MonthlyData } from "types/firebase";
 
 import Introduction from "components/Introduction";
-import Tab from "components/Tab";
+import Loading from "components/Loading";
 import { useAuth } from "hooks/auth";
 import {
   getMonthlyData,
@@ -15,12 +13,16 @@ import {
   updateBudget,
   addPayment,
 } from "libs/monthlyData";
+import { updateUser } from "libs/user";
 
 const Manager = () => {
-  const user = useAuth();
+  const { authUser, dbUser } = useAuth();
   const router = useRouter();
 
-  const [thisMonthData, setThisMonthData] = useState<MonthlyData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [thisMonthData, setThisMonthData] = useState<
+    MonthlyData | null | undefined
+  >(undefined);
   const [budget, setBudget] = useState<number>(0);
   const [remaining, setRemaining] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
@@ -28,14 +30,14 @@ const Manager = () => {
 
   useEffect(() => {
     const unsubscribe = getMonthlyData(
-      user?.uid,
+      authUser?.uid,
       id ? id : getThisMonthDocId(),
       setThisMonthData
     );
     return () => {
       if (unsubscribe !== null) unsubscribe();
     };
-  }, [user, id, setThisMonthData]);
+  }, [authUser, id, setThisMonthData]);
 
   useEffect(() => {
     if (thisMonthData?.budget) {
@@ -48,22 +50,30 @@ const Manager = () => {
       );
       setRemaining(thisMonthData.budget - totalSpending);
     }
+    setIsLoading(false);
   }, [thisMonthData]);
 
   const onSumitBudget = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (thisMonthData) updateBudget(user, { ...thisMonthData, budget: budget });
+    if (thisMonthData) {
+      updateUser(dbUser, budget);
+      updateBudget(authUser, { ...thisMonthData, budget: budget });
+    }
   };
 
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (thisMonthData) {
-      addPayment(user, thisMonthData.docId, price);
+      addPayment(authUser, thisMonthData.docId, price);
       setPrice(0);
     }
   };
 
-  if (thisMonthData !== null) {
+  if (isLoading || thisMonthData === undefined) {
+    return <Loading />;
+  } else if (thisMonthData === null) {
+    return <Introduction setThisMonthData={setThisMonthData} />;
+  } else {
     return (
       <main>
         <form onSubmit={onSumitBudget}>
@@ -100,8 +110,6 @@ const Manager = () => {
         </form>
       </main>
     );
-  } else {
-    return <Introduction setThisMonthData={setThisMonthData} />;
   }
 };
 
