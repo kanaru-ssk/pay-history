@@ -11,7 +11,9 @@ export const getMonthlyData = (
   >
 ) => {
   if (uid === undefined) return null;
-  if (typeof docId !== "string") return null;
+  if (docId === undefined) return null;
+
+  if (typeof docId !== "string") docId = docId[0];
 
   const db = getFirestore();
   const docRef = doc(db, "users", uid, "monthlyData", docId);
@@ -141,8 +143,6 @@ export const addPayment = async (
 
   const day =
     month.month === new Date().getMonth() + 1 ? new Date().getDate() : 1;
-  console.log(month.month);
-  console.log(new Date().getMonth() + 1);
   const date = new Date(month.year, month.month - 1, day);
   const newPayment: Payment = {
     atCreated: Timestamp.now(),
