@@ -40,9 +40,35 @@ export const getThisMonthDocId = (): string => {
   return docId;
 };
 
+export const pathToMonth = (
+  path: string | string[] | undefined
+): number[] | null => {
+  const pattern = /^[0-9]{4}-[0-9]{1,2}$/;
+  if (path === undefined) {
+    const date = new Date();
+    const nowYear = date.getFullYear();
+    const nowMonth = date.getMonth() + 1;
+    return [nowYear, nowMonth];
+  } else if (typeof path === "string") {
+    if (pattern.test(path)) {
+      const split = path.split("-");
+      const toNum = split.map((value) => {
+        return Number(value);
+      });
+      return toNum;
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+};
+
 // 月データ作成
 export const createMonthlyData = async (
   user: User | null,
+  month: number,
+  year: number,
   _budget?: number
 ) => {
   if (!user) return null;
@@ -52,21 +78,20 @@ export const createMonthlyData = async (
     "firebase/firestore"
   );
 
-  const date = new Date();
-  const nowYear = date.getFullYear();
-  const nowMonth = date.getMonth() + 1;
-  const docId = nowYear.toString() + "-" + nowMonth.toString();
+  const docId = year.toString() + "-" + month.toString();
 
   const db = getFirestore();
   const newMonthlyData: MonthlyData = {
     docId: docId,
     atCreated: serverTimestamp(),
     atUpdated: serverTimestamp(),
-    month: nowMonth,
-    year: nowYear,
+    month: month,
+    year: year,
     budget: budget,
     payments: [],
   };
+
+  console.log(user.uid);
 
   await setDoc(
     doc(db, "users", user.uid, "monthlyData", docId),
