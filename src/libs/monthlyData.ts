@@ -1,59 +1,132 @@
-import { User, MonthlyData, Month } from "types/firebase";
+import { getFirestore, onSnapshot, doc } from "firebase/firestore";
+
+import { User, MonthlyData, Payment } from "types/firebase";
 
 // 月データ取得
-export const getMonthlyData = async (
-  uid: string | undefined
-): Promise<MonthlyData | null> => {
+export const getMonthlyData = (
+  uid: string | undefined,
+  docId: string | string[] | undefined,
+  setMonthData: React.Dispatch<React.SetStateAction<MonthlyData | null>>
+) => {
   if (uid === undefined) return null;
-
-  const { getFirestore, collection, getDocs, query, orderBy, limit } =
-    await import("firebase/firestore");
+  if (typeof docId !== "string") return null;
 
   const db = getFirestore();
-  const queryRef = query(
-    collection(db, "users", uid, "monthlyData"),
-    orderBy("atCreated", "desc"),
-    limit(1)
-  );
+  const docRef = doc(db, "users", uid, "monthlyData", docId);
 
-  const querySnap = await getDocs(queryRef);
-
-  if (0 < querySnap.size) {
-    const month: MonthlyData = {
-      docId: querySnap.docs[0].id,
-      atCreated: querySnap.docs[0].data().atCreated,
-      atUpdated: querySnap.docs[0].data().atUpdated,
-      month: querySnap.docs[0].data().month,
-      budget: querySnap.docs[0].data().budget,
-      payments: querySnap.docs[0].data().payments,
+  return onSnapshot(docRef, (docSnap) => {
+    const monthlyData: MonthlyData = {
+      docId: docSnap.id,
+      atCreated: docSnap.data()?.atCreated,
+      atUpdated: docSnap.data()?.atUpdated,
+      budget: docSnap.data()?.budget,
+      month: docSnap.data()?.month,
+      year: docSnap.data()?.year,
+      payments: docSnap.data()?.payments,
     };
-    return month;
-  } else {
-    return null;
-  }
+    setMonthData(monthlyData);
+  });
+};
+
+export const getThisMonthDocId = (): string => {
+  const date = new Date();
+  const nowYear = date.getFullYear();
+  const nowMonth = date.getMonth() + 1;
+  const docId = nowYear.toString() + "-" + nowMonth.toString();
+  return docId;
 };
 
 // 月データ作成
 export const createMonthlyData = async (
   user: User | null,
-  month: Month,
   _budget?: number
 ) => {
-  if (!user) return;
+  if (!user) return null;
   const budget = _budget ? _budget : 0;
 
-  const { getFirestore, addDoc, collection, serverTimestamp } = await import(
+  const { getFirestore, setDoc, doc, serverTimestamp } = await import(
     "firebase/firestore"
   );
 
+  const date = new Date();
+  const nowYear = date.getFullYear();
+  const nowMonth = date.getMonth() + 1;
+  const docId = nowYear.toString() + "-" + nowMonth.toString();
+
   const db = getFirestore();
-  const newMonthlyData: Omit<MonthlyData, "docId"> = {
+  const newMonthlyData: MonthlyData = {
+    docId: docId,
     atCreated: serverTimestamp(),
     atUpdated: serverTimestamp(),
-    month: month,
+    month: nowMonth,
+    year: nowYear,
     budget: budget,
     payments: [],
   };
 
-  addDoc(collection(db, "users", user.uid, "monthlyData"), newMonthlyData);
+  await setDoc(
+    doc(db, "users", user.uid, "monthlyData", docId),
+    newMonthlyData,
+    { merge: true }
+  );
+
+  return newMonthlyData;
+};
+
+// 月データ更新 : 予算
+export const updateBudget = async (
+  user: User | null,
+  monthlyData: MonthlyData
+) => {
+  if (!user || !monthlyData) return null;
+
+  const { getFirestore, updateDoc, doc, serverTimestamp } = await import(
+    "firebase/firestore"
+  );
+
+  const db = getFirestore();
+  const newMonthlyData: Partial<MonthlyData> = {
+    atUpdated: serverTimestamp(),
+    budget: monthlyData.budget,
+  };
+
+  await updateDoc(
+    doc(db, "users", user.uid, "monthlyData", monthlyData.docId),
+    newMonthlyData
+  );
+
+  return newMonthlyData;
+};
+
+// 月データ更新 : 予算
+export const addPayment = async (
+  user: User | null,
+  docId: string,
+  price: number
+) => {
+  if (!user) return false;
+
+  const {
+    getFirestore,
+    updateDoc,
+    arrayUnion,
+    doc,
+    Timestamp,
+    serverTimestamp,
+  } = await import("firebase/firestore");
+
+  const newPayment: Payment = {
+    atCreated: Timestamp.now(),
+    atUpdated: Timestamp.now(),
+    price: price,
+  };
+
+  const db = getFirestore();
+  const newMonthlyData = {
+    atUpdated: Timestamp.now(),
+    payments: arrayUnion(newPayment),
+  };
+
+  updateDoc(doc(db, "users", user.uid, "monthlyData", docId), newMonthlyData);
+  return true;
 };
