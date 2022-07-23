@@ -22,5 +22,6 @@ export type MonthlyData = {
 export type Payment = {
   atCreated: Timestamp;
   atUpdated: Timestamp;
+  atPaied: Timestamp;
   price: number;
 };

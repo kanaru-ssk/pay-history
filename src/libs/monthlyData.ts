@@ -130,23 +130,24 @@ export const updateBudget = async (
 // 月データ更新 : 予算
 export const addPayment = async (
   user: User | null,
-  docId: string,
+  month: MonthlyData,
   price: number
 ) => {
   if (!user) return false;
 
-  const {
-    getFirestore,
-    updateDoc,
-    arrayUnion,
-    doc,
-    Timestamp,
-    serverTimestamp,
-  } = await import("firebase/firestore");
+  const { getFirestore, updateDoc, arrayUnion, doc, Timestamp } = await import(
+    "firebase/firestore"
+  );
 
+  const day =
+    month.month === new Date().getMonth() + 1 ? new Date().getDate() : 1;
+  console.log(month.month);
+  console.log(new Date().getMonth() + 1);
+  const date = new Date(month.year, month.month - 1, day);
   const newPayment: Payment = {
     atCreated: Timestamp.now(),
     atUpdated: Timestamp.now(),
+    atPaied: Timestamp.fromDate(date),
     price: price,
   };
 
@@ -156,6 +157,9 @@ export const addPayment = async (
     payments: arrayUnion(newPayment),
   };
 
-  updateDoc(doc(db, "users", user.uid, "monthlyData", docId), newMonthlyData);
+  updateDoc(
+    doc(db, "users", user.uid, "monthlyData", month.docId),
+    newMonthlyData
+  );
   return true;
 };

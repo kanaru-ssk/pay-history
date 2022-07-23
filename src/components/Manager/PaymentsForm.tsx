@@ -19,7 +19,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (thisMonthData && isReady) {
-      addPayment(authUser, thisMonthData.docId, price);
+      addPayment(authUser, thisMonthData, price);
       setPrice(0);
       setIsReady(false);
     }

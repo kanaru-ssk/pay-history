@@ -18,8 +18,8 @@ const Payments = ({ thisMonthData }: Props) => {
           return (
             <tr key={value.atCreated.toString()}>
               <td className="pl-8 text-left">
-                {value.atCreated.toDate().getMonth() + 1}日
-                {value.atCreated.toDate().getDate()}日
+                {value.atPaied.toDate().getMonth() + 1}日
+                {value.atPaied.toDate().getDate()}日
               </td>
               <td className="pr-8 text-right">
                 {value.price.toLocaleString()}円
