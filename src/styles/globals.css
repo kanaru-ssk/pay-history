@@ -24,4 +24,12 @@
   p {
     @apply my-2;
   }
+  .horizontal-rl {
+    -ms-writing-mode: tb-rl;
+    writing-mode: horizontal-tb;
+  }
+  .vertical-rl {
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+  }
 }
