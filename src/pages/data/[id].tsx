@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 import Manager from "components/Manager";
 
-type Props = {};
-
-const Question = ({}: Props) => {
+const Question = () => {
   const router = useRouter();
   const { id } = router.query;
 

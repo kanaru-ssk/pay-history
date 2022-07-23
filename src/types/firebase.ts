@@ -20,7 +20,7 @@ export type MonthlyData = {
 };
 
 export type Payment = {
-  atCreated: Timestamp | FieldValue;
-  atUpdated: Timestamp | FieldValue;
+  atCreated: Timestamp;
+  atUpdated: Timestamp;
   price: number;
 };

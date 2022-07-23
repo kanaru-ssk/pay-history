@@ -1,20 +1,7 @@
-import { useEffect, useState } from "react";
-
 import Head from "next/head";
 
-import type { GetServerSideProps } from "next";
-import type { MonthlyData } from "types/firebase";
-
-import Introduction from "components/Introduction";
 import Manager from "components/Manager";
-import Tab from "components/Tab";
 import { useAuth } from "hooks/auth";
-import {
-  getMonthlyData,
-  getThisMonthDocId,
-  updateBudget,
-  addPayment,
-} from "libs/monthlyData";
 
 type Props = {};
 
