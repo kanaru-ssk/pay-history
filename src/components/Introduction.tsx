@@ -19,10 +19,8 @@ const Introduction = ({ setThisMonthData }: Props) => {
 
   const { id } = router.query;
 
-  useEffect(() => {}, [id, router]);
-
   const onClickHundler = () => {
-    const month = pathToMonth(id);
+    const month = pathToMonth(id?.[0]);
     if (month) {
       createMonthlyData(authUser, month[1], month[0], dbUser?.budget).then(
         (result) => {

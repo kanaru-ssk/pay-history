@@ -23,7 +23,7 @@ const Tab = () => {
         text={month + "月"}
         href={"/data/" + path}
         key={i}
-        isActive={id === path}
+        isActive={id?.[0] === path}
       />
     );
   }
