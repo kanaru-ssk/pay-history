@@ -9,8 +9,13 @@ service cloud.firestore {
     	return isAuthenticated() && userId == request.auth.uid;
     }
 
-    match /users/{userId}/monthlyData/{monthlyDataId} {
+    match /users/{userId} { 
 			allow read, write: if isUserAuthenticated(userId);
+      
+      match /monthlyData/{monthlyDataId} {
+			  allow read, write: if isUserAuthenticated(userId);
+      }
     }
+   
   }
 }

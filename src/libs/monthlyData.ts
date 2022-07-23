@@ -1,12 +1,14 @@
 import { getFirestore, onSnapshot, doc } from "firebase/firestore";
 
-import { User, MonthlyData, Payment } from "types/firebase";
+import type { User, MonthlyData, Payment } from "types/firebase";
 
 // 月データリアルタイム取得
 export const getMonthlyData = (
   uid: string | undefined,
   docId: string | string[] | undefined,
-  setMonthData: React.Dispatch<React.SetStateAction<MonthlyData | null>>
+  setMonthData: React.Dispatch<
+    React.SetStateAction<MonthlyData | null | undefined>
+  >
 ) => {
   if (uid === undefined) return null;
   if (typeof docId !== "string") return null;
@@ -72,7 +74,7 @@ export const createMonthlyData = async (
   _budget?: number
 ) => {
   if (!user) return null;
-  const budget = _budget ? _budget : 0;
+  const budget = _budget ? _budget : 50000;
 
   const { getFirestore, setDoc, doc, serverTimestamp } = await import(
     "firebase/firestore"
@@ -90,8 +92,6 @@ export const createMonthlyData = async (
     budget: budget,
     payments: [],
   };
-
-  console.log(user.uid);
 
   await setDoc(
     doc(db, "users", user.uid, "monthlyData", docId),

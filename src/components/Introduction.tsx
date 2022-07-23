@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useRouter } from "next/router";
 
@@ -8,11 +8,13 @@ import { useAuth } from "hooks/auth";
 import { createMonthlyData, pathToMonth } from "libs/monthlyData";
 
 type Props = {
-  setThisMonthData: React.Dispatch<React.SetStateAction<MonthlyData | null>>;
+  setThisMonthData: React.Dispatch<
+    React.SetStateAction<MonthlyData | null | undefined>
+  >;
 };
 
 const Introduction = ({ setThisMonthData }: Props) => {
-  const user = useAuth();
+  const { authUser, dbUser } = useAuth();
   const router = useRouter();
 
   const { id } = router.query;
@@ -22,9 +24,11 @@ const Introduction = ({ setThisMonthData }: Props) => {
   const onClickHundler = () => {
     const month = pathToMonth(id);
     if (month) {
-      createMonthlyData(user, month[1], month[0], 10000).then((result) => {
-        setThisMonthData(result);
-      });
+      createMonthlyData(authUser, month[1], month[0], dbUser?.budget).then(
+        (result) => {
+          setThisMonthData(result);
+        }
+      );
     }
   };
 
