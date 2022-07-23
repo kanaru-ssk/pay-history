@@ -2,7 +2,7 @@ import { getFirestore, onSnapshot, doc } from "firebase/firestore";
 
 import { User, MonthlyData, Payment } from "types/firebase";
 
-// 月データ取得
+// 月データリアルタイム取得
 export const getMonthlyData = (
   uid: string | undefined,
   docId: string | string[] | undefined,
@@ -15,16 +15,20 @@ export const getMonthlyData = (
   const docRef = doc(db, "users", uid, "monthlyData", docId);
 
   return onSnapshot(docRef, (docSnap) => {
-    const monthlyData: MonthlyData = {
-      docId: docSnap.id,
-      atCreated: docSnap.data()?.atCreated,
-      atUpdated: docSnap.data()?.atUpdated,
-      budget: docSnap.data()?.budget,
-      month: docSnap.data()?.month,
-      year: docSnap.data()?.year,
-      payments: docSnap.data()?.payments,
-    };
-    setMonthData(monthlyData);
+    if (docSnap.exists()) {
+      const monthlyData: MonthlyData = {
+        docId: docSnap.id,
+        atCreated: docSnap.data()?.atCreated,
+        atUpdated: docSnap.data()?.atUpdated,
+        budget: docSnap.data()?.budget,
+        month: docSnap.data()?.month,
+        year: docSnap.data()?.year,
+        payments: docSnap.data()?.payments,
+      };
+      setMonthData(monthlyData);
+    } else {
+      setMonthData(null);
+    }
   });
 };
 
