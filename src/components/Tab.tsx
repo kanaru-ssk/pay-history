@@ -22,7 +22,7 @@ const Tab = () => {
       <TabItem
         text={month + "月"}
         href={"/data/" + path}
-        key={path}
+        key={month}
         isActive={id?.[0] === path}
       />
     );

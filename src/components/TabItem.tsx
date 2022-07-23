@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Props = {
   text: string;
@@ -7,18 +7,20 @@ type Props = {
 };
 
 const TabItem = ({ text, href, isActive }: Props) => {
+  const router = useRouter();
+
   return (
-    <Link href={href}>
-      <a className="relative mx-2 block h-12 w-12 shrink-0 py-2">
-        <div
-          className={
-            (isActive ? "font-bold" : "") + "  horizontal-rl text-center"
-          }
-        >
-          {text}
-        </div>
-      </a>
-    </Link>
+    <button
+      onClick={() => {
+        router.push(href, href, { shallow: true });
+      }}
+      className={
+        (isActive ? "font-bold" : "font-nomal") +
+        " horizontal-rl relative mx-2 block h-12 w-12 shrink-0 py-2 text-center"
+      }
+    >
+      {text}
+    </button>
   );
 };
 
