@@ -32,7 +32,7 @@ const Payments = ({ thisMonthData }: Props) => {
       <table className="mx-auto mt-8 w-full table-auto">
         <thead className="border-b">
           <tr>
-            <th className="pl-4 text-left">支払い日</th>
+            <th className="pl-4 text-left">支出日</th>
             <th className="pr-4 text-right">金額</th>
           </tr>
         </thead>
