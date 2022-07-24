@@ -114,7 +114,7 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
       className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
     >
       <div className="w-full px-4">
-        <div className="bg-white px-4 pt-2 pb-4">
+        <div className="mx-auto max-w-2xl bg-white px-4 pt-2 pb-4">
           <div
             className="ml-auto w-12 cursor-pointer text-center text-2xl"
             onClick={() => {
