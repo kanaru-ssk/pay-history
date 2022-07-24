@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 
 import type { MonthlyData } from "types/firebase";
 
+import Budget from "components/Budget";
 import Introduction from "components/Introduction";
 import Loading from "components/Loading";
-import Budget from "components/manager/Budget";
-import Payments from "components/manager/Payments";
-import PaymentsForm from "components/manager/PaymentsForm";
+import Payments from "components/Payments";
+import PaymentsForm from "components/PaymentsForm";
 import { useAuth } from "hooks/auth";
 import { getMonthlyData, getThisMonthDocId } from "libs/monthlyData";
 

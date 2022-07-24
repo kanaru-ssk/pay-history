@@ -13,7 +13,7 @@ type Props = {
   setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
-const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
+const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const { authUser } = useAuth();
 
   const [date, setDate] = useState<string>("");
@@ -170,4 +170,4 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
   );
 };
 
-export default EditModal;
+export default PaymentsModal;
