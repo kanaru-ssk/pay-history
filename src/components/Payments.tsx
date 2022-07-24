@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import EditModal from "./EditModal";
-
 import type { MonthlyData, Payment } from "types/firebase";
+
+import PaymentsModal from "components/PaymentsModal";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -69,7 +69,7 @@ const Payments = ({ thisMonthData }: Props) => {
   return (
     <>
       {payment && (
-        <EditModal
+        <PaymentsModal
           thisMonthData={thisMonthData}
           payment={payment}
           setPayment={setPayment}

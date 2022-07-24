@@ -1,19 +1,9 @@
-import { useEffect } from "react";
-
 import { useRouter } from "next/router";
-
-import type { MonthlyData } from "types/firebase";
 
 import { useAuth } from "hooks/auth";
 import { createMonthlyData, pathToMonth } from "libs/monthlyData";
 
-type Props = {
-  setThisMonthData: React.Dispatch<
-    React.SetStateAction<MonthlyData | null | undefined>
-  >;
-};
-
-const Introduction = ({ setThisMonthData }: Props) => {
+const Introduction = () => {
   const { authUser, dbUser } = useAuth();
   const router = useRouter();
 
