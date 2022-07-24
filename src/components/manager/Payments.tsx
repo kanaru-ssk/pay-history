@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import EditModal from "./EditModal";
 
@@ -14,6 +14,7 @@ const Payments = ({ thisMonthData }: Props) => {
   const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(false);
 
+  // 支出日ソート
   const sortDate = (a: Payment, b: Payment): number => {
     if (isAcsDate) {
       if (b.atPaied < a.atPaied) {
@@ -30,6 +31,7 @@ const Payments = ({ thisMonthData }: Props) => {
     }
   };
 
+  // 金額ソート
   const sortPrice = (a: Payment, b: Payment): number => {
     if (isAcsPrice) {
       if (b.price < a.price) {
@@ -46,9 +48,23 @@ const Payments = ({ thisMonthData }: Props) => {
     }
   };
 
+  // モーダルを開く
   const onClickHundler = (_payment: Payment) => {
     setPayment(_payment);
   };
+
+  // モーダル外をクリックで閉じる
+  const onClickOverlay = (e: any) => {
+    if (e.target.id === "overlay") {
+      setPayment(null);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("click", onClickOverlay, { passive: false });
+    return () => {
+      window.removeEventListener("click", onClickOverlay);
+    };
+  });
 
   return (
     <>

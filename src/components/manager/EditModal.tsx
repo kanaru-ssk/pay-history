@@ -42,13 +42,6 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
-      // 配列要素削除用
-      // updateMonthlyData(authUser, {
-      //   ...thisMonthData,
-      //   payments: thisMonthData.payments.filter((value) => {
-      //     return value.atCreated !== payment.atCreated;
-      //   }),
-      // });
       updateMonthlyData(authUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.map((value) => {
@@ -60,14 +53,15 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
             };
           else return value;
         }),
+      }).then(() => {
+        setPayment(null);
       });
-
-      setPayment(null);
     }
   };
 
   // 支払い削除
-  const onDeletePayment = () => {
+  const onDeletePayment = (e: any) => {
+    e.preventDefault();
     updateMonthlyData(authUser, {
       ...thisMonthData,
       payments: thisMonthData.payments.filter((value) => {
@@ -106,7 +100,10 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   return (
-    <div className="fixed  top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black">
+    <div
+      id="overlay"
+      className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
+    >
       <div className="w-full px-4">
         <div className="bg-white px-4 pt-2 pb-4">
           <div
