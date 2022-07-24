@@ -14,7 +14,7 @@ type Props = {
 };
 
 const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
-  const { authUser } = useAuth();
+  const { dbUser } = useAuth();
 
   const [date, setDate] = useState<string>("");
   const [firstDate, setFirstDate] = useState<string>("");
@@ -42,7 +42,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
-      updateMonthlyData(authUser, {
+      updateMonthlyData(dbUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.map((value) => {
           if (value.atCreated === payment.atCreated)
@@ -62,7 +62,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   // 支払い削除
   const onDeletePayment = (e: any) => {
     e.preventDefault();
-    updateMonthlyData(authUser, {
+    updateMonthlyData(dbUser, {
       ...thisMonthData,
       payments: thisMonthData.payments.filter((value) => {
         return value.atCreated !== payment.atCreated;
