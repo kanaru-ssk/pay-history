@@ -146,6 +146,7 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
             <div className="flex gap-2 pb-2 pt-4 text-center">
               <button
+                type="button"
                 className="h-12 w-full rounded-3xl bg-red text-center text-white"
                 onClick={onDeletePayment}
               >
