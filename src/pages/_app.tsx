@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="theme-color" content="#232C93" />
+        <meta name="theme-color" content="#C1C5FE" />
 
         <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="og:type" content="website" />
