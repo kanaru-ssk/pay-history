@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Budget = ({ thisMonthData }: Props) => {
-  const { authUser, dbUser } = useAuth();
+  const { dbUser } = useAuth();
 
   const [budget, setBudget] = useState<number>(0);
   const [totalSpending, setTotalSpending] = useState<number>(0);
@@ -41,15 +41,12 @@ const Budget = ({ thisMonthData }: Props) => {
   }, [totalSpending, budget]);
 
   // 予算編集ボタン
-  const onSubmitHundler = (e: any) => {
-    e.preventDefault();
+  const onSubmitHundler = () => {
     if (isReady) {
       updateUser(dbUser, budget);
-      updateMonthlyData(authUser, { ...thisMonthData, budget: budget });
+      updateMonthlyData(dbUser, { ...thisMonthData, budget: budget });
       setIsReady(false);
     }
-    // submit時にfocus外す
-    (document.activeElement as HTMLElement).blur();
   };
 
   // 予算入力
@@ -70,34 +67,39 @@ const Budget = ({ thisMonthData }: Props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHundler}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        (document.activeElement as HTMLElement).blur();
+      }}
+    >
       <table className="my-8 mx-auto table-auto ">
         <tbody>
           <tr>
             <th>予算</th>
-            <td className="w-48 text-right">
+            <td className="text-right">
               <input
                 type="text"
                 inputMode="numeric"
                 value={budget.toLocaleString()}
                 onChange={onChangeBudget}
                 onBlur={onSubmitHundler}
-                className="w-40 rounded border border-gray text-right"
+                className="w-full rounded border border-gray text-right"
               />
-              円
             </td>
+            <td>円</td>
           </tr>
           <tr className="border-b">
             <th>支出</th>
-            <td className="w-48 text-right">
-              {totalSpending.toLocaleString()}円
-            </td>
+            <td className="text-right">{totalSpending.toLocaleString()}</td>
+            <td>円</td>
           </tr>
           <tr>
             <th>残高</th>
-            <td className="w-48 whitespace-nowrap text-right text-3xl">
-              {remaining.toLocaleString()}円
+            <td className="text-right text-3xl">
+              {remaining.toLocaleString()}
             </td>
+            <td>円</td>
           </tr>
         </tbody>
       </table>

@@ -1,6 +1,6 @@
 import { getFirestore, onSnapshot, doc } from "firebase/firestore";
 
-import type { User, MonthlyData, Payment } from "types/firebase";
+import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
 
 // 月データリアルタイム取得
 export const getMonthlyData = (
@@ -107,7 +107,7 @@ export const createMonthlyData = async (
 
 // 月データ更新
 export const updateMonthlyData = async (
-  user: User | null,
+  user: DBUser | null,
   monthlyData: MonthlyData
 ) => {
   if (!user || !monthlyData) return null;
@@ -124,7 +124,7 @@ export const updateMonthlyData = async (
   };
 
   await updateDoc(
-    doc(db, "users", user.uid, "monthlyData", monthlyData.docId),
+    doc(db, "users", user.docId, "monthlyData", monthlyData.docId),
     newMonthlyData
   );
 
