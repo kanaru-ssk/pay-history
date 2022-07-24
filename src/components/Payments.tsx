@@ -108,7 +108,7 @@ const Payments = ({ thisMonthData }: Props) => {
                 return (
                   <tr key={value.atCreated.toString()} className="h-9">
                     <td className="pl-4 text-left">
-                      {value.atPaied.toDate().getMonth() + 1}日
+                      {value.atPaied.toDate().getMonth() + 1}月
                       {value.atPaied.toDate().getDate()}日
                     </td>
                     <td className="pr-4 text-right">
