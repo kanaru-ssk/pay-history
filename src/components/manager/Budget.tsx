@@ -41,7 +41,7 @@ const Budget = ({ thisMonthData }: Props) => {
   }, [totalSpending, budget]);
 
   // 予算編集ボタン
-  const onSubmitHundler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHundler = (e: any) => {
     e.preventDefault();
     if (isReady) {
       updateUser(dbUser, budget);
@@ -81,20 +81,10 @@ const Budget = ({ thisMonthData }: Props) => {
                 inputMode="numeric"
                 value={budget.toLocaleString()}
                 onChange={onChangeBudget}
+                onBlur={onSubmitHundler}
                 className="w-40 rounded border border-gray text-right"
               />
               円
-            </td>
-            <td>
-              <button
-                type="submit"
-                className={
-                  (isReady ? "" : "text-gray") +
-                  " rounded border border-gray px-2"
-                }
-              >
-                変更
-              </button>
             </td>
           </tr>
           <tr className="border-b">
