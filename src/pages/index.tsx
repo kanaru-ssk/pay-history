@@ -42,7 +42,7 @@ const Home = () => {
   if (isLoading || thisMonthData === undefined) {
     return <Loading />;
   } else if (thisMonthData === null) {
-    return <Introduction setThisMonthData={setThisMonthData} />;
+    return <Introduction />;
   } else {
     return (
       <main>
