@@ -41,12 +41,15 @@ const Budget = ({ thisMonthData }: Props) => {
   }, [totalSpending, budget]);
 
   // 予算編集ボタン
-  const onClickEdit = () => {
+  const onSubmitHundler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (isReady) {
       updateUser(dbUser, budget);
       updateMonthlyData(authUser, { ...thisMonthData, budget: budget });
       setIsReady(false);
     }
+    // submit時にfocus外す
+    (document.activeElement as HTMLElement).blur();
   };
 
   // 予算入力
@@ -67,46 +70,48 @@ const Budget = ({ thisMonthData }: Props) => {
   };
 
   return (
-    <table className="my-8 mx-auto table-auto ">
-      <tbody>
-        <tr>
-          <th>予算</th>
-          <td className="w-48 text-right">
-            <input
-              type="text"
-              inputMode="numeric"
-              value={budget.toLocaleString()}
-              onChange={onChangeBudget}
-              className="w-40 rounded border border-gray text-right"
-            />
-            円
-          </td>
-          <td>
-            <button
-              className={
-                (isReady ? "" : "text-gray") +
-                " rounded border border-gray px-2"
-              }
-              onClick={onClickEdit}
-            >
-              変更
-            </button>
-          </td>
-        </tr>
-        <tr className="border-b">
-          <th>支出</th>
-          <td className="w-48 text-right">
-            {totalSpending.toLocaleString()}円
-          </td>
-        </tr>
-        <tr>
-          <th>残高</th>
-          <td className="w-48 whitespace-nowrap text-right text-3xl">
-            {remaining.toLocaleString()}円
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <form onSubmit={onSubmitHundler}>
+      <table className="my-8 mx-auto table-auto ">
+        <tbody>
+          <tr>
+            <th>予算</th>
+            <td className="w-48 text-right">
+              <input
+                type="text"
+                inputMode="numeric"
+                value={budget.toLocaleString()}
+                onChange={onChangeBudget}
+                className="w-40 rounded border border-gray text-right"
+              />
+              円
+            </td>
+            <td>
+              <button
+                type="submit"
+                className={
+                  (isReady ? "" : "text-gray") +
+                  " rounded border border-gray px-2"
+                }
+              >
+                変更
+              </button>
+            </td>
+          </tr>
+          <tr className="border-b">
+            <th>支出</th>
+            <td className="w-48 text-right">
+              {totalSpending.toLocaleString()}円
+            </td>
+          </tr>
+          <tr>
+            <th>残高</th>
+            <td className="w-48 whitespace-nowrap text-right text-3xl">
+              {remaining.toLocaleString()}円
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
   );
 };
 

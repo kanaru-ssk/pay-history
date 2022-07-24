@@ -42,13 +42,6 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
-      // 配列要素削除用
-      // updateMonthlyData(authUser, {
-      //   ...thisMonthData,
-      //   payments: thisMonthData.payments.filter((value) => {
-      //     return value.atCreated !== payment.atCreated;
-      //   }),
-      // });
       updateMonthlyData(authUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.map((value) => {
@@ -60,14 +53,15 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
             };
           else return value;
         }),
+      }).then(() => {
+        setPayment(null);
       });
-
-      setPayment(null);
     }
   };
 
   // 支払い削除
-  const onDeletePayment = () => {
+  const onDeletePayment = (e: any) => {
+    e.preventDefault();
     updateMonthlyData(authUser, {
       ...thisMonthData,
       payments: thisMonthData.payments.filter((value) => {
@@ -78,9 +72,18 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
     setPayment(null);
   };
 
+  const toHalfWidth = (value: string): string => {
+    if (!value) return value;
+
+    return String(value).replace(/[！-～]/g, (all: string): string => {
+      return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
+    });
+  };
+
   // 支払い金額入力
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const removed = e.target.value.replace(/,/g, "");
+    const half = toHalfWidth(e.target.value);
+    const removed = half.replace(/,/g, "");
     const pattern = /^\d*$/;
     if (pattern.test(removed)) {
       const toNum = Number(removed);
@@ -106,7 +109,10 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   return (
-    <div className="fixed  top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black">
+    <div
+      id="overlay"
+      className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
+    >
       <div className="w-full px-4">
         <div className="bg-white px-4 pt-2 pb-4">
           <div
@@ -140,6 +146,7 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
             <div className="flex gap-2 pb-2 pt-4 text-center">
               <button
+                type="button"
                 className="h-12 w-full rounded-3xl bg-red text-center text-white"
                 onClick={onDeletePayment}
               >
