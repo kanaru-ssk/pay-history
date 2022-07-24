@@ -72,9 +72,18 @@ const EditModal = ({ thisMonthData, payment, setPayment }: Props) => {
     setPayment(null);
   };
 
+  const toHalfWidth = (value: string): string => {
+    if (!value) return value;
+
+    return String(value).replace(/[！-～]/g, (all: string): string => {
+      return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
+    });
+  };
+
   // 支払い金額入力
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const removed = e.target.value.replace(/,/g, "");
+    const half = toHalfWidth(e.target.value);
+    const removed = half.replace(/,/g, "");
     const pattern = /^\d*$/;
     if (pattern.test(removed)) {
       const toNum = Number(removed);
