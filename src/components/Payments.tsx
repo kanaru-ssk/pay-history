@@ -10,9 +10,9 @@ type Props = {
 
 const Payments = ({ thisMonthData }: Props) => {
   const [payment, setPayment] = useState<Payment | null>(null);
-  const [isSortDate, setIsSortDate] = useState<boolean>(false);
-  const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
-  const [isAcsPrice, setIsAcsPrice] = useState<boolean>(false);
+  const [isSortDate, setIsSortDate] = useState<boolean>(true);
+  const [isAcsDate, setIsAcsDate] = useState<boolean>(true);
+  const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
 
   // 支出日ソート
   const sortDate = (a: Payment, b: Payment): number => {
@@ -86,7 +86,7 @@ const Payments = ({ thisMonthData }: Props) => {
               }}
               className="cursor-pointer pl-4 text-left"
             >
-              支出日{isSortDate && (isAcsDate ? "▲" : "▼")}
+              支出日{isSortDate && (isAcsDate ? "▼" : "▲")}
             </th>
             <th
               onClick={() => {

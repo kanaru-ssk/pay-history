@@ -11,7 +11,7 @@
     "lint:fix": "yarn lint --fix && yarn format"
   },
   "dependencies": {
-    "firebase": "^9.9.0",
+    "firebase": "^9.9.1",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
