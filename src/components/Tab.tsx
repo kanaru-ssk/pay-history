@@ -30,7 +30,7 @@ const Tab = () => {
 
   return (
     <>
-      <div className="fixed top-12 left-0 z-10 flex h-16 w-full flex-row-reverse items-center overflow-y-hidden overflow-x-scroll bg-sub-color pr-[45vw] md:top-20">
+      <div className="fixed top-12 left-0 z-10 flex h-16 w-full flex-row-reverse items-center overflow-y-hidden overflow-x-scroll bg-sub-color px-[40vw] md:top-20">
         <TabItem
           text={thisMonth.toString() + "月"}
           href="/"
