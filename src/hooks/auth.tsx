@@ -1,12 +1,13 @@
-// 認証
+// 認証状態をuseContextで共有
 
-// react取得
 import { createContext, useContext, useState, useEffect } from "react";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, onSnapshot, doc } from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
 
 import type { User, DBUser } from "types/firebase";
+
+import db from "libs/initFirebase";
 
 type node = {
   children: React.ReactNode;
@@ -28,7 +29,6 @@ export const AuthProvider = ({ children }: node) => {
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
   const auth = getAuth();
-  const db = getFirestore();
 
   // 認証ユーザー更新
   useEffect(() => {
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: node) => {
       );
       return () => unsubscribe();
     }
-  }, [auth.currentUser, db]);
+  }, [auth.currentUser]);
 
   return (
     <AuthContext.Provider value={{ authUser: authUser, dbUser: dbUser }}>
