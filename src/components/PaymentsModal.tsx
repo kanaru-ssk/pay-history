@@ -114,14 +114,16 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
       className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
     >
       <div className="w-full px-4">
-        <div className="mx-auto max-w-2xl bg-white px-4 pt-2 pb-4">
+        <div className="mx-auto max-w-2xl bg-white px-3 pt-2 pb-4">
           <div
-            className="ml-auto w-12 cursor-pointer text-center text-2xl"
+            className="my-1 ml-auto w-12 cursor-pointer px-3 text-right"
             onClick={() => {
               setPayment(null);
             }}
           >
-            ×
+            <svg className="inline h-6 w-6" viewBox="0 0 20 20">
+              <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+            </svg>
           </div>
           <form onSubmit={onSumitPayment} className="sticky bottom-0 bg-white">
             <div className="flex w-full items-center gap-2 py-2">
