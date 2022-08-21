@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { useAuth } from "hooks/auth";
@@ -26,16 +27,29 @@ const Introduction = () => {
           予算管理を始める
         </button>
       </div>
-      <h1>pay history</h1>
-      <p>クレジットカードの予算管理、しっかり出来ていますか？</p>
-      <p>
-        カード明細は反映に時間がかかってしまい、今いくら使ったのか把握するのは難しいですよね。
+      <h1>Pay History</h1>
+      <p>予算管理ツール「Pay History」</p>
+      <Image
+        src="/img/screenshot.png"
+        width={1200}
+        height={630}
+        alt="screenshot"
+      />
+      <p className="mb-4">月の予算管理、しっかりできていますか？</p>
+      <p className="mb-4">
+        クレジットカード明細は反映まで時間がかかってしまい、月初からいくら使ったのか把握するのは難しいですよね。
       </p>
-      <p>pay historyを使ってカードの予算管理を簡単にしましょう!</p>
+      <p className="mb-8">
+        予算管理ツール「Pay History」なら、月の
+        <span className="font-bold text-main-color">予算</span>、使った
+        <span className="font-bold text-main-color">金額</span>、予算
+        <span className="font-bold text-main-color">残高</span>
+        を最もシンプルに管理できます。
+      </p>
       <h2>使い方</h2>
       <ol className="list-inside list-decimal">
         <li>月の予算を入力する</li>
-        <li>カードで支払いしたら金額を入力</li>
+        <li>支払いしたらアプリで金額を入力</li>
         <li>完了!</li>
       </ol>
       <div className="my-12 text-center">
