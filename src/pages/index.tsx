@@ -40,7 +40,11 @@ const Home = () => {
   }, [thisMonthData]);
 
   if (isLoading || thisMonthData === undefined) {
-    return <Loading />;
+    return (
+      <div className="my-4 flex justify-center">
+        <Loading />
+      </div>
+    );
   } else if (thisMonthData === null) {
     return <Introduction />;
   } else {

@@ -1,4 +1,6 @@
-import { getFirestore, onSnapshot, doc } from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
+
+import db from "./initFirebase";
 
 import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
 
@@ -15,7 +17,6 @@ export const getMonthlyData = (
 
   if (typeof docId !== "string") docId = docId[0];
 
-  const db = getFirestore();
   const docRef = doc(db, "users", uid, "monthlyData", docId);
 
   return onSnapshot(docRef, (docSnap) => {
@@ -79,13 +80,10 @@ export const createMonthlyData = async (
   if (!user) return null;
   const budget = _budget ? _budget : 50000;
 
-  const { getFirestore, setDoc, doc, serverTimestamp } = await import(
-    "firebase/firestore"
-  );
+  const { setDoc, doc, serverTimestamp } = await import("firebase/firestore");
 
   const docId = year.toString() + "-" + month.toString();
 
-  const db = getFirestore();
   const newMonthlyData: MonthlyData = {
     docId: docId,
     atCreated: serverTimestamp(),
@@ -112,11 +110,10 @@ export const updateMonthlyData = async (
 ) => {
   if (!user || !monthlyData) return null;
 
-  const { getFirestore, updateDoc, doc, serverTimestamp } = await import(
+  const { updateDoc, doc, serverTimestamp } = await import(
     "firebase/firestore"
   );
 
-  const db = getFirestore();
   const newMonthlyData: Partial<MonthlyData> = {
     atUpdated: serverTimestamp(),
     budget: monthlyData.budget,
@@ -140,7 +137,7 @@ export const addPayment = async (
 ) => {
   if (!user) return false;
 
-  const { getFirestore, updateDoc, arrayUnion, doc, Timestamp } = await import(
+  const { updateDoc, arrayUnion, doc, Timestamp } = await import(
     "firebase/firestore"
   );
 
@@ -151,7 +148,6 @@ export const addPayment = async (
     price: price,
   };
 
-  const db = getFirestore();
   const newMonthlyData = {
     atUpdated: Timestamp.now(),
     payments: arrayUnion(newPayment),

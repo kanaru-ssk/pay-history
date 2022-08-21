@@ -18,10 +18,10 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        "Arial",
         "Nunito Sans",
         "Helvetica Neue",
         "Helvetica",
-        "Arial",
         "sans-serif",
       ],
     },
