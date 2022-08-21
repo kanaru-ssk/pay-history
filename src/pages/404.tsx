@@ -7,7 +7,7 @@ const Custom404: NextPage = () => {
   return (
     <>
       <Head>
-        <title>404 | 回答箱</title>
+        <title>404 | Pay History</title>
       </Head>
 
       <main>

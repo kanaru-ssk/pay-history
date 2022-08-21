@@ -24,17 +24,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           property="og:image"
           content={process.env.NEXT_PUBLIC_URL + "/img/ogp.png"}
         />
-        <meta property="og:title" content="pay history" />
+        <meta property="og:title" content="Pay History" />
         <meta
           property="og:description"
-          content="カードの予算管理を簡単にしましょう! カード明細は反映に時間がかかってしまい、今いくら使ったのか把握するのは難しいですよね。pay historyを使えば月の予算とその月に使った金額を簡単に管理できます。"
+          content="予算管理ツール「Pay History」なら、月の予算、使った金額、予算残高を最もシンプルに管理できます。"
         />
         <meta name="twitter:card" content="summary_large_image" />
 
-        <title>pay history</title>
+        <title>Pay History</title>
         <meta
           name="description"
-          content="カードの予算管理を簡単にしましょう! カード明細は反映に時間がかかってしまい、今いくら使ったのか把握するのは難しいですよね。pay historyを使えば月の予算とその月に使った金額を簡単に管理できます。"
+          content="予算管理ツール「Pay History」なら、月の予算、使った金額、予算残高を最もシンプルに管理できます。"
         />
       </Head>
 
