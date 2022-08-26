@@ -67,43 +67,34 @@ const Budget = ({ thisMonthData }: Props) => {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        (document.activeElement as HTMLElement).blur();
-      }}
-    >
-      <table className="my-8 mx-auto table-auto ">
-        <tbody>
-          <tr>
-            <th>予算</th>
-            <td className="text-right">
-              <input
-                type="text"
-                inputMode="numeric"
-                value={budget.toLocaleString()}
-                onChange={onChangeBudget}
-                onBlur={onSubmitHundler}
-                className="w-full rounded border border-gray text-right"
-              />
-            </td>
-            <td>円</td>
-          </tr>
-          <tr className="border-b">
-            <th>支出</th>
-            <td className="text-right">{totalSpending.toLocaleString()}</td>
-            <td>円</td>
-          </tr>
-          <tr>
-            <th>残高</th>
-            <td className="text-right text-3xl">
-              {remaining.toLocaleString()}
-            </td>
-            <td>円</td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+    <table className="my-8 mx-auto table-auto">
+      <tbody>
+        <tr>
+          <th>予算</th>
+          <td className="text-right">
+            <input
+              type="text"
+              inputMode="numeric"
+              value={budget.toLocaleString()}
+              onChange={onChangeBudget}
+              onBlur={onSubmitHundler}
+              className="w-full rounded border border-gray text-right"
+            />
+          </td>
+          <td>円</td>
+        </tr>
+        <tr className="border-b">
+          <th>支出</th>
+          <td className="text-right">{totalSpending.toLocaleString()}</td>
+          <td>円</td>
+        </tr>
+        <tr>
+          <th>残高</th>
+          <td className="text-right text-3xl">{remaining.toLocaleString()}</td>
+          <td>円</td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 
