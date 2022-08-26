@@ -2,12 +2,12 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot, doc } from "firebase/firestore";
 
 import type { User, DBUser } from "types/firebase";
 
-import db from "libs/initFirebase";
+import { auth, db } from "libs/initFirebase";
 
 type node = {
   children: React.ReactNode;
@@ -28,20 +28,18 @@ export const AuthProvider = ({ children }: node) => {
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
-  const auth = getAuth();
-
   // 認証ユーザー更新
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (_user: User | null) => {
-      if (_user) {
-        setAuthUser(_user);
+    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
+      if (user) {
+        setAuthUser(user);
       } else {
         const { signInAnonymously } = await import("firebase/auth");
         signInAnonymously(auth);
       }
     });
     return () => unsubscribe();
-  }, [auth, authUser]);
+  }, [authUser]);
 
   // DBユーザーデータ更新
   useEffect(() => {
@@ -66,7 +64,7 @@ export const AuthProvider = ({ children }: node) => {
       );
       return () => unsubscribe();
     }
-  }, [auth.currentUser]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ authUser: authUser, dbUser: dbUser }}>

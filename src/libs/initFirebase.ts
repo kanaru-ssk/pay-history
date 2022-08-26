@@ -1,7 +1,8 @@
 // firebase初期化
-
-import { initializeApp } from "firebase/app";
-import { initializeFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApp, getApps } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { initializeFirestore, getFirestore } from "firebase/firestore";
 
 const config = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,7 +14,10 @@ const config = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(config);
-const db = initializeFirestore(app, { ignoreUndefinedProperties: true });
-
-export default db;
+const app = !getApps().length ? initializeApp(config) : getApp();
+export const auth = getAuth();
+export const db =
+  getFirestore() ??
+  initializeFirestore(app, { ignoreUndefinedProperties: true });
+export const analytics =
+  typeof window !== "undefined" ? getAnalytics(app) : undefined;

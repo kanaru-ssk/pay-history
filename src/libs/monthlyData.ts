@@ -1,8 +1,9 @@
+import { logEvent } from "firebase/analytics";
 import { onSnapshot, doc } from "firebase/firestore";
 
-import db from "./initFirebase";
-
 import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
+
+import { db, analytics } from "libs/initFirebase";
 
 // 月データリアルタイム取得
 export const getMonthlyData = (
@@ -99,7 +100,7 @@ export const createMonthlyData = async (
     newMonthlyData,
     { merge: true }
   );
-
+  if (analytics) logEvent(analytics, "createMonthlyData");
   return newMonthlyData;
 };
 
@@ -125,6 +126,7 @@ export const updateMonthlyData = async (
     newMonthlyData
   );
 
+  if (analytics) logEvent(analytics, "updateMonthlyData");
   return newMonthlyData;
 };
 
@@ -157,5 +159,7 @@ export const addPayment = async (
     doc(db, "users", user.uid, "monthlyData", month.docId),
     newMonthlyData
   );
+
+  if (analytics) logEvent(analytics, "addPayment");
   return true;
 };

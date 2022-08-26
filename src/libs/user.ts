@@ -1,6 +1,8 @@
-import db from "./initFirebase";
+import { logEvent } from "firebase/analytics";
 
 import type { User, DBUser } from "types/firebase";
+
+import { db, analytics } from "libs/initFirebase";
 
 // ユーザーデータ作成
 export const createUser = async (authUser: User | null) => {
@@ -15,6 +17,7 @@ export const createUser = async (authUser: User | null) => {
     budget: 50000,
   };
 
+  if (analytics) logEvent(analytics, "createUser");
   setDoc(doc(db, "users", authUser.uid), newUserData);
 };
 
@@ -31,5 +34,6 @@ export const updateUser = async (dbUser: DBUser | null, budget: number) => {
     budget: budget,
   };
 
+  if (analytics) logEvent(analytics, "updateUser");
   updateDoc(doc(db, "users", dbUser.docId), newData);
 };
