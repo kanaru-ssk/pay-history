@@ -9,6 +9,7 @@ export type DBUser = {
   atUpdated: Timestamp | FieldValue;
   budget: number;
 };
+
 export type MonthlyData = {
   docId: string;
   atCreated: Timestamp | FieldValue;

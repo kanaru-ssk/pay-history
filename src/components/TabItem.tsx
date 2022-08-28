@@ -16,7 +16,7 @@ const TabItem = ({ text, href, isActive }: Props) => {
       }}
       className={
         (isActive ? "font-bold" : "text-dark-gray") +
-        " horizontal-rl relative mx-2 block h-12 w-12 shrink-0 py-2 text-center"
+        " mx-2 h-12 w-12 shrink-0 py-2"
       }
     >
       {text}

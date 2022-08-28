@@ -8,7 +8,6 @@ import Budget from "components/Budget";
 import Introduction from "components/Introduction";
 import Loading from "components/Loading";
 import Payments from "components/Payments";
-import PaymentsForm from "components/PaymentsForm";
 import { useAuth } from "hooks/auth";
 import { getMonthlyData, getThisMonthDocId } from "libs/monthlyData";
 
@@ -16,7 +15,6 @@ const Home = () => {
   const { authUser } = useAuth();
   const router = useRouter();
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [thisMonthData, setThisMonthData] = useState<
     MonthlyData | null | undefined
   >(undefined);
@@ -32,28 +30,28 @@ const Home = () => {
     return () => {
       if (unsubscribe !== null) unsubscribe();
     };
-  }, [authUser, id, setThisMonthData]);
+  }, [authUser, id]);
 
-  // 初回ロード
-  useEffect(() => {
-    if (thisMonthData !== undefined) setIsLoading(false);
-  }, [thisMonthData]);
-
-  if (isLoading || thisMonthData === undefined) {
+  if (thisMonthData === undefined) {
     return (
-      <div className="my-4 flex justify-center">
+      <main className="my-4 flex justify-center">
         <Loading />
-      </div>
+      </main>
     );
   } else if (thisMonthData === null) {
-    return <Introduction />;
+    return (
+      <main>
+        <Introduction />
+      </main>
+    );
   } else {
     return (
       <main>
-        <Budget thisMonthData={thisMonthData} />
+        <div className="my-8">
+          <Budget thisMonthData={thisMonthData} />
+        </div>
 
         <Payments thisMonthData={thisMonthData} />
-        <PaymentsForm thisMonthData={thisMonthData} />
       </main>
     );
   }
