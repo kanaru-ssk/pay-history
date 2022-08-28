@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
+import PaymentsForm from "components/PaymentsForm";
 import PaymentsModal from "components/PaymentsModal";
+import PaymentsTable from "components/PaymentsTable";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -59,6 +61,7 @@ const Payments = ({ thisMonthData }: Props) => {
       setPayment(null);
     }
   };
+
   useEffect(() => {
     window.addEventListener("click", onClickOverlay, { passive: false });
     return () => {
@@ -68,70 +71,26 @@ const Payments = ({ thisMonthData }: Props) => {
 
   return (
     <>
-      {payment && (
-        <PaymentsModal
+      <PaymentsModal
+        thisMonthData={thisMonthData}
+        payment={payment}
+        setPayment={setPayment}
+      />
+
+      <div className="mt-8">
+        <PaymentsTable
           thisMonthData={thisMonthData}
-          payment={payment}
+          isSortDate={isSortDate}
+          isAcsDate={isAcsDate}
+          isAcsPrice={isAcsPrice}
+          setIsSortDate={setIsSortDate}
+          setIsAcsDate={setIsAcsDate}
+          setIsAcsPrice={setIsAcsPrice}
           setPayment={setPayment}
         />
-      )}
+      </div>
 
-      <table className="mx-auto mt-8 w-full table-auto">
-        <thead className="border-b">
-          <tr>
-            <th
-              onClick={() => {
-                setIsSortDate(true);
-                setIsAcsDate(!isAcsDate);
-              }}
-              className="cursor-pointer pl-4 text-left"
-            >
-              支出日{isSortDate && (isAcsDate ? "▼" : "▲")}
-            </th>
-            <th
-              onClick={() => {
-                setIsSortDate(false);
-                setIsAcsPrice(!isAcsPrice);
-              }}
-              className="cursor-pointer pr-4 text-right"
-            >
-              {!isSortDate && (isAcsPrice ? "▲" : "▼")}金額
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {thisMonthData.payments &&
-            thisMonthData.payments
-              .sort(isSortDate ? sortPrice : sortDate)
-              .sort(isSortDate ? sortDate : sortPrice)
-              .map((value) => {
-                return (
-                  <tr key={value.atCreated.toString()} className="h-9">
-                    <td className="pl-4 text-left">
-                      {value.atPaied.toDate().getMonth() + 1}月
-                      {value.atPaied.toDate().getDate()}日
-                    </td>
-                    <td className="pr-4 text-right">
-                      {value.price.toLocaleString()}円
-                    </td>
-                    <td
-                      onClick={() => onClickHundler(value)}
-                      className="w-4 cursor-pointer text-sm"
-                    >
-                      ︙
-                    </td>
-                  </tr>
-                );
-              })}
-          {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-            <tr>
-              <td className="h-12 text-center text-gray">
-                支払いデータがありません。
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <PaymentsForm thisMonthData={thisMonthData} />
     </>
   );
 };

@@ -29,18 +29,15 @@ const Tab = () => {
   }
 
   return (
-    <>
-      <div className="fixed top-12 left-0 z-10 flex h-16 w-full flex-row-reverse items-center overflow-y-hidden overflow-x-scroll bg-sub-color px-[40vw] md:top-20">
-        <TabItem
-          text={thisMonth.toString() + "月"}
-          href="/"
-          isActive={id === undefined}
-        />
+    <div className="sticky top-12 z-10 flex h-16 flex-row-reverse items-center overflow-x-scroll bg-sub-color px-[40vw] md:top-20">
+      <TabItem
+        text={thisMonth.toString() + "月"}
+        href="/"
+        isActive={id === undefined}
+      />
 
-        {months}
-      </div>
-      <div className="h-16"></div>
-    </>
+      {months}
+    </div>
   );
 };
 

@@ -18,7 +18,7 @@ const Introduction = () => {
   };
 
   return (
-    <main>
+    <div>
       <div className="my-12 text-center">
         <button
           onClick={onClickHundler}
@@ -60,7 +60,7 @@ const Introduction = () => {
           予算管理を始める
         </button>
       </div>
-    </main>
+    </div>
   );
 };
 
