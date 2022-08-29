@@ -1,35 +1,32 @@
 import { useEffect, useState } from "react";
 
-import { useRouter } from "next/router";
-
 import type { MonthlyData } from "types/firebase";
 
 import LandingPage from "components/LandingPage";
 import Loading from "components/Loading";
 import Payments from "components/Payments";
 import { useAuth } from "hooks/auth";
-import { getMonthlyData, getThisMonthDocId } from "libs/monthlyData";
+import { useTabStatus } from "hooks/tabStatus";
+import { getMonthlyData, tabToDocId } from "libs/monthlyData";
 
 const Home = () => {
   const { authUser } = useAuth();
-  const router = useRouter();
+  const { tabStatus } = useTabStatus();
 
   const [thisMonthData, setThisMonthData] = useState<
     MonthlyData | null | undefined
   >(undefined);
 
-  const { id } = router.query;
-
   useEffect(() => {
     const unsubscribe = getMonthlyData(
       authUser?.uid,
-      id ? id?.[0] : getThisMonthDocId(),
+      tabToDocId(tabStatus),
       setThisMonthData
     );
     return () => {
       if (unsubscribe !== null) unsubscribe();
     };
-  }, [authUser, id]);
+  }, [authUser, tabStatus]);
 
   if (thisMonthData === undefined) {
     return (

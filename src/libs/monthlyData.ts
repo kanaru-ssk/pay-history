@@ -2,6 +2,7 @@ import { logEvent } from "firebase/analytics";
 import { onSnapshot, doc } from "firebase/firestore";
 
 import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
+import type { TabStatus } from "types/tabStatus";
 
 import { db, analytics } from "libs/firebase";
 
@@ -38,37 +39,14 @@ export const getMonthlyData = (
   });
 };
 
-export const getThisMonthDocId = (): string => {
+// exchange tabStatus -> docId
+export const tabToDocId = (tabStatus: TabStatus): string => {
   const date = new Date();
-  const nowYear = date.getFullYear();
-  const nowMonth = date.getMonth() + 1;
-  const docId = nowYear.toString() + "-" + nowMonth.toString();
+  const thisYear = date.getFullYear();
+  const thisMonth = date.getMonth() + 1;
+  const year = thisMonth < tabStatus ? thisYear - 1 : thisYear;
+  const docId = year.toString() + "-" + tabStatus.toString();
   return docId;
-};
-
-export const pathToMonth = (
-  path: string | string[] | undefined
-): number[] | null => {
-  const pattern = /^[0-9]{4}-[0-9]{1,2}$/;
-  if (path === undefined) {
-    const date = new Date();
-    const nowYear = date.getFullYear();
-    const nowMonth = date.getMonth() + 1;
-    const nowDate = date.getDate();
-    return [nowYear, nowMonth, nowDate];
-  } else if (typeof path === "string") {
-    if (pattern.test(path)) {
-      const split = path.split("-");
-      const toNum = split.map((value) => {
-        return Number(value);
-      });
-      return toNum;
-    } else {
-      return null;
-    }
-  } else {
-    return null;
-  }
 };
 
 // 月データ作成
@@ -109,6 +87,7 @@ export const updateMonthlyData = async (
   user: DBUser | null,
   monthlyData: MonthlyData
 ) => {
+  console.log(user);
   if (!user || !monthlyData) return null;
 
   const { updateDoc, doc, serverTimestamp } = await import(

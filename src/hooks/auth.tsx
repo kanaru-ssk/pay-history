@@ -43,18 +43,18 @@ export const AuthProvider = ({ children }: node) => {
 
   // DBユーザーデータ更新
   useEffect(() => {
-    if (auth.currentUser) {
+    if (authUser) {
       const unsubscribe = onSnapshot(
-        doc(db, "users", auth.currentUser.uid),
+        doc(db, "users", authUser.uid),
         async (doc) => {
           if (doc.exists()) {
-            const _dbUser: DBUser = {
+            const user: DBUser = {
               docId: doc.id,
               atCreated: doc.data().atCreated,
               atUpdated: doc.data().atUpdated,
               budget: doc.data().budget,
             };
-            setDBUser(_dbUser);
+            setDBUser(user);
           } else {
             // 新規ユーザー作成
             const { createUser } = await import("libs/user");
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: node) => {
       );
       return () => unsubscribe();
     }
-  }, []);
+  }, [authUser]);
 
   return (
     <AuthContext.Provider value={{ authUser: authUser, dbUser: dbUser }}>
