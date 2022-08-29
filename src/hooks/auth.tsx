@@ -9,22 +9,15 @@ import type { User, DBUser } from "types/firebase";
 
 import { auth, db } from "libs/firebase";
 
-type node = {
-  children: React.ReactNode;
-};
-
 type AuthContextProps = {
   authUser: User | null;
   dbUser: DBUser | null;
 };
 
-const AuthContext = createContext<AuthContextProps>({
-  authUser: null,
-  dbUser: null,
-});
+const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 // ログイン認証
-export const AuthProvider = ({ children }: node) => {
+export const AuthProvider = (children: React.ReactNode) => {
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
