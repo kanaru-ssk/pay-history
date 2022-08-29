@@ -87,7 +87,6 @@ export const updateMonthlyData = async (
   user: DBUser | null,
   monthlyData: MonthlyData
 ) => {
-  console.log(user);
   if (!user || !monthlyData) return null;
 
   const { updateDoc, doc, serverTimestamp } = await import(
