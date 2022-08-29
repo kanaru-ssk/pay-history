@@ -1,6 +1,6 @@
 // 環境変数の型定義
 namespace NodeJS {
-  interface ProcessEnv {
+  type ProcessEnv = {
     readonly NEXT_PUBLIC_URL: string;
     readonly NEXT_PUBLIC_FIREBASE_API_KEY: string;
     readonly NEXT_PUBLIC_FIREBASE_DOMAIN: string;
@@ -9,5 +9,5 @@ namespace NodeJS {
     readonly NEXT_PUBLIC_FIREBASE_MESSAGING_ID: string;
     readonly NEXT_PUBLIC_FIREBASE_APP_ID: string;
     readonly NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: string;
-  }
+  };
 }
