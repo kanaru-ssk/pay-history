@@ -67,7 +67,6 @@ const Budget = ({ thisMonthData }: Props) => {
   };
 
   return (
-    // <table className="my-8 mx-auto table-auto">
     <table className="mx-auto">
       <tbody>
         <tr>

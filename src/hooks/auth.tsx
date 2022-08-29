@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: node) => {
       }
     });
     return () => unsubscribe();
-  }, [authUser]);
+  }, []);
 
   // DBユーザーデータ更新
   useEffect(() => {

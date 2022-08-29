@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import TabItem from "components/TabItem";
+import TabItem from "./TabItem";
 
 const Tab = () => {
   const router = useRouter();

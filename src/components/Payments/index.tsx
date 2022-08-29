@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
-import type { MonthlyData, Payment } from "types/firebase";
+import Budget from "./Budget";
+import PaymentsForm from "./PaymentsForm";
+import PaymentsModal from "./PaymentsModal";
+import PaymentsTable from "./PaymentsTable";
 
-import PaymentsForm from "components/PaymentsForm";
-import PaymentsModal from "components/PaymentsModal";
-import PaymentsTable from "components/PaymentsTable";
+import type { MonthlyData, Payment } from "types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -15,45 +16,6 @@ const Payments = ({ thisMonthData }: Props) => {
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
   const [isAcsDate, setIsAcsDate] = useState<boolean>(true);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
-
-  // 支出日ソート
-  const sortDate = (a: Payment, b: Payment): number => {
-    if (isAcsDate) {
-      if (b.atPaied < a.atPaied) {
-        return 1;
-      } else {
-        return -1;
-      }
-    } else {
-      if (a.atPaied < b.atPaied) {
-        return 1;
-      } else {
-        return -1;
-      }
-    }
-  };
-
-  // 金額ソート
-  const sortPrice = (a: Payment, b: Payment): number => {
-    if (isAcsPrice) {
-      if (b.price < a.price) {
-        return 1;
-      } else {
-        return -1;
-      }
-    } else {
-      if (a.price < b.price) {
-        return 1;
-      } else {
-        return -1;
-      }
-    }
-  };
-
-  // モーダルを開く
-  const onClickHundler = (_payment: Payment) => {
-    setPayment(_payment);
-  };
 
   // モーダル外をクリックで閉じる
   const onClickOverlay = (e: any) => {
@@ -71,6 +33,10 @@ const Payments = ({ thisMonthData }: Props) => {
 
   return (
     <>
+      <div className="my-8">
+        <Budget thisMonthData={thisMonthData} />
+      </div>
+
       <PaymentsModal
         thisMonthData={thisMonthData}
         payment={payment}
@@ -90,7 +56,9 @@ const Payments = ({ thisMonthData }: Props) => {
         />
       </div>
 
-      <PaymentsForm thisMonthData={thisMonthData} />
+      <div className="sticky bottom-0">
+        <PaymentsForm thisMonthData={thisMonthData} />
+      </div>
     </>
   );
 };
