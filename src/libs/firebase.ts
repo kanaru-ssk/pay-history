@@ -15,9 +15,13 @@ const config = {
 };
 
 const app = !getApps().length ? initializeApp(config) : getApp();
-export const auth = getAuth();
-export const db =
+
+const auth = getAuth();
+
+const db =
   getFirestore() ??
   initializeFirestore(app, { ignoreUndefinedProperties: true });
-export const analytics =
-  typeof window !== "undefined" ? getAnalytics(app) : undefined;
+
+const analytics = typeof window !== "undefined" ? getAnalytics(app) : undefined;
+
+export { auth, db, analytics };

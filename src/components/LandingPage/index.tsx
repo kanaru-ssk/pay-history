@@ -1,31 +1,12 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 
-import { useAuth } from "hooks/auth";
-import { createMonthlyData, pathToMonth } from "libs/monthlyData";
+import CtaBtn from "./CtaBtn";
 
-const Introduction = () => {
-  const { authUser, dbUser } = useAuth();
-  const router = useRouter();
-
-  const { id } = router.query;
-
-  const onClickHundler = () => {
-    const month = pathToMonth(id?.[0]);
-    if (month) {
-      createMonthlyData(authUser, month[1], month[0], dbUser?.budget);
-    }
-  };
-
+const LandingPage = () => {
   return (
     <div>
       <div className="my-12 text-center">
-        <button
-          onClick={onClickHundler}
-          className="rounded-full bg-main-color py-4 px-12 text-white"
-        >
-          予算管理を始める
-        </button>
+        <CtaBtn />
       </div>
       <h1>Pay History</h1>
       <p>予算管理ツール「Pay History」</p>
@@ -53,15 +34,10 @@ const Introduction = () => {
         <li>完了!</li>
       </ol>
       <div className="my-12 text-center">
-        <button
-          onClick={onClickHundler}
-          className="rounded-full bg-main-color py-4 px-12 text-white"
-        >
-          予算管理を始める
-        </button>
+        <CtaBtn />
       </div>
     </div>
   );
 };
 
-export default Introduction;
+export default LandingPage;

@@ -3,7 +3,7 @@ import { onSnapshot, doc } from "firebase/firestore";
 
 import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
 
-import { db, analytics } from "libs/initFirebase";
+import { db, analytics } from "libs/firebase";
 
 // 月データリアルタイム取得
 export const getMonthlyData = (

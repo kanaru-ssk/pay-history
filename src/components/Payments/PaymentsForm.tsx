@@ -118,7 +118,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   };
 
   return (
-    <form onSubmit={onSumitPayment} className="sticky bottom-0 bg-white">
+    <form onSubmit={onSumitPayment} className="bg-white">
       <div className="flex w-full items-center gap-2 py-2">
         <input
           type="date"

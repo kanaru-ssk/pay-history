@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 
 import type { MonthlyData } from "types/firebase";
 
-import Budget from "components/Budget";
-import Introduction from "components/Introduction";
+import LandingPage from "components/LandingPage";
 import Loading from "components/Loading";
 import Payments from "components/Payments";
 import { useAuth } from "hooks/auth";
@@ -41,16 +40,12 @@ const Home = () => {
   } else if (thisMonthData === null) {
     return (
       <main>
-        <Introduction />
+        <LandingPage />
       </main>
     );
   } else {
     return (
       <main>
-        <div className="my-8">
-          <Budget thisMonthData={thisMonthData} />
-        </div>
-
         <Payments thisMonthData={thisMonthData} />
       </main>
     );
