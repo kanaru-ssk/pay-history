@@ -19,11 +19,12 @@ const TabStatusContext = createContext<TabStatusContextProps>({
 });
 
 export const TabStatusProvider = ({ children }: node) => {
+  const localTab = "TAB_STATUS";
   const [tabStatus, _setTabStatus] = useState<TabStatus>(1);
 
   // localStorageにtabStatusが保存されている場合は初期値に設定
   useEffect(() => {
-    const keyValue = localStorage.getItem("TAB_STATUS");
+    const keyValue = localStorage.getItem(localTab);
     if (keyValue) {
       _setTabStatus(JSON.parse(keyValue));
     } else {
@@ -38,7 +39,7 @@ export const TabStatusProvider = ({ children }: node) => {
   // localStorageにも保存するようsetTabStatusを拡張
   const setTabStatus = (tab: TabStatus) => {
     _setTabStatus(tab);
-    localStorage.setItem("TAB_STATUS", JSON.stringify(tab));
+    localStorage.setItem(localTab, JSON.stringify(tab));
   };
 
   return (
