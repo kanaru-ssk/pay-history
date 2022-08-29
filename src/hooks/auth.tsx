@@ -7,7 +7,7 @@ import { onSnapshot, doc } from "firebase/firestore";
 
 import type { User, DBUser } from "types/firebase";
 
-import { auth, db } from "libs/initFirebase";
+import { auth, db } from "libs/firebase";
 
 type node = {
   children: React.ReactNode;

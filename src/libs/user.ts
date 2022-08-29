@@ -2,7 +2,7 @@ import { logEvent } from "firebase/analytics";
 
 import type { User, DBUser } from "types/firebase";
 
-import { db, analytics } from "libs/initFirebase";
+import { db, analytics } from "libs/firebase";
 
 // ユーザーデータ作成
 export const createUser = async (authUser: User | null) => {
