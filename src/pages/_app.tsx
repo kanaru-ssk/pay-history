@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import Header from "components/Header";
 import Tab from "components/Tab";
 import { AuthProvider } from "hooks/auth";
+import { TabStatusProvider } from "hooks/tabStatus";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -35,11 +36,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      <Header />
-      <Tab />
-
       <AuthProvider>
-        <Component {...pageProps} />
+        <TabStatusProvider>
+          <Header />
+          <Tab />
+
+          <Component {...pageProps} />
+        </TabStatusProvider>
       </AuthProvider>
     </>
   );

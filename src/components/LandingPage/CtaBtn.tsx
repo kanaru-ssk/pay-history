@@ -1,19 +1,17 @@
-import { useRouter } from "next/router";
-
 import { useAuth } from "hooks/auth";
-import { createMonthlyData, pathToMonth } from "libs/monthlyData";
+import { useTabStatus } from "hooks/tabStatus";
+import { createMonthlyData } from "libs/monthlyData";
 
 const CtaBtn = () => {
   const { authUser, dbUser } = useAuth();
-  const router = useRouter();
-
-  const { id } = router.query;
+  const { tabStatus } = useTabStatus();
 
   const onClickHundler = () => {
-    const month = pathToMonth(id?.[0]);
-    if (month) {
-      createMonthlyData(authUser, month[1], month[0], dbUser?.budget);
-    }
+    const date = new Date();
+    const thisYear = date.getFullYear();
+    const thisMonth = date.getMonth() + 1;
+    const year = thisMonth < tabStatus ? thisYear - 1 : thisYear;
+    createMonthlyData(authUser, tabStatus, year, dbUser?.budget);
   };
 
   return (

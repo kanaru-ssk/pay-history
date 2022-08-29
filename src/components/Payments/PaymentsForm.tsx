@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { useRouter } from "next/router";
-
 import type { MonthlyData } from "types/firebase";
 
 import { useAuth } from "hooks/auth";
-import { addPayment } from "libs/monthlyData";
+import { useTabStatus } from "hooks/tabStatus";
+import { addPayment, tabToDocId } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -13,7 +12,7 @@ type Props = {
 
 const PaymentsForm = ({ thisMonthData }: Props) => {
   const { authUser } = useAuth();
-  const router = useRouter();
+  const { tabStatus } = useTabStatus();
 
   const [date, setDate] = useState<string>("");
   const [firstDate, setFirstDate] = useState<string>("");
@@ -21,11 +20,9 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  const { id } = router.query;
-
   useEffect(() => {
-    if (id === undefined) {
-      const now = new Date();
+    const now = new Date();
+    if (tabStatus === now.getMonth() + 1) {
       setDate(now.toISOString().split("T")[0]);
       setFirstDate(
         new Date(now.getFullYear(), now.getMonth(), 1, 12)
@@ -37,29 +34,25 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           .toISOString()
           .split("T")[0]
       );
-    } else if (typeof id === "object") {
-      const split = id[0].split("-");
+    } else {
+      const split = tabToDocId(tabStatus).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
-      const now = new Date(toNum[0], toNum[1] - 1, 1);
-      setDate(
-        new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
-          .toISOString()
-          .split("T")[0]
-      );
+      const lastDay = new Date(toNum[0], toNum[1], 1);
+      setDate(lastDay.toISOString().split("T")[0]);
       setFirstDate(
-        new Date(now.getFullYear(), now.getMonth(), 1, 12)
+        new Date(lastDay.getFullYear(), lastDay.getMonth() - 1, 1, 12)
           .toISOString()
           .split("T")[0]
       );
       setLastDate(
-        new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
+        new Date(lastDay.getFullYear(), lastDay.getMonth(), 0, 12)
           .toISOString()
           .split("T")[0]
       );
     }
-  }, [id]);
+  }, [tabStatus]);
 
   // 支払い追加
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
@@ -69,19 +62,16 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       setPrice(0);
       setIsReady(false);
 
-      if (id === undefined) {
+      const now = new Date();
+      if (tabStatus === now.getMonth() + 1) {
         setDate(new Date().toISOString().split("T")[0]);
-      } else if (typeof id === "object") {
-        const split = id[0].split("-");
+      } else {
+        const split = tabToDocId(tabStatus).split("-");
         const toNum = split.map((value) => {
           return Number(value);
         });
-        const now = new Date(toNum[0], toNum[1] - 1, 1);
-        setDate(
-          new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
-            .toISOString()
-            .split("T")[0]
-        );
+        const lastDay = new Date(toNum[0], toNum[1], 1);
+        setDate(lastDay.toISOString().split("T")[0]);
       }
     }
   };
