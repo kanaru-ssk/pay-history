@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import type { TabStatus } from "types/tabStatus";
 
 import { useTabStatus } from "hooks/tabStatus";
@@ -9,9 +11,21 @@ type Props = {
 
 const TabItem = ({ text, month }: Props) => {
   const { tabStatus, setTabStatus } = useTabStatus();
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (tabStatus === month && ref) {
+      ref.current!.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [ref, tabStatus, month]);
 
   return (
     <button
+      ref={ref}
       onClick={() => {
         setTabStatus(month);
       }}
