@@ -16,6 +16,5 @@ service cloud.firestore {
 			  allow read, write: if isUserAuthenticated(userId);
       }
     }
-   
   }
 }

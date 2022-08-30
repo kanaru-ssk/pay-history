@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-
 import { Timestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
 

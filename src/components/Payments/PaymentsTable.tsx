@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import type { MonthlyData, Payment } from "types/firebase";
 
 type Props = {

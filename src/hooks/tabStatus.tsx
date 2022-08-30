@@ -13,7 +13,11 @@ const TabStatusContext = createContext<TabStatusContextProps>(
   {} as TabStatusContextProps
 );
 
-export const TabStatusProvider = (children: React.ReactNode) => {
+type Node = {
+  children: React.ReactNode;
+};
+
+export const TabStatusProvider = ({ children }: Node) => {
   const localTab = "TAB_STATUS";
   const [tabStatus, _setTabStatus] = useState<TabStatus>(1);
 

@@ -1,7 +1,7 @@
+import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import "styles/globals.css";
-import type { AppProps } from "next/app";
 
 import Header from "components/Header";
 import Tab from "components/Tab";

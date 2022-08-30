@@ -37,12 +37,6 @@ const Payments = ({ thisMonthData }: Props) => {
         <Budget thisMonthData={thisMonthData} />
       </div>
 
-      <PaymentsModal
-        thisMonthData={thisMonthData}
-        payment={payment}
-        setPayment={setPayment}
-      />
-
       <div className="mt-8">
         <PaymentsTable
           thisMonthData={thisMonthData}
@@ -59,6 +53,12 @@ const Payments = ({ thisMonthData }: Props) => {
       <div className="sticky bottom-0">
         <PaymentsForm thisMonthData={thisMonthData} />
       </div>
+
+      <PaymentsModal
+        thisMonthData={thisMonthData}
+        payment={payment}
+        setPayment={setPayment}
+      />
     </>
   );
 };
