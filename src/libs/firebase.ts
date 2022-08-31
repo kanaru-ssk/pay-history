@@ -1,7 +1,11 @@
 // firebase初期化
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp, getApp, getApps } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  getAuth,
+  setPersistence,
+} from "firebase/auth";
 import {
   initializeFirestore,
   getFirestore,
@@ -21,6 +25,8 @@ const config = {
 const app = !getApps().length ? initializeApp(config) : getApp();
 
 const auth = getAuth();
+
+setPersistence(auth, browserLocalPersistence);
 
 const db =
   getFirestore() ??

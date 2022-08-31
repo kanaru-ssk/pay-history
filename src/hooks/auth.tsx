@@ -20,7 +20,7 @@ type Node = {
 };
 
 export const AuthProvider = ({ children }: Node) => {
-  const [authUser, setAuthUser] = useState<User | null>(null);
+  const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
   // 認証ユーザー更新
