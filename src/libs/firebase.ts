@@ -2,7 +2,11 @@
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { initializeFirestore, getFirestore } from "firebase/firestore";
+import {
+  initializeFirestore,
+  getFirestore,
+  enableIndexedDbPersistence,
+} from "firebase/firestore";
 
 const config = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -21,6 +25,8 @@ const auth = getAuth();
 const db =
   getFirestore() ??
   initializeFirestore(app, { ignoreUndefinedProperties: true });
+
+if (typeof window !== "undefined") enableIndexedDbPersistence(db);
 
 const analytics = typeof window !== "undefined" ? getAnalytics(app) : undefined;
 
