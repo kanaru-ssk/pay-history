@@ -14,8 +14,6 @@ export type MonthlyData = {
   docId: string;
   atCreated: Timestamp | FieldValue;
   atUpdated: Timestamp | FieldValue;
-  month: number;
-  year: number;
   budget: number;
   payments: Payment[];
 };

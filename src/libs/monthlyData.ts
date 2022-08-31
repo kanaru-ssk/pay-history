@@ -28,8 +28,6 @@ export const getMonthlyData = (
         atCreated: docSnap.data()?.atCreated,
         atUpdated: docSnap.data()?.atUpdated,
         budget: docSnap.data()?.budget,
-        month: docSnap.data()?.month,
-        year: docSnap.data()?.year,
         payments: docSnap.data()?.payments,
       };
       setMonthData(monthlyData);
@@ -52,8 +50,7 @@ export const tabToDocId = (tabStatus: TabStatus): string => {
 // 月データ作成
 export const createMonthlyData = async (
   user: User | null,
-  month: number,
-  year: number,
+  docId: string,
   _budget?: number
 ) => {
   if (!user) return null;
@@ -61,14 +58,9 @@ export const createMonthlyData = async (
 
   const { setDoc, doc, serverTimestamp } = await import("firebase/firestore");
 
-  const docId = year.toString() + "-" + month.toString();
-
-  const newMonthlyData: MonthlyData = {
-    docId: docId,
+  const newMonthlyData: Omit<MonthlyData, "docId"> = {
     atCreated: serverTimestamp(),
     atUpdated: serverTimestamp(),
-    month: month,
-    year: year,
     budget: budget,
     payments: [],
   };
