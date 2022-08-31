@@ -4,21 +4,20 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 import { TabStatus, isTabStatus } from "types/tabStatus";
 
-type node = {
-  children: React.ReactNode;
-};
-
 type TabStatusContextProps = {
   tabStatus: TabStatus;
   setTabStatus: (tab: TabStatus) => void;
 };
 
-const TabStatusContext = createContext<TabStatusContextProps>({
-  tabStatus: 1,
-  setTabStatus: () => {},
-});
+const TabStatusContext = createContext<TabStatusContextProps>(
+  {} as TabStatusContextProps
+);
 
-export const TabStatusProvider = ({ children }: node) => {
+type Node = {
+  children: React.ReactNode;
+};
+
+export const TabStatusProvider = ({ children }: Node) => {
   const localTab = "TAB_STATUS";
   const [tabStatus, _setTabStatus] = useState<TabStatus>(1);
 

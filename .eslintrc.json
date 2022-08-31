@@ -32,13 +32,8 @@
         ],
         "pathGroups": [
           {
-            "pattern": "{react,react-dom/**,react-router-dom}",
+            "pattern": "{firebase/**,next/**,react,react-dom/**,react-router-dom}",
             "group": "builtin",
-            "position": "before"
-          },
-          {
-            "pattern": "@src/**",
-            "group": "parent",
             "position": "before"
           }
         ],

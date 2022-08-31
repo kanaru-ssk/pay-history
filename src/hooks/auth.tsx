@@ -1,30 +1,25 @@
 // 認証状態をuseContextで共有
 
-import { createContext, useContext, useState, useEffect } from "react";
-
 import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot, doc } from "firebase/firestore";
+import { createContext, useContext, useState, useEffect } from "react";
 
 import type { User, DBUser } from "types/firebase";
 
 import { auth, db } from "libs/firebase";
-
-type node = {
-  children: React.ReactNode;
-};
 
 type AuthContextProps = {
   authUser: User | null;
   dbUser: DBUser | null;
 };
 
-const AuthContext = createContext<AuthContextProps>({
-  authUser: null,
-  dbUser: null,
-});
+const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
-// ログイン認証
-export const AuthProvider = ({ children }: node) => {
+type Node = {
+  children: React.ReactNode;
+};
+
+export const AuthProvider = ({ children }: Node) => {
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 

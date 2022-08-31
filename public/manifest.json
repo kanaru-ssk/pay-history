@@ -1,0 +1,16 @@
+{
+  "name": "Pay History",
+  "short_name": "Pay History",
+  "description": "予算管理ツール「Pay History」なら、月の予算、使った金額、予算残高を最もシンプルに管理できます。",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#C1C5FE",
+  "background_color": "#FFF"
+}
