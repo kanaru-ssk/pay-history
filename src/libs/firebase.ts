@@ -32,7 +32,8 @@ const db =
   getFirestore() ??
   initializeFirestore(app, { ignoreUndefinedProperties: true });
 
-if (typeof window !== "undefined") enableIndexedDbPersistence(db);
+if (typeof window !== "undefined")
+  enableIndexedDbPersistence(db, { forceOwnership: true });
 
 const analytics = typeof window !== "undefined" ? getAnalytics(app) : undefined;
 
