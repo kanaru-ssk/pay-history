@@ -18,14 +18,14 @@ type Node = {
 };
 
 export const TabStatusProvider = ({ children }: Node) => {
-  const localTab = "TAB_STATUS";
+  const key = "TAB_STATUS";
   const [tabStatus, _setTabStatus] = useState<TabStatus>(1);
 
   // sessionStorageにtabStatusが保存されている場合は初期値に設定
   useEffect(() => {
-    const keyValue = sessionStorage.getItem(localTab);
-    if (keyValue) {
-      _setTabStatus(JSON.parse(keyValue));
+    const value = sessionStorage.getItem(key);
+    if (value) {
+      _setTabStatus(JSON.parse(value));
     } else {
       const date = new Date();
       const thisMonth = date.getMonth() + 1;
@@ -38,7 +38,7 @@ export const TabStatusProvider = ({ children }: Node) => {
   // sessionStorageにも保存するようsetTabStatusを拡張
   const setTabStatus = (tab: TabStatus) => {
     _setTabStatus(tab);
-    sessionStorage.setItem(localTab, JSON.stringify(tab));
+    sessionStorage.setItem(key, JSON.stringify(tab));
   };
 
   return (

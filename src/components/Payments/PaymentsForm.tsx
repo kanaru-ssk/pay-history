@@ -11,7 +11,7 @@ type Props = {
 };
 
 const PaymentsForm = ({ thisMonthData }: Props) => {
-  const { authUser } = useAuth();
+  const { dbUser } = useAuth();
   const { tabStatus } = useTabStatus();
 
   const [date, setDate] = useState<string>("");
@@ -72,7 +72,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (thisMonthData && isReady) {
-      addPayment(authUser, thisMonthData, price, new Date(date));
+      addPayment(dbUser, thisMonthData, price, new Date(date));
       setPrice(0);
       setIsReady(false);
 

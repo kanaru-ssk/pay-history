@@ -3,12 +3,12 @@ import { useTabStatus } from "hooks/tabStatus";
 import { createMonthlyData, tabToDocId } from "libs/monthlyData";
 
 const CtaBtn = () => {
-  const { authUser, dbUser } = useAuth();
+  const { dbUser } = useAuth();
   const { tabStatus } = useTabStatus();
 
   const onClickHundler = () => {
     const docId = tabToDocId(tabStatus);
-    createMonthlyData(authUser, docId, dbUser?.budget);
+    createMonthlyData(dbUser, docId);
   };
 
   return (

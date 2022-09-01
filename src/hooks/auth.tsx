@@ -20,11 +20,17 @@ type Node = {
 };
 
 export const AuthProvider = ({ children }: Node) => {
+  const key = "DB_USER";
   const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
   // 認証ユーザー更新
   useEffect(() => {
+    const value = localStorage.getItem(key);
+    if (value) {
+      setDBUser(JSON.parse(value));
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
       if (user) {
         setAuthUser(user);
@@ -50,6 +56,7 @@ export const AuthProvider = ({ children }: Node) => {
               budget: doc.data().budget,
             };
             setDBUser(user);
+            localStorage.setItem(key, JSON.stringify(user));
           } else {
             // 新規ユーザー作成
             const { createUser } = await import("libs/user");

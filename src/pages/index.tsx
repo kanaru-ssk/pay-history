@@ -10,7 +10,7 @@ import { useTabStatus } from "hooks/tabStatus";
 import { getMonthlyData, tabToDocId } from "libs/monthlyData";
 
 const Home = () => {
-  const { authUser } = useAuth();
+  const { dbUser } = useAuth();
   const { tabStatus } = useTabStatus();
 
   const [thisMonthData, setThisMonthData] = useState<
@@ -19,14 +19,14 @@ const Home = () => {
 
   useEffect(() => {
     const unsubscribe = getMonthlyData(
-      authUser?.uid,
+      dbUser?.docId,
       tabToDocId(tabStatus),
       setThisMonthData
     );
     return () => {
       if (unsubscribe !== null) unsubscribe();
     };
-  }, [authUser, tabStatus]);
+  }, [dbUser, tabStatus]);
 
   if (thisMonthData === undefined) {
     return (
