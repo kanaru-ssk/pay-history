@@ -21,9 +21,9 @@ export const TabStatusProvider = ({ children }: Node) => {
   const localTab = "TAB_STATUS";
   const [tabStatus, _setTabStatus] = useState<TabStatus>(1);
 
-  // localStorageにtabStatusが保存されている場合は初期値に設定
+  // sessionStorageにtabStatusが保存されている場合は初期値に設定
   useEffect(() => {
-    const keyValue = localStorage.getItem(localTab);
+    const keyValue = sessionStorage.getItem(localTab);
     if (keyValue) {
       _setTabStatus(JSON.parse(keyValue));
     } else {
@@ -35,10 +35,10 @@ export const TabStatusProvider = ({ children }: Node) => {
     }
   }, []);
 
-  // localStorageにも保存するようsetTabStatusを拡張
+  // sessionStorageにも保存するようsetTabStatusを拡張
   const setTabStatus = (tab: TabStatus) => {
     _setTabStatus(tab);
-    localStorage.setItem(localTab, JSON.stringify(tab));
+    sessionStorage.setItem(localTab, JSON.stringify(tab));
   };
 
   return (
