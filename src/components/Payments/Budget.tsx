@@ -78,6 +78,9 @@ const Budget = ({ thisMonthData }: Props) => {
               value={budget.toLocaleString()}
               onChange={onChangeBudget}
               onBlur={onSubmitHundler}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") e.currentTarget.blur();
+              }}
               className="w-full rounded border border-gray text-right"
             />
           </td>
