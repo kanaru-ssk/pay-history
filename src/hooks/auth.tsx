@@ -1,7 +1,7 @@
 // 認証状態をuseContextで共有
 
 import { onAuthStateChanged } from "firebase/auth";
-import { onSnapshot, doc } from "firebase/firestore";
+import { onSnapshot, doc, enableNetwork } from "firebase/firestore";
 import { createContext, useContext, useState, useEffect } from "react";
 
 import type { User, DBUser } from "types/firebase";
@@ -32,6 +32,7 @@ const AuthProvider = ({ children }: Node) => {
     const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
       if (user) {
         setAuthUser(user);
+        if (!user.isAnonymous) enableNetwork(db);
       } else {
         const { signInAnonymously } = await import("firebase/auth");
         signInAnonymously(auth);

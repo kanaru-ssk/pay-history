@@ -10,6 +10,7 @@ import {
   initializeFirestore,
   getFirestore,
   enableIndexedDbPersistence,
+  disableNetwork,
 } from "firebase/firestore";
 
 const config = {
@@ -32,8 +33,10 @@ const db =
   getFirestore() ??
   initializeFirestore(app, { ignoreUndefinedProperties: true });
 
-if (typeof window !== "undefined")
+if (typeof window !== "undefined") {
   enableIndexedDbPersistence(db, { forceOwnership: true });
+  disableNetwork(db);
+}
 
 const analytics = typeof window !== "undefined" ? getAnalytics(app) : undefined;
 
