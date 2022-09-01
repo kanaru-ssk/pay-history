@@ -19,18 +19,16 @@ type Node = {
   children: React.ReactNode;
 };
 
-export const AuthProvider = ({ children }: Node) => {
+const AuthProvider = ({ children }: Node) => {
   const key = "DB_USER";
   const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
-  const [dbUser, setDBUser] = useState<DBUser | null>(null);
+  const [dbUser, setDBUser] = useState<DBUser | null>(() => {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  });
 
   // 認証ユーザー更新
   useEffect(() => {
-    const value = localStorage.getItem(key);
-    if (value) {
-      setDBUser(JSON.parse(value));
-    }
-
     const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
       if (user) {
         setAuthUser(user);
@@ -74,5 +72,6 @@ export const AuthProvider = ({ children }: Node) => {
     </AuthContext.Provider>
   );
 };
+export default AuthProvider;
 
 export const useAuth = () => useContext(AuthContext);

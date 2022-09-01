@@ -14,8 +14,8 @@ const TabItem = ({ text, month }: Props) => {
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (tabStatus === month && ref) {
-      ref.current!.scrollIntoView({
+    if (tabStatus === month && ref.current) {
+      ref.current.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
         inline: "center",
