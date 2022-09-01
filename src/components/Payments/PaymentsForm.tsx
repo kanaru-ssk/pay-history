@@ -149,7 +149,8 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         <input
           type="text"
           inputMode="numeric"
-          value={price.toLocaleString()}
+          placeholder="支出額を入力"
+          value={price === 0 ? "" : price.toLocaleString()}
           onChange={onChangePrice}
           className="h-12 w-full flex-1 rounded-lg border-2 border-gray px-5 py-3 text-right leading-5"
         />
