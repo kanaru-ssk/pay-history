@@ -22,35 +22,49 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
 
   useEffect(() => {
     const now = new Date();
+
     if (tabStatus === now.getMonth() + 1) {
-      setDate(now.toISOString().split("T")[0]);
-      setFirstDate(
-        new Date(now.getFullYear(), now.getMonth(), 1, 12)
-          .toISOString()
-          .split("T")[0]
-      );
-      setLastDate(
-        new Date(now.getFullYear(), now.getMonth() + 1, 0, 12)
-          .toISOString()
-          .split("T")[0]
-      );
+      const nowString = new Date(Number(now) - now.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split("T")[0];
+
+      // 今月の月初の日付
+      const beginningOfMonth = new Date().setDate(1);
+      const beginningOfMonthString = new Date(
+        beginningOfMonth -
+          new Date(beginningOfMonth).getTimezoneOffset() * 60000
+      )
+        .toISOString()
+        .split("T")[0];
+
+      setDate(nowString);
+      setFirstDate(beginningOfMonthString);
+      setLastDate(nowString);
     } else {
       const split = tabToDocId(tabStatus).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
-      const lastDay = new Date(toNum[0], toNum[1], 1);
-      setDate(lastDay.toISOString().split("T")[0]);
-      setFirstDate(
-        new Date(lastDay.getFullYear(), lastDay.getMonth() - 1, 1, 12)
-          .toISOString()
-          .split("T")[0]
-      );
-      setLastDate(
-        new Date(lastDay.getFullYear(), lastDay.getMonth(), 0, 12)
-          .toISOString()
-          .split("T")[0]
-      );
+      // 今月の月初の日付
+      const beginningOfMonth = new Date(toNum[0], toNum[1] - 1, 1);
+      const beginningOfMonthString = new Date(
+        Number(beginningOfMonth) -
+          new Date(beginningOfMonth).getTimezoneOffset() * 60000
+      )
+        .toISOString()
+        .split("T")[0];
+
+      // 今月の月末の日付
+      const endOfMonth = new Date(toNum[0], toNum[1], 0);
+      const endOfMonthString = new Date(
+        Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
+      )
+        .toISOString()
+        .split("T")[0];
+
+      setDate(endOfMonthString);
+      setFirstDate(beginningOfMonthString);
+      setLastDate(endOfMonthString);
     }
   }, [tabStatus]);
 
@@ -63,15 +77,28 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       setIsReady(false);
 
       const now = new Date();
+
       if (tabStatus === now.getMonth() + 1) {
-        setDate(new Date().toISOString().split("T")[0]);
+        const nowString = new Date(
+          Number(now) - now.getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .split("T")[0];
+
+        setDate(nowString);
       } else {
         const split = tabToDocId(tabStatus).split("-");
         const toNum = split.map((value) => {
           return Number(value);
         });
-        const lastDay = new Date(toNum[0], toNum[1], 1);
-        setDate(lastDay.toISOString().split("T")[0]);
+        const endOfMonth = new Date(toNum[0], toNum[1], 0);
+        const endOfMonthString = new Date(
+          Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .split("T")[0];
+
+        setDate(endOfMonthString);
       }
     }
   };
