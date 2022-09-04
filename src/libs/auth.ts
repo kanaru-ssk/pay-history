@@ -111,11 +111,30 @@ export const changePassword = async (
   }
 };
 
-export const resetPassword = async (email: string) => {
+export const sendResetPasswordLink = async (email: string) => {
   try {
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
-    await sendPasswordResetEmail(auth, email);
+    const actionCodeSettings = {
+      url: process.env.NEXT_PUBLIC_URL + "/signin",
+      handleCodeInApp: false,
+    };
+
+    await sendPasswordResetEmail(auth, email, actionCodeSettings);
+    return "";
+  } catch (error) {
+    return convertErrorMessage(error);
+  }
+};
+
+export const resetPassword = async (oobCode: string, newPassword: string) => {
+  try {
+    const { verifyPasswordResetCode, confirmPasswordReset } = await import(
+      "firebase/auth"
+    );
+
+    await verifyPasswordResetCode(auth, oobCode);
+    await confirmPasswordReset(auth, oobCode, newPassword);
     return "";
   } catch (error) {
     return convertErrorMessage(error);
@@ -140,6 +159,10 @@ const convertErrorMessage = (error: unknown) => {
       return "パスワードが脆弱です。6文字以上で入力してください。";
     } else if (error.code === "auth/provider-already-linked") {
       return "既にサインイン済みです。";
+    } else if (error.code === "auth/invalid-action-code") {
+      return "無効な再設定リンクです。";
+    } else if (error.code === "auth/expired-action-code") {
+      return "再設定リンクの有効期限が切れています。";
     }
 
     return "不明なエラーが発生しました。";
