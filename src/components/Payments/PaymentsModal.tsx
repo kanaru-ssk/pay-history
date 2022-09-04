@@ -6,7 +6,7 @@ import type { MonthlyData, Payment } from "types/firebase";
 import Button from "components/Button";
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
-import { updateMonthlyData } from "libs/monthlyData";
+import { updateMonthlyData, convertInputMonth } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -29,43 +29,18 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     const onClickOverlay = (e: any) => {
       if (e.target.id === "overlay") setPayment(null);
     };
-
-    window.addEventListener("click", onClickOverlay, { passive: false });
+    addEventListener("click", onClickOverlay, { passive: false });
     return () => {
-      window.removeEventListener("click", onClickOverlay);
+      removeEventListener("click", onClickOverlay);
     };
   }, [setPayment]);
 
   useEffect(() => {
     if (payment) {
-      const date = payment.atPaied.toDate();
-      const nowString = new Date(
-        Number(date) - date.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 今月の月初の日付
-      const beginningOfMonth = new Date(date).setDate(1);
-      const beginningOfMonthString = new Date(
-        beginningOfMonth -
-          new Date(beginningOfMonth).getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 今月の月末の日付
-      const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-      const maxDate = date < endOfMonth ? date : endOfMonth;
-      const maxDateString = new Date(
-        Number(maxDate) - maxDate.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      setDate(nowString);
-      setMinDate(beginningOfMonthString);
-      setMaxDate(maxDateString);
+      const inputMonthData = convertInputMonth(payment.atPaied.toDate());
+      setDate(inputMonthData.value);
+      setMinDate(inputMonthData.min);
+      setMaxDate(inputMonthData.max);
       setPrice(payment.price);
     }
   }, [payment]);

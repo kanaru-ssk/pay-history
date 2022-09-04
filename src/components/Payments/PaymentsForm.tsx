@@ -6,7 +6,7 @@ import Button from "components/Button";
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
-import { addPayment, tabToDocId } from "libs/monthlyData";
+import { addPayment, tabToDocId, convertInputMonth } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -24,51 +24,20 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
 
   useEffect(() => {
     const now = new Date();
-
     if (tabStatus === now.getMonth() + 1) {
-      const todayString = new Date(
-        Number(now) - now.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 月初の日付
-      const beginningOfMonth = new Date().setDate(1);
-      const beginningOfMonthString = new Date(
-        beginningOfMonth -
-          new Date(beginningOfMonth).getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      setDate(todayString);
-      setMinDate(beginningOfMonthString);
-      setMaxDate(todayString);
+      const inputMonthData = convertInputMonth(now);
+      setDate(inputMonthData.value);
+      setMinDate(inputMonthData.min);
+      setMaxDate(inputMonthData.max);
     } else {
       const split = tabToDocId(tabStatus).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
-      // 月初の日付
-      const beginningOfMonth = new Date(toNum[0], toNum[1] - 1, 1);
-      const beginningOfMonthString = new Date(
-        Number(beginningOfMonth) -
-          new Date(beginningOfMonth).getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 月末の日付
-      const endOfMonth = new Date(toNum[0], toNum[1], 0);
-      const endOfMonthString = new Date(
-        Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      setDate(endOfMonthString);
-      setMinDate(beginningOfMonthString);
-      setMaxDate(endOfMonthString);
+      const inputMonthData = convertInputMonth(new Date(toNum[0], toNum[1], 0));
+      setDate(inputMonthData.value);
+      setMinDate(inputMonthData.min);
+      setMaxDate(inputMonthData.max);
     }
   }, [tabStatus]);
 
