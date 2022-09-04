@@ -4,6 +4,7 @@ import type { MonthlyData } from "types/firebase";
 
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
+import { stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";
 import { updateUser } from "libs/user";
 
@@ -19,7 +20,7 @@ const Budget = ({ thisMonthData }: Props) => {
   const [remaining, setRemaining] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  // 予算
+  // 予算読み込み
   useEffect(() => {
     setBudget(thisMonthData.budget);
   }, [thisMonthData.budget]);
@@ -39,19 +40,9 @@ const Budget = ({ thisMonthData }: Props) => {
 
   // 予算編集
   const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const removed = e.target.value.replace(/,/g, "");
-    const pattern = /^\d*$/;
-    if (pattern.test(removed)) {
-      const toNum = Number(removed);
-      setBudget(toNum);
-      if (0 < toNum && toNum !== thisMonthData.budget) {
-        setIsReady(true);
-      } else {
-        setIsReady(false);
-      }
-    } else {
-      setBudget(0);
-    }
+    const price = stringToPrice(e.target.value);
+    setBudget(price);
+    setIsReady(price !== thisMonthData.budget);
   };
 
   // 予算保存
