@@ -1,4 +1,4 @@
-import Button from "components/Button";
+import Button from "components/common/Button";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId } from "libs/convert";

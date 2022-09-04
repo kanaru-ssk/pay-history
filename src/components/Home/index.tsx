@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
+import LandingPage from "./LandingPage";
+import Payments from "./Payments";
+
 import type { MonthlyData } from "types/firebase";
 
-import LandingPage from "components/LandingPage";
-import Loading from "components/Loading";
-import Payments from "components/Payments";
+import Loading from "components/common/Loading";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId } from "libs/convert";

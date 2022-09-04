@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/Button";
-import LinkText from "components/LinkText";
-import Notice from "components/Notice";
+import Button from "components/common/Button";
+import LinkText from "components/common/LinkText";
+import Notice from "components/common/Notice";
 import { useAuth } from "hooks/auth";
 import { signOut } from "libs/auth";
 
