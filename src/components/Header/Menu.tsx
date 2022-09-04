@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { useAuth } from "hooks/auth";
 
@@ -10,8 +11,20 @@ type Props = {
 const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
   const { authUser } = useAuth();
 
+  // スライダー外をクリックで閉じる
+  useEffect(() => {
+    const onClickOverlay = (e: any) => {
+      if (e.target.id === "menu-overlay") setIsMenuOpen(false);
+    };
+    addEventListener("click", onClickOverlay, { passive: false });
+    return () => {
+      removeEventListener("click", onClickOverlay);
+    };
+  }, [setIsMenuOpen]);
+
   return (
     <div
+      id="menu-overlay"
       className={
         (isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0") +
         " fixed top-0 left-0 z-20 h-screen w-screen bg-trans-black duration-300"
@@ -36,7 +49,7 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
 
         <div className="mt-4 flex h-8 items-center justify-center font-bold">
           <Link href="/">
-            <a>ホーム</a>
+            <a onClick={() => setIsMenuOpen(false)}>ホーム</a>
           </Link>
         </div>
 
@@ -44,13 +57,13 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           <>
             <div className="mt-4 flex h-8 items-center justify-center font-bold">
               <Link href="/signup">
-                <a>新規登録</a>
+                <a onClick={() => setIsMenuOpen(false)}>新規登録</a>
               </Link>
             </div>
 
             <div className="mt-4 flex h-8 items-center justify-center font-bold">
               <Link href="/signin">
-                <a>サインイン</a>
+                <a onClick={() => setIsMenuOpen(false)}>サインイン</a>
               </Link>
             </div>
           </>
@@ -59,7 +72,7 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
         {!authUser?.isAnonymous && (
           <div className="mt-4 flex h-8 items-center justify-center font-bold">
             <Link href="/my">
-              <a>マイページ</a>
+              <a onClick={() => setIsMenuOpen(false)}>マイページ</a>
             </Link>
           </div>
         )}

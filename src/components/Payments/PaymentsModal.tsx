@@ -29,7 +29,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   // モーダル外をクリックで閉じる
   useEffect(() => {
     const onClickOverlay = (e: any) => {
-      if (e.target.id === "overlay") setPayment(null);
+      if (e.target.id === "modal-overlay") setPayment(null);
     };
     addEventListener("click", onClickOverlay, { passive: false });
     return () => {
@@ -108,7 +108,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
   return (
     <div
-      id="overlay"
+      id="modal-overlay"
       className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
     >
       <div className="w-full px-4">
