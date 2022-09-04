@@ -19,39 +19,26 @@ const Budget = ({ thisMonthData }: Props) => {
   const [remaining, setRemaining] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  // 初回ロード
+  // 予算
   useEffect(() => {
-    if (thisMonthData?.budget) {
-      setBudget(thisMonthData.budget);
-    }
-  }, [thisMonthData]);
+    setBudget(thisMonthData.budget);
+  }, [thisMonthData.budget]);
 
-  // 支出合計県産
+  // 支出合計
   useEffect(() => {
-    if (thisMonthData?.payments) {
-      const total: number = thisMonthData.payments.reduce((sum, value) => {
-        return sum + value.price;
-      }, 0);
-      setTotalSpending(total);
-    }
-  }, [thisMonthData?.payments]);
+    const total = thisMonthData.payments.reduce((sum, value) => {
+      return sum + value.price;
+    }, 0);
+    setTotalSpending(total);
+  }, [thisMonthData.payments]);
 
-  // 残高計算
+  // 残高
   useEffect(() => {
     setRemaining(budget - totalSpending);
   }, [totalSpending, budget]);
 
-  // 予算編集ボタン
-  const onSubmitHundler = () => {
-    if (isReady) {
-      updateUser(dbUser, { budget: budget });
-      updateMonthlyData(dbUser, { ...thisMonthData, budget: budget });
-      setIsReady(false);
-    }
-  };
-
-  // 予算入力
-  const onChangeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 予算編集
+  const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
     const removed = e.target.value.replace(/,/g, "");
     const pattern = /^\d*$/;
     if (pattern.test(removed)) {
@@ -67,6 +54,15 @@ const Budget = ({ thisMonthData }: Props) => {
     }
   };
 
+  // 予算保存
+  const saveBudget = () => {
+    if (isReady) {
+      updateUser(dbUser, { budget: budget });
+      updateMonthlyData(dbUser, { ...thisMonthData, budget: budget });
+      setIsReady(false);
+    }
+  };
+
   return (
     <table className="mx-auto">
       <tbody>
@@ -77,8 +73,8 @@ const Budget = ({ thisMonthData }: Props) => {
               type="text"
               inputMode="numeric"
               value={budget.toLocaleString()}
-              onChange={onChangeBudget}
-              onBlur={onSubmitHundler}
+              onChange={changeBudget}
+              onBlur={saveBudget}
               onKeyPress={(e) => {
                 if (e.key === "Enter") e.currentTarget.blur();
               }}

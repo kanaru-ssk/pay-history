@@ -24,6 +24,18 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // モーダル外をクリックで閉じる
+  useEffect(() => {
+    const onClickOverlay = (e: any) => {
+      if (e.target.id === "overlay") setPayment(null);
+    };
+
+    window.addEventListener("click", onClickOverlay, { passive: false });
+    return () => {
+      window.removeEventListener("click", onClickOverlay);
+    };
+  }, [setPayment]);
+
   useEffect(() => {
     if (payment) {
       const date = payment.atPaied.toDate();
@@ -58,16 +70,16 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     }
   }, [payment]);
 
-  const toHalfWidth = (value: string): string => {
-    if (!value) return value;
-
-    return String(value).replace(/[！-～]/g, (all: string): string => {
-      return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
-    });
-  };
-
   // 支払い金額編集
-  const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const toHalfWidth = (value: string): string => {
+      if (!value) return value;
+
+      return String(value).replace(/[！-～]/g, (all: string): string => {
+        return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
+      });
+    };
+
     const half = toHalfWidth(e.target.value);
     const removed = half.replace(/,/g, "");
     const pattern = /^\d*$/;
@@ -85,7 +97,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   // 支払い日編集
-  const onChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
     if (payment && new Date(e.target.value) !== payment.atPaied.toDate()) {
       setIsReady(true);
@@ -94,8 +106,8 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     }
   };
 
-  // 編集確定
-  const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
+  // 編集保存
+  const sumitSavePayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady && payment) {
       setIsLoading(true);
@@ -119,7 +131,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   // 支払い削除
-  const onDeletePayment = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const deletePayment = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (payment) {
       updateMonthlyData(dbUser, {
@@ -132,61 +144,59 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     }
   };
 
-  if (!payment) {
-    return null;
-  } else {
-    return (
-      <div
-        id="overlay"
-        className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
-      >
-        <div className="w-full px-4">
-          <div className="mx-auto max-w-2xl bg-white p-4 text-right">
-            <button
-              className="ml-auto w-12 px-3"
-              onClick={() => {
-                setPayment(null);
-              }}
-            >
-              <svg viewBox="0 0 20 20">
-                <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
-              </svg>
-            </button>
-            <form onSubmit={onSumitPayment} className="bg-white">
-              <div className="flex w-full items-center gap-2 py-2">
-                <Input
-                  type="date"
-                  min={minDate}
-                  max={maxDate}
-                  value={date}
-                  onChange={onChangeDate}
-                />
+  if (!payment) return null;
 
-                <Input
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="支出額を入力してください。"
-                  value={price.toLocaleString()}
-                  onChange={onChangePrice}
-                  right
-                />
-              </div>
+  return (
+    <div
+      id="overlay"
+      className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
+    >
+      <div className="w-full px-4">
+        <div className="mx-auto max-w-2xl bg-white p-4 text-right">
+          <button
+            className="ml-auto w-12 px-3"
+            onClick={() => {
+              setPayment(null);
+            }}
+          >
+            <svg viewBox="0 0 20 20">
+              <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+            </svg>
+          </button>
+          <form onSubmit={sumitSavePayment} className="bg-white">
+            <div className="flex w-full items-center gap-2 py-2">
+              <Input
+                type="date"
+                min={minDate}
+                max={maxDate}
+                value={date}
+                onChange={changeDate}
+              />
 
-              <div className="flex gap-2 py-2">
-                <Button text="削除" onClick={onDeletePayment} red />
+              <Input
+                type="text"
+                inputMode="numeric"
+                placeholder="支出額を入力してください。"
+                value={price.toLocaleString()}
+                onChange={changePrice}
+                right
+              />
+            </div>
 
-                <Button
-                  text="支払データ修正"
-                  isReady={isReady}
-                  isLoading={isLoading}
-                />
-              </div>
-            </form>
-          </div>
+            <div className="flex gap-2 py-2">
+              <Button text="削除" onClick={deletePayment} red />
+
+              <Button
+                text="支払データ修正"
+                isReady={isReady}
+                isLoading={isLoading}
+              />
+            </div>
+          </form>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default PaymentsModal;

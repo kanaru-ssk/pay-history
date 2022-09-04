@@ -39,7 +39,7 @@ export const signup = async (email: string, password: string) => {
   }
 };
 
-export const signout = async () => {
+export const signOut = async () => {
   const { signOut } = await import("firebase/auth");
   signOut(auth);
 };
@@ -123,7 +123,6 @@ export const resetPassword = async (email: string) => {
 };
 
 const convertErrorMessage = (error: unknown) => {
-  console.log(error);
   if (isAuthError(error)) {
     if (error.code === "auth/invalid-email") {
       return "メールアドレス形式が正しくありません。";

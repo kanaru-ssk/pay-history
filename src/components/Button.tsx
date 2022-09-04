@@ -28,7 +28,7 @@ const Button = ({
       onClick={onClick}
       className={
         (isReady && !isLoading ? color() : "bg-light-gray text-gray") +
-        " h-12 w-full rounded-3xl text-center"
+        " h-12 w-full rounded-full text-center"
       }
     >
       {isLoading ? (

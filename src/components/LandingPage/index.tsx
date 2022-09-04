@@ -5,11 +5,12 @@ import CtaBtn from "./CtaBtn";
 const LandingPage = () => {
   return (
     <div>
-      <div className="my-12 text-center">
+      <h1>Pay History</h1>
+
+      <p>月の予算管理をシンプルに</p>
+      <div className="my-12">
         <CtaBtn />
       </div>
-      <h1>Pay History</h1>
-      <p>予算管理ツール「Pay History」</p>
       <p className="mb-4">月の予算管理、しっかりできていますか？</p>
       <p className="mb-4">
         クレジットカード明細は反映まで時間がかかってしまい、月初からいくら使ったのか把握するのは難しいですよね。
@@ -33,7 +34,7 @@ const LandingPage = () => {
         <li>支払いしたらアプリで金額を入力</li>
         <li>完了!</li>
       </ol>
-      <div className="my-12 text-center">
+      <div className="my-12">
         <CtaBtn />
       </div>
     </div>

@@ -72,11 +72,42 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
     }
   }, [tabStatus]);
 
+  // 支払い金額入力
+  const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const toHalfWidth = (value: string): string => {
+      if (!value) return value;
+
+      return String(value).replace(/[！-～]/g, (all: string): string => {
+        return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
+      });
+    };
+
+    const half = toHalfWidth(e.target.value);
+    const removed = half.replace(/,/g, "");
+    const pattern = /^\d*$/;
+    if (pattern.test(removed)) {
+      const toNum = Number(removed);
+      setPrice(toNum);
+      if (0 < toNum) {
+        setIsReady(true);
+      } else {
+        setIsReady(false);
+      }
+    } else {
+      setPrice(0);
+    }
+  };
+
+  // 支払い日入力
+  const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value);
+  };
+
   // 支払い追加
-  const onSumitPayment = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (thisMonthData && isReady) {
-      addPayment(dbUser, thisMonthData, price, new Date(date));
+    if (isReady) {
+      await addPayment(dbUser, thisMonthData, price, new Date(date));
       setPrice(0);
       setIsReady(false);
 
@@ -107,46 +138,15 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
     }
   };
 
-  const toHalfWidth = (value: string): string => {
-    if (!value) return value;
-
-    return String(value).replace(/[！-～]/g, (all: string): string => {
-      return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
-    });
-  };
-
-  // 支払い金額入力
-  const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const half = toHalfWidth(e.target.value);
-    const removed = half.replace(/,/g, "");
-    const pattern = /^\d*$/;
-    if (pattern.test(removed)) {
-      const toNum = Number(removed);
-      setPrice(toNum);
-      if (0 < toNum) {
-        setIsReady(true);
-      } else {
-        setIsReady(false);
-      }
-    } else {
-      setPrice(0);
-    }
-  };
-
-  // 支払い日入力
-  const onChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-  };
-
   return (
-    <form onSubmit={onSumitPayment} className="bg-white">
+    <form onSubmit={submitAddPayment} className="bg-white">
       <div className="flex w-full items-center gap-2 py-2">
         <Input
           type="date"
           min={minDate}
           max={maxDate}
           value={date}
-          onChange={onChangeDate}
+          onChange={changeDate}
         />
 
         <Input
@@ -154,12 +154,12 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           inputMode="numeric"
           placeholder="支出額を入力"
           value={price === 0 ? "" : price.toLocaleString()}
-          onChange={onChangePrice}
+          onChange={changePrice}
           right
         />
       </div>
 
-      <div className="pb-2 text-center">
+      <div className="pb-2">
         <Button text="支払追加" isReady={isReady} />
       </div>
     </form>

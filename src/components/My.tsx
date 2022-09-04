@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 
 import Button from "components/Button";
 import LinkText from "components/LinkText";
+import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
-import { signout } from "libs/auth";
+import { signOut } from "libs/auth";
 
 const My = () => {
   const { query, push } = useRouter();
@@ -17,8 +18,8 @@ const My = () => {
     if (authUser?.isAnonymous) push("/signin");
   }, [authUser?.isAnonymous, push]);
 
-  const onSignOut = () => {
-    signout();
+  const clickSignOut = () => {
+    signOut();
     setIsLoading(true);
   };
 
@@ -26,11 +27,7 @@ const My = () => {
     <div>
       <h1>マイページ</h1>
 
-      {changepass && (
-        <div className="rounded border border-main-color bg-light-gray p-4 text-main-color">
-          {changepass && "パスワードを変更しました。"}
-        </div>
-      )}
+      <Notice text={changepass ? "パスワードを変更しました。" : ""} />
 
       <div className="my-4">
         <h3>メールアドレス</h3>
@@ -44,7 +41,7 @@ const My = () => {
         />
         <Button
           text="サインアウト"
-          onClick={onSignOut}
+          onClick={clickSignOut}
           isLoading={isLoading}
           red
         />

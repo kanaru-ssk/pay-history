@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Button from "components/Button";
 import Input from "components/Input";
 import LinkText from "components/LinkText";
+import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
 import { signin, validateEmail, validatePassword } from "libs/auth";
 
@@ -44,11 +45,7 @@ const Signin = () => {
     <div>
       <h1>サインイン</h1>
 
-      {errorMessage && (
-        <div className="rounded border border-red bg-light-red p-4 text-red">
-          {errorMessage}
-        </div>
-      )}
+      <Notice text={errorMessage} error />
 
       <form onSubmit={onSubmitHundler}>
         <div className="my-4">

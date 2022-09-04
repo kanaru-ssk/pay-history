@@ -9,7 +9,9 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20">
-        <Logo />
+        <div className="px-4">
+          <Logo />
+        </div>
 
         <button className="p-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <svg width="20" height="12">
