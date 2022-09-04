@@ -20,7 +20,7 @@ type Node = {
 };
 
 const AuthProvider = ({ children }: Node) => {
-  const key = "DB_USER";
+  const key = "dbUser";
   const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
   const [dbUser, setDBUser] = useState<DBUser | null>(() => {
     const value = localStorage.getItem(key);

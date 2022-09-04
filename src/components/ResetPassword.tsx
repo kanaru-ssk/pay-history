@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Button from "components/Button";
@@ -8,13 +7,12 @@ import Notice from "components/Notice";
 import { resetPassword, validateEmail } from "libs/auth";
 
 const ResetPassword = () => {
-  const { push } = useRouter();
-
   const [email, setEmail] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [noticeMessage, setNoticeMessage] = useState<string>("");
 
   useEffect(() => {
     validateEmail(email) === "" ? setIsReady(true) : setIsReady(false);
@@ -27,12 +25,13 @@ const ResetPassword = () => {
       setIsLoading(true);
 
       const result = await resetPassword(email);
-      setErrorMessage(result);
-      if (result !== "") {
-        setIsLoading(false);
-      } else {
-        push("/reset-password/complete");
-      }
+      setNoticeMessage(result);
+      setIsLoading(false);
+      setIsError(result !== "");
+      if (result === "")
+        setNoticeMessage(
+          "入力頂いたメールアドレス宛に再設定リンクを送信しました。"
+        );
     }
   };
 
@@ -40,7 +39,7 @@ const ResetPassword = () => {
     <div>
       <h1>パスワード再設定</h1>
 
-      <Notice text={errorMessage} error />
+      <Notice text={noticeMessage} error={isError} />
 
       <form onSubmit={onSubmitHundler}>
         <div className="my-4">
@@ -60,7 +59,11 @@ const ResetPassword = () => {
         </div>
 
         <div className="my-8">
-          <Button text="送信" isReady={isReady} isLoading={isLoading} />
+          <Button
+            text={noticeMessage === "" ? "送信" : "再送信"}
+            isReady={isReady}
+            isLoading={isLoading}
+          />
         </div>
       </form>
 
