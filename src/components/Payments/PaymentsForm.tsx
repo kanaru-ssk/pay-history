@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData } from "types/firebase";
 
+import Button from "components/Button";
+import Input from "components/Input";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
 import { addPayment, tabToDocId } from "libs/monthlyData";
@@ -15,8 +17,8 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const { tabStatus } = useTabStatus();
 
   const [date, setDate] = useState<string>("");
-  const [firstDate, setFirstDate] = useState<string>("");
-  const [lastDate, setLastDate] = useState<string>("");
+  const [minDate, setMinDate] = useState<string>("");
+  const [maxDate, setMaxDate] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
@@ -24,11 +26,13 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
     const now = new Date();
 
     if (tabStatus === now.getMonth() + 1) {
-      const nowString = new Date(Number(now) - now.getTimezoneOffset() * 60000)
+      const todayString = new Date(
+        Number(now) - now.getTimezoneOffset() * 60000
+      )
         .toISOString()
         .split("T")[0];
 
-      // 今月の月初の日付
+      // 月初の日付
       const beginningOfMonth = new Date().setDate(1);
       const beginningOfMonthString = new Date(
         beginningOfMonth -
@@ -37,15 +41,15 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         .toISOString()
         .split("T")[0];
 
-      setDate(nowString);
-      setFirstDate(beginningOfMonthString);
-      setLastDate(nowString);
+      setDate(todayString);
+      setMinDate(beginningOfMonthString);
+      setMaxDate(todayString);
     } else {
       const split = tabToDocId(tabStatus).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
-      // 今月の月初の日付
+      // 月初の日付
       const beginningOfMonth = new Date(toNum[0], toNum[1] - 1, 1);
       const beginningOfMonthString = new Date(
         Number(beginningOfMonth) -
@@ -54,7 +58,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         .toISOString()
         .split("T")[0];
 
-      // 今月の月末の日付
+      // 月末の日付
       const endOfMonth = new Date(toNum[0], toNum[1], 0);
       const endOfMonthString = new Date(
         Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
@@ -63,8 +67,8 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         .split("T")[0];
 
       setDate(endOfMonthString);
-      setFirstDate(beginningOfMonthString);
-      setLastDate(endOfMonthString);
+      setMinDate(beginningOfMonthString);
+      setMaxDate(endOfMonthString);
     }
   }, [tabStatus]);
 
@@ -79,13 +83,13 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       const now = new Date();
 
       if (tabStatus === now.getMonth() + 1) {
-        const nowString = new Date(
+        const todayString = new Date(
           Number(now) - now.getTimezoneOffset() * 60000
         )
           .toISOString()
           .split("T")[0];
 
-        setDate(nowString);
+        setDate(todayString);
       } else {
         const split = tabToDocId(tabStatus).split("-");
         const toNum = split.map((value) => {
@@ -137,34 +141,26 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   return (
     <form onSubmit={onSumitPayment} className="bg-white">
       <div className="flex w-full items-center gap-2 py-2">
-        <input
+        <Input
           type="date"
-          min={firstDate}
-          max={lastDate}
+          min={minDate}
+          max={maxDate}
           value={date}
           onChange={onChangeDate}
-          className="h-12 w-full flex-1 rounded-lg border-2 border-gray bg-white px-5 py-3 leading-5"
         />
 
-        <input
+        <Input
           type="text"
           inputMode="numeric"
           placeholder="支出額を入力"
           value={price === 0 ? "" : price.toLocaleString()}
           onChange={onChangePrice}
-          className="h-12 w-full flex-1 rounded-lg border-2 border-gray px-5 py-3 text-right leading-5"
+          right
         />
       </div>
 
       <div className="pb-2 text-center">
-        <button
-          className={
-            (isReady ? "font-bold text-main-color" : "text-gray") +
-            " h-12 w-full rounded-3xl bg-light-gray text-center"
-          }
-        >
-          支払追加
-        </button>
+        <Button text="支払追加" isReady={isReady} />
       </div>
     </form>
   );

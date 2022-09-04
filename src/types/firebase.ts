@@ -1,4 +1,5 @@
 export type User = import("firebase/auth").User;
+export type AuthError = import("firebase/auth").AuthError;
 
 export type FieldValue = import("firebase/firestore").FieldValue;
 export type Timestamp = import("firebase/firestore").Timestamp;
@@ -8,6 +9,8 @@ export type DBUser = {
   atCreated: Timestamp | FieldValue;
   atUpdated: Timestamp | FieldValue;
   budget: number;
+  email?: string;
+  isAnonymous?: boolean;
 };
 
 export type MonthlyData = {
@@ -23,4 +26,11 @@ export type Payment = {
   atUpdated: Timestamp;
   atPaied: Timestamp;
   price: number;
+};
+
+export const isAuthError = (arg: any): arg is AuthError => {
+  if ("code" in arg && "message" in arg) {
+    return true;
+  }
+  return false;
 };

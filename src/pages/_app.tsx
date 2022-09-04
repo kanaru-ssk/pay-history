@@ -4,9 +4,6 @@ import Head from "next/head";
 
 import "styles/globals.css";
 
-import Header from "components/Header";
-import Tab from "components/Tab";
-
 const DynamicAuthProvider = dynamic(() => import("hooks/auth"), {
   ssr: false,
 });
@@ -25,9 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <DynamicAuthProvider>
         <DynamicTabStatusProvider>
-          <Header />
-          <Tab />
-
           <Component {...pageProps} />
         </DynamicTabStatusProvider>
       </DynamicAuthProvider>

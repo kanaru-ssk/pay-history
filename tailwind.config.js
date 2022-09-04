@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     colors: {
       white: "#fff",
-      black: "#000",
+      black: "#113",
       gray: "#bbb",
       "light-gray": "#eee",
       "dark-gray": "#888",
-      red: "#f77",
+      red: "#f55",
+      "light-red": "#fee",
       "main-color": "#232C93",
       "sub-color": "#C1C5FE",
       "trans-black": "hsla(0,0%,0%,.6)",

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData } from "types/firebase";
 
+import Input from "components/Input";
 import { useAuth } from "hooks/auth";
 import { updateMonthlyData } from "libs/monthlyData";
 import { updateUser } from "libs/user";
@@ -43,7 +44,7 @@ const Budget = ({ thisMonthData }: Props) => {
   // 予算編集ボタン
   const onSubmitHundler = () => {
     if (isReady) {
-      updateUser(dbUser, budget);
+      updateUser(dbUser, { budget: budget });
       updateMonthlyData(dbUser, { ...thisMonthData, budget: budget });
       setIsReady(false);
     }
@@ -72,7 +73,7 @@ const Budget = ({ thisMonthData }: Props) => {
         <tr>
           <th>予算</th>
           <td className="text-right">
-            <input
+            <Input
               type="text"
               inputMode="numeric"
               value={budget.toLocaleString()}
@@ -81,7 +82,8 @@ const Budget = ({ thisMonthData }: Props) => {
               onKeyPress={(e) => {
                 if (e.key === "Enter") e.currentTarget.blur();
               }}
-              className="w-full rounded border border-gray text-right"
+              small
+              right
             />
           </td>
           <td>円</td>

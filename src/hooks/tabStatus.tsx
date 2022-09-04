@@ -18,13 +18,13 @@ type Node = {
 };
 
 const TabStatusProvider = ({ children }: Node) => {
-  const key = "TAB_STATUS";
+  const key = "tabStatus";
   const [tabStatus, _setTabStatus] = useState<TabStatus>(() => {
+    // sessionStorageにtabStatusが保存されている場合は初期値に設定
     const value = sessionStorage.getItem(key);
     return value ? JSON.parse(value) : new Date().getMonth() + 1;
   });
 
-  // sessionStorageにtabStatusが保存されている場合は初期値に設定
   useEffect(() => {
     const value = sessionStorage.getItem(key);
     if (value) {

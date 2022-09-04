@@ -1,7 +1,7 @@
 import { logEvent } from "firebase/analytics";
 import { onSnapshot, doc } from "firebase/firestore";
 
-import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
+import type { MonthlyData, Payment, DBUser } from "types/firebase";
 import type { TabStatus } from "types/tabStatus";
 
 import { db, analytics } from "libs/firebase";
@@ -48,11 +48,11 @@ export const tabToDocId = (tabStatus: TabStatus): string => {
 export const createMonthlyData = async (user: DBUser | null, docId: string) => {
   if (!user) return null;
 
-  const { setDoc, doc, serverTimestamp } = await import("firebase/firestore");
+  const { setDoc, doc, Timestamp } = await import("firebase/firestore");
 
   const newMonthlyData: Omit<MonthlyData, "docId"> = {
-    atCreated: serverTimestamp(),
-    atUpdated: serverTimestamp(),
+    atCreated: Timestamp.now(),
+    atUpdated: Timestamp.now(),
     budget: user.budget,
     payments: [],
   };
@@ -73,12 +73,10 @@ export const updateMonthlyData = async (
 ) => {
   if (!user || !monthlyData) return null;
 
-  const { updateDoc, doc, serverTimestamp } = await import(
-    "firebase/firestore"
-  );
+  const { updateDoc, doc, Timestamp } = await import("firebase/firestore");
 
   const newMonthlyData: Partial<MonthlyData> = {
-    atUpdated: serverTimestamp(),
+    atUpdated: Timestamp.now(),
     budget: monthlyData.budget,
     payments: monthlyData.payments,
   };
