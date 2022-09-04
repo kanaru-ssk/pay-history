@@ -2,7 +2,6 @@ import { logEvent } from "firebase/analytics";
 import { onSnapshot, doc } from "firebase/firestore";
 
 import type { MonthlyData, Payment, DBUser } from "types/firebase";
-import type { TabStatus } from "types/tabStatus";
 
 import { db, analytics } from "libs/firebase";
 
@@ -32,16 +31,6 @@ export const getMonthlyData = (
       setMonthData(null);
     }
   });
-};
-
-// exchange tabStatus -> docId
-export const tabToDocId = (tabStatus: TabStatus): string => {
-  const date = new Date();
-  const thisYear = date.getFullYear();
-  const thisMonth = date.getMonth() + 1;
-  const year = thisMonth < tabStatus ? thisYear - 1 : thisYear;
-  const docId = year.toString() + "-" + tabStatus.toString();
-  return docId;
 };
 
 // 月データ作成
@@ -122,38 +111,4 @@ export const addPayment = async (
 
   if (analytics) logEvent(analytics, "addPayment");
   return true;
-};
-
-type InputMonthData = {
-  value: string;
-  min: string;
-  max: string;
-};
-
-export const convertInputMonth = (date: Date): InputMonthData => {
-  const dateString = new Date(Number(date) - date.getTimezoneOffset() * 60000)
-    .toISOString()
-    .split("T")[0];
-
-  const beginningOfMonth = new Date(date).setDate(1);
-  const beginningOfMonthString = new Date(
-    beginningOfMonth - new Date(beginningOfMonth).getTimezoneOffset() * 60000
-  )
-    .toISOString()
-    .split("T")[0];
-
-  const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  const maxDate = date < endOfMonth ? date : endOfMonth;
-  const maxDateString = new Date(
-    Number(maxDate) - maxDate.getTimezoneOffset() * 60000
-  )
-    .toISOString()
-    .split("T")[0];
-
-  const inputMonthData: InputMonthData = {
-    value: dateString,
-    min: beginningOfMonthString,
-    max: maxDateString,
-  };
-  return inputMonthData;
 };

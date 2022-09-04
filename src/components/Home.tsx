@@ -7,7 +7,8 @@ import Loading from "components/Loading";
 import Payments from "components/Payments";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
-import { getMonthlyData, tabToDocId } from "libs/monthlyData";
+import { tabToDocId } from "libs/convert";
+import { getMonthlyData } from "libs/monthlyData";
 
 const Home = () => {
   const { dbUser } = useAuth();
@@ -16,6 +17,7 @@ const Home = () => {
     MonthlyData | null | undefined
   >(undefined);
 
+  // 月次データをリッスン
   useEffect(() => {
     const unsubscribe = getMonthlyData(
       dbUser?.docId,

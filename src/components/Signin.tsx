@@ -6,7 +6,8 @@ import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
-import { signIn, validateEmail, validatePassword } from "libs/auth";
+import { signIn } from "libs/auth";
+import { validateEmail, validatePassword } from "libs/validation";
 
 const Signin = () => {
   const { push } = useRouter();
@@ -20,19 +21,21 @@ const Signin = () => {
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  // メール認証済みの時、マイページに遷移
   useEffect(() => {
     if (!authUser?.isAnonymous) push("/my");
   }, [authUser?.isAnonymous, push]);
 
+  // validation通過チェック
   useEffect(() => {
     validateEmail(email) === "" && validatePassword(password) === ""
       ? setIsReady(true)
       : setIsReady(false);
   }, [email, password]);
 
-  const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
+  // サインイン
+  const submitSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (isReady) {
       setIsLoading(true);
       const result = await signIn(email, password);
@@ -47,7 +50,7 @@ const Signin = () => {
 
       <Notice text={errorMessage} error />
 
-      <form onSubmit={onSubmitHundler}>
+      <form onSubmit={submitSignIn}>
         <div className="my-4">
           <h3>メールアドレス</h3>
           {errorMessageEmail && (

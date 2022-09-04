@@ -6,7 +6,8 @@ import type { MonthlyData, Payment } from "types/firebase";
 import Button from "components/Button";
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
-import { updateMonthlyData, convertInputMonth } from "libs/monthlyData";
+import { dateToInputData, stringToPrice } from "libs/convert";
+import { updateMonthlyData } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -35,9 +36,10 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     };
   }, [setPayment]);
 
+  // 支払いデータ読み込み
   useEffect(() => {
     if (payment) {
-      const inputMonthData = convertInputMonth(payment.atPaied.toDate());
+      const inputMonthData = dateToInputData(payment.atPaied.toDate());
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
@@ -47,28 +49,9 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
   // 支払い金額編集
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const toHalfWidth = (value: string): string => {
-      if (!value) return value;
-
-      return String(value).replace(/[！-～]/g, (all: string): string => {
-        return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
-      });
-    };
-
-    const half = toHalfWidth(e.target.value);
-    const removed = half.replace(/,/g, "");
-    const pattern = /^\d*$/;
-    if (pattern.test(removed)) {
-      const toNum = Number(removed);
-      setPrice(toNum);
-      if (0 < toNum) {
-        setIsReady(true);
-      } else {
-        setIsReady(false);
-      }
-    } else {
-      setPrice(0);
-    }
+    const price = stringToPrice(e.target.value);
+    setPrice(price);
+    setIsReady(0 < price);
   };
 
   // 支払い日編集

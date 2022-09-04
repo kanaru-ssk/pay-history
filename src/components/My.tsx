@@ -14,10 +14,12 @@ const My = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // 匿名認証の時、サインインページに遷移
   useEffect(() => {
     if (authUser?.isAnonymous) push("/signin");
   }, [authUser?.isAnonymous, push]);
 
+  // サインアウト
   const clickSignOut = () => {
     signOut();
     setIsLoading(true);

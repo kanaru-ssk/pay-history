@@ -5,18 +5,14 @@ import Button from "components/Button";
 import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
-import {
-  validatePassword,
-  validatePasswordConfirm,
-  resetPassword,
-} from "libs/auth";
+import { resetPassword } from "libs/auth";
+import { validatePassword, validatePasswordConfirm } from "libs/validation";
 
 const SetNewPassword = () => {
   const { push } = useRouter();
 
   const [oobCode, setOobCode] = useState<string>("");
   const [continueUrl, setContinueUrl] = useState<string>("");
-
   const [newPassword, setNewPassword] = useState<string>("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
@@ -27,6 +23,7 @@ const SetNewPassword = () => {
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  // getパラメータ取得
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const oobCodeValue = queryParams.get("oobCode") || "";
@@ -35,6 +32,7 @@ const SetNewPassword = () => {
     setContinueUrl(continueUrlValue);
   }, []);
 
+  // validation通過チェック
   useEffect(() => {
     validatePassword(newPassword) === "" &&
     validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
@@ -42,12 +40,11 @@ const SetNewPassword = () => {
       : setIsReady(false);
   }, [newPassword, newPasswordConfirm]);
 
+  // パスワード再設定
   const submitSetNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (isReady) {
       setIsLoading(true);
-
       const result = await resetPassword(oobCode, newPassword);
       setErrorMessage(result);
       if (result !== "") {

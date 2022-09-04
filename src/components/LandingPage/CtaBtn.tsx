@@ -1,7 +1,8 @@
 import Button from "components/Button";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
-import { createMonthlyData, tabToDocId } from "libs/monthlyData";
+import { tabToDocId } from "libs/convert";
+import { createMonthlyData } from "libs/monthlyData";
 
 const CtaBtn = () => {
   const { dbUser } = useAuth();

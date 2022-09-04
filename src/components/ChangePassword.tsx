@@ -6,11 +6,8 @@ import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
-import {
-  changePassword,
-  validatePassword,
-  validatePasswordConfirm,
-} from "libs/auth";
+import { changePassword } from "libs/auth";
+import { validatePassword, validatePasswordConfirm } from "libs/validation";
 
 const ChangePassword = () => {
   const { push } = useRouter();
@@ -36,12 +33,11 @@ const ChangePassword = () => {
       : setIsReady(false);
   }, [oldPassword, newPassword, newPasswordConfirm]);
 
+  // パスワード変更
   const submitChangePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (isReady) {
       setIsLoading(true);
-
       const result = await changePassword(
         authUser?.email,
         oldPassword,

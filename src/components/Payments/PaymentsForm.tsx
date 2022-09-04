@@ -6,7 +6,8 @@ import Button from "components/Button";
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
-import { addPayment, tabToDocId, convertInputMonth } from "libs/monthlyData";
+import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
+import { addPayment } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -22,10 +23,11 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
+  // 日付初期値を設定
   useEffect(() => {
     const now = new Date();
     if (tabStatus === now.getMonth() + 1) {
-      const inputMonthData = convertInputMonth(now);
+      const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
@@ -34,7 +36,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       const toNum = split.map((value) => {
         return Number(value);
       });
-      const inputMonthData = convertInputMonth(new Date(toNum[0], toNum[1], 0));
+      const inputMonthData = dateToInputData(new Date(toNum[0], toNum[1], 0));
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
@@ -43,28 +45,9 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
 
   // 支払い金額入力
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const toHalfWidth = (value: string): string => {
-      if (!value) return value;
-
-      return String(value).replace(/[！-～]/g, (all: string): string => {
-        return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
-      });
-    };
-
-    const half = toHalfWidth(e.target.value);
-    const removed = half.replace(/,/g, "");
-    const pattern = /^\d*$/;
-    if (pattern.test(removed)) {
-      const toNum = Number(removed);
-      setPrice(toNum);
-      if (0 < toNum) {
-        setIsReady(true);
-      } else {
-        setIsReady(false);
-      }
-    } else {
-      setPrice(0);
-    }
+    const price = stringToPrice(e.target.value);
+    setPrice(price);
+    setIsReady(0 < price);
   };
 
   // 支払い日入力

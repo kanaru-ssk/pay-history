@@ -6,13 +6,13 @@ import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
+import { signUp } from "libs/auth";
+import { updateUser } from "libs/user";
 import {
-  signUp,
   validateEmail,
   validatePassword,
   validatePasswordConfirm,
-} from "libs/auth";
-import { updateUser } from "libs/user";
+} from "libs/validation";
 
 const Signup = () => {
   const { push } = useRouter();
@@ -29,10 +29,12 @@ const Signup = () => {
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  // メール認証済みの時、マイページに遷移
   useEffect(() => {
     if (dbUser?.isAnonymous === false) push("/my");
   }, [dbUser, push]);
 
+  // validation通過チェック
   useEffect(() => {
     validateEmail(email) === "" &&
     validatePassword(password) === "" &&
@@ -41,9 +43,9 @@ const Signup = () => {
       : setIsReady(false);
   }, [email, password, passwordConfirm]);
 
+  // サインアップ
   const submitSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (isReady) {
       setIsLoading(true);
       const result = await signUp(email, password);
