@@ -62,31 +62,6 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       await addPayment(dbUser, thisMonthData, price, new Date(date));
       setPrice(0);
       setIsReady(false);
-
-      const now = new Date();
-
-      if (tabStatus === now.getMonth() + 1) {
-        const todayString = new Date(
-          Number(now) - now.getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .split("T")[0];
-
-        setDate(todayString);
-      } else {
-        const split = tabToDocId(tabStatus).split("-");
-        const toNum = split.map((value) => {
-          return Number(value);
-        });
-        const endOfMonth = new Date(toNum[0], toNum[1], 0);
-        const endOfMonthString = new Date(
-          Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .split("T")[0];
-
-        setDate(endOfMonthString);
-      }
     }
   };
 
