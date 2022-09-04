@@ -28,9 +28,9 @@ const Signin = () => {
 
   // validation通過チェック
   useEffect(() => {
-    validateEmail(email) === "" && validatePassword(password) === ""
-      ? setIsReady(true)
-      : setIsReady(false);
+    setIsReady(
+      validateEmail(email) === "" && validatePassword(password) === ""
+    );
   }, [email, password]);
 
   // サインイン

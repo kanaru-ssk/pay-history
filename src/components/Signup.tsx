@@ -36,11 +36,11 @@ const Signup = () => {
 
   // validation通過チェック
   useEffect(() => {
-    validateEmail(email) === "" &&
-    validatePassword(password) === "" &&
-    validatePasswordConfirm(password, passwordConfirm) === ""
-      ? setIsReady(true)
-      : setIsReady(false);
+    setIsReady(
+      validateEmail(email) === "" &&
+        validatePassword(password) === "" &&
+        validatePasswordConfirm(password, passwordConfirm) === ""
+    );
   }, [email, password, passwordConfirm]);
 
   // サインアップ

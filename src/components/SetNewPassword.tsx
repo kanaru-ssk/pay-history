@@ -34,10 +34,10 @@ const SetNewPassword = () => {
 
   // validation通過チェック
   useEffect(() => {
-    validatePassword(newPassword) === "" &&
-    validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
-      ? setIsReady(true)
-      : setIsReady(false);
+    setIsReady(
+      validatePassword(newPassword) === "" &&
+        validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
+    );
   }, [newPassword, newPasswordConfirm]);
 
   // パスワード再設定

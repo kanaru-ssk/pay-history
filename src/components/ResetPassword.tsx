@@ -17,7 +17,7 @@ const ResetPassword = () => {
 
   // validation通過チェック
   useEffect(() => {
-    validateEmail(email) === "" ? setIsReady(true) : setIsReady(false);
+    setIsReady(validateEmail(email) === "");
   }, [email]);
 
   // パスワード再設定リンク送信

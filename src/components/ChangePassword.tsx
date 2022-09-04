@@ -26,11 +26,11 @@ const ChangePassword = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    validatePassword(oldPassword) === "" &&
-    validatePassword(newPassword) === "" &&
-    validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
-      ? setIsReady(true)
-      : setIsReady(false);
+    setIsReady(
+      validatePassword(oldPassword) === "" &&
+        validatePassword(newPassword) === "" &&
+        validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
+    );
   }, [oldPassword, newPassword, newPasswordConfirm]);
 
   // パスワード変更

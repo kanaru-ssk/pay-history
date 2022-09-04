@@ -51,7 +51,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
-    setIsReady(0 < price);
+    setIsReady(0 < price && price !== payment?.price);
   };
 
   // 支払い日編集
