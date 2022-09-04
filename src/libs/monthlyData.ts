@@ -74,7 +74,6 @@ export const updateMonthlyData = async (
     doc(db, "users", user.docId, "monthlyData", monthlyData.docId),
     newMonthlyData
   );
-
   if (analytics) logEvent(analytics, "updateMonthlyData");
   return newMonthlyData;
 };
@@ -104,11 +103,10 @@ export const addPayment = async (
     payments: arrayUnion(newPayment),
   };
 
-  updateDoc(
+  await updateDoc(
     doc(db, "users", user.docId, "monthlyData", month.docId),
     newMonthlyData
   );
-
   if (analytics) logEvent(analytics, "addPayment");
   return true;
 };

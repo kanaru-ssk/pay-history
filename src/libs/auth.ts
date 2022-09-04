@@ -1,5 +1,7 @@
+import { logEvent } from "firebase/analytics";
+
 import { errCodeToMessage } from "libs/convert";
-import { auth } from "libs/firebase";
+import { auth, analytics } from "libs/firebase";
 
 export const signIn = async (
   email: string,
@@ -13,6 +15,7 @@ export const signIn = async (
     if (methods.length == 0) return "アカウントが見つかりませんでした。";
 
     await signInWithEmailAndPassword(auth, email, password);
+    if (analytics) logEvent(analytics, "signIn");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
@@ -33,6 +36,7 @@ export const signUp = async (email: string, password: string) => {
 
     const credential = EmailAuthProvider.credential(email, password);
     await linkWithCredential(auth.currentUser, credential);
+    if (analytics) logEvent(analytics, "signUp");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
@@ -40,8 +44,13 @@ export const signUp = async (email: string, password: string) => {
 };
 
 export const signOut = async () => {
-  const { signOut } = await import("firebase/auth");
-  signOut(auth);
+  try {
+    const { signOut } = await import("firebase/auth");
+    await signOut(auth);
+    if (analytics) logEvent(analytics, "signOut");
+  } catch (error) {
+    return errCodeToMessage(error);
+  }
 };
 
 export const changePassword = async (
@@ -59,6 +68,7 @@ export const changePassword = async (
     const credential = EmailAuthProvider.credential(email, oldPassword);
     await reauthenticateWithCredential(auth.currentUser, credential);
     await updatePassword(auth.currentUser, newPassword);
+    if (analytics) logEvent(analytics, "changePassword");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
@@ -75,6 +85,7 @@ export const sendResetPasswordLink = async (email: string) => {
     };
 
     await sendPasswordResetEmail(auth, email, actionCodeSettings);
+    if (analytics) logEvent(analytics, "sendResetPasswordLink");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
@@ -89,6 +100,7 @@ export const resetPassword = async (oobCode: string, newPassword: string) => {
 
     await verifyPasswordResetCode(auth, oobCode);
     await confirmPasswordReset(auth, oobCode, newPassword);
+    if (analytics) logEvent(analytics, "resetPassword");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
