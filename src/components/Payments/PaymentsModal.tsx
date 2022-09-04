@@ -6,6 +6,7 @@ import type { MonthlyData, Payment } from "types/firebase";
 import Button from "components/Button";
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
+import { dateToInputData, stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";
 
 type Props = {
@@ -22,78 +23,36 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const [maxDate, setMaxDate] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
   // モーダル外をクリックで閉じる
   useEffect(() => {
     const onClickOverlay = (e: any) => {
-      if (e.target.id === "overlay") setPayment(null);
+      if (e.target.id === "modal-overlay") setPayment(null);
     };
-
-    window.addEventListener("click", onClickOverlay, { passive: false });
+    addEventListener("click", onClickOverlay, { passive: false });
     return () => {
-      window.removeEventListener("click", onClickOverlay);
+      removeEventListener("click", onClickOverlay);
     };
   }, [setPayment]);
 
+  // 支払いデータ読み込み
   useEffect(() => {
     if (payment) {
-      const date = payment.atPaied.toDate();
-      const nowString = new Date(
-        Number(date) - date.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 今月の月初の日付
-      const beginningOfMonth = new Date(date).setDate(1);
-      const beginningOfMonthString = new Date(
-        beginningOfMonth -
-          new Date(beginningOfMonth).getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 今月の月末の日付
-      const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-      const maxDate = date < endOfMonth ? date : endOfMonth;
-      const maxDateString = new Date(
-        Number(maxDate) - maxDate.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      setDate(nowString);
-      setMinDate(beginningOfMonthString);
-      setMaxDate(maxDateString);
+      const inputMonthData = dateToInputData(payment.atPaied.toDate());
+      setDate(inputMonthData.value);
+      setMinDate(inputMonthData.min);
+      setMaxDate(inputMonthData.max);
       setPrice(payment.price);
     }
   }, [payment]);
 
   // 支払い金額編集
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const toHalfWidth = (value: string): string => {
-      if (!value) return value;
-
-      return String(value).replace(/[！-～]/g, (all: string): string => {
-        return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
-      });
-    };
-
-    const half = toHalfWidth(e.target.value);
-    const removed = half.replace(/,/g, "");
-    const pattern = /^\d*$/;
-    if (pattern.test(removed)) {
-      const toNum = Number(removed);
-      setPrice(toNum);
-      if (0 < toNum) {
-        setIsReady(true);
-      } else {
-        setIsReady(false);
-      }
-    } else {
-      setPrice(0);
-    }
+    const price = stringToPrice(e.target.value);
+    setPrice(price);
+    setIsReady(0 < price && price !== payment?.price);
   };
 
   // 支払い日編集
@@ -107,11 +66,11 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   // 編集保存
-  const sumitSavePayment = (e: React.FormEvent<HTMLFormElement>) => {
+  const sumitSavePayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady && payment) {
-      setIsLoading(true);
-      updateMonthlyData(dbUser, {
+      setIsUpdateLoading(true);
+      await updateMonthlyData(dbUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.map((value) => {
           if (value.atCreated === payment.atCreated)
@@ -122,24 +81,25 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
             };
           else return value;
         }),
-      }).then(() => {
-        setPayment(null);
-        setIsReady(false);
-        setIsLoading(false);
       });
+      setIsReady(false);
+      setIsUpdateLoading(false);
+      setPayment(null);
     }
   };
 
   // 支払い削除
-  const deletePayment = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const deletePayment = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (payment) {
-      updateMonthlyData(dbUser, {
+      setIsDeleteLoading(true);
+      await updateMonthlyData(dbUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.filter((value) => {
           return value.atCreated !== payment.atCreated;
         }),
       });
+      setIsDeleteLoading(false);
       setPayment(null);
     }
   };
@@ -148,7 +108,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
   return (
     <div
-      id="overlay"
+      id="modal-overlay"
       className="fixed top-0 left-0 z-20 flex h-full w-full items-center bg-trans-black"
     >
       <div className="w-full px-4">
@@ -184,12 +144,17 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
             </div>
 
             <div className="flex gap-2 py-2">
-              <Button text="削除" onClick={deletePayment} red />
+              <Button
+                text="削除"
+                onClick={deletePayment}
+                isLoading={isDeleteLoading}
+                red
+              />
 
               <Button
                 text="支払データ修正"
                 isReady={isReady}
-                isLoading={isLoading}
+                isLoading={isUpdateLoading}
               />
             </div>
           </form>

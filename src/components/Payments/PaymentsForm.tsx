@@ -6,7 +6,8 @@ import Button from "components/Button";
 import Input from "components/Input";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
-import { addPayment, tabToDocId } from "libs/monthlyData";
+import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
+import { addPayment } from "libs/monthlyData";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -22,80 +23,31 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
+  // 日付初期値を設定
   useEffect(() => {
     const now = new Date();
-
     if (tabStatus === now.getMonth() + 1) {
-      const todayString = new Date(
-        Number(now) - now.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 月初の日付
-      const beginningOfMonth = new Date().setDate(1);
-      const beginningOfMonthString = new Date(
-        beginningOfMonth -
-          new Date(beginningOfMonth).getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      setDate(todayString);
-      setMinDate(beginningOfMonthString);
-      setMaxDate(todayString);
+      const inputMonthData = dateToInputData(now);
+      setDate(inputMonthData.value);
+      setMinDate(inputMonthData.min);
+      setMaxDate(inputMonthData.max);
     } else {
       const split = tabToDocId(tabStatus).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
-      // 月初の日付
-      const beginningOfMonth = new Date(toNum[0], toNum[1] - 1, 1);
-      const beginningOfMonthString = new Date(
-        Number(beginningOfMonth) -
-          new Date(beginningOfMonth).getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      // 月末の日付
-      const endOfMonth = new Date(toNum[0], toNum[1], 0);
-      const endOfMonthString = new Date(
-        Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      setDate(endOfMonthString);
-      setMinDate(beginningOfMonthString);
-      setMaxDate(endOfMonthString);
+      const inputMonthData = dateToInputData(new Date(toNum[0], toNum[1], 0));
+      setDate(inputMonthData.value);
+      setMinDate(inputMonthData.min);
+      setMaxDate(inputMonthData.max);
     }
   }, [tabStatus]);
 
   // 支払い金額入力
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const toHalfWidth = (value: string): string => {
-      if (!value) return value;
-
-      return String(value).replace(/[！-～]/g, (all: string): string => {
-        return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
-      });
-    };
-
-    const half = toHalfWidth(e.target.value);
-    const removed = half.replace(/,/g, "");
-    const pattern = /^\d*$/;
-    if (pattern.test(removed)) {
-      const toNum = Number(removed);
-      setPrice(toNum);
-      if (0 < toNum) {
-        setIsReady(true);
-      } else {
-        setIsReady(false);
-      }
-    } else {
-      setPrice(0);
-    }
+    const price = stringToPrice(e.target.value);
+    setPrice(price);
+    setIsReady(0 < price);
   };
 
   // 支払い日入力
@@ -110,31 +62,6 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       await addPayment(dbUser, thisMonthData, price, new Date(date));
       setPrice(0);
       setIsReady(false);
-
-      const now = new Date();
-
-      if (tabStatus === now.getMonth() + 1) {
-        const todayString = new Date(
-          Number(now) - now.getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .split("T")[0];
-
-        setDate(todayString);
-      } else {
-        const split = tabToDocId(tabStatus).split("-");
-        const toNum = split.map((value) => {
-          return Number(value);
-        });
-        const endOfMonth = new Date(toNum[0], toNum[1], 0);
-        const endOfMonthString = new Date(
-          Number(endOfMonth) - endOfMonth.getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .split("T")[0];
-
-        setDate(endOfMonthString);
-      }
     }
   };
 

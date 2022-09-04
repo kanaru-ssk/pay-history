@@ -5,76 +5,63 @@ import Button from "components/Button";
 import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
-import { useAuth } from "hooks/auth";
-import { changePassword } from "libs/auth";
+import { resetPassword } from "libs/auth";
 import { validatePassword, validatePasswordConfirm } from "libs/validation";
 
-const ChangePassword = () => {
+const SetNewPassword = () => {
   const { push } = useRouter();
-  const { authUser } = useAuth();
 
-  const [oldPassword, setOldPassword] = useState<string>("");
+  const [oobCode, setOobCode] = useState<string>("");
+  const [continueUrl, setContinueUrl] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorOldPassword, setErrorOldPassword] = useState<string>("");
   const [errorMessagePassword, setErrorMessageNewPassword] =
     useState<string>("");
   const [errorMessageNewPasswordConfirm, setErrorMessageNewPasswordConfirm] =
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  // getパラメータ取得
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const oobCodeValue = queryParams.get("oobCode") || "";
+    const continueUrlValue = queryParams.get("continueUrl") || "";
+    setOobCode(oobCodeValue);
+    setContinueUrl(continueUrlValue);
+  }, []);
+
+  // validation通過チェック
   useEffect(() => {
     setIsReady(
-      validatePassword(oldPassword) === "" &&
-        validatePassword(newPassword) === "" &&
+      validatePassword(newPassword) === "" &&
         validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
     );
-  }, [oldPassword, newPassword, newPasswordConfirm]);
+  }, [newPassword, newPasswordConfirm]);
 
-  // パスワード変更
-  const submitChangePassword = async (e: React.FormEvent<HTMLFormElement>) => {
+  // パスワード再設定
+  const submitSetNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
-      const result = await changePassword(
-        authUser?.email,
-        oldPassword,
-        newPassword
-      );
+      const result = await resetPassword(oobCode, newPassword);
       setErrorMessage(result);
       if (result !== "") {
         setIsLoading(false);
       } else {
-        push("/my?changepass=true");
+        push(continueUrl);
       }
     }
   };
 
   return (
     <div>
-      <h1>パスワード変更</h1>
+      <h1>パスワード再設定</h1>
 
       <Notice text={errorMessage} error />
 
-      <form onSubmit={submitChangePassword}>
-        <div className="my-4">
-          <h3>現在のパスワード</h3>
-          {errorOldPassword && (
-            <div className="text-red">{errorOldPassword}</div>
-          )}
-          <Input
-            type="password"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-            onBlur={(e) => {
-              setErrorOldPassword(validatePassword(e.target.value));
-            }}
-            placeholder="現在のパスワードを入力"
-          />
-        </div>
-
+      <form onSubmit={submitSetNewPassword}>
         <div className="my-4">
           <h3>新しいパスワードを入力</h3>
           {errorMessagePassword && (
@@ -110,19 +97,16 @@ const ChangePassword = () => {
         </div>
 
         <div className="my-8">
-          <Button text="変更" isReady={isReady} isLoading={isLoading} />
+          <Button text="再設定" isReady={isReady} isLoading={isLoading} />
         </div>
       </form>
 
       <div className="my-16 flex flex-col items-center gap-4">
-        <LinkText
-          text="パスワードをお忘れの場合はこちら"
-          href="/reset-password"
-        />
-        <LinkText text="マイページへ" href="/my" />
+        <LinkText text="再設定リンクをもう一度送信" href="/reset-password" />
+        <LinkText text="ホームへ" href="/my" />
       </div>
     </div>
   );
 };
 
-export default ChangePassword;
+export default SetNewPassword;

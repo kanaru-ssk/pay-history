@@ -4,7 +4,8 @@ import Button from "components/Button";
 import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
-import { resetPassword, validateEmail } from "libs/auth";
+import { sendResetPasswordLink } from "libs/auth";
+import { validateEmail } from "libs/validation";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState<string>("");
@@ -14,24 +15,23 @@ const ResetPassword = () => {
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [noticeMessage, setNoticeMessage] = useState<string>("");
 
+  // validation通過チェック
   useEffect(() => {
-    validateEmail(email) === "" ? setIsReady(true) : setIsReady(false);
+    setIsReady(validateEmail(email) === "");
   }, [email]);
 
-  const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
+  // パスワード再設定リンク送信
+  const submitSendResetPasswordLink = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
-
     if (isReady) {
       setIsLoading(true);
-
-      const result = await resetPassword(email);
+      const result = await sendResetPasswordLink(email);
       setNoticeMessage(result);
       setIsLoading(false);
       setIsError(result !== "");
-      if (result === "")
-        setNoticeMessage(
-          "入力頂いたメールアドレス宛に再設定リンクを送信しました。"
-        );
+      if (result === "") setNoticeMessage("再設定リンクを送信しました。");
     }
   };
 
@@ -41,7 +41,7 @@ const ResetPassword = () => {
 
       <Notice text={noticeMessage} error={isError} />
 
-      <form onSubmit={onSubmitHundler}>
+      <form onSubmit={submitSendResetPasswordLink}>
         <div className="my-4">
           <h3>メールアドレス</h3>
           {errorMessageEmail && (

@@ -6,61 +6,51 @@ import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
-import {
-  signup,
-  validateEmail,
-  validatePassword,
-  validatePasswordConfirm,
-} from "libs/auth";
-import { updateUser } from "libs/user";
+import { signIn } from "libs/auth";
+import { validateEmail, validatePassword } from "libs/validation";
 
-const Signup = () => {
+const Signin = () => {
   const { push } = useRouter();
-  const { dbUser } = useAuth();
+  const { authUser } = useAuth();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
-  const [errorMessagePasswordConfirm, setErrorMessagePasswordConfirm] =
-    useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  // メール認証済みの時、マイページに遷移
   useEffect(() => {
-    if (dbUser?.isAnonymous === false) push("/my");
-  }, [dbUser, push]);
+    if (!authUser?.isAnonymous) push("/my");
+  }, [authUser?.isAnonymous, push]);
 
+  // validation通過チェック
   useEffect(() => {
-    validateEmail(email) === "" &&
-    validatePassword(password) === "" &&
-    validatePasswordConfirm(password, passwordConfirm) === ""
-      ? setIsReady(true)
-      : setIsReady(false);
-  }, [email, password, passwordConfirm]);
+    setIsReady(
+      validateEmail(email) === "" && validatePassword(password) === ""
+    );
+  }, [email, password]);
 
-  const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
+  // サインイン
+  const submitSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (isReady) {
       setIsLoading(true);
-      const result = await signup(email, password);
+      const result = await signIn(email, password);
       setErrorMessage(result);
-      if (result === "")
-        updateUser(dbUser, { email: email, isAnonymous: false });
-      else setIsLoading(false);
+      if (result !== "") setIsLoading(false);
     }
   };
 
   return (
     <div>
-      <h1>アカウント作成</h1>
+      <h1>サインイン</h1>
 
       <Notice text={errorMessage} error />
 
-      <form onSubmit={onSubmitHundler}>
+      <form onSubmit={submitSignIn}>
         <div className="my-4">
           <h3>メールアドレス</h3>
           {errorMessageEmail && (
@@ -86,45 +76,28 @@ const Signup = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            onBlur={(e) =>
-              setErrorMessagePassword(validatePassword(e.target.value))
-            }
+            onBlur={(e) => {
+              setErrorMessagePassword(validatePassword(e.target.value));
+            }}
             placeholder="パスワードを入力"
           />
         </div>
 
-        <div className="my-4">
-          <h3>パスワードを再入力</h3>
-          {errorMessagePasswordConfirm && (
-            <div className="text-red">{errorMessagePasswordConfirm}</div>
-          )}
-          <Input
-            type="password"
-            value={passwordConfirm}
-            onChange={(e) => {
-              setPasswordConfirm(e.target.value);
-              setErrorMessagePasswordConfirm(
-                validatePasswordConfirm(password, e.target.value)
-              );
-            }}
-            placeholder="パスワードを再入力"
-          />
-        </div>
-
         <div className="my-8">
-          <Button
-            text="アカウント作成"
-            isReady={isReady}
-            isLoading={isLoading}
-          />
+          <Button text="サインイン" isReady={isReady} isLoading={isLoading} />
         </div>
       </form>
 
       <div className="my-16 flex flex-col items-center gap-4">
-        <LinkText text="アカウントをお持ちの場合はこちら" href="/signin" />
+        <LinkText text="新規登録はこちら" href="/signup" />
+        <LinkText
+          text="パスワードをお忘れの場合はこちら"
+          href="/reset-password"
+        />
+        <LinkText text="ホームへ戻る" href="/" />
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default Signin;
