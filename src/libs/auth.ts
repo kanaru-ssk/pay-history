@@ -1,7 +1,7 @@
 import { auth } from "libs/firebase";
 import { isAuthError } from "types/firebase";
 
-export const signin = async (
+export const signIn = async (
   email: string,
   password: string
 ): Promise<string> => {
@@ -19,7 +19,7 @@ export const signin = async (
   }
 };
 
-export const signup = async (email: string, password: string) => {
+export const signUp = async (email: string, password: string) => {
   try {
     if (!auth.currentUser) return "不明なエラーが発生しました。";
     const {
@@ -116,7 +116,7 @@ export const sendResetPasswordLink = async (email: string) => {
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
     const actionCodeSettings = {
-      url: process.env.NEXT_PUBLIC_URL + "/signin",
+      url: process.env.NEXT_PUBLIC_URL + "/signIn",
       handleCodeInApp: false,
     };
 

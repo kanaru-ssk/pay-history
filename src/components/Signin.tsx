@@ -6,7 +6,7 @@ import Input from "components/Input";
 import LinkText from "components/LinkText";
 import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
-import { signin, validateEmail, validatePassword } from "libs/auth";
+import { signIn, validateEmail, validatePassword } from "libs/auth";
 
 const Signin = () => {
   const { push } = useRouter();
@@ -35,7 +35,7 @@ const Signin = () => {
 
     if (isReady) {
       setIsLoading(true);
-      const result = await signin(email, password);
+      const result = await signIn(email, password);
       setErrorMessage(result);
       if (result !== "") setIsLoading(false);
     }

@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Header from "components/Header";
-import Signin from "components/Signin";
+import SignIn from "components/SignIn";
 
 const SigninPage = () => {
   return (
@@ -12,7 +12,7 @@ const SigninPage = () => {
 
       <Header />
       <main>
-        <Signin />
+        <SignIn />
       </main>
     </>
   );

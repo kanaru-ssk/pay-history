@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Header from "components/Header";
-import Signup from "components/Signup";
+import SignUp from "components/SignUp";
 
 const SignupPage = () => {
   return (
@@ -12,7 +12,7 @@ const SignupPage = () => {
 
       <Header />
       <main>
-        <Signup />
+        <SignUp />
       </main>
     </>
   );

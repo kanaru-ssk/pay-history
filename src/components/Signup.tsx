@@ -7,7 +7,7 @@ import LinkText from "components/LinkText";
 import Notice from "components/Notice";
 import { useAuth } from "hooks/auth";
 import {
-  signup,
+  signUp,
   validateEmail,
   validatePassword,
   validatePasswordConfirm,
@@ -41,12 +41,12 @@ const Signup = () => {
       : setIsReady(false);
   }, [email, password, passwordConfirm]);
 
-  const onSubmitHundler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (isReady) {
       setIsLoading(true);
-      const result = await signup(email, password);
+      const result = await signUp(email, password);
       setErrorMessage(result);
       if (result === "")
         updateUser(dbUser, { email: email, isAnonymous: false });
@@ -60,7 +60,7 @@ const Signup = () => {
 
       <Notice text={errorMessage} error />
 
-      <form onSubmit={onSubmitHundler}>
+      <form onSubmit={submitSignUp}>
         <div className="my-4">
           <h3>メールアドレス</h3>
           {errorMessageEmail && (
