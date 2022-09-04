@@ -33,7 +33,7 @@ const Button = ({
     >
       {isLoading ? (
         <div className="flex justify-center">
-          <Loading />
+          <Loading red={red} />
         </div>
       ) : (
         text
