@@ -1,26 +1,17 @@
+import { useState } from "react";
+
 import type { MonthlyData, Payment } from "types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;
-  isSortDate: boolean;
-  isAcsDate: boolean;
-  isAcsPrice: boolean;
-  setIsSortDate: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsAcsDate: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsAcsPrice: React.Dispatch<React.SetStateAction<boolean>>;
   setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
-const PaymentsTable = ({
-  thisMonthData,
-  isSortDate,
-  isAcsDate,
-  isAcsPrice,
-  setIsSortDate,
-  setIsAcsDate,
-  setIsAcsPrice,
-  setPayment,
-}: Props) => {
+const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
+  const [isSortDate, setIsSortDate] = useState<boolean>(true);
+  const [isAcsDate, setIsAcsDate] = useState<boolean>(true);
+  const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
+
   // 支出日ソート
   const sortDate = (a: Payment, b: Payment): number => {
     if (isAcsDate) {
@@ -56,12 +47,12 @@ const PaymentsTable = ({
   };
 
   // モーダルを開く
-  const onClickHundler = (_payment: Payment) => {
-    setPayment(_payment);
+  const openModal = (payment: Payment) => {
+    setPayment(payment);
   };
 
   return (
-    <table className=" w-full">
+    <table className="w-full">
       <thead className="border-b">
         <tr>
           <th
@@ -100,7 +91,7 @@ const PaymentsTable = ({
                     {value.price.toLocaleString()}円
                   </td>
                   <td
-                    onClick={() => onClickHundler(value)}
+                    onClick={() => openModal(value)}
                     className="w-4 cursor-pointer text-sm"
                   >
                     ︙

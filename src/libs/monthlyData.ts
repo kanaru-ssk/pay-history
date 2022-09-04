@@ -1,7 +1,7 @@
 import { logEvent } from "firebase/analytics";
 import { onSnapshot, doc } from "firebase/firestore";
 
-import type { User, MonthlyData, Payment, DBUser } from "types/firebase";
+import type { MonthlyData, Payment, DBUser } from "types/firebase";
 import type { TabStatus } from "types/tabStatus";
 
 import { db, analytics } from "libs/firebase";
@@ -9,15 +9,12 @@ import { db, analytics } from "libs/firebase";
 // 月データリアルタイム取得
 export const getMonthlyData = (
   uid: string | undefined,
-  docId: string | string[] | undefined,
+  docId: string,
   setMonthData: React.Dispatch<
     React.SetStateAction<MonthlyData | null | undefined>
   >
 ) => {
   if (uid === undefined) return null;
-  if (docId === undefined) return null;
-
-  if (typeof docId !== "string") docId = docId[0];
 
   const docRef = doc(db, "users", uid, "monthlyData", docId);
 
@@ -48,25 +45,20 @@ export const tabToDocId = (tabStatus: TabStatus): string => {
 };
 
 // 月データ作成
-export const createMonthlyData = async (
-  user: User | null,
-  docId: string,
-  _budget?: number
-) => {
+export const createMonthlyData = async (user: DBUser | null, docId: string) => {
   if (!user) return null;
-  const budget = _budget ? _budget : 50000;
 
-  const { setDoc, doc, serverTimestamp } = await import("firebase/firestore");
+  const { setDoc, doc, Timestamp } = await import("firebase/firestore");
 
   const newMonthlyData: Omit<MonthlyData, "docId"> = {
-    atCreated: serverTimestamp(),
-    atUpdated: serverTimestamp(),
-    budget: budget,
+    atCreated: Timestamp.now(),
+    atUpdated: Timestamp.now(),
+    budget: user.budget,
     payments: [],
   };
 
   await setDoc(
-    doc(db, "users", user.uid, "monthlyData", docId),
+    doc(db, "users", user.docId, "monthlyData", docId),
     newMonthlyData,
     { merge: true }
   );
@@ -81,12 +73,10 @@ export const updateMonthlyData = async (
 ) => {
   if (!user || !monthlyData) return null;
 
-  const { updateDoc, doc, serverTimestamp } = await import(
-    "firebase/firestore"
-  );
+  const { updateDoc, doc, Timestamp } = await import("firebase/firestore");
 
   const newMonthlyData: Partial<MonthlyData> = {
-    atUpdated: serverTimestamp(),
+    atUpdated: Timestamp.now(),
     budget: monthlyData.budget,
     payments: monthlyData.payments,
   };
@@ -102,7 +92,7 @@ export const updateMonthlyData = async (
 
 // 月データ更新 : 予算
 export const addPayment = async (
-  user: User | null,
+  user: DBUser | null,
   month: MonthlyData,
   price: number,
   date: Date
@@ -126,7 +116,7 @@ export const addPayment = async (
   };
 
   updateDoc(
-    doc(db, "users", user.uid, "monthlyData", month.docId),
+    doc(db, "users", user.docId, "monthlyData", month.docId),
     newMonthlyData
   );
 

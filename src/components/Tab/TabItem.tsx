@@ -13,9 +13,10 @@ const TabItem = ({ text, month }: Props) => {
   const { tabStatus, setTabStatus } = useTabStatus();
   const ref = useRef<HTMLButtonElement>(null);
 
+  // 選択された月まで自動スクロール
   useEffect(() => {
-    if (tabStatus === month && ref) {
-      ref.current!.scrollIntoView({
+    if (tabStatus === month && ref.current) {
+      ref.current.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
         inline: "center",
@@ -31,7 +32,7 @@ const TabItem = ({ text, month }: Props) => {
       }}
       className={
         (tabStatus === month ? "font-bold" : "text-dark-gray") +
-        " mx-2 h-12 w-12 shrink-0 py-2"
+        " h-16 w-16 shrink-0"
       }
     >
       {text}

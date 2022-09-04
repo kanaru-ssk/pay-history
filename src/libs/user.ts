@@ -1,5 +1,3 @@
-import { logEvent } from "firebase/analytics";
-
 import type { User, DBUser } from "types/firebase";
 
 import { db, analytics } from "libs/firebase";
@@ -8,13 +6,14 @@ import { db, analytics } from "libs/firebase";
 export const createUser = async (authUser: User | null) => {
   if (authUser === null) return;
 
-  const { setDoc, doc, serverTimestamp } = await import("firebase/firestore");
+  const { setDoc, doc, Timestamp } = await import("firebase/firestore");
+  const { logEvent } = await import("firebase/analytics");
 
   const newUserData: Omit<DBUser, "docId"> = {
-    atCreated: serverTimestamp(),
-    atUpdated: serverTimestamp(),
-
+    atCreated: Timestamp.now(),
+    atUpdated: Timestamp.now(),
     budget: 50000,
+    isAnonymous: true,
   };
 
   if (analytics) logEvent(analytics, "createUser");
@@ -22,16 +21,18 @@ export const createUser = async (authUser: User | null) => {
 };
 
 // ユーザーデータ更新
-export const updateUser = async (dbUser: DBUser | null, budget: number) => {
+export const updateUser = async (
+  dbUser: DBUser | null,
+  data: Partial<DBUser>
+) => {
   if (dbUser === null) return;
 
-  const { doc, updateDoc, serverTimestamp } = await import(
-    "firebase/firestore"
-  );
+  const { doc, updateDoc, Timestamp } = await import("firebase/firestore");
+  const { logEvent } = await import("firebase/analytics");
 
   const newData: Partial<DBUser> = {
-    atUpdated: serverTimestamp(),
-    budget: budget,
+    atUpdated: Timestamp.now(),
+    ...data,
   };
 
   if (analytics) logEvent(analytics, "updateUser");

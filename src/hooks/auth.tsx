@@ -19,9 +19,13 @@ type Node = {
   children: React.ReactNode;
 };
 
-export const AuthProvider = ({ children }: Node) => {
-  const [authUser, setAuthUser] = useState<User | null>(null);
-  const [dbUser, setDBUser] = useState<DBUser | null>(null);
+const AuthProvider = ({ children }: Node) => {
+  const key = "DB_USER";
+  const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
+  const [dbUser, setDBUser] = useState<DBUser | null>(() => {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  });
 
   // 認証ユーザー更新
   useEffect(() => {
@@ -48,8 +52,11 @@ export const AuthProvider = ({ children }: Node) => {
               atCreated: doc.data().atCreated,
               atUpdated: doc.data().atUpdated,
               budget: doc.data().budget,
+              email: doc.data().email,
+              isAnonymous: doc.data().isAnonymous,
             };
             setDBUser(user);
+            localStorage.setItem(key, JSON.stringify(user));
           } else {
             // 新規ユーザー作成
             const { createUser } = await import("libs/user");
@@ -67,5 +74,6 @@ export const AuthProvider = ({ children }: Node) => {
     </AuthContext.Provider>
   );
 };
+export default AuthProvider;
 
 export const useAuth = () => useContext(AuthContext);

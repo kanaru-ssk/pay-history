@@ -1,25 +1,22 @@
 import Head from "next/head";
-import Link from "next/link";
 
-import type { NextPage } from "next";
+import Header from "components/Header";
+import LinkText from "components/LinkText";
 
-const Custom404: NextPage = () => {
+const Custom404 = () => {
   return (
     <>
       <Head>
         <title>404 | Pay History</title>
       </Head>
 
+      <Header />
       <main>
         <h1>404 Not Found</h1>
         <p className="pb-8">
           申し訳ございません。お探しのページは見つかりませんでした。
         </p>
-        <Link href="/">
-          <a className="text-main-color underline sm:hover:text-dark-gray">
-            トップページに戻る
-          </a>
-        </Link>
+        <LinkText text="トップページに戻る" href="/" />
       </main>
     </>
   );
