@@ -23,7 +23,8 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const [maxDate, setMaxDate] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
   // モーダル外をクリックで閉じる
   useEffect(() => {
@@ -65,11 +66,11 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   // 編集保存
-  const sumitSavePayment = (e: React.FormEvent<HTMLFormElement>) => {
+  const sumitSavePayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady && payment) {
-      setIsLoading(true);
-      updateMonthlyData(dbUser, {
+      setIsUpdateLoading(true);
+      await updateMonthlyData(dbUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.map((value) => {
           if (value.atCreated === payment.atCreated)
@@ -80,24 +81,25 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
             };
           else return value;
         }),
-      }).then(() => {
-        setPayment(null);
-        setIsReady(false);
-        setIsLoading(false);
       });
+      setIsReady(false);
+      setIsUpdateLoading(false);
+      setPayment(null);
     }
   };
 
   // 支払い削除
-  const deletePayment = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const deletePayment = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (payment) {
-      updateMonthlyData(dbUser, {
+      setIsDeleteLoading(true);
+      await updateMonthlyData(dbUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.filter((value) => {
           return value.atCreated !== payment.atCreated;
         }),
       });
+      setIsDeleteLoading(false);
       setPayment(null);
     }
   };
@@ -142,12 +144,17 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
             </div>
 
             <div className="flex gap-2 py-2">
-              <Button text="削除" onClick={deletePayment} red />
+              <Button
+                text="削除"
+                onClick={deletePayment}
+                isLoading={isDeleteLoading}
+                red
+              />
 
               <Button
                 text="支払データ修正"
                 isReady={isReady}
-                isLoading={isLoading}
+                isLoading={isUpdateLoading}
               />
             </div>
           </form>
