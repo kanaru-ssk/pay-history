@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Header from "components/Header";
-import LinkText from "components/LinkText";
+import LinkText from "components/common/LinkText";
 
 const Custom404 = () => {
   return (

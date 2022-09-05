@@ -4,15 +4,15 @@ import Head from "next/head";
 
 import "styles/globals.css";
 
-const DynamicAuthProvider = dynamic(() => import("hooks/auth"), {
-  ssr: false,
-});
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  // sessionStorageを使用するため、ssrをオフにする。
+  const DynamicAuthProvider = dynamic(() => import("hooks/auth"), {
+    ssr: false,
+  });
+  const DynamicTabStatusProvider = dynamic(() => import("hooks/tabStatus"), {
+    ssr: false,
+  });
 
-const DynamicTabStatusProvider = dynamic(() => import("hooks/tabStatus"), {
-  ssr: false,
-});
-
-function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -26,6 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </DynamicAuthProvider>
     </>
   );
-}
+};
 
 export default MyApp;

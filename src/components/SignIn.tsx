@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/Button";
-import Input from "components/Input";
-import LinkText from "components/LinkText";
-import Notice from "components/Notice";
+import Button from "components/common/Button";
+import Input from "components/common/Input";
+import LinkText from "components/common/LinkText";
+import Notice from "components/common/Notice";
 import { useAuth } from "hooks/auth";
 import { signIn } from "libs/auth";
 import { validateEmail, validatePassword } from "libs/validation";

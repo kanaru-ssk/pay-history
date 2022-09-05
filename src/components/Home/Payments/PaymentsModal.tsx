@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
-import Button from "components/Button";
-import Input from "components/Input";
+import Button from "components/common/Button";
+import Input from "components/common/Input";
 import { useAuth } from "hooks/auth";
 import { dateToInputData, stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";

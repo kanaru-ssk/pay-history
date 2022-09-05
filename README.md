@@ -56,6 +56,7 @@
   - /signin
   - /signup
   - /reset-password
+    - /set
 
 ## Firestore のデータモデル
 
