@@ -1,7 +1,6 @@
 import Head from "next/head";
 
-import Header from "components/Header";
-import My from "components/My";
+import My from "components/pages/My";
 
 const MyPage = () => {
   return (
@@ -10,10 +9,7 @@ const MyPage = () => {
         <title>マイページ | Pay History</title>
       </Head>
 
-      <Header />
-      <main>
-        <My />
-      </main>
+      <My />
     </>
   );
 };

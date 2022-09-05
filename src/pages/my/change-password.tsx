@@ -1,7 +1,6 @@
 import Head from "next/head";
 
-import ChangePassword from "components/ChangePassword";
-import Header from "components/Header";
+import ChangePassword from "components/pages/My/ChangePassword";
 
 const ChangePasswordPage = () => {
   return (
@@ -10,10 +9,7 @@ const ChangePasswordPage = () => {
         <title>パスワード変更 | Pay History</title>
       </Head>
 
-      <Header />
-      <main>
-        <ChangePassword />
-      </main>
+      <ChangePassword />
     </>
   );
 };

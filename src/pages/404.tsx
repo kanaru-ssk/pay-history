@@ -1,25 +1,17 @@
 import Head from "next/head";
 
-import Header from "components/Header";
-import LinkText from "components/common/LinkText";
+import Custom404 from "components/pages/Custom404";
 
-const Custom404 = () => {
+const Custom404Page = () => {
   return (
     <>
       <Head>
         <title>404 | Pay History</title>
       </Head>
 
-      <Header />
-      <main>
-        <h1>404 Not Found</h1>
-        <p className="pb-8">
-          申し訳ございません。お探しのページは見つかりませんでした。
-        </p>
-        <LinkText text="トップページに戻る" href="/" />
-      </main>
+      <Custom404 />
     </>
   );
 };
 
-export default Custom404;
+export default Custom404Page;

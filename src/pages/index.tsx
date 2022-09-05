@@ -1,8 +1,6 @@
 import Head from "next/head";
 
-import Header from "components/Header";
-import Home from "components/Home";
-import Tab from "components/Tab";
+import Home from "components/pages/Home";
 
 const HomePage = () => {
   return (
@@ -11,11 +9,7 @@ const HomePage = () => {
         <title>Pay History</title>
       </Head>
 
-      <Header />
-      <Tab />
-      <main>
-        <Home />
-      </main>
+      <Home />
     </>
   );
 };
