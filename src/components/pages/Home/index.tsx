@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import LandingPage from "./LandingPage";
 import LoadingPage from "./LoadingPage";
-import Payments from "./Payments";
+import PaymentsPage from "./PaymentsPage";
 
 import type { MonthlyData } from "types/firebase";
 
@@ -34,7 +34,7 @@ const Home = () => {
   if (thisMonthData === undefined) return <LoadingPage />;
   if (thisMonthData === null) return <LandingPage />;
 
-  return <Payments thisMonthData={thisMonthData} />;
+  return <PaymentsPage thisMonthData={thisMonthData} />;
 };
 
 export default Home;
