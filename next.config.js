@@ -8,6 +8,15 @@ const withPWA = require("next-pwa")({
 const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
+  async redirects() {
+    return [
+      {
+        source: "/reset-password",
+        destination: "/reset-password/send-link",
+        permanent: true,
+      },
+    ];
+  },
 });
 
 module.exports = nextConfig;

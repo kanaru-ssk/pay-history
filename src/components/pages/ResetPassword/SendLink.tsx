@@ -5,10 +5,10 @@ import Header from "components/common/Header";
 import Input from "components/common/Input";
 import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
-import { sendResetPasswordLink } from "libs/auth";
+import { resetPasswordSendLink } from "libs/auth";
 import { validateEmail } from "libs/validation";
 
-const ResetPassword = () => {
+const SetNew = () => {
   const [email, setEmail] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const ResetPassword = () => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
-      const result = await sendResetPasswordLink(email);
+      const result = await resetPasswordSendLink(email);
       setNoticeMessage(result);
       setIsLoading(false);
       setIsError(result !== "");
@@ -78,4 +78,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default SetNew;

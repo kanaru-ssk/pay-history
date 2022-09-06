@@ -95,7 +95,7 @@ const Signin = () => {
           <LinkText text="新規登録はこちら" href="/signup" />
           <LinkText
             text="パスワードをお忘れの場合はこちら"
-            href="/reset-password"
+            href="/reset-password/send-link"
           />
           <LinkText text="ホームへ戻る" href="/" />
         </div>

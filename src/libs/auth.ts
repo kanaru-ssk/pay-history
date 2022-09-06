@@ -75,24 +75,27 @@ export const changePassword = async (
   }
 };
 
-export const sendResetPasswordLink = async (email: string) => {
+export const resetPasswordSendLink = async (email: string) => {
   try {
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
     const actionCodeSettings = {
-      url: process.env.NEXT_PUBLIC_URL + "/signIn",
+      url: process.env.NEXT_PUBLIC_URL + "/signin",
       handleCodeInApp: false,
     };
 
     await sendPasswordResetEmail(auth, email, actionCodeSettings);
-    if (analytics) logEvent(analytics, "sendResetPasswordLink");
+    if (analytics) logEvent(analytics, "resetPasswordSendLink");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
   }
 };
 
-export const resetPassword = async (oobCode: string, newPassword: string) => {
+export const resetPasswordSetNew = async (
+  oobCode: string,
+  newPassword: string
+) => {
   try {
     const { verifyPasswordResetCode, confirmPasswordReset } = await import(
       "firebase/auth"
@@ -100,7 +103,7 @@ export const resetPassword = async (oobCode: string, newPassword: string) => {
 
     await verifyPasswordResetCode(auth, oobCode);
     await confirmPasswordReset(auth, oobCode, newPassword);
-    if (analytics) logEvent(analytics, "resetPassword");
+    if (analytics) logEvent(analytics, "resetPasswordSetNew");
     return "";
   } catch (error) {
     return errCodeToMessage(error);
