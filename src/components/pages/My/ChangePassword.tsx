@@ -120,7 +120,7 @@ const ChangePassword = () => {
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText
             text="パスワードをお忘れの場合はこちら"
-            href="/reset-password"
+            href="/reset-password/send-link"
           />
           <LinkText text="マイページへ" href="/my" />
         </div>

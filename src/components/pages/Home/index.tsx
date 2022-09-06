@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 import LandingPage from "./LandingPage";
-import Payments from "./Payments";
+import LoadingPage from "./LoadingPage";
+import PaymentsPage from "./PaymentsPage";
 
 import type { MonthlyData } from "types/firebase";
 
 import Header from "components/common/Header";
-import Loading from "components/common/Loading";
 import Tab from "components/common/Tab";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
@@ -33,39 +33,17 @@ const Home = () => {
     };
   }, [dbUser, tabStatus]);
 
-  if (thisMonthData === undefined) {
-    return (
-      <>
-        <Header />
-        <Tab />
-        <main>
-          <div className="my-4 flex justify-center">
-            <Loading />
-          </div>
-        </main>
-      </>
-    );
-  } else if (thisMonthData === null) {
-    return (
-      <>
-        <Header />
-        <Tab />
-        <main>
-          <LandingPage />
-        </main>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Header />
-        <Tab />
-        <main>
-          <Payments thisMonthData={thisMonthData} />
-        </main>
-      </>
-    );
-  }
+  return (
+    <>
+      <Header />
+      <Tab />
+      <main>
+        {thisMonthData === undefined && <LoadingPage />}
+        {thisMonthData === null && <LandingPage />}
+        {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
+      </main>
+    </>
+  );
 };
 
 export default Home;

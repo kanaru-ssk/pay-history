@@ -11,7 +11,7 @@ type Props = {
   thisMonthData: MonthlyData;
 };
 
-const Payments = ({ thisMonthData }: Props) => {
+const PaymentsPage = ({ thisMonthData }: Props) => {
   const [payment, setPayment] = useState<Payment | null>(null);
 
   return (
@@ -37,4 +37,4 @@ const Payments = ({ thisMonthData }: Props) => {
   );
 };
 
-export default Payments;
+export default PaymentsPage;

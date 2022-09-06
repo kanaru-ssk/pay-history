@@ -4,7 +4,7 @@ import CtaBtn from "./CtaBtn";
 
 const LandingPage = () => {
   return (
-    <div>
+    <>
       <h1>Pay History</h1>
 
       <p>月の予算管理をシンプルに</p>
@@ -37,7 +37,7 @@ const LandingPage = () => {
       <div className="my-12">
         <CtaBtn />
       </div>
-    </div>
+    </>
   );
 };
 

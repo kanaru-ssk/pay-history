@@ -6,10 +6,10 @@ import Header from "components/common/Header";
 import Input from "components/common/Input";
 import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
-import { resetPassword } from "libs/auth";
+import { resetPasswordSetNew } from "libs/auth";
 import { validatePassword, validatePasswordConfirm } from "libs/validation";
 
-const Set = () => {
+const SetNew = () => {
   const { push } = useRouter();
 
   const [oobCode, setOobCode] = useState<string>("");
@@ -46,7 +46,7 @@ const Set = () => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
-      const result = await resetPassword(oobCode, newPassword);
+      const result = await resetPasswordSetNew(oobCode, newPassword);
       setErrorMessage(result);
       if (result !== "") {
         setIsLoading(false);
@@ -105,7 +105,10 @@ const Set = () => {
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="再設定リンクをもう一度送信" href="/reset-password" />
+          <LinkText
+            text="再設定リンクをもう一度送信"
+            href="/reset-password/send-link"
+          />
           <LinkText text="ホームへ" href="/my" />
         </div>
       </main>
@@ -113,4 +116,4 @@ const Set = () => {
   );
 };
 
-export default Set;
+export default SetNew;

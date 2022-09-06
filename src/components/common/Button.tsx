@@ -1,6 +1,7 @@
 import Loading from "components/common/Loading";
 
 type Props = {
+  type?: "button" | "submit" | "reset";
   text: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isReady?: boolean;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Button = ({
+  type,
   text,
   onClick,
   isReady = true,
@@ -25,6 +27,7 @@ const Button = ({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       className={
         (isReady && !isLoading ? color() : "bg-light-gray text-gray") +

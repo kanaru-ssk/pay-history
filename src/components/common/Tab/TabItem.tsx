@@ -17,7 +17,7 @@ const TabItem = ({ text, month }: Props) => {
   useEffect(() => {
     if (tabStatus === month && ref.current) {
       ref.current.scrollIntoView({
-        behavior: "smooth",
+        behavior: "auto",
         block: "nearest",
         inline: "center",
       });
