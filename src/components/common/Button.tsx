@@ -1,7 +1,7 @@
 import Loading from "components/common/Loading";
 
 type Props = {
-  type: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
   text: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isReady?: boolean;
