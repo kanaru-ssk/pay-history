@@ -25,7 +25,7 @@ const LandingPage = () => {
       <Image
         src="/img/screenshot.png"
         width={992}
-        height={1264}
+        height={1296}
         alt="screenshot"
       />
       <h2>使い方</h2>
