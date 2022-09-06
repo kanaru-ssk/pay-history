@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { useEffect } from "react";
+
+import MenuItem from "./MenuItem";
 
 import { useAuth } from "hooks/auth";
 
@@ -47,34 +48,30 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </button>
         </header>
 
-        <div className="mt-4 flex h-8 items-center justify-center font-bold">
-          <Link href="/">
-            <a onClick={() => setIsMenuOpen(false)}>ホーム</a>
-          </Link>
-        </div>
+        <MenuItem text="ホーム" href="/" onClick={() => setIsMenuOpen(false)} />
 
         {authUser?.isAnonymous && (
           <>
-            <div className="mt-4 flex h-8 items-center justify-center font-bold">
-              <Link href="/signup">
-                <a onClick={() => setIsMenuOpen(false)}>新規登録</a>
-              </Link>
-            </div>
+            <MenuItem
+              text="新規登録"
+              href="/signup"
+              onClick={() => setIsMenuOpen(false)}
+            />
 
-            <div className="mt-4 flex h-8 items-center justify-center font-bold">
-              <Link href="/signin">
-                <a onClick={() => setIsMenuOpen(false)}>サインイン</a>
-              </Link>
-            </div>
+            <MenuItem
+              text="サインイン"
+              href="/signin"
+              onClick={() => setIsMenuOpen(false)}
+            />
           </>
         )}
 
         {!authUser?.isAnonymous && (
-          <div className="mt-4 flex h-8 items-center justify-center font-bold">
-            <Link href="/my">
-              <a onClick={() => setIsMenuOpen(false)}>マイページ</a>
-            </Link>
-          </div>
+          <MenuItem
+            text="マイページ"
+            href="/my"
+            onClick={() => setIsMenuOpen(false)}
+          />
         )}
       </div>
     </div>
