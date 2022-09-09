@@ -47,7 +47,7 @@ const Input = ({
       className={
         (right ? "text-right " : "") +
         (small ? "h-8 " : "h-12 px-5 ") +
-        "h-12 w-full flex-1 rounded-lg border-2 border-gray"
+        "h-12 w-full flex-1 rounded-lg border-2 border-gray bg-white"
       }
     />
   );
