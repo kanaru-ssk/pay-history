@@ -59,9 +59,9 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
+      setIsReady(false);
       await addPayment(dbUser, thisMonthData, price, new Date(date));
       setPrice(0);
-      setIsReady(false);
     }
   };
 

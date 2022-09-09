@@ -48,9 +48,9 @@ const Budget = ({ thisMonthData }: Props) => {
   // 予算保存
   const saveBudget = () => {
     if (isReady) {
+      setIsReady(false);
       updateUser(dbUser, { budget: budget });
       updateMonthlyData(dbUser, { ...thisMonthData, budget: budget });
-      setIsReady(false);
     }
   };
 
