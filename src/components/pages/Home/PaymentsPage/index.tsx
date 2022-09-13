@@ -16,13 +16,11 @@ const PaymentsPage = ({ thisMonthData }: Props) => {
 
   return (
     <>
-      <div className="my-8">
+      <div className="my-4">
         <Budget thisMonthData={thisMonthData} />
       </div>
 
-      <div className="mt-8">
-        <PaymentsTable thisMonthData={thisMonthData} setPayment={setPayment} />
-      </div>
+      <PaymentsTable thisMonthData={thisMonthData} setPayment={setPayment} />
 
       <div className="sticky bottom-0">
         <PaymentsForm thisMonthData={thisMonthData} />

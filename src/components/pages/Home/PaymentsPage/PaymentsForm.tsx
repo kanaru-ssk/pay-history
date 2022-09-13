@@ -74,6 +74,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           max={maxDate}
           value={date}
           onChange={changeDate}
+          small
         />
 
         <Input
@@ -83,11 +84,12 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           value={price === 0 ? "" : price.toLocaleString()}
           onChange={changePrice}
           right
+          small
         />
-      </div>
 
-      <div className="pb-2">
-        <Button text="支払追加" isReady={isReady} />
+        <button className={isReady ? "text-main-color" : "text-gray"}>
+          追加
+        </button>
       </div>
     </form>
   );

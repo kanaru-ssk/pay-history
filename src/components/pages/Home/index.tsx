@@ -7,7 +7,6 @@ import PaymentsPage from "./PaymentsPage";
 import type { MonthlyData } from "types/firebase";
 
 import Header from "components/common/Header";
-import Tab from "components/common/Tab";
 import { useAuth } from "hooks/auth";
 import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId } from "libs/convert";
@@ -36,7 +35,6 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Tab />
       <main>
         {thisMonthData === undefined && <LoadingPage />}
         {thisMonthData === null && <LandingPage />}
