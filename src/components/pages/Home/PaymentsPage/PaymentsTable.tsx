@@ -15,7 +15,13 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
   // 支出日ソート
   const sortDate = (a: Payment, b: Payment): number => {
     if (isAcsDate) {
-      if (b.atPaied < a.atPaied) {
+      if (b.atPaied.isEqual(a.atPaied)) {
+        if (b.atCreated < a.atCreated) {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else if (b.atPaied < a.atPaied) {
         return 1;
       } else {
         return -1;
