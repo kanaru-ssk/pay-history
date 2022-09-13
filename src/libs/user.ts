@@ -9,9 +9,10 @@ export const createUser = async (authUser: User | null) => {
   const { setDoc, doc, Timestamp } = await import("firebase/firestore");
   const { logEvent } = await import("firebase/analytics");
 
+  const now = Timestamp.now();
   const newUserData: Omit<DBUser, "docId"> = {
-    atCreated: Timestamp.now(),
-    atUpdated: Timestamp.now(),
+    atCreated: now,
+    atUpdated: now,
     budget: 50000,
     isAnonymous: true,
   };
@@ -30,8 +31,9 @@ export const updateUser = async (
   const { doc, updateDoc, Timestamp } = await import("firebase/firestore");
   const { logEvent } = await import("firebase/analytics");
 
+  const now = Timestamp.now();
   const newData: Partial<DBUser> = {
-    atUpdated: Timestamp.now(),
+    atUpdated: now,
     ...data,
   };
 
