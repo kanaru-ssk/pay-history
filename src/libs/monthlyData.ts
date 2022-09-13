@@ -59,21 +59,20 @@ export const createMonthlyData = async (user: DBUser | null, docId: string) => {
 // 月データ更新
 export const updateMonthlyData = async (
   user: DBUser | null,
-  monthlyData: MonthlyData
+  data: Partial<MonthlyData>
 ) => {
-  if (!user || !monthlyData) return null;
+  if (!user || !data.docId) return null;
 
   const { updateDoc, doc, Timestamp } = await import("firebase/firestore");
 
   const now = Timestamp.now();
   const newMonthlyData: Partial<MonthlyData> = {
     atUpdated: now,
-    budget: monthlyData.budget,
-    payments: monthlyData.payments,
+    ...data,
   };
 
   await updateDoc(
-    doc(db, "users", user.docId, "monthlyData", monthlyData.docId),
+    doc(db, "users", user.docId, "monthlyData", data.docId),
     newMonthlyData
   );
   if (analytics) logEvent(analytics, "updateMonthlyData");
