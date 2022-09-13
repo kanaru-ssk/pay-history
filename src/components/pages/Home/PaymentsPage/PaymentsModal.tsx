@@ -69,6 +69,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const sumitSavePayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady && payment) {
+      setIsReady(false);
       setIsUpdateLoading(true);
       await updateMonthlyData(dbUser, {
         ...thisMonthData,
@@ -82,7 +83,6 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
           else return value;
         }),
       });
-      setIsReady(false);
       setIsUpdateLoading(false);
       setPayment(null);
     }

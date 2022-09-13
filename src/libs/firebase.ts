@@ -6,11 +6,7 @@ import {
   getAuth,
   setPersistence,
 } from "firebase/auth";
-import {
-  initializeFirestore,
-  getFirestore,
-  enableIndexedDbPersistence,
-} from "firebase/firestore";
+import { initializeFirestore, getFirestore } from "firebase/firestore";
 
 const config = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -31,9 +27,6 @@ setPersistence(auth, browserLocalPersistence);
 const db =
   getFirestore() ??
   initializeFirestore(app, { ignoreUndefinedProperties: true });
-
-if (typeof window !== "undefined")
-  enableIndexedDbPersistence(db, { forceOwnership: true });
 
 const analytics = typeof window !== "undefined" ? getAnalytics(app) : undefined;
 

@@ -29,8 +29,9 @@ export const dateToInputData = (date: Date): InputMonthData => {
     .toISOString()
     .split("T")[0];
 
+  const now = new Date();
   const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  const maxDate = date < endOfMonth ? date : endOfMonth;
+  const maxDate = date.getMonth() == now.getMonth() ? now : endOfMonth;
   const maxDateString = new Date(
     Number(maxDate) - maxDate.getTimezoneOffset() * 60000
   )
