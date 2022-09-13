@@ -9,7 +9,7 @@ type Props = {
 
 const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
-  const [isAcsDate, setIsAcsDate] = useState<boolean>(true);
+  const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
 
   // 支出日ソート
@@ -27,7 +27,13 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
         return -1;
       }
     } else {
-      if (a.atPaied < b.atPaied) {
+      if (b.atPaied.isEqual(a.atPaied)) {
+        if (a.atCreated < b.atCreated) {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else if (a.atPaied < b.atPaied) {
         return 1;
       } else {
         return -1;
@@ -58,62 +64,63 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
   };
 
   return (
-    <table className="w-full">
-      <thead className="border-b">
-        <tr>
-          <th
-            onClick={() => {
-              setIsSortDate(true);
-              setIsAcsDate(!isAcsDate);
-            }}
-            className="cursor-pointer pl-4 text-left"
-          >
-            支出日{isSortDate && (isAcsDate ? "▼" : "▲")}
-          </th>
-          <th
-            onClick={() => {
-              setIsSortDate(false);
-              setIsAcsPrice(!isAcsPrice);
-            }}
-            className="cursor-pointer pr-4 text-right"
-          >
-            {!isSortDate && (isAcsPrice ? "▲" : "▼")}金額
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {thisMonthData.payments &&
-          thisMonthData.payments
+    <div>
+      <div className="flex border-b border-black px-4">
+        <div
+          onClick={() => {
+            setIsSortDate(true);
+            setIsAcsDate(!isAcsDate);
+          }}
+          className="w-full cursor-pointer"
+        >
+          支出日{isSortDate && (isAcsDate ? "▼" : "▲")}
+        </div>
+        <div
+          onClick={() => {
+            setIsSortDate(false);
+            setIsAcsPrice(!isAcsPrice);
+          }}
+          className="w-full cursor-pointer pr-8 text-right"
+        >
+          {!isSortDate && (isAcsPrice ? "▲" : "▼")}金額
+        </div>
+      </div>
+
+      {0 < thisMonthData.payments.length && (
+        <div className="flex max-h-[calc(100vh_-_276px)] w-full flex-col-reverse overflow-y-scroll md:max-h-[calc(100vh_-_308px)]">
+          {thisMonthData.payments
             .sort(isSortDate ? sortPrice : sortDate)
             .sort(isSortDate ? sortDate : sortPrice)
             .map((value) => {
               return (
-                <tr key={value.atCreated.toString()} className="h-9">
-                  <td className="pl-4 text-left">
+                <div
+                  key={value.atCreated.toString()}
+                  className="flex h-9 items-center"
+                >
+                  <div className="flex-1 pl-4 text-left">
                     {value.atPaied.toDate().getMonth() + 1}月
                     {value.atPaied.toDate().getDate()}日
-                  </td>
-                  <td className="pr-4 text-right">
+                  </div>
+                  <div className="flex-1 pr-4 text-right">
                     {value.price.toLocaleString()}円
-                  </td>
-                  <td
+                  </div>
+                  <div
                     onClick={() => openModal(value)}
-                    className="w-4 cursor-pointer text-sm"
+                    className="w-8 cursor-pointer p-2 text-sm"
                   >
                     ︙
-                  </td>
-                </tr>
+                  </div>
+                </div>
               );
             })}
-        {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-          <tr>
-            <td className="h-12 text-center text-gray">
-              支払いデータがありません。
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+        </div>
+      )}
+      {thisMonthData.payments && thisMonthData.payments.length === 0 && (
+        <div className="py-4 text-center text-gray">
+          支払いデータがありません。
+        </div>
+      )}
+    </div>
   );
 };
 
