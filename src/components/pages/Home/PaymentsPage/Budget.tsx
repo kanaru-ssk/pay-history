@@ -77,7 +77,7 @@ const Budget = ({ thisMonthData }: Props) => {
         </tr>
         <tr className="border-b">
           <th>支出</th>
-          <td className="text-right">{totalSpending.toLocaleString()}</td>
+          <td className="px-4 text-right">{totalSpending.toLocaleString()}</td>
           <td>円</td>
         </tr>
         <tr>
