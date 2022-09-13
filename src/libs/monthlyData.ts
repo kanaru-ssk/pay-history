@@ -39,9 +39,10 @@ export const createMonthlyData = async (user: DBUser | null, docId: string) => {
 
   const { setDoc, doc, Timestamp } = await import("firebase/firestore");
 
+  const now = Timestamp.now();
   const newMonthlyData: Omit<MonthlyData, "docId"> = {
-    atCreated: Timestamp.now(),
-    atUpdated: Timestamp.now(),
+    atCreated: now,
+    atUpdated: now,
     budget: user.budget,
     payments: [],
   };
@@ -64,8 +65,9 @@ export const updateMonthlyData = async (
 
   const { updateDoc, doc, Timestamp } = await import("firebase/firestore");
 
+  const now = Timestamp.now();
   const newMonthlyData: Partial<MonthlyData> = {
-    atUpdated: Timestamp.now(),
+    atUpdated: now,
     budget: monthlyData.budget,
     payments: monthlyData.payments,
   };
@@ -91,15 +93,15 @@ export const addPayment = async (
     "firebase/firestore"
   );
 
+  const now = Timestamp.now();
   const newPayment: Payment = {
-    atCreated: Timestamp.now(),
-    atUpdated: Timestamp.now(),
+    atCreated: now,
+    atUpdated: now,
     atPaied: Timestamp.fromDate(date),
     price: price,
   };
-
   const newMonthlyData = {
-    atUpdated: Timestamp.now(),
+    atUpdated: now,
     payments: arrayUnion(newPayment),
   };
 
