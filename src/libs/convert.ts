@@ -1,8 +1,8 @@
-import type { TabStatus } from "types/tabStatus";
+import type { TabState } from "types/tabState";
 
 import { isAuthError } from "types/firebase";
 
-export const tabToDocId = (tabStatus: TabStatus): string => {
+export const tabToDocId = (tabStatus: TabState): string => {
   const date = new Date();
   const thisYear = date.getFullYear();
   const thisMonth = date.getMonth() + 1;

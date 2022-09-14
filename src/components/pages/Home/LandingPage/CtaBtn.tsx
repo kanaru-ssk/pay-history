@@ -1,15 +1,17 @@
+import { useRecoilValue } from "recoil";
+
 import Button from "components/common/Button";
 import { useAuth } from "hooks/auth";
-import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId } from "libs/convert";
 import { createMonthlyData } from "libs/monthlyData";
+import { tabState } from "states/tabState";
 
 const CtaBtn = () => {
   const { dbUser } = useAuth();
-  const { tabStatus } = useTabStatus();
+  const tab = useRecoilValue(tabState);
 
   const onClickHundler = () => {
-    const docId = tabToDocId(tabStatus);
+    const docId = tabToDocId(tab);
     createMonthlyData(dbUser, docId);
   };
 
