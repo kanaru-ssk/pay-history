@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
+import { useRecoilValue } from "recoil";
+
 import type { MonthlyData } from "types/firebase";
 
-import Button from "components/common/Button";
 import Input from "components/common/Input";
 import { useAuth } from "hooks/auth";
-import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
 import { addPayment } from "libs/monthlyData";
+import { tabState } from "states/tabState";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -15,7 +16,7 @@ type Props = {
 
 const PaymentsForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
-  const { tabStatus } = useTabStatus();
+  const tab = useRecoilValue(tabState);
 
   const [date, setDate] = useState<string>("");
   const [minDate, setMinDate] = useState<string>("");
@@ -26,13 +27,13 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   // 日付初期値を設定
   useEffect(() => {
     const now = new Date();
-    if (tabStatus === now.getMonth() + 1) {
+    if (tab === now.getMonth() + 1) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     } else {
-      const split = tabToDocId(tabStatus).split("-");
+      const split = tabToDocId(tab).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
@@ -41,7 +42,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     }
-  }, [tabStatus]);
+  }, [tab]);
 
   // 支払い金額入力
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {

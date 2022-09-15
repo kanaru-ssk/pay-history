@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+import TableItem from "./TableItem";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
@@ -11,6 +13,13 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
   const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTo({ top: 0 });
+    }
+  }, [ref, thisMonthData.payments]);
 
   // 支出日ソート
   const sortDate = (a: Payment, b: Payment): number => {
@@ -58,11 +67,6 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
     }
   };
 
-  // モーダルを開く
-  const openModal = (payment: Payment) => {
-    setPayment(payment);
-  };
-
   return (
     <div>
       <div className="flex border-b border-black px-4">
@@ -87,30 +91,20 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
       </div>
 
       {0 < thisMonthData.payments.length && (
-        <div className="flex max-h-[calc(100vh_-_276px)] w-full flex-col-reverse overflow-y-scroll md:max-h-[calc(100vh_-_308px)]">
+        <div
+          className="flex max-h-[calc(100vh_-_276px)] w-full flex-col-reverse overflow-y-scroll md:max-h-[calc(100vh_-_308px)]"
+          ref={ref}
+        >
           {thisMonthData.payments
             .sort(isSortDate ? sortPrice : sortDate)
             .sort(isSortDate ? sortDate : sortPrice)
             .map((value) => {
               return (
-                <div
+                <TableItem
+                  payment={value}
+                  setPayment={setPayment}
                   key={value.atCreated.toString()}
-                  className="flex h-9 items-center"
-                >
-                  <div className="flex-1 pl-4 text-left">
-                    {value.atPaied.toDate().getMonth() + 1}月
-                    {value.atPaied.toDate().getDate()}日
-                  </div>
-                  <div className="flex-1 pr-4 text-right">
-                    {value.price.toLocaleString()}円
-                  </div>
-                  <div
-                    onClick={() => openModal(value)}
-                    className="w-8 cursor-pointer p-2 text-sm"
-                  >
-                    ︙
-                  </div>
-                </div>
+                />
               );
             })}
         </div>

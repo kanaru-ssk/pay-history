@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
@@ -71,6 +70,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     if (isReady && payment) {
       setIsReady(false);
       setIsUpdateLoading(true);
+      const { Timestamp } = await import("firebase/firestore");
       await updateMonthlyData(dbUser, {
         ...thisMonthData,
         payments: thisMonthData.payments.map((value) => {
