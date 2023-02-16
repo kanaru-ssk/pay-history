@@ -8,6 +8,10 @@ const withPWA = require("next-pwa")({
 const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
+  i18n: {
+    locales: ["en", "ja"],
+    defaultLocale: "ja",
+  },
   async redirects() {
     return [
       {
