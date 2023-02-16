@@ -1,7 +1,7 @@
 {
   "name": "Pay History",
   "short_name": "Pay History",
-  "description": "予算管理ツール「Pay History」なら、月の予算、使った金額、予算残高を最もシンプルに管理できます。",
+  "description": "With the budget management tool 'Pay History', you can manage your monthly budget, amount spent, and budget remaining in the simplest way.",
   "icons": [
     {
       "src": "/apple-icon.png",
