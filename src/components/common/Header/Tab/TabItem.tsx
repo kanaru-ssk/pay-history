@@ -1,43 +1,38 @@
 import { useEffect, useRef } from "react";
 
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import type { TabStatus } from "types/tabStatus";
 
-import type { TabState } from "types/tabState";
-
-import { tabState, tabStateKey } from "states/tabState";
+import { useTabStatus } from "hooks/tabStatus";
 
 type Props = {
   text: string;
-  month: TabState;
+  month: TabStatus;
 };
 
 const TabItem = ({ text, month }: Props) => {
-  const tab = useRecoilValue(tabState);
-  const setTab = useSetRecoilState(tabState);
-
+  const { tabStatus, setTabStatus } = useTabStatus();
   const ref = useRef<HTMLButtonElement>(null);
 
   // 選択された月まで自動スクロール
   useEffect(() => {
-    if (tab === month && ref.current) {
+    if (tabStatus === month && ref.current) {
       ref.current.scrollIntoView({
         behavior: "auto",
         block: "nearest",
         inline: "center",
       });
     }
-  }, [ref, tab, month]);
+  }, [ref, tabStatus, month]);
 
   return (
     <button
       ref={ref}
       onClick={() => {
-        setTab(month);
-        if (typeof window !== "undefined")
-          sessionStorage.setItem(tabStateKey, JSON.stringify(month));
+        setTabStatus(month);
       }}
       className={
-        (tab === month ? "font-bold" : "text-dark-gray") + " h-16 w-16 shrink-0"
+        (tabStatus === month ? "font-bold" : "text-dark-gray") +
+        " h-16 w-16 shrink-0"
       }
     >
       {text}

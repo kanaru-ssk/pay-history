@@ -1,10 +1,10 @@
 import TabItem from "./TabItem";
 
-import { isTabState } from "types/tabState";
+import { isTabStatus } from "types/tabStatus";
 
 const Tab = () => {
   const tmp = new Date().getMonth() + 1;
-  const thisMonth = isTabState(tmp) ? tmp : 1;
+  const thisMonth = isTabStatus(tmp) ? tmp : 1;
 
   let months = [];
   months.push(
@@ -12,7 +12,7 @@ const Tab = () => {
   );
   for (let i = 1; i < 12; i++) {
     const month = 0 < thisMonth - i ? thisMonth - i : 12 + thisMonth - i;
-    if (isTabState(month)) {
+    if (isTabStatus(month)) {
       months.push(<TabItem key={month} text={month + "月"} month={month} />);
     }
   }

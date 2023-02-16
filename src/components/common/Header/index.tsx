@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-import { useRecoilValue } from "recoil";
-
 import Logo from "./Logo";
 import Menu from "./Menu";
 import Tab from "./Tab";
 
-import { tabState } from "states/tabState";
+import { useTabStatus } from "hooks/tabStatus";
 
 const Header = () => {
-  const tab = useRecoilValue(tabState);
+  const { tabStatus } = useTabStatus();
 
   const [isTabOpen, setIsTabOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -28,7 +26,7 @@ const Header = () => {
               setIsTabOpen(!isTabOpen);
             }}
           >
-            {tab}月{isTabOpen ? "▲" : "▼"}
+            {tabStatus}月{isTabOpen ? "▲" : "▼"}
           </button>
           <button className="p-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <svg width="20" height="12">

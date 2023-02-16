@@ -1,6 +1,6 @@
-export type TabState = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type TabStatus = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export const isTabState = (arg: any): arg is TabState => {
+export const isTabStatus = (arg: any): arg is TabStatus => {
   if (
     arg === 1 ||
     arg === 2 ||
