@@ -30,12 +30,12 @@ const Signup = () => {
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // メール認証済みの時、マイページに遷移
+  // when email authentication is complete, redirect to My Page
   useEffect(() => {
     if (dbUser?.isAnonymous === false) push("/my");
   }, [dbUser, push]);
 
-  // validation通過チェック
+  // validation check
   useEffect(() => {
     setIsReady(
       validateEmail(email) === "" &&
@@ -44,7 +44,7 @@ const Signup = () => {
     );
   }, [email, password, passwordConfirm]);
 
-  // サインアップ
+  // sign up
   const submitSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {

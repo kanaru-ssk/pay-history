@@ -12,7 +12,7 @@ type Props = {
 const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
   const { authUser } = useAuth();
 
-  // スライダー外をクリックで閉じる
+  // click out of the slider to close
   useEffect(() => {
     const onClickOverlay = (e: any) => {
       if (e.target.id === "menu-overlay") setIsMenuOpen(false);

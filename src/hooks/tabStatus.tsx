@@ -1,4 +1,4 @@
-// tabStatusをuseContextで共有
+// share tabStatus with useContext
 
 import { createContext, useContext, useState, useEffect } from "react";
 
@@ -20,7 +20,7 @@ type Node = {
 const TabStatusProvider = ({ children }: Node) => {
   const key = "tabStatus";
   const [tabStatus, setTabStatus] = useState<TabStatus>(() => {
-    // sessionStorageにtabStatusが保存されている場合は初期値に設定
+    // set to initial value if tabStatus is saved in sessionStorage
     const value = sessionStorage.getItem(key);
     return value ? JSON.parse(value) : new Date().getMonth() + 1;
   });
@@ -38,7 +38,7 @@ const TabStatusProvider = ({ children }: Node) => {
     }
   }, []);
 
-  // sessionStorageにも保存するようsetTabStatusを拡張
+  // extend setTabStatus to also save to sessionStorage
   const expandedSetTabStatus = (tab: TabStatus) => {
     setTabStatus(tab);
     sessionStorage.setItem(key, JSON.stringify(tab));

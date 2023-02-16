@@ -22,19 +22,19 @@ const Signin = () => {
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // メール認証済みの時、マイページに遷移
+  // when email authentication is complete, redirect to My Page
   useEffect(() => {
     if (!authUser?.isAnonymous) push("/my");
   }, [authUser?.isAnonymous, push]);
 
-  // validation通過チェック
+  // validation check
   useEffect(() => {
     setIsReady(
       validateEmail(email) === "" && validatePassword(password) === ""
     );
   }, [email, password]);
 
-  // サインイン
+  // sign in
   const submitSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {

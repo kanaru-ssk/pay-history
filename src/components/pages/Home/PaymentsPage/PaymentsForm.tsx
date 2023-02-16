@@ -23,7 +23,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  // 日付初期値を設定
+  // set initial date
   useEffect(() => {
     const now = new Date();
     if (tabStatus === now.getMonth() + 1) {
@@ -43,19 +43,19 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
     }
   }, [tabStatus]);
 
-  // 支払い金額入力
+  // input payment amount
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price);
   };
 
-  // 支払い日入力
+  // input payment date
   const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
 
-  // 支払い追加
+  // add payment
   const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {

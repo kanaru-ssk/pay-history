@@ -5,7 +5,7 @@ import Head from "next/head";
 import "styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  // sessionStorageを使用するため、ssrをオフにする。
+  // turn off SSR to use sessionStorage
   const DynamicAuthProvider = dynamic(() => import("hooks/auth"), {
     ssr: false,
   });

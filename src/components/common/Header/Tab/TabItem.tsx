@@ -13,7 +13,7 @@ const TabItem = ({ text, month }: Props) => {
   const { tabStatus, setTabStatus } = useTabStatus();
   const ref = useRef<HTMLButtonElement>(null);
 
-  // 選択された月まで自動スクロール
+  // auto scroll to selected month
   useEffect(() => {
     if (tabStatus === month && ref.current) {
       ref.current.scrollIntoView({

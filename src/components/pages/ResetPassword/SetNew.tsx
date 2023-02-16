@@ -24,7 +24,7 @@ const SetNew = () => {
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // getパラメータ取得
+  // get GET parameters
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const oobCodeValue = queryParams.get("oobCode") || "";
@@ -33,7 +33,7 @@ const SetNew = () => {
     setContinueUrl(continueUrlValue);
   }, []);
 
-  // validation通過チェック
+  // validation check
   useEffect(() => {
     setIsReady(
       validatePassword(newPassword) === "" &&
@@ -41,7 +41,7 @@ const SetNew = () => {
     );
   }, [newPassword, newPasswordConfirm]);
 
-  // パスワード再設定
+  // reset password
   const submitSetNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {

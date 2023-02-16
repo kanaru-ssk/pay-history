@@ -19,7 +19,7 @@ const Home = () => {
     MonthlyData | null | undefined
   >(undefined);
 
-  // 月次データをリッスン
+  // listen to monthly data
   useEffect(() => {
     const unsubscribe = getMonthlyData(
       dbUser?.docId,

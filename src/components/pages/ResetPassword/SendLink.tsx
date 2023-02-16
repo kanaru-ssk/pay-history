@@ -16,12 +16,12 @@ const SetNew = () => {
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [noticeMessage, setNoticeMessage] = useState<string>("");
 
-  // validation通過チェック
+  // validation check
   useEffect(() => {
     setIsReady(validateEmail(email) === "");
   }, [email]);
 
-  // パスワード再設定リンク送信
+  // send password reset link
   const submitSendResetPasswordLink = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {

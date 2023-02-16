@@ -1,4 +1,4 @@
-// firebase初期化
+// init firebase
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp, getApp, getApps } from "firebase/app";
 import {

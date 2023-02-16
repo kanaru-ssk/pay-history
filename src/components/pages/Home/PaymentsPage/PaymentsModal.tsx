@@ -25,7 +25,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
-  // モーダル外をクリックで閉じる
+  // click out of the modal to close
   useEffect(() => {
     const onClickOverlay = (e: any) => {
       if (e.target.id === "modal-overlay") setPayment(null);
@@ -36,7 +36,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     };
   }, [setPayment]);
 
-  // 支払いデータ読み込み
+  // load the payment data
   useEffect(() => {
     if (payment) {
       const inputMonthData = dateToInputData(payment.atPaied.toDate());
@@ -47,14 +47,14 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     }
   }, [payment]);
 
-  // 支払い金額編集
+  // edit payment amount
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price && price !== payment?.price);
   };
 
-  // 支払い日編集
+  // edit payment date
   const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
     if (payment && new Date(e.target.value) !== payment.atPaied.toDate()) {
@@ -64,7 +64,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     }
   };
 
-  // 編集保存
+  // save edit
   const sumitSavePayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady && payment) {
@@ -88,7 +88,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
     }
   };
 
-  // 支払い削除
+  // delete payment
   const deletePayment = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (payment) {

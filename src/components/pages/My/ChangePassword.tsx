@@ -34,7 +34,7 @@ const ChangePassword = () => {
     );
   }, [oldPassword, newPassword, newPasswordConfirm]);
 
-  // パスワード変更
+  // change password
   const submitChangePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {

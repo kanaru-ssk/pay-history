@@ -20,12 +20,12 @@ const Budget = ({ thisMonthData }: Props) => {
   const [remaining, setRemaining] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  // 予算読み込み
+  // load the budget
   useEffect(() => {
     setBudget(thisMonthData.budget);
   }, [thisMonthData.budget]);
 
-  // 支出合計
+  // calculate amount spent
   useEffect(() => {
     const total = thisMonthData.payments.reduce((sum, value) => {
       return sum + value.price;
@@ -33,19 +33,19 @@ const Budget = ({ thisMonthData }: Props) => {
     setTotalSpending(total);
   }, [thisMonthData.payments]);
 
-  // 残高
+  // remaining
   useEffect(() => {
     setRemaining(budget - totalSpending);
   }, [totalSpending, budget]);
 
-  // 予算編集
+  // edit the budget
   const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setBudget(price);
     setIsReady(price !== thisMonthData.budget);
   };
 
-  // 予算保存
+  // save the budget
   const saveBudget = () => {
     if (isReady) {
       setIsReady(false);

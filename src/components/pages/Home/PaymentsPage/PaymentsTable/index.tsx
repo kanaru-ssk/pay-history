@@ -21,7 +21,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
     }
   }, [ref, thisMonthData.payments]);
 
-  // 支出日ソート
+  // sort by payment date
   const sortDate = (a: Payment, b: Payment): number => {
     if (isAcsDate) {
       if (b.atPaied.isEqual(a.atPaied)) {
@@ -50,7 +50,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
     }
   };
 
-  // 金額ソート
+  // sort by payment amount
   const sortPrice = (a: Payment, b: Payment): number => {
     if (isAcsPrice) {
       if (b.price < a.price) {
