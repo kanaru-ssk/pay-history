@@ -81,7 +81,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
           className="w-full cursor-pointer"
         >
           {text.SPENT_DATE}
-          {isSortDate && (isAcsDate ? "▼" : "▲")}
+          {isSortDate && (isAcsDate ? "▲" : "▼")}
         </div>
         <div
           onClick={() => {

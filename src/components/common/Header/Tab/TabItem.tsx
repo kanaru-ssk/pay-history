@@ -2,15 +2,18 @@ import { useEffect, useRef } from "react";
 
 import type { TabStatus } from "types/tabStatus";
 
+import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
+import { displayMonth } from "libs/displayMonth";
 
 type Props = {
-  text: string;
   month: TabStatus;
 };
 
-const TabItem = ({ text, month }: Props) => {
+const TabItem = ({ month }: Props) => {
+  const { locale } = useLocale();
   const { tabStatus, setTabStatus } = useTabStatus();
+
   const ref = useRef<HTMLButtonElement>(null);
 
   // auto scroll to selected month
@@ -35,7 +38,7 @@ const TabItem = ({ text, month }: Props) => {
         " h-16 w-16 shrink-0"
       }
     >
-      {text}
+      {displayMonth(month, locale)}
     </button>
   );
 };

@@ -51,12 +51,12 @@ class MyDocument extends Document {
           <meta property="og:title" content="Pay History" />
           <meta
             property="og:description"
-            content="予算管理ツール「Pay History」なら、月の予算、使った金額、予算残高を最もシンプルに管理できます。"
+            content="With the budget management tool 'Pay History', you can manage your monthly budget, amount spent, and budget remaining in the simplest way."
           />
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             name="description"
-            content="予算管理ツール「Pay History」なら、月の予算、使った金額、予算残高を最もシンプルに管理できます。"
+            content="With the budget management tool 'Pay History', you can manage your monthly budget, amount spent, and budget remaining in the simplest way."
           />
         </Head>
         <body>

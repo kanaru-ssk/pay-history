@@ -48,11 +48,7 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </button>
         </header>
 
-        <MenuItem
-          text="Return To Home"
-          href="/"
-          onClick={() => setIsMenuOpen(false)}
-        />
+        <MenuItem text="Home" href="/" onClick={() => setIsMenuOpen(false)} />
 
         {authUser?.isAnonymous && (
           <>

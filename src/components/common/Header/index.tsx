@@ -4,9 +4,12 @@ import Logo from "./Logo";
 import Menu from "./Menu";
 import Tab from "./Tab";
 
+import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
+import { displayMonth } from "libs/displayMonth";
 
 const Header = () => {
+  const { locale } = useLocale();
   const { tabStatus } = useTabStatus();
 
   const [isTabOpen, setIsTabOpen] = useState<boolean>(false);
@@ -26,7 +29,8 @@ const Header = () => {
               setIsTabOpen(!isTabOpen);
             }}
           >
-            {tabStatus}月{isTabOpen ? "▲" : "▼"}
+            {displayMonth(tabStatus, locale)}
+            {isTabOpen ? "▲" : "▼"}
           </button>
           <button className="p-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <svg width="20" height="12">

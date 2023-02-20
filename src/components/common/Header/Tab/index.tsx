@@ -7,13 +7,11 @@ const Tab = () => {
   const thisMonth = isTabStatus(tmp) ? tmp : 1;
 
   let months = [];
-  months.push(
-    <TabItem key={thisMonth} text={thisMonth + "月"} month={thisMonth} />
-  );
+  months.push(<TabItem key={thisMonth} month={thisMonth} />);
   for (let i = 1; i < 12; i++) {
     const month = 0 < thisMonth - i ? thisMonth - i : 12 + thisMonth - i;
     if (isTabStatus(month)) {
-      months.push(<TabItem key={month} text={month + "月"} month={month} />);
+      months.push(<TabItem key={month} month={month} />);
     }
   }
 
