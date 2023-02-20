@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { useRecoilValue } from "recoil";
-
 import type { MonthlyData } from "types/firebase";
 
 import Input from "components/common/Input";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
+import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
 import { addPayment } from "libs/monthlyData";
-import { tabState } from "states/tabState";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -16,7 +15,8 @@ type Props = {
 
 const PaymentsForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
-  const tab = useRecoilValue(tabState);
+  const { text } = useLocale();
+  const { tabStatus } = useTabStatus();
 
   const [date, setDate] = useState<string>("");
   const [minDate, setMinDate] = useState<string>("");
@@ -24,16 +24,16 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const [price, setPrice] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  // 日付初期値を設定
+  // set initial date
   useEffect(() => {
     const now = new Date();
-    if (tab === now.getMonth() + 1) {
+    if (tabStatus === now.getMonth() + 1) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     } else {
-      const split = tabToDocId(tab).split("-");
+      const split = tabToDocId(tabStatus).split("-");
       const toNum = split.map((value) => {
         return Number(value);
       });
@@ -42,21 +42,21 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     }
-  }, [tab]);
+  }, [tabStatus]);
 
-  // 支払い金額入力
+  // enter payment amount
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price);
   };
 
-  // 支払い日入力
+  // enter payment date
   const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
 
-  // 支払い追加
+  // add payment
   const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
@@ -81,7 +81,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         <Input
           type="text"
           inputMode="numeric"
-          placeholder="支出額を入力"
+          placeholder={text.ENTER_AMOUNT}
           value={price === 0 ? "" : price.toLocaleString()}
           onChange={changePrice}
           right
@@ -89,7 +89,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         />
 
         <button className={isReady ? "text-main-color" : "text-gray"}>
-          追加
+          {text.ADD}
         </button>
       </div>
     </form>

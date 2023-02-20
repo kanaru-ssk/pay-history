@@ -4,6 +4,7 @@ import type { MonthlyData } from "types/firebase";
 
 import Input from "components/common/Input";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
 import { stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";
 import { updateUser } from "libs/user";
@@ -14,18 +15,19 @@ type Props = {
 
 const Budget = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
+  const { text } = useLocale();
 
   const [budget, setBudget] = useState<number>(0);
   const [totalSpending, setTotalSpending] = useState<number>(0);
   const [remaining, setRemaining] = useState<number>(0);
   const [isReady, setIsReady] = useState<boolean>(false);
 
-  // 予算読み込み
+  // load the budget
   useEffect(() => {
     setBudget(thisMonthData.budget);
   }, [thisMonthData.budget]);
 
-  // 支出合計
+  // calculate amount spent
   useEffect(() => {
     const total = thisMonthData.payments.reduce((sum, value) => {
       return sum + value.price;
@@ -33,19 +35,19 @@ const Budget = ({ thisMonthData }: Props) => {
     setTotalSpending(total);
   }, [thisMonthData.payments]);
 
-  // 残高
+  // remaining
   useEffect(() => {
     setRemaining(budget - totalSpending);
   }, [totalSpending, budget]);
 
-  // 予算編集
+  // edit the budget
   const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setBudget(price);
     setIsReady(price !== thisMonthData.budget);
   };
 
-  // 予算保存
+  // save the budget
   const saveBudget = () => {
     if (isReady) {
       setIsReady(false);
@@ -58,7 +60,7 @@ const Budget = ({ thisMonthData }: Props) => {
     <table className="mx-auto">
       <tbody>
         <tr>
-          <th>予算</th>
+          <th>{text.BUDGET}</th>
           <td className="text-right">
             <Input
               type="text"
@@ -73,17 +75,17 @@ const Budget = ({ thisMonthData }: Props) => {
               right
             />
           </td>
-          <td>円</td>
+          <td>{text.YEN}</td>
         </tr>
         <tr className="border-b">
-          <th>支出</th>
+          <th>{text.SPENT}</th>
           <td className="px-4 text-right">{totalSpending.toLocaleString()}</td>
-          <td>円</td>
+          <td>{text.YEN}</td>
         </tr>
         <tr>
-          <th>残高</th>
+          <th>{text.REMAINING}</th>
           <td className="text-right text-3xl">{remaining.toLocaleString()}</td>
-          <td>円</td>
+          <td>{text.YEN}</td>
         </tr>
       </tbody>
     </table>

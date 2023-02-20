@@ -1,12 +1,14 @@
 import Head from "next/head";
 
 import SignUp from "components/pages/SignUp";
+import { useLocale } from "hooks/locale";
 
-const SignupPage = () => {
+const SignUpPage = () => {
+  const { text } = useLocale();
   return (
     <>
       <Head>
-        <title>サインアップ | Pay History</title>
+        <title>{text.SIGN_UP} | Pay History</title>
       </Head>
 
       <SignUp />
@@ -14,4 +16,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default SignUpPage;

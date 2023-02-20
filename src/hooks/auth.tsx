@@ -1,4 +1,4 @@
-// 認証状態をuseContextで共有
+// share authentication state with useContext
 
 import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot, doc } from "firebase/firestore";
@@ -27,7 +27,7 @@ const AuthProvider = ({ children }: Node) => {
     return value ? JSON.parse(value) : null;
   });
 
-  // 認証ユーザー更新
+  // update authenticated user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
       if (user) {
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }: Node) => {
     return () => unsubscribe();
   }, []);
 
-  // DBユーザーデータ更新
+  // update user in database
   useEffect(() => {
     if (authUser) {
       const unsubscribe = onSnapshot(
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }: Node) => {
             setDBUser(user);
             localStorage.setItem(key, JSON.stringify(user));
           } else {
-            // 新規ユーザー作成
+            // create new user
             const { createUser } = await import("libs/user");
             createUser(auth.currentUser);
           }

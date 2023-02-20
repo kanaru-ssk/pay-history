@@ -5,7 +5,7 @@ import type { MonthlyData, Payment, DBUser } from "types/firebase";
 
 import { db, analytics } from "libs/firebase";
 
-// 月データリアルタイム取得
+// listen to monthly data
 export const getMonthlyData = (
   uid: string | undefined,
   docId: string,
@@ -33,7 +33,7 @@ export const getMonthlyData = (
   });
 };
 
-// 月データ作成
+// create monthly data
 export const createMonthlyData = async (user: DBUser | null, docId: string) => {
   if (!user) return null;
 
@@ -56,7 +56,7 @@ export const createMonthlyData = async (user: DBUser | null, docId: string) => {
   return newMonthlyData;
 };
 
-// 月データ更新
+// update monthly data
 export const updateMonthlyData = async (
   user: DBUser | null,
   data: Partial<MonthlyData>
@@ -79,7 +79,7 @@ export const updateMonthlyData = async (
   return newMonthlyData;
 };
 
-// 月データ更新 : 予算
+// add payment data
 export const addPayment = async (
   user: DBUser | null,
   month: MonthlyData,

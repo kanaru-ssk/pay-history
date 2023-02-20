@@ -7,53 +7,96 @@ import Input from "components/common/Input";
 import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
 import { signUp } from "libs/auth";
 import { updateUser } from "libs/user";
 import {
   validateEmail,
   validatePassword,
-  validatePasswordConfirm,
+  validateReenterPassword,
 } from "libs/validation";
 
-const Signup = () => {
+const SignUp = () => {
   const { push } = useRouter();
   const { dbUser } = useAuth();
+  const { locale, text } = useLocale();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+  const [reenterPassword, setReenterPassword] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
-  const [errorMessagePasswordConfirm, setErrorMessagePasswordConfirm] =
+  const [errorMessagePasswordConfirm, setErrorMessageReenterPassword] =
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // メール認証済みの時、マイページに遷移
+  // when email authentication is complete, redirect to My Page
   useEffect(() => {
     if (dbUser?.isAnonymous === false) push("/my");
   }, [dbUser, push]);
 
-  // validation通過チェック
+  // validation check
   useEffect(() => {
     setIsReady(
-      validateEmail(email) === "" &&
-        validatePassword(password) === "" &&
-        validatePasswordConfirm(password, passwordConfirm) === ""
+      validateEmail(email) === null &&
+        validatePassword(password) === null &&
+        validateReenterPassword(password, reenterPassword) === null
     );
-  }, [email, password, passwordConfirm]);
+  }, [email, password, reenterPassword]);
 
-  // サインアップ
+  // sign up
   const submitSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
       const result = await signUp(email, password);
-      setErrorMessage(result);
-      if (result === "")
+
+      if (result === null)
         updateUser(dbUser, { email: email, isAnonymous: false });
-      else setIsLoading(false);
+      else {
+        setIsLoading(false);
+        setErrorMessage(locale === "en" ? result.en : result.ja);
+      }
+    }
+  };
+
+  const validationEmail = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    const validationResult = validateEmail(e.target.value);
+    if (validationResult) {
+      setErrorMessageEmail(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageEmail("");
+    }
+  };
+
+  const validationPassword = (
+    e: React.FocusEvent<HTMLInputElement, Element>
+  ) => {
+    const validationResult = validatePassword(e.target.value);
+    if (validationResult) {
+      setErrorMessageReenterPassword(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageReenterPassword("");
+    }
+  };
+
+  const validationReenterPassword = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setReenterPassword(e.target.value);
+    const validationResult = validateReenterPassword(password, e.target.value);
+    if (validationResult) {
+      setErrorMessageReenterPassword(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageReenterPassword("");
     }
   };
 
@@ -61,13 +104,13 @@ const Signup = () => {
     <>
       <Header />
       <main>
-        <h1>アカウント作成</h1>
+        <h1>{text.CREATE_ACCOUNT}</h1>
 
         <Notice text={errorMessage} error />
 
         <form onSubmit={submitSignUp}>
           <div className="my-4">
-            <h3>メールアドレス</h3>
+            <h3>{text.MAIL_ADDRESS}</h3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -75,15 +118,13 @@ const Signup = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => {
-                setErrorMessageEmail(validateEmail(e.target.value));
-              }}
-              placeholder="メールアドレスを入力"
+              onBlur={validationEmail}
+              placeholder={text.MAIL_ADDRESS_PLACEHOLDER}
             />
           </div>
 
           <div className="my-4">
-            <h3>パスワードを入力</h3>
+            <h3>{text.PASSWORD}</h3>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>
             )}
@@ -91,34 +132,27 @@ const Signup = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onBlur={(e) =>
-                setErrorMessagePassword(validatePassword(e.target.value))
-              }
-              placeholder="パスワードを入力"
+              onBlur={validationPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
           <div className="my-4">
-            <h3>パスワードを再入力</h3>
+            <h3>{text.REENTER_PASSWORD}</h3>
             {errorMessagePasswordConfirm && (
               <div className="text-red">{errorMessagePasswordConfirm}</div>
             )}
             <Input
               type="password"
-              value={passwordConfirm}
-              onChange={(e) => {
-                setPasswordConfirm(e.target.value);
-                setErrorMessagePasswordConfirm(
-                  validatePasswordConfirm(password, e.target.value)
-                );
-              }}
-              placeholder="パスワードを再入力"
+              value={reenterPassword}
+              onChange={validationReenterPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
           <div className="my-8">
             <Button
-              text="アカウント作成"
+              text={text.CREATE_ACCOUNT}
               isReady={isReady}
               isLoading={isLoading}
             />
@@ -126,11 +160,11 @@ const Signup = () => {
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="アカウントをお持ちの場合はこちら" href="/signin" />
+          <LinkText text={text.ALREADY_HAVE_AN_ACCOUNT} href="/signIn" />
         </div>
       </main>
     </>
   );
 };
 
-export default Signup;
+export default SignUp;

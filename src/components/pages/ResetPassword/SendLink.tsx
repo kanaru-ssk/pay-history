@@ -5,10 +5,12 @@ import Header from "components/common/Header";
 import Input from "components/common/Input";
 import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
+import { useLocale } from "hooks/locale";
 import { resetPasswordSendLink } from "libs/auth";
 import { validateEmail } from "libs/validation";
 
-const SetNew = () => {
+const SetLink = () => {
+  const { locale, text } = useLocale();
   const [email, setEmail] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -16,12 +18,12 @@ const SetNew = () => {
   const [errorMessageEmail, setErrorMessageEmail] = useState<string>("");
   const [noticeMessage, setNoticeMessage] = useState<string>("");
 
-  // validation通過チェック
+  // validation check
   useEffect(() => {
-    setIsReady(validateEmail(email) === "");
+    setIsReady(validateEmail(email) === null);
   }, [email]);
 
-  // パスワード再設定リンク送信
+  // send password reset link
   const submitSendResetPasswordLink = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -29,10 +31,24 @@ const SetNew = () => {
     if (isReady) {
       setIsLoading(true);
       const result = await resetPasswordSendLink(email);
-      setNoticeMessage(result);
       setIsLoading(false);
-      setIsError(result !== "");
-      if (result === "") setNoticeMessage("再設定リンクを送信しました。");
+      if (result === null) {
+        setNoticeMessage(text.SENT_RESET_LINK);
+      } else {
+        setNoticeMessage(locale === "en" ? result.en : result.ja);
+        setIsError(result !== null);
+      }
+    }
+  };
+
+  const validationEmail = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    const validationResult = validateEmail(e.target.value);
+    if (validationResult) {
+      setErrorMessageEmail(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageEmail("");
     }
   };
 
@@ -40,13 +56,13 @@ const SetNew = () => {
     <>
       <Header />
       <main>
-        <h1>パスワード再設定</h1>
+        <h1>{text.RESET_PASSWORD}</h1>
 
         <Notice text={noticeMessage} error={isError} />
 
         <form onSubmit={submitSendResetPasswordLink}>
           <div className="my-4">
-            <h3>メールアドレス</h3>
+            <h3>{text.MAIL_ADDRESS}</h3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -54,16 +70,14 @@ const SetNew = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => {
-                setErrorMessageEmail(validateEmail(e.target.value));
-              }}
-              placeholder="メールアドレスを入力"
+              onBlur={validationEmail}
+              placeholder={text.MAIL_ADDRESS_PLACEHOLDER}
             />
           </div>
 
           <div className="my-8">
             <Button
-              text={noticeMessage === "" ? "送信" : "再送信"}
+              text={noticeMessage === "" ? text.SEND : text.RESEND}
               isReady={isReady}
               isLoading={isLoading}
             />
@@ -71,11 +85,11 @@ const SetNew = () => {
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="サインイン" href="/signin" />
+          <LinkText text={text.SIGN_IN} href="/signIn" />
         </div>
       </main>
     </>
   );
 };
 
-export default SetNew;
+export default SetLink;

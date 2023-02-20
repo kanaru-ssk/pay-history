@@ -1,8 +1,11 @@
+import Link from "next/link";
 import { useEffect } from "react";
 
 import MenuItem from "./MenuItem";
 
+import { languages } from "constants/languages";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
 
 type Props = {
   isMenuOpen: boolean;
@@ -10,9 +13,10 @@ type Props = {
 };
 
 const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
+  const { locale } = useLocale();
   const { authUser } = useAuth();
 
-  // スライダー外をクリックで閉じる
+  // click out of the slider to close
   useEffect(() => {
     const onClickOverlay = (e: any) => {
       if (e.target.id === "menu-overlay") setIsMenuOpen(false);
@@ -48,31 +52,59 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </button>
         </header>
 
-        <MenuItem text="ホーム" href="/" onClick={() => setIsMenuOpen(false)} />
+        <MenuItem>
+          <Link href="/">
+            <a onClick={() => setIsMenuOpen(false)}>Home</a>
+          </Link>
+        </MenuItem>
 
         {authUser?.isAnonymous && (
           <>
-            <MenuItem
-              text="新規登録"
-              href="/signup"
-              onClick={() => setIsMenuOpen(false)}
-            />
+            <MenuItem>
+              <Link href="/signUp">
+                <a onClick={() => setIsMenuOpen(false)}>Sign Up</a>
+              </Link>
+            </MenuItem>
 
-            <MenuItem
-              text="サインイン"
-              href="/signin"
-              onClick={() => setIsMenuOpen(false)}
-            />
+            <MenuItem>
+              <Link href="/signIn">
+                <a onClick={() => setIsMenuOpen(false)}>Sign In</a>
+              </Link>
+            </MenuItem>
           </>
         )}
 
         {!authUser?.isAnonymous && (
-          <MenuItem
-            text="マイページ"
-            href="/my"
-            onClick={() => setIsMenuOpen(false)}
-          />
+          <MenuItem>
+            <Link href="/my">
+              <a onClick={() => setIsMenuOpen(false)}>My Page</a>
+            </Link>
+          </MenuItem>
         )}
+
+        <MenuItem>
+          <details className="border rounded-lg border-gray px-8">
+            <summary className="font-bold p-1">
+              {languages.find((language) => language.locale === locale)?.name}
+            </summary>
+            <div className="mt-2">
+              {languages.map((language) => {
+                return (
+                  <Link
+                    href="/"
+                    locale={language.locale}
+                    passHref
+                    key={language.locale}
+                  >
+                    <a>
+                      <div className="m-1">{language.name}</div>
+                    </a>
+                  </Link>
+                );
+              })}
+            </div>
+          </details>
+        </MenuItem>
       </div>
     </div>
   );

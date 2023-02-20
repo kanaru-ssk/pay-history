@@ -2,7 +2,7 @@ import type { User, DBUser } from "types/firebase";
 
 import { db, analytics } from "libs/firebase";
 
-// ユーザーデータ作成
+// create user data
 export const createUser = async (authUser: User | null) => {
   if (authUser === null) return;
 
@@ -21,7 +21,7 @@ export const createUser = async (authUser: User | null) => {
   setDoc(doc(db, "users", authUser.uid), newUserData);
 };
 
-// ユーザーデータ更新
+// update user data
 export const updateUser = async (
   dbUser: DBUser | null,
   data: Partial<DBUser>

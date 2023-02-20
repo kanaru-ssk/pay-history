@@ -1,4 +1,4 @@
-// 環境変数の型定義
+// define type of environment variables
 declare namespace NodeJS {
   interface ProcessEnv {
     readonly NEXT_PUBLIC_URL: string;

@@ -1,21 +1,21 @@
-import { useRecoilValue } from "recoil";
-
 import Button from "components/common/Button";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
+import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId } from "libs/convert";
 import { createMonthlyData } from "libs/monthlyData";
-import { tabState } from "states/tabState";
 
 const CtaBtn = () => {
   const { dbUser } = useAuth();
-  const tab = useRecoilValue(tabState);
+  const { tabStatus } = useTabStatus();
+  const { text } = useLocale();
 
-  const onClickHundler = () => {
-    const docId = tabToDocId(tab);
+  const onClickHandler = () => {
+    const docId = tabToDocId(tabStatus);
     createMonthlyData(dbUser, docId);
   };
 
-  return <Button text="予算管理を始める" onClick={onClickHundler} blue />;
+  return <Button text={text.START_BUDGETING} onClick={onClickHandler} blue />;
 };
 
 export default CtaBtn;

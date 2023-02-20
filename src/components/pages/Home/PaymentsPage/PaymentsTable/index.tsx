@@ -4,12 +4,15 @@ import TableItem from "./TableItem";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
+import { useLocale } from "hooks/locale";
+
 type Props = {
   thisMonthData: MonthlyData;
   setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
 const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
+  const { text } = useLocale();
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
   const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
@@ -21,7 +24,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
     }
   }, [ref, thisMonthData.payments]);
 
-  // 支出日ソート
+  // sort by payment date
   const sortDate = (a: Payment, b: Payment): number => {
     if (isAcsDate) {
       if (b.atPaied.isEqual(a.atPaied)) {
@@ -50,7 +53,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
     }
   };
 
-  // 金額ソート
+  // sort by payment amount
   const sortPrice = (a: Payment, b: Payment): number => {
     if (isAcsPrice) {
       if (b.price < a.price) {
@@ -77,7 +80,8 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
           }}
           className="w-full cursor-pointer"
         >
-          支出日{isSortDate && (isAcsDate ? "▼" : "▲")}
+          {text.SPENT_DATE}
+          {isSortDate && (isAcsDate ? "▲" : "▼")}
         </div>
         <div
           onClick={() => {
@@ -86,7 +90,8 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
           }}
           className="w-full cursor-pointer pr-8 text-right"
         >
-          {!isSortDate && (isAcsPrice ? "▲" : "▼")}金額
+          {!isSortDate && (isAcsPrice ? "▲" : "▼")}
+          {text.AMOUNT}
         </div>
       </div>
 
@@ -110,9 +115,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
         </div>
       )}
       {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-        <div className="py-4 text-center text-gray">
-          支払いデータがありません。
-        </div>
+        <div className="py-4 text-center text-gray">{text.NO_PAYMENT_DATA}</div>
       )}
     </div>
   );
