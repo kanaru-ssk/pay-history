@@ -11,12 +11,18 @@ const nextConfig = withPWA({
   i18n: {
     locales: ["en", "ja"],
     defaultLocale: "ja",
+    localeDetection: false,
   },
   async redirects() {
     return [
       {
         source: "/reset-password",
         destination: "/reset-password/send-link",
+        permanent: true,
+      },
+      {
+        source: "/jp",
+        destination: "/",
         permanent: true,
       },
     ];
