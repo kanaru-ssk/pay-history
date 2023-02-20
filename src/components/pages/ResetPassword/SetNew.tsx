@@ -6,21 +6,23 @@ import Header from "components/common/Header";
 import Input from "components/common/Input";
 import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
+import { useLocale } from "hooks/locale";
 import { resetPasswordSetNew } from "libs/auth";
-import { validatePassword, validatePasswordConfirm } from "libs/validation";
+import { validatePassword, validateReenterPassword } from "libs/validation";
 
 const SetNew = () => {
   const { push } = useRouter();
+  const { locale, text } = useLocale();
 
   const [oobCode, setOobCode] = useState<string>("");
   const [continueUrl, setContinueUrl] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
-  const [newPasswordConfirm, setNewPasswordConfirm] = useState<string>("");
+  const [newPasswordConfirm, setReenterNewPassword] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessagePassword, setErrorMessageNewPassword] =
     useState<string>("");
-  const [errorMessageNewPasswordConfirm, setErrorMessageNewPasswordConfirm] =
+  const [errorMessageReenterNewPassword, setErrorMessageReenterNewPassword] =
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -36,8 +38,8 @@ const SetNew = () => {
   // validation check
   useEffect(() => {
     setIsReady(
-      validatePassword(newPassword) === "" &&
-        validatePasswordConfirm(newPassword, newPasswordConfirm) === ""
+      validatePassword(newPassword) === null &&
+        validateReenterPassword(newPassword, newPasswordConfirm) === null
     );
   }, [newPassword, newPasswordConfirm]);
 
@@ -47,8 +49,9 @@ const SetNew = () => {
     if (isReady) {
       setIsLoading(true);
       const result = await resetPasswordSetNew(oobCode, newPassword);
-      setErrorMessage(result);
-      if (result !== "") {
+
+      if (result !== null) {
+        setErrorMessage(locale === "en" ? result.en : result.ja);
         setIsLoading(false);
       } else {
         push(continueUrl);
@@ -56,17 +59,47 @@ const SetNew = () => {
     }
   };
 
+  const validationNewPassword = (
+    e: React.FocusEvent<HTMLInputElement, Element>
+  ) => {
+    const validationResult = validatePassword(e.target.value);
+    if (validationResult) {
+      setErrorMessageNewPassword(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageNewPassword("");
+    }
+  };
+
+  const validationReenterNewPassword = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setReenterNewPassword(e.target.value);
+    const validationResult = validateReenterPassword(
+      newPassword,
+      e.target.value
+    );
+    if (validationResult) {
+      setErrorMessageReenterNewPassword(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageReenterNewPassword("");
+    }
+  };
+
   return (
     <>
       <Header />
       <main>
-        <h1>パスワード再設定</h1>
+        <h1>{text.RESET_PASSWORD}</h1>
 
         <Notice text={errorMessage} error />
 
         <form onSubmit={submitSetNewPassword}>
           <div className="my-4">
-            <h3>新しいパスワードを入力</h3>
+            <h3>{text.NEW_PASSWORD}</h3>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>
             )}
@@ -74,42 +107,35 @@ const SetNew = () => {
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              onBlur={(e) =>
-                setErrorMessageNewPassword(validatePassword(e.target.value))
-              }
-              placeholder="新しいパスワードを入力"
+              onBlur={validationNewPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
           <div className="my-4">
-            <h3>新しいパスワードを再入力</h3>
-            {errorMessageNewPasswordConfirm && (
-              <div className="text-red">{errorMessageNewPasswordConfirm}</div>
+            <h3>{text.REENTER_NEW_PASSWORD}</h3>
+            {errorMessageReenterNewPassword && (
+              <div className="text-red">{errorMessageReenterNewPassword}</div>
             )}
             <Input
               type="password"
               value={newPasswordConfirm}
-              onChange={(e) => {
-                setNewPasswordConfirm(e.target.value);
-                setErrorMessageNewPasswordConfirm(
-                  validatePasswordConfirm(newPassword, e.target.value)
-                );
-              }}
-              placeholder="新しいパスワードを再入力"
+              onChange={validationReenterNewPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
           <div className="my-8">
-            <Button text="再設定" isReady={isReady} isLoading={isLoading} />
+            <Button text={text.RESET} isReady={isReady} isLoading={isLoading} />
           </div>
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText
-            text="再設定リンクをもう一度送信"
+            text={text.RESEND_RESET_LINK}
             href="/reset-password/send-link"
           />
-          <LinkText text="ホームへ" href="/my" />
+          <LinkText text="Return To Home" href="/" />
         </div>
       </main>
     </>

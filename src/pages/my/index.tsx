@@ -6,7 +6,7 @@ const MyPage = () => {
   return (
     <>
       <Head>
-        <title>マイページ | Pay History</title>
+        <title>My Page | Pay History</title>
       </Head>
 
       <My />

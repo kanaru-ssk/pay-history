@@ -1,30 +1,42 @@
 import { logEvent } from "firebase/analytics";
 
+import type { ErrorMessage } from "types/errorMessage";
+
+import englishText from "constants/englishText";
+import japaneseText from "constants/japaneseText";
 import { errCodeToMessage } from "libs/convert";
 import { auth, analytics } from "libs/firebase";
 
 export const signIn = async (
   email: string,
   password: string
-): Promise<string> => {
+): Promise<ErrorMessage | null> => {
   try {
     const { signInWithEmailAndPassword, fetchSignInMethodsForEmail } =
       await import("firebase/auth");
 
     const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (methods.length == 0) return "アカウントが見つかりませんでした。";
+    if (methods.length == 0)
+      return {
+        en: englishText.ACCOUNT_NOT_FOUND,
+        ja: japaneseText.ACCOUNT_NOT_FOUND,
+      };
 
     await signInWithEmailAndPassword(auth, email, password);
     if (analytics) logEvent(analytics, "signIn");
-    return "";
+    return null;
   } catch (error) {
     return errCodeToMessage(error);
   }
 };
 
-export const signUp = async (email: string, password: string) => {
+export const signUp = async (
+  email: string,
+  password: string
+): Promise<ErrorMessage | null> => {
   try {
-    if (!auth.currentUser) return "不明なエラーが発生しました。";
+    if (!auth.currentUser)
+      return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
     const {
       EmailAuthProvider,
       linkWithCredential,
@@ -32,22 +44,27 @@ export const signUp = async (email: string, password: string) => {
     } = await import("firebase/auth");
 
     const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (0 < methods.length) return "このメールアドレスは既に使用されています。";
+    if (0 < methods.length)
+      return {
+        en: englishText.EMAIL_ALREADY_IN_USE,
+        ja: japaneseText.EMAIL_ALREADY_IN_USE,
+      };
 
     const credential = EmailAuthProvider.credential(email, password);
     await linkWithCredential(auth.currentUser, credential);
     if (analytics) logEvent(analytics, "signUp");
-    return "";
+    return null;
   } catch (error) {
     return errCodeToMessage(error);
   }
 };
 
-export const signOut = async () => {
+export const signOut = async (): Promise<ErrorMessage | null> => {
   try {
     const { signOut } = await import("firebase/auth");
     await signOut(auth);
     if (analytics) logEvent(analytics, "signOut");
+    return null;
   } catch (error) {
     return errCodeToMessage(error);
   }
@@ -57,10 +74,12 @@ export const changePassword = async (
   email: string | null | undefined,
   oldPassword: string,
   newPassword: string
-) => {
+): Promise<ErrorMessage | null> => {
   try {
-    if (!auth.currentUser) return "不明なエラーが発生しました。";
-    if (typeof email !== "string") return "不明なエラーが発生しました。";
+    if (!auth.currentUser)
+      return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
+    if (typeof email !== "string")
+      return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
 
     const { EmailAuthProvider, reauthenticateWithCredential, updatePassword } =
       await import("firebase/auth");
@@ -69,24 +88,26 @@ export const changePassword = async (
     await reauthenticateWithCredential(auth.currentUser, credential);
     await updatePassword(auth.currentUser, newPassword);
     if (analytics) logEvent(analytics, "changePassword");
-    return "";
+    return null;
   } catch (error) {
     return errCodeToMessage(error);
   }
 };
 
-export const resetPasswordSendLink = async (email: string) => {
+export const resetPasswordSendLink = async (
+  email: string
+): Promise<ErrorMessage | null> => {
   try {
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
     const actionCodeSettings = {
-      url: process.env.NEXT_PUBLIC_URL + "/signin",
+      url: process.env.NEXT_PUBLIC_URL + "/signIn",
       handleCodeInApp: false,
     };
 
     await sendPasswordResetEmail(auth, email, actionCodeSettings);
     if (analytics) logEvent(analytics, "resetPasswordSendLink");
-    return "";
+    return null;
   } catch (error) {
     return errCodeToMessage(error);
   }
@@ -95,7 +116,7 @@ export const resetPasswordSendLink = async (email: string) => {
 export const resetPasswordSetNew = async (
   oobCode: string,
   newPassword: string
-) => {
+): Promise<ErrorMessage | null> => {
   try {
     const { verifyPasswordResetCode, confirmPasswordReset } = await import(
       "firebase/auth"
@@ -104,7 +125,7 @@ export const resetPasswordSetNew = async (
     await verifyPasswordResetCode(auth, oobCode);
     await confirmPasswordReset(auth, oobCode, newPassword);
     if (analytics) logEvent(analytics, "resetPasswordSetNew");
-    return "";
+    return null;
   } catch (error) {
     return errCodeToMessage(error);
   }

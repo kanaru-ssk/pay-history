@@ -1,5 +1,8 @@
+import type { ErrorMessage } from "types/errorMessage";
 import type { TabStatus } from "types/tabStatus";
 
+import englishText from "constants/englishText";
+import japaneseText from "constants/japaneseText";
 import { isAuthError } from "types/firebase";
 
 export const tabToDocId = (tabStatus: TabStatus): string => {
@@ -67,31 +70,46 @@ export const stringToPrice = (value: string): number => {
   return 0;
 };
 
-export const errCodeToMessage = (error: unknown) => {
+export const errCodeToMessage = (error: unknown): ErrorMessage => {
   if (isAuthError(error)) {
     if (error.code === "auth/invalid-email") {
-      return "メールアドレス形式が正しくありません。";
+      return {
+        en: error.message,
+        ja: japaneseText.INVALID_EMAIL,
+      };
     } else if (error.code === "auth/user-disabled") {
-      return "アカウントが無効になっています。";
+      return { en: error.message, ja: japaneseText.USER_DISABLED };
     } else if (error.code === "auth/user-not-found") {
-      return "アカウントが見つかりませんでした。";
+      return { en: error.message, ja: japaneseText.ACCOUNT_NOT_FOUND };
     } else if (error.code === "auth/wrong-password") {
-      return "パスワードが間違っています。";
+      return { en: error.message, ja: japaneseText.WRONG_PASSWORD };
     } else if (error.code === "auth/too-many-requests") {
-      return "所定の回数以上パスワードを間違えました。時間をおいてお試しください。";
+      return {
+        en: error.message,
+        ja: japaneseText.TOO_MANY_REQUESTS,
+      };
     } else if (error.code === "auth/email-already-in-use") {
-      return "このメールアドレスは既に使用されています。";
+      return {
+        en: error.message,
+        ja: japaneseText.EMAIL_ALREADY_USE,
+      };
     } else if (error.code === "auth/weak-password") {
-      return "パスワードが脆弱です。6文字以上で入力してください。";
+      return {
+        en: error.message,
+        ja: japaneseText.WEAK_PASSWORD,
+      };
     } else if (error.code === "auth/provider-already-linked") {
-      return "既にサインイン済みです。";
+      return { en: error.message, ja: japaneseText.PROVIDER_ALREADY_LINKED };
     } else if (error.code === "auth/invalid-action-code") {
-      return "無効な再設定リンクです。";
+      return { en: error.message, ja: japaneseText.INVALID_ACTION_CODE };
     } else if (error.code === "auth/expired-action-code") {
-      return "再設定リンクの有効期限が切れています。";
+      return {
+        en: error.message,
+        ja: japaneseText.EXPIRED_ACTION_CODE,
+      };
     }
 
-    return "不明なエラーが発生しました。";
+    return { en: error.message, ja: japaneseText.UNKNOWN_ERROR };
   }
-  return "不明なエラーが発生しました。";
+  return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
 };

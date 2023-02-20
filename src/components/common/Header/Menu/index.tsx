@@ -48,19 +48,23 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </button>
         </header>
 
-        <MenuItem text="ホーム" href="/" onClick={() => setIsMenuOpen(false)} />
+        <MenuItem
+          text="Return To Home"
+          href="/"
+          onClick={() => setIsMenuOpen(false)}
+        />
 
         {authUser?.isAnonymous && (
           <>
             <MenuItem
-              text="新規登録"
-              href="/signup"
+              text="Sign Up"
+              href="/signUp"
               onClick={() => setIsMenuOpen(false)}
             />
 
             <MenuItem
-              text="サインイン"
-              href="/signin"
+              text="Sign In"
+              href="/signIn"
               onClick={() => setIsMenuOpen(false)}
             />
           </>
@@ -68,7 +72,7 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
 
         {!authUser?.isAnonymous && (
           <MenuItem
-            text="マイページ"
+            text="My Page"
             href="/my"
             onClick={() => setIsMenuOpen(false)}
           />

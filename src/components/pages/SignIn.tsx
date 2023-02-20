@@ -7,12 +7,14 @@ import Input from "components/common/Input";
 import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
 import { signIn } from "libs/auth";
 import { validateEmail, validatePassword } from "libs/validation";
 
-const Signin = () => {
+const SignIn = () => {
   const { push } = useRouter();
   const { authUser } = useAuth();
+  const { locale, text } = useLocale();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -30,7 +32,7 @@ const Signin = () => {
   // validation check
   useEffect(() => {
     setIsReady(
-      validateEmail(email) === "" && validatePassword(password) === ""
+      validateEmail(email) === null && validatePassword(password) === null
     );
   }, [email, password]);
 
@@ -40,8 +42,35 @@ const Signin = () => {
     if (isReady) {
       setIsLoading(true);
       const result = await signIn(email, password);
-      setErrorMessage(result);
-      if (result !== "") setIsLoading(false);
+
+      if (result !== null) {
+        setErrorMessage(locale === "en" ? result.en : result.ja);
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const validationEmail = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    const validationResult = validateEmail(e.target.value);
+    if (validationResult) {
+      setErrorMessageEmail(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessageEmail("");
+    }
+  };
+
+  const validationPassword = (
+    e: React.FocusEvent<HTMLInputElement, Element>
+  ) => {
+    const validationResult = validatePassword(e.target.value);
+    if (validationResult) {
+      setErrorMessagePassword(
+        locale === "en" ? validationResult.en : validationResult.ja
+      );
+    } else {
+      setErrorMessagePassword("");
     }
   };
 
@@ -49,13 +78,13 @@ const Signin = () => {
     <>
       <Header />
       <main>
-        <h1>サインイン</h1>
+        <h1>{text.SIGN_IN}</h1>
 
         <Notice text={errorMessage} error />
 
         <form onSubmit={submitSignIn}>
           <div className="my-4">
-            <h3>メールアドレス</h3>
+            <h3>{text.MAIL_ADDRESS}</h3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -63,15 +92,13 @@ const Signin = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => {
-                setErrorMessageEmail(validateEmail(e.target.value));
-              }}
-              placeholder="メールアドレスを入力"
+              onBlur={validationEmail}
+              placeholder={text.MAIL_ADDRESS_PLACEHOLDER}
             />
           </div>
 
           <div className="my-4">
-            <h3>パスワードを入力</h3>
+            <h3>{text.PASSWORD}</h3>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>
             )}
@@ -79,22 +106,24 @@ const Signin = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onBlur={(e) => {
-                setErrorMessagePassword(validatePassword(e.target.value));
-              }}
-              placeholder="パスワードを入力"
+              onBlur={validationPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
           <div className="my-8">
-            <Button text="サインイン" isReady={isReady} isLoading={isLoading} />
+            <Button
+              text={text.SIGN_IN}
+              isReady={isReady}
+              isLoading={isLoading}
+            />
           </div>
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="新規登録はこちら" href="/signup" />
+          <LinkText text="新規登録はこちら" href="/signUp" />
           <LinkText
-            text="パスワードをお忘れの場合はこちら"
+            text={text.FORGET_PASSWORD}
             href="/reset-password/send-link"
           />
           <LinkText text="ホームへ戻る" href="/" />
@@ -104,4 +133,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignIn;

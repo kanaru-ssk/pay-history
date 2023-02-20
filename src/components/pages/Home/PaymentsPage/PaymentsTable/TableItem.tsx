@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 
 import type { Payment } from "types/firebase";
 
+import { useLocale } from "hooks/locale";
+
 type Props = {
   payment: Payment;
   setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
 const TableItem = ({ payment, setPayment }: Props) => {
+  const { text } = useLocale();
   const [bgColor, setBgColor] = useState<"bg-white" | "bg-sub-color">(
     "bg-sub-color"
   );
@@ -28,7 +31,8 @@ const TableItem = ({ payment, setPayment }: Props) => {
         {payment.atPaied.toDate().getDate()}日
       </div>
       <div className="flex-1 pr-4 text-right">
-        {payment.price.toLocaleString()}円
+        {payment.price.toLocaleString()}
+        {text.YEN}
       </div>
       <div
         onClick={() => setPayment(payment)}

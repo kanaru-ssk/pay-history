@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData } from "types/firebase";
 
-import Button from "components/common/Button";
 import Input from "components/common/Input";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
 import { addPayment } from "libs/monthlyData";
@@ -15,6 +15,7 @@ type Props = {
 
 const PaymentsForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
+  const { text } = useLocale();
   const { tabStatus } = useTabStatus();
 
   const [date, setDate] = useState<string>("");
@@ -43,14 +44,14 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
     }
   }, [tabStatus]);
 
-  // input payment amount
+  // enter payment amount
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price);
   };
 
-  // input payment date
+  // enter payment date
   const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
@@ -80,7 +81,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         <Input
           type="text"
           inputMode="numeric"
-          placeholder="支出額を入力"
+          placeholder={text.ENTER_AMOUNT}
           value={price === 0 ? "" : price.toLocaleString()}
           onChange={changePrice}
           right
@@ -88,7 +89,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         />
 
         <button className={isReady ? "text-main-color" : "text-gray"}>
-          追加
+          {text.ADD}
         </button>
       </div>
     </form>

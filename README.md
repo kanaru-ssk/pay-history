@@ -53,12 +53,12 @@
 - /
   - /my
     - /change-password
-  - /signin
-  - /signup
+  - /signIn
+  - /signUp
   - /reset-password
     - /set
 
-## Firestore のデータモデル
+## FireStore のデータモデル
 
 - users
   - 'docId-01'
@@ -67,7 +67,7 @@
     - budget: number (ユーザーが前回設定した予算)
     - email: string
     - isAnonymous: boolean (匿名ログイン判定)
-    - monthlyData: sub collectionn (月次データ)
+    - monthlyData: sub collection (月次データ)
       - '2022-8'
         - atCreated: timestamp
         - atUpdated: timestamp

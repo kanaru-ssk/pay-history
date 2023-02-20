@@ -5,6 +5,7 @@ import type { MonthlyData, Payment } from "types/firebase";
 import Button from "components/common/Button";
 import Input from "components/common/Input";
 import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
 import { dateToInputData, stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";
 
@@ -16,6 +17,7 @@ type Props = {
 
 const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   const { dbUser } = useAuth();
+  const { text } = useLocale();
 
   const [date, setDate] = useState<string>("");
   const [minDate, setMinDate] = useState<string>("");
@@ -65,7 +67,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   };
 
   // save edit
-  const sumitSavePayment = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSavePayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady && payment) {
       setIsReady(false);
@@ -123,7 +125,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
               <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
             </svg>
           </button>
-          <form onSubmit={sumitSavePayment} className="bg-white">
+          <form onSubmit={submitSavePayment} className="bg-white">
             <div className="flex w-full items-center gap-2 py-2">
               <Input
                 type="date"
@@ -136,7 +138,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
               <Input
                 type="text"
                 inputMode="numeric"
-                placeholder="支出額を入力してください。"
+                placeholder={text.ENTER_AMOUNT}
                 value={price.toLocaleString()}
                 onChange={changePrice}
                 right
@@ -146,7 +148,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
             <div className="flex gap-2 py-2">
               <Button
                 type="button"
-                text="削除"
+                text={text.DELETE}
                 onClick={deletePayment}
                 isLoading={isDeleteLoading}
                 red
@@ -154,7 +156,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
               <Button
                 type="submit"
-                text="支払データ修正"
+                text={text.FIX_AMOUNT}
                 isReady={isReady}
                 isLoading={isUpdateLoading}
               />

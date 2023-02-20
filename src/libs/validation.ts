@@ -1,32 +1,56 @@
-export const validateEmail = (email: string): string => {
-  if (!email) return "メールアドレスを入力してください。";
+import type { ErrorMessage } from "types/errorMessage";
+
+import englishText from "constants/englishText";
+import japaneseText from "constants/japaneseText";
+
+export const validateEmail = (email: string): ErrorMessage | null => {
+  if (!email)
+    return {
+      en: englishText.ENTER_YOUR_EMAIL_ADDRESS,
+      ja: japaneseText.ENTER_YOUR_EMAIL_ADDRESS,
+    };
 
   const emailFormat =
     /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
-  if (!emailFormat.test(email)) return "メールアドレス形式が正しくありません。";
+  if (!emailFormat.test(email))
+    return {
+      en: englishText.ENTER_YOUR_EMAIL_ADDRESS,
+      ja: japaneseText.ENTER_YOUR_EMAIL_ADDRESS,
+    };
 
-  return "";
+  return null;
 };
 
-export const validatePassword = (password: string): string => {
-  if (!password) return "パスワードを入力してください。";
+export const validatePassword = (password: string): ErrorMessage | null => {
+  if (!password)
+    return { en: englishText.ENTER_PASSWORD, ja: japaneseText.ENTER_PASSWORD };
 
   const passwordFormat1 = /^[A-Za-z0-9]*$/;
   if (!passwordFormat1.test(password))
-    return "パスワードは半角英数字のみで入力してください。";
+    return {
+      en: englishText.PASSWORD_CONDITION_01,
+      ja: japaneseText.PASSWORD_CONDITION_01,
+    };
 
   const passwordFormat2 = /^[a-z\d]{6,20}$/i;
   if (!passwordFormat2.test(password))
-    return "パスワードは6文字以上、20文字以内で入力してください。";
+    return {
+      en: englishText.PASSWORD_CONDITION_02,
+      ja: japaneseText.PASSWORD_CONDITION_02,
+    };
 
-  return "";
+  return null;
 };
 
-export const validatePasswordConfirm = (
+export const validateReenterPassword = (
   password: string,
-  passwordConfirm: string
-): string => {
-  if (password !== passwordConfirm) return "パスワードが一致しませんでした。";
+  reenterPassword: string
+): ErrorMessage | null => {
+  if (password !== reenterPassword)
+    return {
+      en: englishText.NOT_CORRECT_PASSWORD,
+      ja: japaneseText.NOT_CORRECT_PASSWORD,
+    };
 
-  return "";
+  return null;
 };
