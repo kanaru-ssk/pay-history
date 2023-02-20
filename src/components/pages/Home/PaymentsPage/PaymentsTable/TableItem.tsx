@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import type { Payment } from "types/firebase";
 
 import { useLocale } from "hooks/locale";
-import { displayMonth, displayDate } from "libs/displayMonth";
 
 type Props = {
   payment: Payment;
@@ -28,8 +27,8 @@ const TableItem = ({ payment, setPayment }: Props) => {
       className={bgColor + " flex h-9 items-center  duration-1000"}
     >
       <div className="flex-1 pl-4 text-left">
-        {displayMonth(payment.atPaied.toDate().getMonth() + 1, locale)}
-        {displayDate(payment.atPaied.toDate().getDate(), locale)}
+        {String(payment.atPaied.toDate().getMonth() + 1).padStart(2, "0")}/
+        {String(payment.atPaied.toDate().getDate()).padStart(2, "0")}
       </div>
       <div className="flex-1 pr-4 text-right">
         {payment.price.toLocaleString()}

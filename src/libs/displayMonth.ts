@@ -38,8 +38,3 @@ export const displayMonth = (month: number, locale?: string): string => {
   }
   return japaneseMonths[month - 1];
 };
-
-export const displayDate = (date: number, locale?: string) => {
-  if (locale === "en") return date;
-  return `${date}日`;
-};
