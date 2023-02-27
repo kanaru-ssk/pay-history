@@ -42,7 +42,7 @@ const Budget = ({ thisMonthData }: Props) => {
 
   // edit the budget
   const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const price = stringToPrice(e.target.value);
+    const price = stringToPrice(e.target.value.substring(2));
     setBudget(price);
     setIsReady(price !== thisMonthData.budget);
   };
@@ -64,8 +64,8 @@ const Budget = ({ thisMonthData }: Props) => {
           <td className="text-right">
             <Input
               type="text"
-              inputMode="numeric"
-              value={budget.toLocaleString()}
+              inputMode="text"
+              value={"¥ " + budget.toLocaleString()}
               onChange={changeBudget}
               onBlur={saveBudget}
               onKeyPress={(e) => {
@@ -75,17 +75,18 @@ const Budget = ({ thisMonthData }: Props) => {
               right
             />
           </td>
-          <td>{text.YEN}</td>
         </tr>
         <tr className="border-b">
           <th>{text.SPENT}</th>
-          <td className="px-4 text-right">{totalSpending.toLocaleString()}</td>
-          <td>{text.YEN}</td>
+          <td className="px-4 text-right">
+            ¥ {totalSpending.toLocaleString()}
+          </td>
         </tr>
         <tr>
           <th>{text.REMAINING}</th>
-          <td className="text-right text-3xl">{remaining.toLocaleString()}</td>
-          <td>{text.YEN}</td>
+          <td className="text-right text-3xl">
+            ¥ {remaining.toLocaleString()}
+          </td>
         </tr>
       </tbody>
     </table>

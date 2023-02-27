@@ -31,8 +31,7 @@ const TableItem = ({ payment, setPayment }: Props) => {
         {String(payment.atPaied.toDate().getDate()).padStart(2, "0")}
       </div>
       <div className="flex-1 pr-4 text-right">
-        {payment.price.toLocaleString()}
-        {text.YEN}
+        ¥ {payment.price.toLocaleString()}
       </div>
       <div
         onClick={() => setPayment(payment)}

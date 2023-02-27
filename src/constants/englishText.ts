@@ -40,11 +40,11 @@ const englishText = {
   SIGN_OUT: "Sign Out",
   SIGN_UP: "Sign Up",
   LP_TEXT_01: "simplify monthly budgeting",
-  LP_TEXT_02: "Is your monthly budget management well done?",
+  LP_TEXT_02: "Are you managing your monthly budget effectively?",
   LP_TEXT_03:
-    "Credit card statements take time to reflect, and it's difficult to figure out how much you've used since the beginning of the month.",
+    "Credit card statements take time to reflect, and it's difficult to determine how much you have spent since the beginning of the month.",
   LP_TEXT_04:
-    "With the budget management tool 'Pay History', you can manage your monthly budget, spending amount, and budget balance in the simplest way.",
+    "With the budget management tool 'Pay History,' you can easily manage your monthly budget, track your spending, and monitor your budget balance.",
   HOW_TO_USE: "How To Use",
   HOW_TO_USE_01: "Enter monthly budget.",
   HOW_TO_USE_02: "When you make a payment, enter the amount in this app.",
