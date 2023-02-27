@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 
 import type { Payment } from "types/firebase";
 
-import { useLocale } from "hooks/locale";
-
 type Props = {
   payment: Payment;
   setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
 const TableItem = ({ payment, setPayment }: Props) => {
-  const { locale, text } = useLocale();
   const [bgColor, setBgColor] = useState<"bg-white" | "bg-sub-color">(
     "bg-sub-color"
   );

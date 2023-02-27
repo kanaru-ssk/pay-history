@@ -1,43 +1,26 @@
 import type { ErrorMessage } from "types/errorMessage";
 
-import englishText from "constants/englishText";
-import japaneseText from "constants/japaneseText";
+import { texts } from "constants/texts";
 
 export const validateEmail = (email: string): ErrorMessage | null => {
-  if (!email)
-    return {
-      en: englishText.ENTER_YOUR_EMAIL_ADDRESS,
-      ja: japaneseText.ENTER_YOUR_EMAIL_ADDRESS,
-    };
+  if (!email) return texts.ENTER_YOUR_EMAIL_ADDRESS;
 
   const emailFormat =
     /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
-  if (!emailFormat.test(email))
-    return {
-      en: englishText.ENTER_YOUR_EMAIL_ADDRESS,
-      ja: japaneseText.ENTER_YOUR_EMAIL_ADDRESS,
-    };
+  if (!emailFormat.test(email)) return texts.INVALID_EMAIL;
 
   return null;
 };
 
 export const validatePassword = (password: string): ErrorMessage | null => {
-  if (!password)
-    return { en: englishText.ENTER_PASSWORD, ja: japaneseText.ENTER_PASSWORD };
+  if (!password) return texts.ENTER_PASSWORD;
 
   const passwordFormat1 = /^[A-Za-z0-9]*$/;
   if (!passwordFormat1.test(password))
-    return {
-      en: englishText.PASSWORD_CONDITION_01,
-      ja: japaneseText.PASSWORD_CONDITION_01,
-    };
+    return texts.ONLY_ALPHANUMERIC_CHARACTERS;
 
   const passwordFormat2 = /^[a-z\d]{6,20}$/i;
-  if (!passwordFormat2.test(password))
-    return {
-      en: englishText.PASSWORD_CONDITION_02,
-      ja: japaneseText.PASSWORD_CONDITION_02,
-    };
+  if (!passwordFormat2.test(password)) return texts.CHARACTERS_6_to_20;
 
   return null;
 };
@@ -46,11 +29,7 @@ export const validateReenterPassword = (
   password: string,
   reenterPassword: string
 ): ErrorMessage | null => {
-  if (password !== reenterPassword)
-    return {
-      en: englishText.NOT_CORRECT_PASSWORD,
-      ja: japaneseText.NOT_CORRECT_PASSWORD,
-    };
+  if (password !== reenterPassword) return texts.NOT_CORRECT_PASSWORD;
 
   return null;
 };

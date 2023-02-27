@@ -37,7 +37,7 @@ const My = () => {
         <Notice text={changePasswordSuccess ? text.PASSWORD_CHANGED : ""} />
 
         <div className="my-4">
-          <h3>{text.MAIL_ADDRESS}</h3>
+          <h3>{text.EMAIL_ADDRESS}</h3>
           <div>{authUser?.email}</div>
         </div>
 

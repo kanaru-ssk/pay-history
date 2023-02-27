@@ -1,8 +1,7 @@
 import type { ErrorMessage } from "types/errorMessage";
 import type { TabStatus } from "types/tabStatus";
 
-import englishText from "constants/englishText";
-import japaneseText from "constants/japaneseText";
+import { texts, japaneseText } from "constants/texts";
 import { isAuthError } from "types/firebase";
 
 export const tabToDocId = (tabStatus: TabStatus): string => {
@@ -111,5 +110,5 @@ export const errCodeToMessage = (error: unknown): ErrorMessage => {
 
     return { en: error.message, ja: japaneseText.UNKNOWN_ERROR };
   }
-  return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
+  return texts.UNKNOWN_ERROR;
 };

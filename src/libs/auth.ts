@@ -2,8 +2,7 @@ import { logEvent } from "firebase/analytics";
 
 import type { ErrorMessage } from "types/errorMessage";
 
-import englishText from "constants/englishText";
-import japaneseText from "constants/japaneseText";
+import { texts } from "constants/texts";
 import { errCodeToMessage } from "libs/convert";
 import { auth, analytics } from "libs/firebase";
 
@@ -16,11 +15,7 @@ export const signIn = async (
       await import("firebase/auth");
 
     const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (methods.length == 0)
-      return {
-        en: englishText.ACCOUNT_NOT_FOUND,
-        ja: japaneseText.ACCOUNT_NOT_FOUND,
-      };
+    if (methods.length == 0) return texts.ACCOUNT_NOT_FOUND;
 
     await signInWithEmailAndPassword(auth, email, password);
     if (analytics) logEvent(analytics, "signIn");
@@ -35,8 +30,7 @@ export const signUp = async (
   password: string
 ): Promise<ErrorMessage | null> => {
   try {
-    if (!auth.currentUser)
-      return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
+    if (!auth.currentUser) return texts.UNKNOWN_ERROR;
     const {
       EmailAuthProvider,
       linkWithCredential,
@@ -44,11 +38,7 @@ export const signUp = async (
     } = await import("firebase/auth");
 
     const methods = await fetchSignInMethodsForEmail(auth, email);
-    if (0 < methods.length)
-      return {
-        en: englishText.EMAIL_ALREADY_IN_USE,
-        ja: japaneseText.EMAIL_ALREADY_IN_USE,
-      };
+    if (0 < methods.length) return texts.EMAIL_ALREADY_IN_USE;
 
     const credential = EmailAuthProvider.credential(email, password);
     await linkWithCredential(auth.currentUser, credential);
@@ -76,10 +66,8 @@ export const changePassword = async (
   newPassword: string
 ): Promise<ErrorMessage | null> => {
   try {
-    if (!auth.currentUser)
-      return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
-    if (typeof email !== "string")
-      return { en: englishText.UNKNOWN_ERROR, ja: japaneseText.UNKNOWN_ERROR };
+    if (!auth.currentUser) return texts.UNKNOWN_ERROR;
+    if (typeof email !== "string") return texts.UNKNOWN_ERROR;
 
     const { EmailAuthProvider, reauthenticateWithCredential, updatePassword } =
       await import("firebase/auth");
