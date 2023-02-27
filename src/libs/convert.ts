@@ -72,10 +72,7 @@ export const stringToPrice = (value: string): number => {
 export const errCodeToMessage = (error: unknown): ErrorMessage => {
   if (isAuthError(error)) {
     if (error.code === "auth/invalid-email") {
-      return {
-        en: error.message,
-        ja: japaneseText.INVALID_EMAIL,
-      };
+      return { en: error.message, ja: japaneseText.INVALID_EMAIL };
     } else if (error.code === "auth/user-disabled") {
       return { en: error.message, ja: japaneseText.USER_DISABLED };
     } else if (error.code === "auth/user-not-found") {
@@ -83,29 +80,17 @@ export const errCodeToMessage = (error: unknown): ErrorMessage => {
     } else if (error.code === "auth/wrong-password") {
       return { en: error.message, ja: japaneseText.WRONG_PASSWORD };
     } else if (error.code === "auth/too-many-requests") {
-      return {
-        en: error.message,
-        ja: japaneseText.TOO_MANY_REQUESTS,
-      };
+      return { en: error.message, ja: japaneseText.TOO_MANY_REQUESTS };
     } else if (error.code === "auth/email-already-in-use") {
-      return {
-        en: error.message,
-        ja: japaneseText.EMAIL_ALREADY_USE,
-      };
+      return { en: error.message, ja: japaneseText.EMAIL_ALREADY_USE };
     } else if (error.code === "auth/weak-password") {
-      return {
-        en: error.message,
-        ja: japaneseText.WEAK_PASSWORD,
-      };
+      return { en: error.message, ja: japaneseText.WEAK_PASSWORD };
     } else if (error.code === "auth/provider-already-linked") {
       return { en: error.message, ja: japaneseText.PROVIDER_ALREADY_LINKED };
     } else if (error.code === "auth/invalid-action-code") {
       return { en: error.message, ja: japaneseText.INVALID_ACTION_CODE };
     } else if (error.code === "auth/expired-action-code") {
-      return {
-        en: error.message,
-        ja: japaneseText.EXPIRED_ACTION_CODE,
-      };
+      return { en: error.message, ja: japaneseText.EXPIRED_ACTION_CODE };
     }
 
     return { en: error.message, ja: japaneseText.UNKNOWN_ERROR };
