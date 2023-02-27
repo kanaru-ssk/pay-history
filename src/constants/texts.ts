@@ -270,40 +270,43 @@ export const texts: {
   },
   // error
   ENTER_PASSWORD: {
-    en: "Enter password",
+    en: "Enter password.",
     ja: "パスワードを入力して下さい。",
   },
   ACCOUNT_NOT_FOUND: {
-    en: "account not found",
+    en: "Account not found.",
     ja: "アカウントが見つかりませんでした。",
   },
   UNKNOWN_ERROR: {
-    en: "unknown error",
+    en: "Unknown error.",
     ja: "不明なエラーが発生しました。",
   },
   USER_DISABLED: {
-    en: "user disabled",
+    en: "User disabled.",
     ja: "アカウントが無効になっています。",
   },
   INVALID_EMAIL: {
-    en: "invalid email",
+    en: "Invalid email format.",
     ja: "メールアドレス形式が正しくありません。",
   },
   EMAIL_ALREADY_IN_USE: {
-    en: "email already in use",
+    en: "Email already in use.",
     ja: "このメールアドレスは既に使用されています。",
   },
   NOT_CORRECT_PASSWORD: {
-    en: "password did not match",
+    en: "Password did not match.",
     ja: "パスワードが一致しませんでした。",
   },
-  WRONG_PASSWORD: { en: "wrong password", ja: "パスワードが間違っています。" },
+  WRONG_PASSWORD: {
+    en: "Wrong password.",
+    ja: "パスワードが間違っています。",
+  },
   TOO_MANY_REQUESTS: {
     en: "too many requests. please try again later.",
     ja: "所定の回数以上パスワードを間違えました。時間をおいてお試しください。",
   },
   ENTER_YOUR_EMAIL_ADDRESS: {
-    en: "Enter your email address",
+    en: "Enter your email address.",
     ja: "メールアドレスを入力してください。",
   },
   EMAIL_ALREADY_USE: {
@@ -311,19 +314,19 @@ export const texts: {
     ja: "このメールアドレスは既に使用されています。",
   },
   WEAK_PASSWORD: {
-    en: "Weak password",
+    en: "Weak password.",
     ja: "パスワードが脆弱です。6文字以上で入力してください。",
   },
   PROVIDER_ALREADY_LINKED: {
-    en: "Provider already linked",
+    en: "Provider already linked.",
     ja: "既にサインイン済みです。",
   },
   INVALID_ACTION_CODE: {
-    en: "Invalid action code",
+    en: "Invalid action code.",
     ja: "無効な再設定リンクです。",
   },
   EXPIRED_ACTION_CODE: {
-    en: "Expired action code",
+    en: "Expired action code.",
     ja: "再設定リンクの有効期限が切れています。",
   },
 };
