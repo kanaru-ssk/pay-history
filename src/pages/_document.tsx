@@ -1,5 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+import { colors } from "constants/colors";
+
 class MyDocument extends Document {
   render() {
     return (
@@ -26,7 +28,7 @@ class MyDocument extends Document {
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <link rel="manifest" href="/manifest.json" />
 
-          <meta name="theme-color" content="#C1C5FE" />
+          <meta name="theme-color" content={colors.SUB_COLOR} />
           <meta name="application-name" content="Pay History" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
@@ -39,7 +41,7 @@ class MyDocument extends Document {
             name="msapplication-config"
             content="/icons/browserconfig.xml"
           />
-          <meta name="msapplication-TileColor" content="#232C93" />
+          <meta name="msapplication-TileColor" content={colors.MAIN_COLOR} />
           <meta name="msapplication-tap-highlight" content="no" />
 
           <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
