@@ -124,9 +124,9 @@ const ChangePassword = () => {
           <div className="my-4">
             <h3>{text.NEW_PASSWORD}</h3>
             <div className="pb-2 leading-5 text-dark-gray">
-              {text.PASSWORD_CONDITION_01}
+              {text.ONLY_ALPHANUMERIC_CHARACTERS}
               <br />
-              {text.PASSWORD_CONDITION_02}
+              {text.CHARACTERS_6_to_20}
             </div>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 
-import englishText from "constants/englishText";
-import japaneseText from "constants/japaneseText";
+import { englishText, japaneseText } from "constants/texts";
 
 export const useLocale = () => {
   const { locale } = useRouter();

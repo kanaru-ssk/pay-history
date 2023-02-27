@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { Payment } from "types/firebase";
 
-import { useLocale } from "hooks/locale";
+import MoreIcon from "components/common/icons/MoreIcon";
 
 type Props = {
   payment: Payment;
@@ -10,7 +10,6 @@ type Props = {
 };
 
 const TableItem = ({ payment, setPayment }: Props) => {
-  const { locale, text } = useLocale();
   const [bgColor, setBgColor] = useState<"bg-white" | "bg-sub-color">(
     "bg-sub-color"
   );
@@ -31,13 +30,13 @@ const TableItem = ({ payment, setPayment }: Props) => {
         {String(payment.atPaied.toDate().getDate()).padStart(2, "0")}
       </div>
       <div className="flex-1 pr-4 text-right">
-        ¥ {payment.price.toLocaleString()}
+        {payment.price.toLocaleString()}
       </div>
       <div
         onClick={() => setPayment(payment)}
-        className="w-8 cursor-pointer p-2 text-sm"
+        className="w-8 cursor-pointer p-2 text-sm text-center"
       >
-        ︙
+        <MoreIcon />
       </div>
     </div>
   );

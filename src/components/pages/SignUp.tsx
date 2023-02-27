@@ -110,7 +110,7 @@ const SignUp = () => {
 
         <form onSubmit={submitSignUp}>
           <div className="my-4">
-            <h3>{text.MAIL_ADDRESS}</h3>
+            <h3>{text.EMAIL_ADDRESS}</h3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -119,7 +119,7 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onBlur={validationEmail}
-              placeholder={text.MAIL_ADDRESS_PLACEHOLDER}
+              placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
             />
           </div>
 

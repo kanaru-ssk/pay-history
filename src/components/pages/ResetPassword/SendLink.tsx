@@ -33,7 +33,7 @@ const SetLink = () => {
       const result = await resetPasswordSendLink(email);
       setIsLoading(false);
       if (result === null) {
-        setNoticeMessage(text.SENT_RESET_LINK);
+        setNoticeMessage(text.PASSWORD_RESET_LINK_SENT);
       } else {
         setNoticeMessage(locale === "en" ? result.en : result.ja);
         setIsError(result !== null);
@@ -62,7 +62,7 @@ const SetLink = () => {
 
         <form onSubmit={submitSendResetPasswordLink}>
           <div className="my-4">
-            <h3>{text.MAIL_ADDRESS}</h3>
+            <h3>{text.EMAIL_ADDRESS}</h3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -71,7 +71,7 @@ const SetLink = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onBlur={validationEmail}
-              placeholder={text.MAIL_ADDRESS_PLACEHOLDER}
+              placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
             />
           </div>
 
