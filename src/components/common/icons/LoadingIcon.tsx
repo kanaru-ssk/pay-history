@@ -2,7 +2,7 @@ type Props = {
   red?: boolean;
 };
 
-const Loading = ({ red }: Props) => {
+const LoadingIcon = ({ red }: Props) => {
   const color = red
     ? "border-red border-t-light-red"
     : "border-main-color border-t-sub-color";
@@ -14,4 +14,4 @@ const Loading = ({ red }: Props) => {
   );
 };
 
-export default Loading;
+export default LoadingIcon;

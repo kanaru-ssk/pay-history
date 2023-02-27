@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import type { Payment } from "types/firebase";
 
+import MoreIcon from "components/common/icons/MoreIcon";
+
 type Props = {
   payment: Payment;
   setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
@@ -32,9 +34,9 @@ const TableItem = ({ payment, setPayment }: Props) => {
       </div>
       <div
         onClick={() => setPayment(payment)}
-        className="w-8 cursor-pointer p-2 text-sm"
+        className="w-8 cursor-pointer p-2 text-sm text-center"
       >
-        ︙
+        <MoreIcon />
       </div>
     </div>
   );

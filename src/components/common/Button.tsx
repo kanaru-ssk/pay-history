@@ -1,4 +1,4 @@
-import Loading from "components/common/Loading";
+import LoadingIcon from "components/common/icons/LoadingIcon";
 
 type Props = {
   type?: "button" | "submit" | "reset";
@@ -36,7 +36,7 @@ const Button = ({
     >
       {isLoading ? (
         <div className="flex justify-center">
-          <Loading red={red} />
+          <LoadingIcon red={red} />
         </div>
       ) : (
         text
