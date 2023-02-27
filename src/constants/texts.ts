@@ -58,7 +58,6 @@ const textKeys = [
   "ENTER_YOUR_EMAIL_ADDRESS",
   "EMAIL_ALREADY_USE",
   "WEAK_PASSWORD",
-  "PROVIDER_ALREADY_LINKED",
   "INVALID_ACTION_CODE",
   "EXPIRED_ACTION_CODE",
 ] as const;
@@ -76,11 +75,11 @@ export const texts: {
 } = {
   // auth
   CHANGE: {
-    en: "change",
+    en: "Change",
     ja: "変更",
   },
   CHANGE_PASSWORD: {
-    en: "change password",
+    en: "Change password",
     ja: "パスワード変更",
   },
   CREATE_ACCOUNT: {
@@ -88,7 +87,7 @@ export const texts: {
     ja: "アカウント作成",
   },
   CURRENT_PASSWORD: {
-    en: "Current Password",
+    en: "Current password",
     ja: "現在のパスワード",
   },
   EMAIL_ADDRESS: {
@@ -100,27 +99,27 @@ export const texts: {
     ja: "例) mail@example.com",
   },
   NEW_PASSWORD: {
-    en: "New Password",
+    en: "New password",
     ja: "新しいパスワード",
   },
   REENTER_NEW_PASSWORD: {
-    en: "Reenter New Password",
+    en: "Reenter new password",
     ja: "新しいパスワードを再入力",
   },
   REENTER_PASSWORD: {
-    en: "Renter Password",
+    en: "Renter password",
     ja: "パスワードを再入力",
   },
   RESEND: {
-    en: "resend",
+    en: "Resend",
     ja: "再送信",
   },
   RESEND_RESET_LINK: {
-    en: "resend reset link",
+    en: "Resend reset link",
     ja: "再設定リンクをもう一度送信",
   },
   RESET: {
-    en: "reset",
+    en: "Reset",
     ja: "再設定",
   },
   RESET_PASSWORD: {
@@ -136,28 +135,28 @@ export const texts: {
     ja: "例) password0000",
   },
   SEND: {
-    en: "send",
+    en: "Send",
     ja: "送信",
   },
   SIGN_IN: {
-    en: "Sign In",
+    en: "Sign in",
     ja: "サインイン",
   },
   SIGN_OUT: {
-    en: "Sign Out",
+    en: "Sign put",
     ja: "サインアウト",
   },
   SIGN_UP: {
-    en: "Sign Up",
+    en: "Sign up",
     ja: "サインアップ",
   },
   // error
   ONLY_ALPHANUMERIC_CHARACTERS: {
-    en: "only alphanumeric characters",
+    en: "Only alphanumeric characters",
     ja: "半角英数字のみ使用できます。",
   },
   CHARACTERS_6_to_20: {
-    en: "use 6 to 20 characters",
+    en: "Use 6 to 20 characters",
     ja: "6から20文字で入力してください。",
   },
   PAGE_NOT_FOUND: {
@@ -166,11 +165,11 @@ export const texts: {
   },
   // home
   ADD: {
-    en: "add",
+    en: "Add",
     ja: "追加",
   },
   AMOUNT: {
-    en: "amount",
+    en: "Amount",
     ja: "金額",
   },
   BUDGET: {
@@ -178,19 +177,19 @@ export const texts: {
     ja: "予算",
   },
   DELETE: {
-    en: "delete",
+    en: "Delete",
     ja: "削除",
   },
   ENTER_AMOUNT: {
-    en: "enter amount",
+    en: "Enter amount",
     ja: "支出額を入力",
   },
   FIX_AMOUNT: {
-    en: "fix amount",
+    en: "Fix amount",
     ja: "支払データ修正",
   },
   NO_PAYMENT_DATA: {
-    en: "No Payment Data",
+    en: "No payment data",
     ja: "支払いデータがありません。",
   },
   REMAINING: {
@@ -202,7 +201,7 @@ export const texts: {
     ja: "支出",
   },
   SPENT_DATE: {
-    en: "spent date",
+    en: "Spent date",
     ja: "支払日",
   },
   // links
@@ -224,16 +223,16 @@ export const texts: {
   },
   // lp
   START_BUDGETING: {
-    en: "Start Budgeting",
+    en: "Start budgeting",
     ja: "予算管理を始める",
   },
   LP_TEXT_01: {
-    en: "simplify monthly budgeting",
+    en: "Simplify monthly budgeting",
     ja: "毎月の予算管理をシンプルに",
   },
   LP_TEXT_02: {
-    en: "simplify monthly budgeting",
-    ja: "毎月の予算管理をシンプルに",
+    en: "Are you managing your monthly budget effectively?",
+    ja: "月の予算管理、しっかりできていますか？",
   },
   LP_TEXT_03: {
     en: "Credit card statements take time to reflect, and it's difficult to determine how much you have spent since the beginning of the month.",
@@ -244,7 +243,7 @@ export const texts: {
     ja: "予算管理ツール「PayHistory」なら、月の予算、支出額、予算の残高を最もシンプルに管理できます。",
   },
   HOW_TO_USE: {
-    en: "How To Use",
+    en: "How to use",
     ja: "使い方",
   },
   HOW_TO_USE_01: {
@@ -261,7 +260,7 @@ export const texts: {
   },
   // notification
   PASSWORD_CHANGED: {
-    en: "password changed",
+    en: "Password changed",
     ja: "パスワードを変更しました。",
   },
   PASSWORD_RESET_LINK_SENT: {
@@ -278,11 +277,11 @@ export const texts: {
     ja: "アカウントが見つかりませんでした。",
   },
   UNKNOWN_ERROR: {
-    en: "Unknown error.",
+    en: "An unexpected error occurred. Please try again later.",
     ja: "不明なエラーが発生しました。",
   },
   USER_DISABLED: {
-    en: "User disabled.",
+    en: "Account not available.",
     ja: "アカウントが無効になっています。",
   },
   INVALID_EMAIL: {
@@ -290,7 +289,7 @@ export const texts: {
     ja: "メールアドレス形式が正しくありません。",
   },
   EMAIL_ALREADY_IN_USE: {
-    en: "Email already in use.",
+    en: "This email address is already in use.",
     ja: "このメールアドレスは既に使用されています。",
   },
   NOT_CORRECT_PASSWORD: {
@@ -303,31 +302,27 @@ export const texts: {
   },
   TOO_MANY_REQUESTS: {
     en: "too many requests. please try again later.",
-    ja: "所定の回数以上パスワードを間違えました。時間をおいてお試しください。",
+    ja: "リクエスト回数が上限に達しました。時間をおいてお試しください。",
   },
   ENTER_YOUR_EMAIL_ADDRESS: {
     en: "Enter your email address.",
     ja: "メールアドレスを入力してください。",
   },
   EMAIL_ALREADY_USE: {
-    en: "This email address is already used.",
-    ja: "このメールアドレスは既に使用されています。",
+    en: "Sorry, this email address is already in use. Please try signing in or use a different email address to create a new account.",
+    ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスでサインアップして下さい。",
   },
   WEAK_PASSWORD: {
-    en: "Weak password.",
-    ja: "パスワードが脆弱です。6文字以上で入力してください。",
-  },
-  PROVIDER_ALREADY_LINKED: {
-    en: "Provider already linked.",
-    ja: "既にサインイン済みです。",
+    en: "Oops, password needs to be between 6 to 20 characters. Please try again with a password that meets this requirement.",
+    ja: "パスワードは6から20文字で入力してください。",
   },
   INVALID_ACTION_CODE: {
-    en: "Invalid action code.",
-    ja: "無効な再設定リンクです。",
+    en: "Oops, this password reset link is invalid. Please make sure you copied the link correctly or request a new one to reset your password.",
+    ja: "無効な再設定リンクです。お手数ですが、正しくリンクをコピーしたか確認するか、パスワード再設定リンクを再度リクエストして下さい。",
   },
   EXPIRED_ACTION_CODE: {
-    en: "Expired action code.",
-    ja: "再設定リンクの有効期限が切れています。",
+    en: "Sorry, this password reset link has expired. Please request a new one to reset your password.",
+    ja: "パスワード再設定リンクの有効期限が切れています。お手数ですが、パスワード再設定リンクを再度リクエストして下さい。",
   },
 };
 

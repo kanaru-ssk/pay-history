@@ -81,12 +81,13 @@ export const errCodeToMessage = (error: unknown): ErrorMessage => {
       return texts.WRONG_PASSWORD;
     } else if (error.code === "auth/too-many-requests") {
       return texts.TOO_MANY_REQUESTS;
-    } else if (error.code === "auth/email-already-in-use") {
+    } else if (
+      error.code === "auth/email-already-in-use" ||
+      error.code === "auth/provider-already-linked"
+    ) {
       return texts.EMAIL_ALREADY_USE;
     } else if (error.code === "auth/weak-password") {
       return texts.WEAK_PASSWORD;
-    } else if (error.code === "auth/provider-already-linked") {
-      return texts.PROVIDER_ALREADY_LINKED;
     } else if (error.code === "auth/invalid-action-code") {
       return texts.INVALID_ACTION_CODE;
     } else if (error.code === "auth/expired-action-code") {
