@@ -127,7 +127,7 @@ describe("errCodeToMessage function", () => {
         message: "Email already in use.",
       })
     ).toEqual({
-      en: "Email already in use.",
+      en: "This email address is already used.",
       ja: "このメールアドレスは既に使用されています。",
     });
   });
