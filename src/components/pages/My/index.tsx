@@ -55,7 +55,7 @@ const My = () => {
         </div>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="Return To Home" href="/" />
+          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
       </main>
     </>

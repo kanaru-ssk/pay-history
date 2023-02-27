@@ -10,7 +10,7 @@ const Custom404 = () => {
       <main>
         <h1>404 Not Found</h1>
         <p className="pb-8">{text.PAGE_NOT_FOUND}</p>
-        <LinkText text="Return To Home" href="/" />
+        <LinkText text={text.RETURN_TO_HOME} href="/" />
       </main>
     </>
   );
