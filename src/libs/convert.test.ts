@@ -61,7 +61,7 @@ describe("stringToPrice function", () => {
 describe("errCodeToMessage function", () => {
   test("return unknown for error is not AuthError", () => {
     expect(errCodeToMessage({ code: "unknown" })).toEqual({
-      en: "Unknown error.",
+      en: "An unexpected error occurred. Please try again later.",
       ja: "不明なエラーが発生しました。",
     });
   });
@@ -69,7 +69,7 @@ describe("errCodeToMessage function", () => {
     expect(
       errCodeToMessage({
         code: "auth/invalid-email",
-        message: "Invalid email format.",
+        message: "",
       })
     ).toEqual({
       en: "Invalid email format.",
@@ -80,10 +80,10 @@ describe("errCodeToMessage function", () => {
     expect(
       errCodeToMessage({
         code: "auth/user-disabled",
-        message: "User disabled.",
+        message: "",
       })
     ).toEqual({
-      en: "User disabled.",
+      en: "Account not available.",
       ja: "アカウントが無効になっています。",
     });
   });
@@ -91,7 +91,7 @@ describe("errCodeToMessage function", () => {
     expect(
       errCodeToMessage({
         code: "auth/user-not-found",
-        message: "Account not found.",
+        message: "",
       })
     ).toEqual({
       en: "Account not found.",
@@ -102,7 +102,7 @@ describe("errCodeToMessage function", () => {
     expect(
       errCodeToMessage({
         code: "auth/wrong-password",
-        message: "Wrong password.",
+        message: "",
       })
     ).toEqual({
       en: "Wrong password.",
@@ -113,66 +113,66 @@ describe("errCodeToMessage function", () => {
     expect(
       errCodeToMessage({
         code: "auth/too-many-requests",
-        message: "too many requests. please try again later.",
+        message: "",
       })
     ).toEqual({
       en: "too many requests. please try again later.",
-      ja: "所定の回数以上パスワードを間違えました。時間をおいてお試しください。",
+      ja: "リクエスト回数が上限に達しました。時間をおいてお試しください。",
     });
   });
   test("return message for errorCode is email-already-in-use", () => {
     expect(
       errCodeToMessage({
         code: "auth/email-already-in-use",
-        message: "Email already in use.",
+        message: "",
       })
     ).toEqual({
-      en: "This email address is already used.",
-      ja: "このメールアドレスは既に使用されています。",
+      en: "Sorry, this email address is already in use. Please try signing in or use a different email address to create a new account.",
+      ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスでサインアップして下さい。",
     });
   });
   test("return message for errorCode is weak-password", () => {
     expect(
       errCodeToMessage({
         code: "auth/weak-password",
-        message: "Weak password.",
+        message: "",
       })
     ).toEqual({
-      en: "Weak password.",
-      ja: "パスワードが脆弱です。6文字以上で入力してください。",
+      en: "Oops, password needs to be between 6 to 20 characters. Please try again with a password that meets this requirement.",
+      ja: "パスワードは6から20文字で入力してください。",
     });
   });
   test("return message for errorCode is provider-already-linked", () => {
     expect(
       errCodeToMessage({
         code: "auth/provider-already-linked",
-        message: "Provider already linked.",
+        message: "",
       })
     ).toEqual({
-      en: "Provider already linked.",
-      ja: "既にサインイン済みです。",
+      en: "Sorry, this email address is already in use. Please try signing in or use a different email address to create a new account.",
+      ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスでサインアップして下さい。",
     });
   });
   test("return message for errorCode is invalid-action-code", () => {
     expect(
       errCodeToMessage({
         code: "auth/invalid-action-code",
-        message: "Invalid action code.",
+        message: "",
       })
     ).toEqual({
-      en: "Invalid action code.",
-      ja: "無効な再設定リンクです。",
+      en: "Oops, this password reset link is invalid. Please make sure you copied the link correctly or request a new one to reset your password.",
+      ja: "無効な再設定リンクです。お手数ですが、正しくリンクをコピーしたか確認するか、パスワード再設定リンクを再度リクエストして下さい。",
     });
   });
   test("return message for errorCode is expired-action-code", () => {
     expect(
       errCodeToMessage({
         code: "auth/expired-action-code",
-        message: "Expired action code.",
+        message: "",
       })
     ).toEqual({
-      en: "Expired action code.",
-      ja: "再設定リンクの有効期限が切れています。",
+      en: "Sorry, this password reset link has expired. Please request a new one to reset your password.",
+      ja: "パスワード再設定リンクの有効期限が切れています。お手数ですが、パスワード再設定リンクを再度リクエストして下さい。",
     });
   });
 });
