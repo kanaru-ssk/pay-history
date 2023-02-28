@@ -1,4 +1,4 @@
-name: jest
+name: Jest and ESLint
 
 on:
   pull_request:
@@ -16,6 +16,8 @@ jobs:
         run: pnpm install
       - name: Run Jest
         run: pnpm test -- --coverage
+      - name: Run ESLint
+        run: pnpm lint
       - name: Upload test coverage artifact
         uses: actions/upload-artifact@v1
         with:
