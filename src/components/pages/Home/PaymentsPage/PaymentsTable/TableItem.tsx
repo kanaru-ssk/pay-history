@@ -26,8 +26,8 @@ const TableItem = ({ payment, setPayment }: Props) => {
       className={bgColor + " flex h-9 items-center  duration-1000"}
     >
       <div className="flex-1 pl-4 text-left">
-        {String(payment.atPaied.toDate().getMonth() + 1).padStart(2, "0")}/
-        {String(payment.atPaied.toDate().getDate()).padStart(2, "0")}
+        {String(payment.atPaid.toDate().getMonth() + 1).padStart(2, "0")}/
+        {String(payment.atPaid.toDate().getDate()).padStart(2, "0")}
       </div>
       <div className="flex-1 pr-4 text-right">
         {payment.price.toLocaleString()}
