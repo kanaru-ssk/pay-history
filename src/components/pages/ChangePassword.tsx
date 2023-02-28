@@ -51,7 +51,7 @@ const ChangePassword = () => {
         setErrorMessage(locale === "en" ? result.en : result.ja);
         setIsLoading(false);
       } else {
-        push("/my?changePasswordSuccess=true");
+        push("/?changePasswordSuccess=true");
       }
     }
   };
@@ -165,7 +165,7 @@ const ChangePassword = () => {
             text={text.FORGET_PASSWORD}
             href="/reset-password/send-link"
           />
-          <LinkText text="My Page" href="/my" />
+          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
       </main>
     </>

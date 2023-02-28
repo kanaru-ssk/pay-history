@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import ChangePassword from "components/pages/My/ChangePassword";
+import ChangePassword from "components/pages/ChangePassword";
 import { useLocale } from "hooks/locale";
 
 const ChangePasswordPage = () => {

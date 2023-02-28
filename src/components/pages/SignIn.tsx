@@ -24,9 +24,9 @@ const SignIn = () => {
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // when email authentication is complete, redirect to My Page
+  // when email authentication is complete, redirect to Home
   useEffect(() => {
-    if (!authUser?.isAnonymous) push("/my");
+    if (!authUser?.isAnonymous) push("/");
   }, [authUser?.isAnonymous, push]);
 
   // validation check
@@ -121,7 +121,7 @@ const SignIn = () => {
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="新規登録はこちら" href="/signUp" />
+          <LinkText text={text.NEW_REGISTRATION} href="/signUp" />
           <LinkText
             text={text.FORGET_PASSWORD}
             href="/reset-password/send-link"
