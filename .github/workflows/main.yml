@@ -10,28 +10,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 7.27.0
       - name: Install dependencies
         run: pnpm install
-
       - name: Run Jest
-        run: pnpm test -- --coverage --coverageDirectory=jest-coverage
-
+        run: pnpm test -- --coverage
       - name: Run ESLint
-        run: pnpm lint -- --format=lcov --output-file=coverage/eslint-coverage/lcov.info
-
-      - name: Upload Jest coverage artifact
-        uses: actions/upload-artifact@v2
+        run: pnpm lint
+      - name: Upload test coverage artifact
+        uses: actions/upload-artifact@v1
         with:
-          name: jest-coverage
-          path: coverage/jest-coverage
-
-      - name: Upload ESLint coverage artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: eslint-coverage
-          path: coverage/eslint-coverage
+          name: coverage
+          path: coverage
