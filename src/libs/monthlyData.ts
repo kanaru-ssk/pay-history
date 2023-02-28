@@ -96,7 +96,7 @@ export const addPayment = async (
   const newPayment: Payment = {
     atCreated: now,
     atUpdated: now,
-    atPaied: Timestamp.fromDate(date),
+    atPaid: Timestamp.fromDate(date),
     price: price,
   };
   const newMonthlyData = {

@@ -27,25 +27,25 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
   // sort by payment date
   const sortDate = (a: Payment, b: Payment): number => {
     if (isAcsDate) {
-      if (b.atPaied.isEqual(a.atPaied)) {
+      if (b.atPaid.isEqual(a.atPaid)) {
         if (b.atCreated < a.atCreated) {
           return 1;
         } else {
           return -1;
         }
-      } else if (b.atPaied < a.atPaied) {
+      } else if (b.atPaid < a.atPaid) {
         return 1;
       } else {
         return -1;
       }
     } else {
-      if (b.atPaied.isEqual(a.atPaied)) {
+      if (b.atPaid.isEqual(a.atPaid)) {
         if (a.atCreated < b.atCreated) {
           return 1;
         } else {
           return -1;
         }
-      } else if (a.atPaied < b.atPaied) {
+      } else if (a.atPaid < b.atPaid) {
         return 1;
       } else {
         return -1;

@@ -42,7 +42,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   // load the payment data
   useEffect(() => {
     if (payment) {
-      const inputMonthData = dateToInputData(payment.atPaied.toDate());
+      const inputMonthData = dateToInputData(payment.atPaid.toDate());
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
@@ -60,7 +60,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
   // edit payment date
   const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
-    if (payment && new Date(e.target.value) !== payment.atPaied.toDate()) {
+    if (payment && new Date(e.target.value) !== payment.atPaid.toDate()) {
       setIsReady(true);
     } else {
       setIsReady(false);
@@ -81,7 +81,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
             return {
               ...value,
               price: price,
-              atPaied: Timestamp.fromDate(new Date(date)),
+              atPaid: Timestamp.fromDate(new Date(date)),
             };
           else return value;
         }),
