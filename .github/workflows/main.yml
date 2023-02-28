@@ -8,18 +8,32 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          version: 7.27.0
+          node-version: "14.x"
+          cache: "pnpm"
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Run Jest
-        run: pnpm test -- --coverage
+        run: pnpm test -- --coverage --coverageDirectory=jest-coverage
+
       - name: Run ESLint
-        run: pnpm lint
-      - name: Upload test coverage artifact
-        uses: actions/upload-artifact@v1
+        run: pnpm lint -- --format=lcov --output-file=coverage/eslint-coverage/lcov.info
+
+      - name: Upload Jest coverage artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: coverage
-          path: coverage
+          name: jest-coverage
+          path: coverage/jest-coverage
+
+      - name: Upload ESLint coverage artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: eslint-coverage
+          path: coverage/eslint-coverage
