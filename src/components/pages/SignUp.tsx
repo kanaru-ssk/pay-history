@@ -32,9 +32,9 @@ const SignUp = () => {
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // when email authentication is complete, redirect to My Page
+  // when email authentication is complete, redirect to Home
   useEffect(() => {
-    if (dbUser?.isAnonymous === false) push("/my");
+    if (dbUser?.isAnonymous === false) push("/");
   }, [dbUser, push]);
 
   // validation check

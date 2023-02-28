@@ -1,13 +1,11 @@
-import Link from "next/link";
 import { useEffect } from "react";
 
-import MenuItem from "./MenuItem";
+import AnonymousMenu from "./AnonymousMenu";
+import LanguageMenu from "./LanguageMenu";
+import SignedInMenu from "./SignedInMenu";
 
 import CloseIcon from "components/common/icons/CloseIcon";
-import LanguageIcon from "components/common/icons/LanguageIcon";
-import { languages } from "constants/languages";
 import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
 
 type Props = {
   isMenuOpen: boolean;
@@ -15,7 +13,6 @@ type Props = {
 };
 
 const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
-  const { locale } = useLocale();
   const { authUser } = useAuth();
 
   // click out of the slider to close
@@ -49,62 +46,16 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </button>
         </header>
 
-        <MenuItem>
-          <Link href="/">
-            <a onClick={() => setIsMenuOpen(false)}>Home</a>
-          </Link>
-        </MenuItem>
-
-        {authUser?.isAnonymous && (
-          <>
-            <MenuItem>
-              <Link href="/signUp">
-                <a onClick={() => setIsMenuOpen(false)}>Sign Up</a>
-              </Link>
-            </MenuItem>
-
-            <MenuItem>
-              <Link href="/signIn">
-                <a onClick={() => setIsMenuOpen(false)}>Sign In</a>
-              </Link>
-            </MenuItem>
-          </>
-        )}
-
-        {!authUser?.isAnonymous && (
-          <MenuItem>
-            <Link href="/my">
-              <a onClick={() => setIsMenuOpen(false)}>My Page</a>
-            </Link>
-          </MenuItem>
-        )}
-
-        <MenuItem>
-          <details className="border rounded-lg border-gray px-8">
-            <summary className="font-bold p-1 cursor-pointer">
-              <span className="mx-1">
-                <LanguageIcon />
-              </span>
-              {languages.find((language) => language.locale === locale)?.name}
-            </summary>
-            <div className="mt-2">
-              {languages.map((language) => {
-                return (
-                  <Link
-                    href="/"
-                    locale={language.locale}
-                    passHref
-                    key={language.locale}
-                  >
-                    <a>
-                      <div className="m-1 text-center">{language.name}</div>
-                    </a>
-                  </Link>
-                );
-              })}
-            </div>
-          </details>
-        </MenuItem>
+        <div className="m-8">
+          {authUser?.isAnonymous ? (
+            <AnonymousMenu onClick={() => setIsMenuOpen(false)} />
+          ) : (
+            <SignedInMenu onClick={() => setIsMenuOpen(false)} />
+          )}
+          <div className="mt-8">
+            <LanguageMenu />
+          </div>
+        </div>
       </div>
     </div>
   );

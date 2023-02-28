@@ -143,7 +143,7 @@ export const texts: {
     ja: "サインイン",
   },
   SIGN_OUT: {
-    en: "Sign put",
+    en: "Sign out",
     ja: "サインアウト",
   },
   SIGN_UP: {
