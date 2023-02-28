@@ -12,7 +12,7 @@ type Props = {
 const Notification = ({
   text,
   show = true,
-  isError = false,
+  isError,
   canHide = !isError,
 }: Props) => {
   const [hide, onHide] = useReducer(() => true, false);
