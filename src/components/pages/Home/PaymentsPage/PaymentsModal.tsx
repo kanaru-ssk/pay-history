@@ -126,18 +126,16 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
         <div className="flex gap-2 py-2">
           <Button
             type="button"
-            text={text.DELETE}
             onClick={deletePayment}
             isLoading={isDeleteLoading}
             red
-          />
+          >
+            {text.DELETE}
+          </Button>
 
-          <Button
-            type="submit"
-            text={text.FIX_AMOUNT}
-            isReady={isReady}
-            isLoading={isUpdateLoading}
-          />
+          <Button type="submit" isReady={isReady} isLoading={isUpdateLoading}>
+            {text.FIX_AMOUNT}
+          </Button>
         </div>
       </form>
     </Modal>

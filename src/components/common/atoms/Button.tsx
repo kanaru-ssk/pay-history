@@ -1,45 +1,43 @@
+import { ReactNode, ButtonHTMLAttributes } from "react";
+
 import LoadingIcon from "components/common/atoms/icons/LoadingIcon";
 
 type Props = {
-  type?: "button" | "submit" | "reset";
-  text: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  children: ReactNode;
   isReady?: boolean;
   isLoading?: boolean;
   red?: boolean;
   blue?: boolean;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
-  type,
-  text,
-  onClick,
+  children,
   isReady = true,
   isLoading,
   red,
   blue,
+  ...rest
 }: Props) => {
-  const color = () => {
+  const color = (() => {
     if (red) return "text-white bg-red hover:bg-gray";
     if (blue) return "text-white bg-main-color hover:bg-gray";
     return "text-main-color font-bold bg-light-gray hover:bg-gray";
-  };
+  })();
 
   return (
     <button
-      type={type}
-      onClick={onClick}
       className={
-        (isReady && !isLoading ? color() : "bg-light-gray text-gray") +
+        (isReady && !isLoading ? color : "bg-light-gray text-gray") +
         " h-12 w-full rounded-full text-center"
       }
+      {...rest}
     >
       {isLoading ? (
         <div className="flex justify-center">
           <LoadingIcon red={red} />
         </div>
       ) : (
-        text
+        children
       )}
     </button>
   );

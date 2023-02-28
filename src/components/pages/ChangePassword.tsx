@@ -152,11 +152,9 @@ const ChangePassword = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={text.CHANGE}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <Button isReady={isReady} isLoading={isLoading}>
+              {text.CHANGE}
+            </Button>
           </div>
         </form>
 

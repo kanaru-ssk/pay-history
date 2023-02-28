@@ -151,11 +151,9 @@ const SignUp = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={text.CREATE_ACCOUNT}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <Button isReady={isReady} isLoading={isLoading}>
+              {text.CREATE_ACCOUNT}
+            </Button>
           </div>
         </form>
 

@@ -112,11 +112,9 @@ const SignIn = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={text.SIGN_IN}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <Button isReady={isReady} isLoading={isLoading}>
+              {text.SIGN_IN}
+            </Button>
           </div>
         </form>
 

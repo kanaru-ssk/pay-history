@@ -15,7 +15,11 @@ const CtaBtn = () => {
     createMonthlyData(dbUser, docId);
   };
 
-  return <Button text={text.START_BUDGETING} onClick={onClickHandler} blue />;
+  return (
+    <Button onClick={onClickHandler} blue>
+      {text.START_BUDGETING}
+    </Button>
+  );
 };
 
 export default CtaBtn;

@@ -76,11 +76,9 @@ const SetLink = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={noticeMessage === "" ? text.SEND : text.RESEND}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <Button isReady={isReady} isLoading={isLoading}>
+              {noticeMessage === "" ? text.SEND : text.RESEND}
+            </Button>
           </div>
         </form>
 

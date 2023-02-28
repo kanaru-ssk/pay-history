@@ -126,7 +126,9 @@ const SetNew = () => {
           </div>
 
           <div className="my-8">
-            <Button text={text.RESET} isReady={isReady} isLoading={isLoading} />
+            <Button isReady={isReady} isLoading={isLoading}>
+              {text.RESET}
+            </Button>
           </div>
         </form>
 
