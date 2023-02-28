@@ -10,16 +10,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 7.27.0
       - name: Install dependencies
         run: pnpm install
+
+      - name: Run next build
+        run: pnpm build -- --coverage
+
       - name: Run Jest
-        run: pnpm test -- --coverage
+        run: pnpm test
+
       - name: Run ESLint
         run: pnpm lint
+
       - name: Upload test coverage artifact
         uses: actions/upload-artifact@v1
         with:
