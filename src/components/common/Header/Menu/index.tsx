@@ -4,7 +4,7 @@ import AnonymousMenu from "./AnonymousMenu";
 import LanguageMenu from "./LanguageMenu";
 import SignedInMenu from "./SignedInMenu";
 
-import CloseIcon from "components/common/icons/CloseIcon";
+import CloseIcon from "components/common/atoms/icons/CloseIcon";
 import { useAuth } from "hooks/auth";
 
 type Props = {

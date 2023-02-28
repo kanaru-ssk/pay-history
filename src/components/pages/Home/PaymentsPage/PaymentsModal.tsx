@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
-import Button from "components/common/Button";
-import Input from "components/common/Input";
-import CloseIcon from "components/common/icons/CloseIcon";
+import Button from "components/common/atoms/Button";
+import Input from "components/common/atoms/Input";
+import CloseIcon from "components/common/atoms/icons/CloseIcon";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { dateToInputData, stringToPrice } from "libs/convert";

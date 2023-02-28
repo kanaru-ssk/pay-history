@@ -1,4 +1,4 @@
-import Button from "components/common/Button";
+import Button from "components/common/atoms/Button";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData } from "types/firebase";
 
-import Input from "components/common/Input";
+import Input from "components/common/atoms/Input";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { stringToPrice } from "libs/convert";

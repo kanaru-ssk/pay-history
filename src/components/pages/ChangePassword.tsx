@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/common/Button";
 import Header from "components/common/Header";
-import Input from "components/common/Input";
-import LinkText from "components/common/LinkText";
 import Notice from "components/common/Notice";
+import Button from "components/common/atoms/Button";
+import Input from "components/common/atoms/Input";
+import LinkText from "components/common/atoms/LinkText";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { changePassword } from "libs/auth";
