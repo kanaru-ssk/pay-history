@@ -13,10 +13,8 @@ jobs:
         with:
           version: 7.27.0
       - name: Install dependencies
-        working-directory: /home/runner/work/pay-history/pay-history
         run: pnpm install
       - name: Run Jest
-        working-directory: /home/runner/work/pay-history/pay-history
         run: pnpm test
       - name: Upload test coverage artifact
         uses: actions/upload-artifact@v1
