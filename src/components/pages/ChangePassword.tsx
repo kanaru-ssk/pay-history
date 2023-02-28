@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Header from "components/common/Header";
-import Notice from "components/common/Notice";
+import Notification from "components/common/Notification";
 import Button from "components/common/atoms/Button";
 import Input from "components/common/atoms/Input";
 import LinkText from "components/common/atoms/LinkText";
@@ -105,7 +105,7 @@ const ChangePassword = () => {
       <main>
         <h1>{text.CHANGE_PASSWORD}</h1>
 
-        <Notice text={errorMessage} error />
+        <Notification text={errorMessage} isError />
 
         <form onSubmit={submitChangePassword}>
           <div className="my-4">
