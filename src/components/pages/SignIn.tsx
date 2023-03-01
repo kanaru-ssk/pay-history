@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Header from "components/common/Header";
 import Input from "components/common/atoms/Input";
 import LinkText from "components/common/atoms/LinkText";
 import ButtonWithStatus from "components/common/molecules/ButtonWithStatus";
 import Notification from "components/common/molecules/Notification";
+import Header from "components/common/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signIn } from "libs/auth";
