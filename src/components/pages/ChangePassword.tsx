@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/common/Button";
-import Header from "components/common/Header";
-import Input from "components/common/Input";
-import LinkText from "components/common/LinkText";
-import Notice from "components/common/Notice";
+import Input from "components/atoms/Input";
+import LinkText from "components/atoms/LinkText";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { changePassword } from "libs/auth";
@@ -105,7 +105,7 @@ const ChangePassword = () => {
       <main>
         <h1>{text.CHANGE_PASSWORD}</h1>
 
-        <Notice text={errorMessage} error />
+        <Notification text={errorMessage} isError />
 
         <form onSubmit={submitChangePassword}>
           <div className="my-4">
@@ -152,11 +152,9 @@ const ChangePassword = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={text.CHANGE}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+              {text.CHANGE}
+            </ButtonWithStatus>
           </div>
         </form>
 

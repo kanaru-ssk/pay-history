@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import LanguageIcon from "components/common/icons/LanguageIcon";
+import LanguageIcon from "components/atoms/icons/LanguageIcon";
 import { languages } from "constants/languages";
 import { useLocale } from "hooks/locale";
 

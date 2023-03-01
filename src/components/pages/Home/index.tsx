@@ -7,8 +7,8 @@ import PaymentsPage from "./PaymentsPage";
 
 import type { MonthlyData } from "types/firebase";
 
-import Header from "components/common/Header";
-import Notice from "components/common/Notice";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
@@ -16,7 +16,7 @@ import { tabToDocId } from "libs/convert";
 import { getMonthlyData } from "libs/monthlyData";
 
 const Home = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const { changePasswordSuccess } = query;
   const { dbUser } = useAuth();
   const { text } = useLocale();
@@ -42,7 +42,10 @@ const Home = () => {
     <>
       <Header />
       <main>
-        <Notice text={changePasswordSuccess ? text.PASSWORD_CHANGED : ""} />
+        <Notification
+          text={text.PASSWORD_CHANGED}
+          show={!!changePasswordSuccess}
+        />
         {thisMonthData === undefined && <LoadingPage />}
         {thisMonthData === null && <LandingPage />}
         {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}

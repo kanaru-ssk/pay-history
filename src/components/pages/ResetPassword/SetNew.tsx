@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/common/Button";
-import Header from "components/common/Header";
-import Input from "components/common/Input";
-import LinkText from "components/common/LinkText";
-import Notice from "components/common/Notice";
+import Input from "components/atoms/Input";
+import LinkText from "components/atoms/LinkText";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSetNew } from "libs/auth";
 import { validatePassword, validateReenterPassword } from "libs/validation";
@@ -95,7 +95,7 @@ const SetNew = () => {
       <main>
         <h1>{text.RESET_PASSWORD}</h1>
 
-        <Notice text={errorMessage} error />
+        <Notification text={errorMessage} isError />
 
         <form onSubmit={submitSetNewPassword}>
           <div className="my-4">
@@ -126,7 +126,9 @@ const SetNew = () => {
           </div>
 
           <div className="my-8">
-            <Button text={text.RESET} isReady={isReady} isLoading={isLoading} />
+            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+              {text.RESET}
+            </ButtonWithStatus>
           </div>
         </form>
 

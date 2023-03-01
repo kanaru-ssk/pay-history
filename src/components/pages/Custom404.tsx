@@ -1,5 +1,5 @@
-import Header from "components/common/Header";
-import LinkText from "components/common/LinkText";
+import LinkText from "components/atoms/LinkText";
+import Header from "components/organisms/Header";
 import { useLocale } from "hooks/locale";
 
 const Custom404 = () => {
