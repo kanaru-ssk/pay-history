@@ -78,11 +78,11 @@ const SignUp = () => {
   ) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
-      setErrorMessageReenterPassword(
+      setErrorMessagePassword(
         locale === "en" ? validationResult.en : validationResult.ja
       );
     } else {
-      setErrorMessageReenterPassword("");
+      setErrorMessagePassword("");
     }
   };
 
