@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 
-import CloseIcon from "./atoms/icons/CloseIcon";
+import CloseIcon from "components/common/atoms/icons/CloseIcon";
 
 type Props = {
   text: string;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import ButtonWithStatus from "components/common/ButtonWithStatus";
 import Header from "components/common/Header";
-import Notification from "components/common/Notification";
 import Input from "components/common/atoms/Input";
 import LinkText from "components/common/atoms/LinkText";
+import ButtonWithStatus from "components/common/molecules/ButtonWithStatus";
+import Notification from "components/common/molecules/Notification";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSendLink } from "libs/auth";
 import { validateEmail } from "libs/validation";
