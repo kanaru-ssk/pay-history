@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
+import ButtonWithStatus from "components/common/ButtonWithStatus";
 import Modal from "components/common/Modal";
-import Button from "components/common/atoms/Button";
 import Input from "components/common/atoms/Input";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
@@ -124,18 +124,22 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
         </div>
 
         <div className="flex gap-2 py-2">
-          <Button
+          <ButtonWithStatus
             type="button"
             onClick={deletePayment}
             isLoading={isDeleteLoading}
-            red
+            color="red"
           >
             {text.DELETE}
-          </Button>
+          </ButtonWithStatus>
 
-          <Button type="submit" isReady={isReady} isLoading={isUpdateLoading}>
+          <ButtonWithStatus
+            type="submit"
+            isReady={isReady}
+            isLoading={isUpdateLoading}
+          >
             {text.FIX_AMOUNT}
-          </Button>
+          </ButtonWithStatus>
         </div>
       </form>
     </Modal>

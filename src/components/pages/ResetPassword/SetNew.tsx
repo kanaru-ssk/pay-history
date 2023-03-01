@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import ButtonWithStatus from "components/common/ButtonWithStatus";
 import Header from "components/common/Header";
 import Notification from "components/common/Notification";
-import Button from "components/common/atoms/Button";
 import Input from "components/common/atoms/Input";
 import LinkText from "components/common/atoms/LinkText";
 import { useLocale } from "hooks/locale";
@@ -126,9 +126,9 @@ const SetNew = () => {
           </div>
 
           <div className="my-8">
-            <Button isReady={isReady} isLoading={isLoading}>
+            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
               {text.RESET}
-            </Button>
+            </ButtonWithStatus>
           </div>
         </form>
 

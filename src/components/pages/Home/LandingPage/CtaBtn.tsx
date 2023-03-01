@@ -16,7 +16,7 @@ const CtaBtn = () => {
   };
 
   return (
-    <Button onClick={onClickHandler} blue>
+    <Button onClick={onClickHandler} color="blue" large>
       {text.START_BUDGETING}
     </Button>
   );

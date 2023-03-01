@@ -1,45 +1,24 @@
-import { ReactNode, ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 
-import LoadingIcon from "components/common/atoms/icons/LoadingIcon";
-
-type Props = {
-  children: ReactNode;
-  isReady?: boolean;
-  isLoading?: boolean;
-  red?: boolean;
-  blue?: boolean;
+export type ButtonProps = {
+  color?: "red" | "blue" | "gray" | "grayOut";
+  large?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({
-  children,
-  isReady = true,
-  isLoading,
-  red,
-  blue,
-  ...rest
-}: Props) => {
-  const color = (() => {
-    if (red) return "text-white bg-red hover:bg-gray";
-    if (blue) return "text-white bg-main-color hover:bg-gray";
-    return "text-main-color font-bold bg-light-gray hover:bg-gray";
+const Button = ({ color = "gray", large, ...rest }: ButtonProps) => {
+  const buttonColor = (() => {
+    if (color === "red") return "text-white bg-red hover:bg-gray";
+    else if (color === "blue") return "text-white bg-main-color hover:bg-gray";
+    else if (color === "grayOut") return "bg-light-gray text-gray";
+    else return "text-main-color font-bold bg-light-gray hover:bg-gray";
   })();
+  const buttonSize = large ? "h-12 w-full" : "px-4";
 
   return (
     <button
-      className={
-        (isReady && !isLoading ? color : "bg-light-gray text-gray") +
-        " h-12 w-full rounded-full text-center"
-      }
+      className={`rounded-full text-center ${buttonSize} ${buttonColor}`}
       {...rest}
-    >
-      {isLoading ? (
-        <div className="flex justify-center">
-          <LoadingIcon red={red} />
-        </div>
-      ) : (
-        children
-      )}
-    </button>
+    />
   );
 };
 
