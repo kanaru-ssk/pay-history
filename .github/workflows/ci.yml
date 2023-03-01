@@ -1,4 +1,4 @@
-name: Build, Jest and ESlint
+name: CI
 
 on:
   pull_request:
@@ -32,14 +32,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build Next.js app
-        run: pnpm run build
-
-      - name: Run Jest
-        run: pnpm test -- --coverage
-
       - name: Run ESLint
         run: pnpm lint
+
+      - name: Run Jest
+        run: pnpm test
+
+      - name: Build Next.js app
+        run: pnpm run build
 
       - name: Run Cypress
         uses: cypress-io/github-action@v4
