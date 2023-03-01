@@ -1,7 +1,7 @@
-import type { ButtonProps } from "components/common/atoms/Button";
+import type { ButtonProps } from "components/atoms/Button";
 
-import Button from "components/common/atoms/Button";
-import LoadingIcon from "components/common/atoms/icons/LoadingIcon";
+import Button from "components/atoms/Button";
+import LoadingIcon from "components/atoms/icons/LoadingIcon";
 
 type Props = {
   isReady?: boolean;

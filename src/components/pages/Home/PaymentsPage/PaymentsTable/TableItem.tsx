@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { Payment } from "types/firebase";
 
-import MoreIcon from "components/common/atoms/icons/MoreIcon";
+import MoreIcon from "components/atoms/icons/MoreIcon";
 
 type Props = {
   payment: Payment;

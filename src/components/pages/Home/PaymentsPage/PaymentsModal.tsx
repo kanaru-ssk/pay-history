@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData, Payment } from "types/firebase";
 
-import Input from "components/common/atoms/Input";
-import ButtonWithStatus from "components/common/molecules/ButtonWithStatus";
-import Modal from "components/common/organisms/Modal";
+import Input from "components/atoms/Input";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import Modal from "components/molecules/Modal";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { dateToInputData, stringToPrice } from "libs/convert";

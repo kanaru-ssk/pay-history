@@ -2,7 +2,7 @@ import AnonymousMenu from "./AnonymousMenu";
 import LanguageMenu from "./LanguageMenu";
 import SignedInMenu from "./SignedInMenu";
 
-import SlideIn from "components/common/organisms/SlideIn";
+import SlideIn from "components/molecules/SlideIn";
 import { useAuth } from "hooks/auth";
 
 type Props = {

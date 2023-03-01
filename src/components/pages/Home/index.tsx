@@ -7,8 +7,8 @@ import PaymentsPage from "./PaymentsPage";
 
 import type { MonthlyData } from "types/firebase";
 
-import Notification from "components/common/molecules/Notification";
-import Header from "components/common/organisms/Header";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";

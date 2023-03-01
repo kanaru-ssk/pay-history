@@ -1,4 +1,4 @@
-import LoadingIcon from "components/common/atoms/icons/LoadingIcon";
+import LoadingIcon from "components/atoms/icons/LoadingIcon";
 
 const LoadingPage = () => {
   return (
