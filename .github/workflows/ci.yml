@@ -46,9 +46,3 @@ jobs:
         with:
           start: npm start
           wait-on: "http://localhost:3000"
-
-      - name: Upload test coverage artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: coverage
-          path: coverage
