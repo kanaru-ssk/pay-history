@@ -34,7 +34,7 @@ const Modal = ({ children, isShown, onHide }: Props) => {
         className="max-w-md p-4 overflow-hidden bg-white shadow-xl rounded-xl"
       >
         <div className="text-right">
-          <button type="button" onClick={onHide}>
+          <button className="p-2" onClick={onHide}>
             <CloseIcon />
           </button>
         </div>
