@@ -11,7 +11,7 @@
     "fix": "pnpm lint --fix && pnpm format",
     "test": "jest",
     "cypress": "cypress open",
-    "e2e": "(pnpm start > /dev/null 2>&1 & ) && cypress run"
+    "e2e": "cypress run"
   },
   "dependencies": {
     "firebase": "^9.9.1",

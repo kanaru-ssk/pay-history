@@ -32,12 +32,13 @@ const TableItem = ({ payment, setPayment }: Props) => {
       <div className="flex-1 pr-4 text-right">
         {payment.price.toLocaleString()}
       </div>
-      <div
+      <button
         onClick={() => setPayment(payment)}
-        className="w-8 cursor-pointer p-2 text-sm text-center"
+        className="w-8"
+        name="edit-menu"
       >
         <MoreIcon />
-      </div>
+      </button>
     </div>
   );
 };

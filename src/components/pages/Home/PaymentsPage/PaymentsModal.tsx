@@ -114,6 +114,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
           />
 
           <Input
+            name="edit"
             type="text"
             inputMode="numeric"
             placeholder={text.ENTER_AMOUNT}
@@ -125,6 +126,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
 
         <div className="flex gap-2 py-2">
           <ButtonWithStatus
+            name="delete"
             type="button"
             onClick={deletePayment}
             isLoading={isDeleteLoading}
@@ -134,6 +136,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
           </ButtonWithStatus>
 
           <ButtonWithStatus
+            name="edit"
             type="submit"
             isReady={isReady}
             isLoading={isUpdateLoading}

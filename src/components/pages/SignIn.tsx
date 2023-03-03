@@ -112,7 +112,11 @@ const SignIn = () => {
           </div>
 
           <div className="my-8">
-            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+            <ButtonWithStatus
+              type="submit"
+              isReady={isReady}
+              isLoading={isLoading}
+            >
               {text.SIGN_IN}
             </ButtonWithStatus>
           </div>

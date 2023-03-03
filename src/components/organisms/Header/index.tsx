@@ -30,7 +30,6 @@ const Header = () => {
 
         <div className="flex items-center gap-4">
           <button
-            className="cursor-pointer"
             onClick={() => {
               setIsTabOpen(!isTabOpen);
             }}
@@ -38,7 +37,11 @@ const Header = () => {
             {displayMonth(tabStatus, locale)}
             {isTabOpen ? "▲" : "▼"}
           </button>
-          <button className="p-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button
+            className="p-4"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            name="menu-open"
+          >
             <SettingIcon />
           </button>
         </div>
