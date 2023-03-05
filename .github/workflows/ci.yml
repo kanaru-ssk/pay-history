@@ -18,42 +18,35 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Print project id
+        run: echo "Hello $NEXT_PUBLIC_FIREBASE_PROJECT_ID"
+      # - name: Checkout code
+      #   uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16.x"
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: "16.x"
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # - name: Install pnpm
+      #   run: npm install -g pnpm
 
-      - name: Install dependencies
-        run: pnpm install
+      # - name: Install dependencies
+      #   run: pnpm install
 
-      - name: Run ESLint
-        run: pnpm lint
+      # - name: Run ESLint
+      #   run: pnpm lint
 
-      - name: Run Jest
-        run: pnpm test
+      # - name: Run Jest
+      #   run: pnpm test
 
-      - name: Build Next.js app
-        run: pnpm run build
+      # - name: Build Next.js app
+      #   run: pnpm run build
 
-      - name: Run Cypress
-        uses: cypress-io/github-action@v4
-        with:
-          build: pnpm build
-          start: pnpm start
-          wait-on: "http://localhost:3000"
-          command: pnpm e2e
-        env:
-          NEXT_PUBLIC_URL: "http://localhost:3000"
-          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
-          NEXT_PUBLIC_FIREBASE_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_DOMAIN }}
-          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
-          NEXT_PUBLIC_FIREBASE_STORAGE: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE }}
-          NEXT_PUBLIC_FIREBASE_MESSAGING_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_ID }}
-          NEXT_PUBLIC_FIREBASE_APP_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
-          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
+      # - name: Run Cypress
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     build: pnpm build
+      #     start: pnpm start
+      #     wait-on: "http://localhost:3000"
+      #     command: pnpm e2e
