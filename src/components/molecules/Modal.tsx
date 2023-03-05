@@ -28,10 +28,10 @@ const Modal = ({ children, isShown, onHide }: Props) => {
   if (!isShown) return null;
 
   return (
-    <div className="fixed z-20 inset-0 flex items-center justify-center bg-trans-black">
+    <div className="fixed inset-0 z-20 flex items-center justify-center bg-trans-black">
       <div
         ref={modalRef}
-        className="max-w-md p-4 overflow-hidden bg-white shadow-xl rounded-xl"
+        className="max-w-md overflow-hidden rounded-xl bg-white p-4 shadow-xl"
       >
         <div className="text-right">
           <button className="p-2" onClick={onHide}>
