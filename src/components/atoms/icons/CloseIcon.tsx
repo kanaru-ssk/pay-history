@@ -2,8 +2,12 @@ import { colors } from "constants/colors";
 
 const CloseIcon = () => {
   return (
-    <svg className="w-6 h-6" stroke={colors.DARK_GRAY}>
-      <path strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+    <svg className="h-3 w-3">
+      <path
+        d="M0 12L12 0ZM0 0L12 12Z"
+        stroke={colors.DARK_GRAY}
+        strokeWidth="2"
+      />
     </svg>
   );
 };

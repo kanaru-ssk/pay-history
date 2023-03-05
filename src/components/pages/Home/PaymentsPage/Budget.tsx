@@ -63,9 +63,10 @@ const Budget = ({ thisMonthData }: Props) => {
           <th>{text.BUDGET}</th>
           <td className="text-right">
             <Input
+              name="budget"
               type="text"
               inputMode="text"
-              value={"¥ " + budget.toLocaleString()}
+              value={`¥ ${budget.toLocaleString()}`}
               onChange={changeBudget}
               onBlur={saveBudget}
               onKeyPress={(e) => {
@@ -78,15 +79,17 @@ const Budget = ({ thisMonthData }: Props) => {
         </tr>
         <tr className="border-b">
           <th>{text.SPENT}</th>
-          <td className="px-4 text-right">
-            ¥ {totalSpending.toLocaleString()}
-          </td>
+          <td
+            className="px-4 text-right"
+            data-cy="total-spending"
+          >{`¥ ${totalSpending.toLocaleString()}`}</td>
         </tr>
         <tr>
           <th>{text.REMAINING}</th>
-          <td className="text-right text-3xl">
-            ¥ {remaining.toLocaleString()}
-          </td>
+          <td
+            className="text-right text-3xl"
+            data-cy="remaining"
+          >{`¥ ${remaining.toLocaleString()}`}</td>
         </tr>
       </tbody>
     </table>

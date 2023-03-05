@@ -25,7 +25,7 @@ const Notification = ({
         (isError
           ? "border-red bg-light-red text-red"
           : "border-main-color bg-light-gray text-main-color") +
-        " rounded border p-4 flex justify-between gap-2"
+        " flex justify-between gap-2 rounded border p-4"
       }
     >
       {text}

@@ -73,47 +73,46 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
   return (
     <div>
       <div className="flex border-b border-black px-4">
-        <div
+        <button
           onClick={() => {
             setIsSortDate(true);
             setIsAcsDate(!isAcsDate);
           }}
-          className="w-full cursor-pointer"
+          className="w-full text-left"
         >
           {text.SPENT_DATE}
           {isSortDate && (isAcsDate ? "▲" : "▼")}
-        </div>
-        <div
+        </button>
+        <button
           onClick={() => {
             setIsSortDate(false);
             setIsAcsPrice(!isAcsPrice);
           }}
-          className="w-full cursor-pointer pr-8 text-right"
+          className="w-full pr-8 text-right"
         >
           {!isSortDate && (isAcsPrice ? "▲" : "▼")}
           {text.AMOUNT}
-        </div>
+        </button>
       </div>
 
-      {0 < thisMonthData.payments.length && (
-        <div
-          className="flex max-h-[calc(100vh_-_276px)] w-full flex-col-reverse overflow-y-scroll md:max-h-[calc(100vh_-_308px)]"
-          ref={ref}
-        >
-          {thisMonthData.payments
-            .sort(isSortDate ? sortPrice : sortDate)
-            .sort(isSortDate ? sortDate : sortPrice)
-            .map((value) => {
-              return (
-                <TableItem
-                  payment={value}
-                  setPayment={setPayment}
-                  key={value.atCreated.toString()}
-                />
-              );
-            })}
-        </div>
-      )}
+      <div
+        className="flex max-h-[calc(100vh_-_276px)] w-full flex-col-reverse overflow-y-scroll md:max-h-[calc(100vh_-_308px)]"
+        ref={ref}
+        data-cy="payments-table"
+      >
+        {thisMonthData.payments
+          .sort(isSortDate ? sortPrice : sortDate)
+          .sort(isSortDate ? sortDate : sortPrice)
+          .map((value) => {
+            return (
+              <TableItem
+                payment={value}
+                setPayment={setPayment}
+                key={value.atCreated.toString()}
+              />
+            );
+          })}
+      </div>
       {thisMonthData.payments && thisMonthData.payments.length === 0 && (
         <div className="py-4 text-center text-gray">{text.NO_PAYMENT_DATA}</div>
       )}
