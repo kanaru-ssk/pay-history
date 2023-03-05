@@ -7,18 +7,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_URL: "http://localhost:3000"
-      NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
-      NEXT_PUBLIC_FIREBASE_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_DOMAIN }}
-      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
-      NEXT_PUBLIC_FIREBASE_STORAGE: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE }}
-      NEXT_PUBLIC_FIREBASE_MESSAGING_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_ID }}
-      NEXT_PUBLIC_FIREBASE_APP_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
-      NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
     steps:
-      - name: Print project id
-        run: echo "Hello $NEXT_PUBLIC_FIREBASE_PROJECT_ID"
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -32,6 +21,18 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Create .env.local
+        run: |
+          touch .env.local
+          echo NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_DOMAIN }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_STORAGE=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_MESSAGING_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_ID }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }} >> .env.local
 
       - name: Run ESLint
         run: pnpm lint
