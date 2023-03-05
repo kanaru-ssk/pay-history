@@ -6,6 +6,10 @@ describe("e2e test", () => {
     cy.visit("/");
     cy.task("log", "visit");
 
+    cy.get('div[data-cy="test"]').then((test) => {
+      cy.task("log", test.text());
+    });
+
     // sign in
     cy.get('button[name="menu-open"]').click();
     cy.get('a[href="/signIn"]').click();

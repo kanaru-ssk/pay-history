@@ -20,6 +20,7 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20">
+        <div data-cy="test">{process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}</div>
         <div className="px-4">
           <Link href="/">
             <a title="go to top page">
