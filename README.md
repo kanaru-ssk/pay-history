@@ -87,4 +87,3 @@ Since it is a tool that you use on a daily basis, it supports PWA and can be ins
             - price: number
 
 By making the payment data an array instead of a sub collection, I reduce the number of document reads and optimize costs.
-test
