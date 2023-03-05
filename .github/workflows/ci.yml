@@ -41,12 +41,10 @@ jobs:
         run: pnpm test
 
       - name: Build Next.js app
-        run: pnpm run build
+        run: pnpm build
 
       - name: Run Cypress
         uses: cypress-io/github-action@v4
         with:
-          build: pnpm build
           start: pnpm start
           wait-on: "http://localhost:3000"
-          command: pnpm e2e
