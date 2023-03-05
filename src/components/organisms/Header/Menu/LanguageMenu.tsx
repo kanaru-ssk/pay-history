@@ -23,9 +23,7 @@ const LanguageMenu = () => {
               passHref
               key={language.locale}
             >
-              <a>
-                <div className="m-1 text-center">{language.name}</div>
-              </a>
+              <div className="m-1 text-center">{language.name}</div>
             </Link>
           );
         })}
