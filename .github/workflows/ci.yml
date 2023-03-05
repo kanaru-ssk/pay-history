@@ -46,3 +46,12 @@ jobs:
         with:
           start: pnpm start
           wait-on: "http://localhost:3000"
+        env:
+          NEXT_PUBLIC_UR: "http://localhost:3000"
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
+          NEXT_PUBLIC_FIREBASE_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_DOMAIN }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+          NEXT_PUBLIC_FIREBASE_STORAGE: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE }}
+          NEXT_PUBLIC_FIREBASE_MESSAGING_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_ID }}
+          NEXT_PUBLIC_FIREBASE_APP_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
+          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
