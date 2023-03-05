@@ -44,8 +44,10 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v4
         with:
+          build: pnpm build
           start: pnpm start
           wait-on: "http://localhost:3000"
+          command: pnpm e2e
         env:
           NEXT_PUBLIC_UR: "http://localhost:3000"
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
