@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import Button from "components/common/Button";
-import Header from "components/common/Header";
-import Input from "components/common/Input";
-import LinkText from "components/common/LinkText";
-import Notice from "components/common/Notice";
+import Input from "components/atoms/Input";
+import LinkText from "components/atoms/LinkText";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSendLink } from "libs/auth";
 import { validateEmail } from "libs/validation";
@@ -58,7 +58,7 @@ const SetLink = () => {
       <main>
         <h1>{text.RESET_PASSWORD}</h1>
 
-        <Notice text={noticeMessage} error={isError} />
+        <Notification text={noticeMessage} isError />
 
         <form onSubmit={submitSendResetPasswordLink}>
           <div className="my-4">
@@ -76,11 +76,9 @@ const SetLink = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={noticeMessage === "" ? text.SEND : text.RESEND}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+              {noticeMessage === "" ? text.SEND : text.RESEND}
+            </ButtonWithStatus>
           </div>
         </form>
 

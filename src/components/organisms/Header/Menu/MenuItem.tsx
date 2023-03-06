@@ -3,6 +3,7 @@ type Props = {
 };
 
 const MenuItem = ({ children }: Props) => {
-  return <div className="mt-4 flex justify-center">{children}</div>;
+  return <div className="mt-4 font-bold">{children}</div>;
 };
+
 export default MenuItem;

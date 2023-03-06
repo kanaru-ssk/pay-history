@@ -1,4 +1,4 @@
-import Button from "components/common/Button";
+import Button from "components/atoms/Button";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
@@ -15,7 +15,11 @@ const CtaBtn = () => {
     createMonthlyData(dbUser, docId);
   };
 
-  return <Button text={text.START_BUDGETING} onClick={onClickHandler} blue />;
+  return (
+    <Button name="cta" onClick={onClickHandler} color="blue" large>
+      {text.START_BUDGETING}
+    </Button>
+  );
 };
 
 export default CtaBtn;

@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/common/Button";
-import Header from "components/common/Header";
-import Input from "components/common/Input";
-import LinkText from "components/common/LinkText";
-import Notice from "components/common/Notice";
+import Input from "components/atoms/Input";
+import LinkText from "components/atoms/LinkText";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signUp } from "libs/auth";
@@ -32,9 +32,9 @@ const SignUp = () => {
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // when email authentication is complete, redirect to My Page
+  // when email authentication is complete, redirect to Home
   useEffect(() => {
-    if (dbUser?.isAnonymous === false) push("/my");
+    if (dbUser?.isAnonymous === false) push("/");
   }, [dbUser, push]);
 
   // validation check
@@ -78,11 +78,11 @@ const SignUp = () => {
   ) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
-      setErrorMessageReenterPassword(
+      setErrorMessagePassword(
         locale === "en" ? validationResult.en : validationResult.ja
       );
     } else {
-      setErrorMessageReenterPassword("");
+      setErrorMessagePassword("");
     }
   };
 
@@ -106,7 +106,7 @@ const SignUp = () => {
       <main>
         <h1>{text.CREATE_ACCOUNT}</h1>
 
-        <Notice text={errorMessage} error />
+        <Notification text={errorMessage} isError />
 
         <form onSubmit={submitSignUp}>
           <div className="my-4">
@@ -151,11 +151,9 @@ const SignUp = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={text.CREATE_ACCOUNT}
-              isReady={isReady}
-              isLoading={isLoading}
-            />
+            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+              {text.CREATE_ACCOUNT}
+            </ButtonWithStatus>
           </div>
         </form>
 

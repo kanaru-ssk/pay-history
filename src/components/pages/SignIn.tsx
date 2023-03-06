@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import Button from "components/common/Button";
-import Header from "components/common/Header";
-import Input from "components/common/Input";
-import LinkText from "components/common/LinkText";
-import Notice from "components/common/Notice";
+import Input from "components/atoms/Input";
+import LinkText from "components/atoms/LinkText";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import Notification from "components/molecules/Notification";
+import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signIn } from "libs/auth";
@@ -24,9 +24,9 @@ const SignIn = () => {
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // when email authentication is complete, redirect to My Page
+  // when email authentication is complete, redirect to Home
   useEffect(() => {
-    if (!authUser?.isAnonymous) push("/my");
+    if (!authUser?.isAnonymous) push("/");
   }, [authUser?.isAnonymous, push]);
 
   // validation check
@@ -80,7 +80,7 @@ const SignIn = () => {
       <main>
         <h1>{text.SIGN_IN}</h1>
 
-        <Notice text={errorMessage} error />
+        <Notification text={errorMessage} isError />
 
         <form onSubmit={submitSignIn}>
           <div className="my-4">
@@ -112,16 +112,18 @@ const SignIn = () => {
           </div>
 
           <div className="my-8">
-            <Button
-              text={text.SIGN_IN}
+            <ButtonWithStatus
+              type="submit"
               isReady={isReady}
               isLoading={isLoading}
-            />
+            >
+              {text.SIGN_IN}
+            </ButtonWithStatus>
           </div>
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText text="新規登録はこちら" href="/signUp" />
+          <LinkText text={text.NEW_REGISTRATION} href="/signUp" />
           <LinkText
             text={text.FORGET_PASSWORD}
             href="/reset-password/send-link"

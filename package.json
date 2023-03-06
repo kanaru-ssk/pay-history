@@ -8,8 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
-    "lint:fix": "yarn lint --fix && yarn format",
-    "test": "jest"
+    "fix": "pnpm lint --fix && pnpm format",
+    "test": "jest",
+    "cypress": "cypress open",
+    "e2e": "cypress run"
   },
   "dependencies": {
     "firebase": "^9.9.1",
@@ -29,6 +31,7 @@
     "autoprefixer": "^10.4.7",
     "babel-jest": "^29.4.3",
     "babel-plugin-module-resolver": "^5.0.0",
+    "cypress": "^12.7.0",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3",
     "eslint-config-prettier": "^8.5.0",

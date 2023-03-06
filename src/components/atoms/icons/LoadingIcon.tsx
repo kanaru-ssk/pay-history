@@ -8,9 +8,9 @@ const LoadingIcon = ({ red }: Props) => {
     : "border-main-color border-t-sub-color";
 
   return (
-    <div
-      className={color + " h-6 w-6 animate-spin rounded-full border-2"}
-    ></div>
+    <svg
+      className={`${color} inline-block h-6 w-6 animate-spin rounded-full border-2`}
+    ></svg>
   );
 };
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { MonthlyData } from "types/firebase";
 
-import Input from "components/common/Input";
+import Input from "components/atoms/Input";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
@@ -70,6 +70,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
     <form onSubmit={submitAddPayment} className="bg-white">
       <div className="flex w-full items-center gap-2 py-2">
         <Input
+          name="date"
           type="date"
           min={minDate}
           max={maxDate}
@@ -79,6 +80,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
         />
 
         <Input
+          name="amount"
           type="text"
           inputMode="numeric"
           placeholder={text.ENTER_AMOUNT}
@@ -88,7 +90,10 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           small
         />
 
-        <button className={isReady ? "text-main-color" : "text-gray"}>
+        <button
+          name="add"
+          className={isReady ? "text-main-color" : "text-gray"}
+        >
           {text.ADD}
         </button>
       </div>

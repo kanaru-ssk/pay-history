@@ -4,8 +4,8 @@ import { useState } from "react";
 import Menu from "./Menu";
 import Tab from "./Tab";
 
-import LogoIcon from "components/common/icons/LogoIcon";
-import SettingIcon from "components/common/icons/SettingIcon";
+import LogoIcon from "components/atoms/icons/LogoIcon";
+import SettingIcon from "components/atoms/icons/SettingIcon";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { displayMonth } from "libs/displayMonth";
@@ -30,7 +30,6 @@ const Header = () => {
 
         <div className="flex items-center gap-4">
           <button
-            className="cursor-pointer"
             onClick={() => {
               setIsTabOpen(!isTabOpen);
             }}
@@ -38,7 +37,11 @@ const Header = () => {
             {displayMonth(tabStatus, locale)}
             {isTabOpen ? "▲" : "▼"}
           </button>
-          <button className="p-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button
+            className="p-4"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            name="menu-open"
+          >
             <SettingIcon />
           </button>
         </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { Payment } from "types/firebase";
 
-import MoreIcon from "components/common/icons/MoreIcon";
+import MoreIcon from "components/atoms/icons/MoreIcon";
 
 type Props = {
   payment: Payment;
@@ -32,12 +32,13 @@ const TableItem = ({ payment, setPayment }: Props) => {
       <div className="flex-1 pr-4 text-right">
         {payment.price.toLocaleString()}
       </div>
-      <div
+      <button
         onClick={() => setPayment(payment)}
-        className="w-8 cursor-pointer p-2 text-sm text-center"
+        className="w-8"
+        name="edit-menu"
       >
         <MoreIcon />
-      </div>
+      </button>
     </div>
   );
 };

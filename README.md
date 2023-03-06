@@ -59,10 +59,9 @@ Since it is a tool that you use on a daily basis, it supports PWA and can be ins
 ## Site Map
 
 - /
-  - /my
-    - /change-password
   - /signIn
   - /signUp
+  - /change-password
   - /reset-password
     - /set
 

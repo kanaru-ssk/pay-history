@@ -1,4 +1,4 @@
-name: Build, Jest and ESlint
+name: CI
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -22,26 +22,29 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build Next.js app
-        run: pnpm run build
-        env:
-          NEXT_PUBLIC_URL: https://pay-history.kanaru.jp
-          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
-          NEXT_PUBLIC_FIREBASE_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_DOMAIN }}
-          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
-          NEXT_PUBLIC_FIREBASE_STORAGE: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE }}
-          NEXT_PUBLIC_FIREBASE_MESSAGING_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_ID }}
-          NEXT_PUBLIC_FIREBASE_APP_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
-          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
-
-      - name: Run Jest
-        run: pnpm test -- --coverage
+      - name: Create .env.local
+        run: |
+          touch .env.local
+          echo NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_DOMAIN }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_STORAGE=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_MESSAGING_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_ID }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }} >> .env.local
+          echo NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }} >> .env.local
 
       - name: Run ESLint
         run: pnpm lint
 
-      - name: Upload test coverage artifact
-        uses: actions/upload-artifact@v1
+      - name: Run Jest
+        run: pnpm test
+
+      - name: Build Next.js app
+        run: pnpm build
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
         with:
-          name: coverage
-          path: coverage
+          start: pnpm start
+          wait-on: "http://localhost:3000"
