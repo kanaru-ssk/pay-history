@@ -19,10 +19,8 @@ const Header = () => {
     <>
       <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20">
         <div className="px-4">
-          <Link href="/">
-            <a title="go to top page">
-              <LogoIcon />
-            </a>
+          <Link href="/" title="go to top page">
+            <LogoIcon />
           </Link>
         </div>
 
