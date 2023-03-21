@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-
-import type { Payment } from "types/firebase";
-
 import MoreIcon from "components/atoms/icons/MoreIcon";
+import type { Payment } from "types/firebase";
 
 type Props = {
   payment: Payment;

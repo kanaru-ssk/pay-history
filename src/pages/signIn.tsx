@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import SignIn from "components/pages/SignIn";
 import { useLocale } from "hooks/locale";
 

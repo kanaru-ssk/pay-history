@@ -1,10 +1,8 @@
 import { useEffect, useRef } from "react";
-
-import type { TabStatus } from "types/tabStatus";
-
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { displayMonth } from "libs/displayMonth";
+import type { TabStatus } from "types/tabStatus";
 
 type Props = {
   month: TabStatus;

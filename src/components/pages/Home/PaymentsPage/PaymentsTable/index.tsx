@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-
-import TableItem from "./TableItem";
-
-import type { MonthlyData, Payment } from "types/firebase";
-
 import { useLocale } from "hooks/locale";
+import type { MonthlyData, Payment } from "types/firebase";
+import TableItem from "./TableItem";
 
 type Props = {
   thisMonthData: MonthlyData;

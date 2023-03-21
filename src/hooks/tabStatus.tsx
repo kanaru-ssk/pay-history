@@ -1,7 +1,6 @@
 // share tabStatus with useContext
 
 import { createContext, useContext, useState, useEffect } from "react";
-
 import { TabStatus, isTabStatus } from "types/tabStatus";
 
 type TabStatusContextProps = {

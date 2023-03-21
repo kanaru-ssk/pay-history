@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import ResetPassword from "components/pages/ResetPassword/SendLink";
 import { useLocale } from "hooks/locale";
 

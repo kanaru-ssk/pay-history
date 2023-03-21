@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-
-import type { MonthlyData, Payment } from "types/firebase";
-
 import Input from "components/atoms/Input";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Modal from "components/molecules/Modal";
@@ -9,6 +6,7 @@ import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { dateToInputData, stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";
+import type { MonthlyData, Payment } from "types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;

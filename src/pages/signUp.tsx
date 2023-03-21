@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import SignUp from "components/pages/SignUp";
 import { useLocale } from "hooks/locale";
 

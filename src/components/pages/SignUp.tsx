@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
 import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";

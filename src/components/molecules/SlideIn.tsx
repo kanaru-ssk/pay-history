@@ -1,5 +1,4 @@
 import { ReactNode, useRef, useEffect } from "react";
-
 import CloseIcon from "components/atoms/icons/CloseIcon";
 
 type Props = {

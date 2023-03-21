@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import SetNew from "components/pages/ResetPassword/SetNew";
 import { useLocale } from "hooks/locale";
 

@@ -1,8 +1,7 @@
-import type { ErrorMessage } from "types/errorMessage";
-import type { TabStatus } from "types/tabStatus";
-
 import { texts } from "constants/texts";
+import type { ErrorMessage } from "types/errorMessage";
 import { isAuthError } from "types/firebase";
+import type { TabStatus } from "types/tabStatus";
 
 export const tabToDocId = (tabStatus: TabStatus): string => {
   const date = new Date();

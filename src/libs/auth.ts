@@ -1,10 +1,8 @@
 import { logEvent } from "firebase/analytics";
-
-import type { ErrorMessage } from "types/errorMessage";
-
 import { texts } from "constants/texts";
 import { errCodeToMessage } from "libs/convert";
 import { auth, analytics } from "libs/firebase";
+import type { ErrorMessage } from "types/errorMessage";
 
 export const signIn = async (
   email: string,

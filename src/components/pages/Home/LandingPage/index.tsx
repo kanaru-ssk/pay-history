@@ -1,8 +1,6 @@
 import Image from "next/image";
-
-import CtaBtn from "./CtaBtn";
-
 import { useLocale } from "hooks/locale";
+import CtaBtn from "./CtaBtn";
 
 const LandingPage = () => {
   const { text } = useLocale();
