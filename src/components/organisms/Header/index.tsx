@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import LogoIcon from "components/atoms/icons/LogoIcon";
 import SettingIcon from "components/atoms/icons/SettingIcon";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
@@ -20,7 +20,13 @@ const Header = () => {
       <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20">
         <div className="px-4">
           <Link href="/" title="go to top page">
-            <LogoIcon />
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              width={41}
+              height={14}
+              className="h-6 w-auto md:h-10"
+            />
           </Link>
         </div>
 
