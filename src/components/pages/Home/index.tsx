@@ -1,19 +1,16 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-import LandingPage from "./LandingPage";
-import LoadingPage from "./LoadingPage";
-import PaymentsPage from "./PaymentsPage";
-
-import type { MonthlyData } from "types/firebase";
-
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
+import Head from "components/organisms/Head";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId } from "libs/convert";
 import { getMonthlyData } from "libs/monthlyData";
+import type { MonthlyData } from "types/firebase";
+import LandingPage from "./LandingPage";
+import LoadingPage from "./LoadingPage";
+import PaymentsPage from "./PaymentsPage";
 
 const Home = () => {
   const { query } = useRouter();
@@ -40,8 +37,8 @@ const Home = () => {
 
   return (
     <>
-      <Header />
-      <main>
+      <Head />
+      <div>
         <Notification
           text={text.PASSWORD_CHANGED}
           show={!!changePasswordSuccess}
@@ -49,7 +46,7 @@ const Home = () => {
         {thisMonthData === undefined && <LoadingPage />}
         {thisMonthData === null && <LandingPage />}
         {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
-      </main>
+      </div>
     </>
   );
 };

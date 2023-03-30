@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-
-import type { MonthlyData } from "types/firebase";
-
 import Input from "components/atoms/Input";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { stringToPrice } from "libs/convert";
 import { updateMonthlyData } from "libs/monthlyData";
 import { updateUser } from "libs/user";
+import type { MonthlyData } from "types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -77,7 +75,7 @@ const Budget = ({ thisMonthData }: Props) => {
             />
           </td>
         </tr>
-        <tr className="border-b">
+        <tr className="border-b border-gray-400">
           <th>{text.SPENT}</th>
           <td
             className="px-4 text-right"

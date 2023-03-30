@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Heading1 from "components/atoms/Heading1";
+import Heading3 from "components/atoms/Heading3";
 import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
+import Head from "components/organisms/Head";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signIn } from "libs/auth";
@@ -76,15 +77,15 @@ const SignIn = () => {
 
   return (
     <>
-      <Header />
-      <main>
-        <h1>{text.SIGN_IN}</h1>
+      <Head title={`${text.SIGN_IN} | Pay History`} />
+      <div>
+        <Heading1>{text.SIGN_IN}</Heading1>
 
         <Notification text={errorMessage} isError />
 
         <form onSubmit={submitSignIn}>
           <div className="my-4">
-            <h3>{text.EMAIL_ADDRESS}</h3>
+            <Heading3>{text.EMAIL_ADDRESS}</Heading3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -98,7 +99,7 @@ const SignIn = () => {
           </div>
 
           <div className="my-4">
-            <h3>{text.PASSWORD}</h3>
+            <Heading3>{text.PASSWORD}</Heading3>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>
             )}
@@ -130,7 +131,7 @@ const SignIn = () => {
           />
           <LinkText text="Return To Home" href="/" />
         </div>
-      </main>
+      </div>
     </>
   );
 };

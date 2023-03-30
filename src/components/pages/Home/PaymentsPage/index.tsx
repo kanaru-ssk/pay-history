@@ -1,11 +1,9 @@
 import { useState } from "react";
-
+import type { MonthlyData, Payment } from "types/firebase";
 import Budget from "./Budget";
 import PaymentsForm from "./PaymentsForm";
 import PaymentsModal from "./PaymentsModal";
 import PaymentsTable from "./PaymentsTable";
-
-import type { MonthlyData, Payment } from "types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;

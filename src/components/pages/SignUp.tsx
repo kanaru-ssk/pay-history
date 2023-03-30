@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Heading1 from "components/atoms/Heading1";
+import Heading3 from "components/atoms/Heading3";
 import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
+import Head from "components/organisms/Head";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signUp } from "libs/auth";
@@ -102,15 +103,15 @@ const SignUp = () => {
 
   return (
     <>
-      <Header />
-      <main>
-        <h1>{text.CREATE_ACCOUNT}</h1>
+      <Head title={`${text.SIGN_UP} | Pay History`} />
+      <div>
+        <Heading1>{text.CREATE_ACCOUNT}</Heading1>
 
         <Notification text={errorMessage} isError />
 
         <form onSubmit={submitSignUp}>
           <div className="my-4">
-            <h3>{text.EMAIL_ADDRESS}</h3>
+            <Heading3>{text.EMAIL_ADDRESS}</Heading3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -124,7 +125,7 @@ const SignUp = () => {
           </div>
 
           <div className="my-4">
-            <h3>{text.PASSWORD}</h3>
+            <Heading3>{text.PASSWORD}</Heading3>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>
             )}
@@ -138,7 +139,7 @@ const SignUp = () => {
           </div>
 
           <div className="my-4">
-            <h3>{text.REENTER_PASSWORD}</h3>
+            <Heading3>{text.REENTER_PASSWORD}</Heading3>
             {errorMessagePasswordConfirm && (
               <div className="text-red">{errorMessagePasswordConfirm}</div>
             )}
@@ -160,7 +161,7 @@ const SignUp = () => {
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText text={text.ALREADY_HAVE_AN_ACCOUNT} href="/signIn" />
         </div>
-      </main>
+      </div>
     </>
   );
 };

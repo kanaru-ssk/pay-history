@@ -1,10 +1,8 @@
 import { useEffect, useRef } from "react";
-
-import type { TabStatus } from "types/tabStatus";
-
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { displayMonth } from "libs/displayMonth";
+import type { TabStatus } from "types/tabStatus";
 
 type Props = {
   month: TabStatus;
@@ -34,7 +32,7 @@ const TabItem = ({ month }: Props) => {
         setTabStatus(month);
       }}
       className={
-        (tabStatus === month ? "font-bold" : "text-dark-gray") +
+        (tabStatus === month ? "font-bold" : "text-gray-800") +
         " h-16 w-16 shrink-0"
       }
     >

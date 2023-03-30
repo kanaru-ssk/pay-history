@@ -7,16 +7,12 @@ type Props = {
 const AnonymousMenu = ({ onClick }: Props) => {
   return (
     <div>
-      <Link href="/signUp">
-        <a onClick={onClick} className="font-bold">
-          Sign Up
-        </a>
+      <Link href="/signUp" onClick={onClick} className="font-bold">
+        Sign Up
       </Link>
       <span className="mx-4">/</span>
-      <Link href="/signIn">
-        <a onClick={onClick} className="font-bold">
-          Sign In
-        </a>
+      <Link href="/signIn" onClick={onClick} className="font-bold">
+        Sign In
       </Link>
     </div>
   );

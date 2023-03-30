@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-
+import PenIcon from "components/atoms/icons/PenIcon";
 import type { Payment } from "types/firebase";
-
-import MoreIcon from "components/atoms/icons/MoreIcon";
 
 type Props = {
   payment: Payment;
@@ -10,8 +8,8 @@ type Props = {
 };
 
 const TableItem = ({ payment, setPayment }: Props) => {
-  const [bgColor, setBgColor] = useState<"bg-white" | "bg-sub-color">(
-    "bg-sub-color"
+  const [bgColor, setBgColor] = useState<"bg-white" | "bg-gray-400">(
+    "bg-gray-400"
   );
 
   useEffect(() => {
@@ -34,10 +32,10 @@ const TableItem = ({ payment, setPayment }: Props) => {
       </div>
       <button
         onClick={() => setPayment(payment)}
-        className="w-8"
+        className="h-8 w-8 text-center"
         name="edit-menu"
       >
-        <MoreIcon />
+        <PenIcon />
       </button>
     </div>
   );

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-
+import Heading1 from "components/atoms/Heading1";
+import Heading3 from "components/atoms/Heading3";
 import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
+import Head from "components/organisms/Head";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSendLink } from "libs/auth";
 import { validateEmail } from "libs/validation";
@@ -54,15 +55,15 @@ const SetLink = () => {
 
   return (
     <>
-      <Header />
-      <main>
-        <h1>{text.RESET_PASSWORD}</h1>
+      <Head title={`${text.RESET_PASSWORD} | Pay History`} />
+      <div>
+        <Heading1>{text.RESET_PASSWORD}</Heading1>
 
         <Notification text={noticeMessage} isError />
 
         <form onSubmit={submitSendResetPasswordLink}>
           <div className="my-4">
-            <h3>{text.EMAIL_ADDRESS}</h3>
+            <Heading3>{text.EMAIL_ADDRESS}</Heading3>
             {errorMessageEmail && (
               <div className="text-red">{errorMessageEmail}</div>
             )}
@@ -85,7 +86,7 @@ const SetLink = () => {
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText text={text.SIGN_IN} href="/signIn" />
         </div>
-      </main>
+      </div>
     </>
   );
 };

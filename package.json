@@ -7,18 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
-    "fix": "pnpm lint --fix && pnpm format",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}' && pnpm lint --fix",
     "test": "jest",
     "cypress": "cypress open",
     "e2e": "cypress run"
   },
   "dependencies": {
     "firebase": "^9.9.1",
-    "next": "^12.2.5",
+    "next": "^13.2.4",
     "next-pwa": "^5.6.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

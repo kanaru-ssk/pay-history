@@ -1,14 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-import Menu from "./Menu";
-import Tab from "./Tab";
-
-import LogoIcon from "components/atoms/icons/LogoIcon";
 import SettingIcon from "components/atoms/icons/SettingIcon";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { displayMonth } from "libs/displayMonth";
+import Menu from "./Menu";
+import Tab from "./Tab";
 
 const Header = () => {
   const { locale } = useLocale();
@@ -21,22 +19,29 @@ const Header = () => {
     <>
       <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20">
         <div className="px-4">
-          <Link href="/">
-            <a title="go to top page">
-              <LogoIcon />
-            </a>
+          <Link href="/" title="go to top page">
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              width={41}
+              height={14}
+              className="h-6 w-auto md:h-10"
+            />
           </Link>
         </div>
 
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => {
-              setIsTabOpen(!isTabOpen);
-            }}
-          >
-            {displayMonth(tabStatus, locale)}
-            {isTabOpen ? "▲" : "▼"}
-          </button>
+          <details>
+            <summary
+              onClick={() => {
+                setIsTabOpen(!isTabOpen);
+              }}
+              className="cursor-pointer"
+            >
+              {displayMonth(tabStatus, locale)}
+            </summary>
+          </details>
+
           <button
             className="p-4"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

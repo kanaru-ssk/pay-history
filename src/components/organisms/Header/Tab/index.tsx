@@ -1,6 +1,5 @@
-import TabItem from "./TabItem";
-
 import { isTabStatus } from "types/tabStatus";
+import TabItem from "./TabItem";
 
 const Tab = () => {
   const tmp = new Date().getMonth() + 1;
@@ -16,7 +15,7 @@ const Tab = () => {
   }
 
   return (
-    <div className="sticky top-12 z-10 flex h-16 flex-row-reverse items-center overflow-x-scroll bg-sub-color px-[50vw] md:top-20">
+    <div className="sticky top-12 z-10 flex h-16 flex-row-reverse items-center overflow-x-scroll bg-gray-200 px-[50vw] md:top-20">
       {months}
     </div>
   );

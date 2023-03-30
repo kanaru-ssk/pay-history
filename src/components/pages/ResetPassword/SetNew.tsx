@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Heading1 from "components/atoms/Heading1";
+import Heading3 from "components/atoms/Heading3";
 import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
+import Head from "components/organisms/Head";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSetNew } from "libs/auth";
 import { validatePassword, validateReenterPassword } from "libs/validation";
@@ -91,15 +92,15 @@ const SetNew = () => {
 
   return (
     <>
-      <Header />
-      <main>
-        <h1>{text.RESET_PASSWORD}</h1>
+      <Head title={`${text.RESET_PASSWORD} | Pay History`} />
+      <div>
+        <Heading1>{text.RESET_PASSWORD}</Heading1>
 
         <Notification text={errorMessage} isError />
 
         <form onSubmit={submitSetNewPassword}>
           <div className="my-4">
-            <h3>{text.NEW_PASSWORD}</h3>
+            <Heading3>{text.NEW_PASSWORD}</Heading3>
             {errorMessagePassword && (
               <div className="text-red">{errorMessagePassword}</div>
             )}
@@ -113,7 +114,7 @@ const SetNew = () => {
           </div>
 
           <div className="my-4">
-            <h3>{text.REENTER_NEW_PASSWORD}</h3>
+            <Heading3>{text.REENTER_NEW_PASSWORD}</Heading3>
             {errorMessageReenterNewPassword && (
               <div className="text-red">{errorMessageReenterNewPassword}</div>
             )}
@@ -139,7 +140,7 @@ const SetNew = () => {
           />
           <LinkText text="Return To Home" href="/" />
         </div>
-      </main>
+      </div>
     </>
   );
 };

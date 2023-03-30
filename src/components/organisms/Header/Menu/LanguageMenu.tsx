@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import LanguageIcon from "components/atoms/icons/LanguageIcon";
 import { languages } from "constants/languages";
 import { useLocale } from "hooks/locale";
@@ -7,7 +6,7 @@ import { useLocale } from "hooks/locale";
 const LanguageMenu = () => {
   const { locale } = useLocale();
   return (
-    <details className="w-48 rounded-lg border border-gray px-8">
+    <details className="w-48 rounded-lg border border-gray-400 px-8">
       <summary className="cursor-pointer p-1 font-bold">
         <span className="mx-1">
           <LanguageIcon />
@@ -23,9 +22,7 @@ const LanguageMenu = () => {
               passHref
               key={language.locale}
             >
-              <a>
-                <div className="m-1 text-center">{language.name}</div>
-              </a>
+              <div className="m-1 text-center">{language.name}</div>
             </Link>
           );
         })}

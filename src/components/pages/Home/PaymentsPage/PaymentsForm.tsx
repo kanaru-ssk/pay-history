@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-
-import type { MonthlyData } from "types/firebase";
-
 import Input from "components/atoms/Input";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
 import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
 import { addPayment } from "libs/monthlyData";
+import type { MonthlyData } from "types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;
@@ -90,10 +88,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           small
         />
 
-        <button
-          name="add"
-          className={isReady ? "text-main-color" : "text-gray"}
-        >
+        <button name="add" className={isReady ? "text-black" : "text-gray-400"}>
           {text.ADD}
         </button>
       </div>
