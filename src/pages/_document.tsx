@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { colors } from "constants/colors";
 
 class MyDocument extends Document {
   render() {
