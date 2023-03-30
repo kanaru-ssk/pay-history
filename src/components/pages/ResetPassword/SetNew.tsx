@@ -4,6 +4,7 @@ import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
+import Head from "components/organisms/Head";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSetNew } from "libs/auth";
 import { validatePassword, validateReenterPassword } from "libs/validation";
@@ -88,54 +89,57 @@ const SetNew = () => {
   };
 
   return (
-    <div>
-      <h1>{text.RESET_PASSWORD}</h1>
+    <>
+      <Head title={`${text.RESET_PASSWORD} | Pay History`} />
+      <div>
+        <h1>{text.RESET_PASSWORD}</h1>
 
-      <Notification text={errorMessage} isError />
+        <Notification text={errorMessage} isError />
 
-      <form onSubmit={submitSetNewPassword}>
-        <div className="my-4">
-          <h3>{text.NEW_PASSWORD}</h3>
-          {errorMessagePassword && (
-            <div className="text-red">{errorMessagePassword}</div>
-          )}
-          <Input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            onBlur={validationNewPassword}
-            placeholder={text.PASSWORD_PLACEHOLDER}
+        <form onSubmit={submitSetNewPassword}>
+          <div className="my-4">
+            <h3>{text.NEW_PASSWORD}</h3>
+            {errorMessagePassword && (
+              <div className="text-red">{errorMessagePassword}</div>
+            )}
+            <Input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              onBlur={validationNewPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
+            />
+          </div>
+
+          <div className="my-4">
+            <h3>{text.REENTER_NEW_PASSWORD}</h3>
+            {errorMessageReenterNewPassword && (
+              <div className="text-red">{errorMessageReenterNewPassword}</div>
+            )}
+            <Input
+              type="password"
+              value={newPasswordConfirm}
+              onChange={validationReenterNewPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
+            />
+          </div>
+
+          <div className="my-8">
+            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+              {text.RESET}
+            </ButtonWithStatus>
+          </div>
+        </form>
+
+        <div className="my-16 flex flex-col items-center gap-4">
+          <LinkText
+            text={text.RESEND_RESET_LINK}
+            href="/reset-password/send-link"
           />
+          <LinkText text="Return To Home" href="/" />
         </div>
-
-        <div className="my-4">
-          <h3>{text.REENTER_NEW_PASSWORD}</h3>
-          {errorMessageReenterNewPassword && (
-            <div className="text-red">{errorMessageReenterNewPassword}</div>
-          )}
-          <Input
-            type="password"
-            value={newPasswordConfirm}
-            onChange={validationReenterNewPassword}
-            placeholder={text.PASSWORD_PLACEHOLDER}
-          />
-        </div>
-
-        <div className="my-8">
-          <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
-            {text.RESET}
-          </ButtonWithStatus>
-        </div>
-      </form>
-
-      <div className="my-16 flex flex-col items-center gap-4">
-        <LinkText
-          text={text.RESEND_RESET_LINK}
-          href="/reset-password/send-link"
-        />
-        <LinkText text="Return To Home" href="/" />
       </div>
-    </div>
+    </>
   );
 };
 

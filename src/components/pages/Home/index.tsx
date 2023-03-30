@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Notification from "components/molecules/Notification";
+import Head from "components/organisms/Head";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
@@ -35,15 +36,18 @@ const Home = () => {
   }, [dbUser, tabStatus]);
 
   return (
-    <div>
-      <Notification
-        text={text.PASSWORD_CHANGED}
-        show={!!changePasswordSuccess}
-      />
-      {thisMonthData === undefined && <LoadingPage />}
-      {thisMonthData === null && <LandingPage />}
-      {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
-    </div>
+    <>
+      <Head />
+      <div>
+        <Notification
+          text={text.PASSWORD_CHANGED}
+          show={!!changePasswordSuccess}
+        />
+        {thisMonthData === undefined && <LoadingPage />}
+        {thisMonthData === null && <LandingPage />}
+        {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
+      </div>
+    </>
   );
 };
 

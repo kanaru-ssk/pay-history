@@ -4,6 +4,7 @@ import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
+import Head from "components/organisms/Head";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signIn } from "libs/auth";
@@ -73,60 +74,63 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h1>{text.SIGN_IN}</h1>
+    <>
+      <Head title={`${text.SIGN_IN} | Pay History`} />
+      <div>
+        <h1>{text.SIGN_IN}</h1>
 
-      <Notification text={errorMessage} isError />
+        <Notification text={errorMessage} isError />
 
-      <form onSubmit={submitSignIn}>
-        <div className="my-4">
-          <h3>{text.EMAIL_ADDRESS}</h3>
-          {errorMessageEmail && (
-            <div className="text-red">{errorMessageEmail}</div>
-          )}
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={validationEmail}
-            placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
+        <form onSubmit={submitSignIn}>
+          <div className="my-4">
+            <h3>{text.EMAIL_ADDRESS}</h3>
+            {errorMessageEmail && (
+              <div className="text-red">{errorMessageEmail}</div>
+            )}
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={validationEmail}
+              placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
+            />
+          </div>
+
+          <div className="my-4">
+            <h3>{text.PASSWORD}</h3>
+            {errorMessagePassword && (
+              <div className="text-red">{errorMessagePassword}</div>
+            )}
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onBlur={validationPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
+            />
+          </div>
+
+          <div className="my-8">
+            <ButtonWithStatus
+              type="submit"
+              isReady={isReady}
+              isLoading={isLoading}
+            >
+              {text.SIGN_IN}
+            </ButtonWithStatus>
+          </div>
+        </form>
+
+        <div className="my-16 flex flex-col items-center gap-4">
+          <LinkText text={text.NEW_REGISTRATION} href="/signUp" />
+          <LinkText
+            text={text.FORGET_PASSWORD}
+            href="/reset-password/send-link"
           />
+          <LinkText text="Return To Home" href="/" />
         </div>
-
-        <div className="my-4">
-          <h3>{text.PASSWORD}</h3>
-          {errorMessagePassword && (
-            <div className="text-red">{errorMessagePassword}</div>
-          )}
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onBlur={validationPassword}
-            placeholder={text.PASSWORD_PLACEHOLDER}
-          />
-        </div>
-
-        <div className="my-8">
-          <ButtonWithStatus
-            type="submit"
-            isReady={isReady}
-            isLoading={isLoading}
-          >
-            {text.SIGN_IN}
-          </ButtonWithStatus>
-        </div>
-      </form>
-
-      <div className="my-16 flex flex-col items-center gap-4">
-        <LinkText text={text.NEW_REGISTRATION} href="/signUp" />
-        <LinkText
-          text={text.FORGET_PASSWORD}
-          href="/reset-password/send-link"
-        />
-        <LinkText text="Return To Home" href="/" />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import Header from "components/organisms/Header";
 import "styles/globals.css";
 
@@ -14,20 +13,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   });
 
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-
-      <DynamicAuthProvider>
-        <DynamicTabStatusProvider>
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </DynamicTabStatusProvider>
-      </DynamicAuthProvider>
-    </>
+    <DynamicAuthProvider>
+      <DynamicTabStatusProvider>
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </DynamicTabStatusProvider>
+    </DynamicAuthProvider>
   );
 };
 
