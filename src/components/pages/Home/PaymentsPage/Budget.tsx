@@ -75,7 +75,7 @@ const Budget = ({ thisMonthData }: Props) => {
             />
           </td>
         </tr>
-        <tr className="border-b">
+        <tr className="border-b border-gray-400">
           <th>{text.SPENT}</th>
           <td
             className="px-4 text-right"

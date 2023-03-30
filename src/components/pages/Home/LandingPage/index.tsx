@@ -20,6 +20,7 @@ const LandingPage = () => {
         width={992}
         height={1296}
         alt="screenshot"
+        className="drop-shadow-lg"
       />
       <h2>{text.HOW_TO_USE}</h2>
       <ol className="list-inside list-decimal">

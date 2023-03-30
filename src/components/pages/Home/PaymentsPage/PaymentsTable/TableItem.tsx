@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MoreIcon from "components/atoms/icons/MoreIcon";
+import PenIcon from "components/atoms/icons/PenIcon";
 import type { Payment } from "types/firebase";
 
 type Props = {
@@ -32,10 +32,10 @@ const TableItem = ({ payment, setPayment }: Props) => {
       </div>
       <button
         onClick={() => setPayment(payment)}
-        className="w-8"
+        className="h-8 w-8 text-center"
         name="edit-menu"
       >
-        <MoreIcon />
+        <PenIcon />
       </button>
     </div>
   );

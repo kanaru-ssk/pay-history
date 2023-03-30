@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import SortIcon from "components/atoms/icons/SortIcon";
 import { useLocale } from "hooks/locale";
 import type { MonthlyData, Payment } from "types/firebase";
 import TableItem from "./TableItem";
@@ -69,26 +70,26 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
 
   return (
     <div>
-      <div className="flex border-b border-black px-4">
+      <div className="flex border-b border-gray-400 px-4 pr-12">
         <button
           onClick={() => {
             setIsSortDate(true);
             setIsAcsDate(!isAcsDate);
           }}
-          className="w-full text-left"
+          className="flex w-full items-center gap-2"
         >
-          {text.SPENT_DATE}
-          {isSortDate && (isAcsDate ? "▲" : "▼")}
+          <span>{text.SPENT_DATE}</span>
+          <SortIcon isAcs={isAcsDate} disable={!isSortDate} />
         </button>
         <button
           onClick={() => {
             setIsSortDate(false);
             setIsAcsPrice(!isAcsPrice);
           }}
-          className="w-full pr-8 text-right"
+          className="flex w-full items-center justify-end gap-2"
         >
-          {!isSortDate && (isAcsPrice ? "▲" : "▼")}
-          {text.AMOUNT}
+          <span>{text.AMOUNT}</span>
+          <SortIcon isAcs={isAcsPrice} disable={isSortDate} />
         </button>
       </div>
 
@@ -111,7 +112,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
           })}
       </div>
       {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-        <div className="text-gray-400 py-4 text-center">
+        <div className="py-4 text-center text-gray-400">
           {text.NO_PAYMENT_DATA}
         </div>
       )}

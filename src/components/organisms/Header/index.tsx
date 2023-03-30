@@ -36,6 +36,7 @@ const Header = () => {
               onClick={() => {
                 setIsTabOpen(!isTabOpen);
               }}
+              className="cursor-pointer"
             >
               {displayMonth(tabStatus, locale)}
             </summary>
