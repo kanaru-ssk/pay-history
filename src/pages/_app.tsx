@@ -2,7 +2,6 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import Header from "components/organisms/Header";
-
 import "styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -23,7 +22,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <DynamicAuthProvider>
         <DynamicTabStatusProvider>
           <Header />
-          <Component {...pageProps} />
+          <main>
+            <Component {...pageProps} />
+          </main>
         </DynamicTabStatusProvider>
       </DynamicAuthProvider>
     </>

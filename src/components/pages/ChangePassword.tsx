@@ -98,72 +98,70 @@ const ChangePassword = () => {
   };
 
   return (
-    <>
-      <main>
-        <h1>{text.CHANGE_PASSWORD}</h1>
+    <div>
+      <h1>{text.CHANGE_PASSWORD}</h1>
 
-        <Notification text={errorMessage} isError />
+      <Notification text={errorMessage} isError />
 
-        <form onSubmit={submitChangePassword}>
-          <div className="my-4">
-            <h3>{text.CURRENT_PASSWORD}</h3>
-            {errorCurrentPassword && (
-              <div className="text-red">{errorCurrentPassword}</div>
-            )}
-            <Input
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              onBlur={validationCurrentPassword}
-            />
-          </div>
-
-          <div className="my-4">
-            <h3>{text.NEW_PASSWORD}</h3>
-            <div className="pb-2 leading-5 text-gray-500">
-              {text.ONLY_ALPHANUMERIC_CHARACTERS}
-              <br />
-              {text.CHARACTERS_6_to_20}
-            </div>
-            {errorMessagePassword && (
-              <div className="text-red">{errorMessagePassword}</div>
-            )}
-            <Input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              onBlur={validationNewPassword}
-            />
-          </div>
-
-          <div className="my-4">
-            <h3>{text.REENTER_NEW_PASSWORD}</h3>
-            {errorMessageReenterNewPassword && (
-              <div className="text-red">{errorMessageReenterNewPassword}</div>
-            )}
-            <Input
-              type="password"
-              value={reenterNewPassword}
-              onChange={validationReenterNewPassword}
-            />
-          </div>
-
-          <div className="my-8">
-            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
-              {text.CHANGE}
-            </ButtonWithStatus>
-          </div>
-        </form>
-
-        <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText
-            text={text.FORGET_PASSWORD}
-            href="/reset-password/send-link"
+      <form onSubmit={submitChangePassword}>
+        <div className="my-4">
+          <h3>{text.CURRENT_PASSWORD}</h3>
+          {errorCurrentPassword && (
+            <div className="text-red">{errorCurrentPassword}</div>
+          )}
+          <Input
+            type="password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            onBlur={validationCurrentPassword}
           />
-          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
-      </main>
-    </>
+
+        <div className="my-4">
+          <h3>{text.NEW_PASSWORD}</h3>
+          <div className="pb-2 leading-5 text-gray-500">
+            {text.ONLY_ALPHANUMERIC_CHARACTERS}
+            <br />
+            {text.CHARACTERS_6_to_20}
+          </div>
+          {errorMessagePassword && (
+            <div className="text-red">{errorMessagePassword}</div>
+          )}
+          <Input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            onBlur={validationNewPassword}
+          />
+        </div>
+
+        <div className="my-4">
+          <h3>{text.REENTER_NEW_PASSWORD}</h3>
+          {errorMessageReenterNewPassword && (
+            <div className="text-red">{errorMessageReenterNewPassword}</div>
+          )}
+          <Input
+            type="password"
+            value={reenterNewPassword}
+            onChange={validationReenterNewPassword}
+          />
+        </div>
+
+        <div className="my-8">
+          <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+            {text.CHANGE}
+          </ButtonWithStatus>
+        </div>
+      </form>
+
+      <div className="my-16 flex flex-col items-center gap-4">
+        <LinkText
+          text={text.FORGET_PASSWORD}
+          href="/reset-password/send-link"
+        />
+        <LinkText text={text.RETURN_TO_HOME} href="/" />
+      </div>
+    </div>
   );
 };
 

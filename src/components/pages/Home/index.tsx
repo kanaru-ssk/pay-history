@@ -35,17 +35,15 @@ const Home = () => {
   }, [dbUser, tabStatus]);
 
   return (
-    <>
-      <main>
-        <Notification
-          text={text.PASSWORD_CHANGED}
-          show={!!changePasswordSuccess}
-        />
-        {thisMonthData === undefined && <LoadingPage />}
-        {thisMonthData === null && <LandingPage />}
-        {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
-      </main>
-    </>
+    <div>
+      <Notification
+        text={text.PASSWORD_CHANGED}
+        show={!!changePasswordSuccess}
+      />
+      {thisMonthData === undefined && <LoadingPage />}
+      {thisMonthData === null && <LandingPage />}
+      {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
+    </div>
   );
 };
 
