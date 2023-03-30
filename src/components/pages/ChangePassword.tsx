@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Heading1 from "components/atoms/Heading1";
+import Heading3 from "components/atoms/Heading3";
 import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
@@ -102,13 +104,13 @@ const ChangePassword = () => {
     <>
       <Head title={`${text.CHANGE_PASSWORD} | Pay History`} />
       <div>
-        <h1>{text.CHANGE_PASSWORD}</h1>
+        <Heading1>{text.CHANGE_PASSWORD}</Heading1>
 
         <Notification text={errorMessage} isError />
 
         <form onSubmit={submitChangePassword}>
           <div className="my-4">
-            <h3>{text.CURRENT_PASSWORD}</h3>
+            <Heading3>{text.CURRENT_PASSWORD}</Heading3>
             {errorCurrentPassword && (
               <div className="text-red">{errorCurrentPassword}</div>
             )}
@@ -121,7 +123,7 @@ const ChangePassword = () => {
           </div>
 
           <div className="my-4">
-            <h3>{text.NEW_PASSWORD}</h3>
+            <Heading3>{text.NEW_PASSWORD}</Heading3>
             <div className="pb-2 leading-5 text-gray-500">
               {text.ONLY_ALPHANUMERIC_CHARACTERS}
               <br />
@@ -139,7 +141,7 @@ const ChangePassword = () => {
           </div>
 
           <div className="my-4">
-            <h3>{text.REENTER_NEW_PASSWORD}</h3>
+            <Heading3>{text.REENTER_NEW_PASSWORD}</Heading3>
             {errorMessageReenterNewPassword && (
               <div className="text-red">{errorMessageReenterNewPassword}</div>
             )}
