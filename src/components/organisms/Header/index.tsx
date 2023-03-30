@@ -42,11 +42,7 @@ const Header = () => {
             </summary>
           </details>
 
-          <button
-            className="p-4"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            name="menu-open"
-          >
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} name="menu-open">
             <SettingIcon />
           </button>
         </div>
