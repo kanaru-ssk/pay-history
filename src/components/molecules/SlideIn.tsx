@@ -39,7 +39,7 @@ const SlideIn = ({ children, isShown, onHide }: Props) => {
           !isShown && "translate-x-full"
         }`}
       >
-        <header className="border-gray-400 flex h-12 flex-row-reverse items-center border-b bg-white md:h-20">
+        <header className="flex h-12 flex-row-reverse items-center border-b border-gray-400 bg-white md:h-20">
           <button className="p-4" onClick={onHide}>
             <CloseIcon />
           </button>

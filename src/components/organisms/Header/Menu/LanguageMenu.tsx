@@ -6,7 +6,7 @@ import { useLocale } from "hooks/locale";
 const LanguageMenu = () => {
   const { locale } = useLocale();
   return (
-    <details className="border-gray-400 w-48 rounded-lg border px-8">
+    <details className="w-48 rounded-lg border border-gray-400 px-8">
       <summary className="cursor-pointer p-1 font-bold">
         <span className="mx-1">
           <LanguageIcon />
