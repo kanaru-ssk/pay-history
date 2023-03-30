@@ -65,7 +65,10 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   };
 
   return (
-    <form onSubmit={submitAddPayment} className="bg-white">
+    <form
+      onSubmit={submitAddPayment}
+      className="fixed bottom-0 left-0 w-full bg-white px-4 drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)]"
+    >
       <div className="flex w-full items-center gap-2 py-2">
         <Input
           name="date"
