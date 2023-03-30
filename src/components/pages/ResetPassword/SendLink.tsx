@@ -3,7 +3,6 @@ import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSendLink } from "libs/auth";
 import { validateEmail } from "libs/validation";
@@ -53,7 +52,6 @@ const SetLink = () => {
 
   return (
     <>
-      <Header />
       <main>
         <h1>{text.RESET_PASSWORD}</h1>
 

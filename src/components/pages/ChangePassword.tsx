@@ -4,7 +4,6 @@ import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { changePassword } from "libs/auth";
@@ -100,7 +99,6 @@ const ChangePassword = () => {
 
   return (
     <>
-      <Header />
       <main>
         <h1>{text.CHANGE_PASSWORD}</h1>
 
@@ -122,7 +120,7 @@ const ChangePassword = () => {
 
           <div className="my-4">
             <h3>{text.NEW_PASSWORD}</h3>
-            <div className="pb-2 leading-5 text-gray-800">
+            <div className="pb-2 leading-5 text-gray-500">
               {text.ONLY_ALPHANUMERIC_CHARACTERS}
               <br />
               {text.CHARACTERS_6_to_20}

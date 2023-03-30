@@ -4,7 +4,6 @@ import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
 import { useLocale } from "hooks/locale";
 import { resetPasswordSetNew } from "libs/auth";
 import { validatePassword, validateReenterPassword } from "libs/validation";
@@ -90,7 +89,6 @@ const SetNew = () => {
 
   return (
     <>
-      <Header />
       <main>
         <h1>{text.RESET_PASSWORD}</h1>
 

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { useTabStatus } from "hooks/tabStatus";
@@ -37,7 +36,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
       <main>
         <Notification
           text={text.PASSWORD_CHANGED}

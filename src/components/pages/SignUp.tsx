@@ -4,7 +4,6 @@ import Input from "components/atoms/Input";
 import LinkText from "components/atoms/LinkText";
 import ButtonWithStatus from "components/molecules/ButtonWithStatus";
 import Notification from "components/molecules/Notification";
-import Header from "components/organisms/Header";
 import { useAuth } from "hooks/auth";
 import { useLocale } from "hooks/locale";
 import { signUp } from "libs/auth";
@@ -101,7 +100,6 @@ const SignUp = () => {
 
   return (
     <>
-      <Header />
       <main>
         <h1>{text.CREATE_ACCOUNT}</h1>
 
