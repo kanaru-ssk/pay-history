@@ -7,7 +7,7 @@ type Props = {
 
 const LinkText = ({ text, href }: Props) => {
   return (
-    <Link href={href} className="text-main-color underline hover:text-gray">
+    <Link href={href} className="text-black underline hover:text-gray-400">
       {text}
     </Link>
   );

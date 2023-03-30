@@ -88,10 +88,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           small
         />
 
-        <button
-          name="add"
-          className={isReady ? "text-main-color" : "text-gray"}
-        >
+        <button name="add" className={isReady ? "text-black" : "text-gray-400"}>
           {text.ADD}
         </button>
       </div>

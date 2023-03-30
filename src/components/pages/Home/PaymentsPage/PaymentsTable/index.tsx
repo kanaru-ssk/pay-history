@@ -111,7 +111,9 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
           })}
       </div>
       {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-        <div className="py-4 text-center text-gray">{text.NO_PAYMENT_DATA}</div>
+        <div className="text-gray-400 py-4 text-center">
+          {text.NO_PAYMENT_DATA}
+        </div>
       )}
     </div>
   );

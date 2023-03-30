@@ -4,8 +4,8 @@ type Props = {
 
 const LoadingIcon = ({ red }: Props) => {
   const color = red
-    ? "border-red border-t-light-red"
-    : "border-main-color border-t-sub-color";
+    ? "border-red-400 border-t-red-400"
+    : "border-black border-t-gray-400";
 
   return (
     <svg

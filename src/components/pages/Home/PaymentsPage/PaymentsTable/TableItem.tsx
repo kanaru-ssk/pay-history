@@ -8,8 +8,8 @@ type Props = {
 };
 
 const TableItem = ({ payment, setPayment }: Props) => {
-  const [bgColor, setBgColor] = useState<"bg-white" | "bg-sub-color">(
-    "bg-sub-color"
+  const [bgColor, setBgColor] = useState<"bg-white" | "bg-gray-400">(
+    "bg-gray-400"
   );
 
   useEffect(() => {

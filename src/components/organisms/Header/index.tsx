@@ -31,14 +31,16 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => {
-              setIsTabOpen(!isTabOpen);
-            }}
-          >
-            {displayMonth(tabStatus, locale)}
-            {isTabOpen ? "▲" : "▼"}
-          </button>
+          <details>
+            <summary
+              onClick={() => {
+                setIsTabOpen(!isTabOpen);
+              }}
+            >
+              {displayMonth(tabStatus, locale)}
+            </summary>
+          </details>
+
           <button
             className="p-4"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -32,7 +32,7 @@ const TabItem = ({ month }: Props) => {
         setTabStatus(month);
       }}
       className={
-        (tabStatus === month ? "font-bold" : "text-dark-gray") +
+        (tabStatus === month ? "font-bold" : "text-gray-800") +
         " h-16 w-16 shrink-0"
       }
     >

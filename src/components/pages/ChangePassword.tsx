@@ -122,7 +122,7 @@ const ChangePassword = () => {
 
           <div className="my-4">
             <h3>{text.NEW_PASSWORD}</h3>
-            <div className="pb-2 leading-5 text-dark-gray">
+            <div className="text-gray-800 pb-2 leading-5">
               {text.ONLY_ALPHANUMERIC_CHARACTERS}
               <br />
               {text.CHARACTERS_6_to_20}

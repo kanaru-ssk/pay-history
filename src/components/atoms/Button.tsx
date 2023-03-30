@@ -7,10 +7,10 @@ export type ButtonProps = {
 
 const Button = ({ color = "gray", large, ...rest }: ButtonProps) => {
   const buttonColor = (() => {
-    if (color === "red") return "text-white bg-red hover:bg-gray";
-    else if (color === "blue") return "text-white bg-main-color hover:bg-gray";
-    else if (color === "grayOut") return "bg-light-gray text-gray";
-    else return "text-main-color font-bold bg-light-gray hover:bg-gray";
+    if (color === "red") return "text-white bg-red-400 hover:bg-gray-400";
+    else if (color === "blue") return "text-white bg-black hover:bg-gray-400";
+    else if (color === "grayOut") return "bg-gray-100 text-gray-400";
+    else return "text-black font-bold bg-gray-100 hover:bg-gray-400";
   })();
   const buttonSize = large ? "h-12 w-full" : "px-4";
 
