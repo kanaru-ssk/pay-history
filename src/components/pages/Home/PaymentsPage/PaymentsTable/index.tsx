@@ -94,7 +94,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
       </div>
 
       <div
-        className="flex max-h-[calc(100vh_-_276px)] w-full flex-col-reverse overflow-y-scroll md:max-h-[calc(100vh_-_308px)]"
+        className="flex w-full flex-col-reverse overflow-y-scroll"
         ref={ref}
         data-cy="payments-table"
       >

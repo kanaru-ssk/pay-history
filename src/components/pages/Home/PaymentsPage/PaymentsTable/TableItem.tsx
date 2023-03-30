@@ -21,7 +21,7 @@ const TableItem = ({ payment, setPayment }: Props) => {
   return (
     <div
       key={payment.atCreated.toString()}
-      className={bgColor + " flex h-9 items-center  duration-1000"}
+      className={bgColor + " flex h-12 items-center  duration-1000"}
     >
       <div className="flex-1 pl-4 text-left">
         {String(payment.atPaid.toDate().getMonth() + 1).padStart(2, "0")}/
