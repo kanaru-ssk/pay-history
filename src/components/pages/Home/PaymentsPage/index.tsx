@@ -14,7 +14,7 @@ const PaymentsPage = ({ thisMonthData }: Props) => {
 
   return (
     <>
-      <div className="my-4">
+      <div className="sticky top-12 bg-white py-4">
         <Budget thisMonthData={thisMonthData} />
       </div>
 
