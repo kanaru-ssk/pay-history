@@ -93,7 +93,7 @@ const SetNew = () => {
   return (
     <>
       <Head title={`${text.RESET_PASSWORD} | Pay History`} />
-      <div>
+      <div className="px-4">
         <Heading1>{text.RESET_PASSWORD}</Heading1>
 
         <Notification text={errorMessage} isError />

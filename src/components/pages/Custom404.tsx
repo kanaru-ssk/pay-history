@@ -8,7 +8,7 @@ const Custom404 = () => {
   return (
     <>
       <Head title="404 Not Found | Pay History" />
-      <div>
+      <div className="px-4">
         <Heading1>404 Not Found</Heading1>
         <p className="pb-8">{text.PAGE_NOT_FOUND}</p>
         <LinkText text={text.RETURN_TO_HOME} href="/" />

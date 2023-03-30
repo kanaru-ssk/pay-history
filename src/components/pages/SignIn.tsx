@@ -78,7 +78,7 @@ const SignIn = () => {
   return (
     <>
       <Head title={`${text.SIGN_IN} | Pay History`} />
-      <div>
+      <div className="px-4">
         <Heading1>{text.SIGN_IN}</Heading1>
 
         <Notification text={errorMessage} isError />

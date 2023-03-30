@@ -7,7 +7,7 @@ import CtaBtn from "./CtaBtn";
 const LandingPage = () => {
   const { text } = useLocale();
   return (
-    <>
+    <div className="px-4">
       <Heading1>Pay History</Heading1>
 
       <p>{text.LP_TEXT_01}</p>
@@ -33,7 +33,7 @@ const LandingPage = () => {
       <div className="my-12">
         <CtaBtn />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -103,7 +103,7 @@ const ChangePassword = () => {
   return (
     <>
       <Head title={`${text.CHANGE_PASSWORD} | Pay History`} />
-      <div>
+      <div className="px-4">
         <Heading1>{text.CHANGE_PASSWORD}</Heading1>
 
         <Notification text={errorMessage} isError />

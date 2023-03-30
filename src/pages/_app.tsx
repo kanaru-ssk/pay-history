@@ -16,7 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <DynamicAuthProvider>
       <DynamicTabStatusProvider>
         <Header />
-        <main className="mx-auto max-w-2xl px-4 font-light">
+        <main className="mx-auto max-w-2xl font-light">
           <Component {...pageProps} />
         </main>
       </DynamicTabStatusProvider>

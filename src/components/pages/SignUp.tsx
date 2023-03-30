@@ -104,7 +104,7 @@ const SignUp = () => {
   return (
     <>
       <Head title={`${text.SIGN_UP} | Pay History`} />
-      <div>
+      <div className="px-4">
         <Heading1>{text.CREATE_ACCOUNT}</Heading1>
 
         <Notification text={errorMessage} isError />

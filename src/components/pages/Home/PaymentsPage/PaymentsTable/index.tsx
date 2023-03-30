@@ -70,7 +70,7 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
 
   return (
     <div>
-      <div className="flex border-b border-gray-400 px-4 pr-12">
+      <div className="flex h-6 border-gray-400 bg-gray-100 px-4">
         <button
           onClick={() => {
             setIsSortDate(true);
