@@ -70,13 +70,13 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
 
   return (
     <div>
-      <div className="flex h-6 border-gray-400 bg-gray-100 px-4">
+      <div className="flex h-9 justify-between border-gray-400 bg-gray-100 px-4 text-xs">
         <button
           onClick={() => {
             setIsSortDate(true);
             setIsAcsDate(!isAcsDate);
           }}
-          className="flex w-full items-center gap-2"
+          className="flex items-center gap-2"
         >
           <span>{text.SPENT_DATE}</span>
           <SortIcon isAcs={isAcsDate} disable={!isSortDate} />
@@ -86,18 +86,14 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
             setIsSortDate(false);
             setIsAcsPrice(!isAcsPrice);
           }}
-          className="flex w-full items-center justify-end gap-2"
+          className="flex items-center gap-2"
         >
           <span>{text.AMOUNT}</span>
           <SortIcon isAcs={isAcsPrice} disable={isSortDate} />
         </button>
       </div>
 
-      <div
-        className="flex w-full flex-col-reverse overflow-y-scroll"
-        ref={ref}
-        data-cy="payments-table"
-      >
+      <div className="flex flex-col-reverse" ref={ref} data-cy="payments-table">
         {thisMonthData.payments
           .sort(isSortDate ? sortPrice : sortDate)
           .sort(isSortDate ? sortDate : sortPrice)
