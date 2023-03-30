@@ -4,13 +4,12 @@
   "description": "With the budget management tool 'Pay History', you can manage your monthly budget, amount spent, and budget remaining in the simplest way.",
   "icons": [
     {
-      "src": "/apple-icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "icon-512.png",
+      "sizes": "512x512"
     }
   ],
+  "theme_color": "#fff",
+  "background_color": "#fff",
   "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#C1C5FE",
-  "background_color": "#FFF"
+  "display": "standalone"
 }
