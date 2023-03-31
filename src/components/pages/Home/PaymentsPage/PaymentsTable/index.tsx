@@ -97,12 +97,12 @@ const PaymentsTable = ({ thisMonthData, setPayment }: Props) => {
               />
             );
           })}
+        {thisMonthData.payments && thisMonthData.payments.length === 0 && (
+          <div className="py-4 text-center text-gray-400">
+            {text.NO_PAYMENT_DATA}
+          </div>
+        )}
       </div>
-      {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-        <div className="py-4 text-center text-gray-400">
-          {text.NO_PAYMENT_DATA}
-        </div>
-      )}
     </div>
   );
 };

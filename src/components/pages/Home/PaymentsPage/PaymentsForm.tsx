@@ -65,10 +65,7 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   };
 
   return (
-    <form
-      onSubmit={submitAddPayment}
-      className="fixed bottom-0 left-0 w-full bg-white px-4 drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)]"
-    >
+    <form onSubmit={submitAddPayment}>
       <div className="flex w-full items-center gap-2 py-2">
         <Input
           name="date"
@@ -91,7 +88,11 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           small
         />
 
-        <button name="add" className={isReady ? "text-black" : "text-gray-400"}>
+        <button
+          name="add"
+          type="submit"
+          className={isReady ? "font-semibold text-black" : "text-gray-400"}
+        >
           {text.ADD}
         </button>
       </div>

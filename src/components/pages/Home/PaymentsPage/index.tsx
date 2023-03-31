@@ -14,14 +14,14 @@ const PaymentsPage = ({ thisMonthData }: Props) => {
 
   return (
     <>
-      <div className="sticky top-12 bg-white">
-        <Budget thisMonthData={thisMonthData} />
-      </div>
-
-      <PaymentsTable thisMonthData={thisMonthData} setPayment={setPayment} />
-
-      <div className="sticky bottom-0">
-        <PaymentsForm thisMonthData={thisMonthData} />
+      <div className="pb-16">
+        <div className="sticky top-12 bg-white">
+          <Budget thisMonthData={thisMonthData} />
+        </div>
+        <PaymentsTable thisMonthData={thisMonthData} setPayment={setPayment} />
+        <div className="fixed bottom-0 left-0 w-full bg-white px-4 drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)]">
+          <PaymentsForm thisMonthData={thisMonthData} />
+        </div>
       </div>
 
       <PaymentsModal
