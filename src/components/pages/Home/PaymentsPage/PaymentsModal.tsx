@@ -99,6 +99,7 @@ const PaymentsModal = ({ thisMonthData, payment, setPayment }: Props) => {
       isShown={!!payment}
       onHide={() => {
         setPayment(null);
+        setIsReady(false);
       }}
     >
       <form onSubmit={submitSavePayment} className="bg-white">
