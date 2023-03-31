@@ -30,7 +30,7 @@ const textKeys = [
   "FIX_AMOUNT",
   "NO_PAYMENT_DATA",
   "REMAINING",
-  "SPENT",
+  "TOTAL_SPENDING",
   "SPENT_DATE",
   "ALREADY_HAVE_AN_ACCOUNT",
   "FORGET_PASSWORD",
@@ -196,9 +196,9 @@ export const texts: {
     en: "Remaining",
     ja: "残高",
   },
-  SPENT: {
-    en: "Spent",
-    ja: "支出",
+  TOTAL_SPENDING: {
+    en: "Total Spending",
+    ja: "支出合計",
   },
   SPENT_DATE: {
     en: "Spent date",
@@ -227,7 +227,7 @@ export const texts: {
     ja: "予算管理を始める",
   },
   LP_TEXT_01: {
-    en: "Simplify monthly budgeting",
+    en: "Keep your household finances in check with real-time budget tracking.",
     ja: "毎月の予算管理をシンプルに",
   },
   LP_TEXT_02: {

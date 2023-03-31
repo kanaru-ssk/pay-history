@@ -11,7 +11,7 @@ type Props = {
   thisMonthData: MonthlyData;
 };
 
-const PaymentsForm = ({ thisMonthData }: Props) => {
+const AddForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const { tabStatus } = useTabStatus();
@@ -76,7 +76,6 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           onChange={changeDate}
           small
         />
-
         <Input
           name="amount"
           type="text"
@@ -87,7 +86,6 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           right
           small
         />
-
         <button
           name="add"
           type="submit"
@@ -100,4 +98,4 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   );
 };
 
-export default PaymentsForm;
+export default AddForm;
