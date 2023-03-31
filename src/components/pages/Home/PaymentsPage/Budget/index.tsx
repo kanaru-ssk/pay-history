@@ -42,7 +42,7 @@ const Budget = ({ thisMonthData }: Props) => {
     <div>
       <div className="flex h-28 items-center px-12">
         <div className="w-full">
-          <div>2023 / 03</div>
+          <div>{thisMonthData.docId.replace("-", " / ")}</div>
           <div className="flex flex-col items-end">
             <div>
               ¥{" "}
