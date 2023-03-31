@@ -1,12 +1,13 @@
 import { useState } from "react";
-import Input from "components/atoms/Input";
-import ButtonWithStatus from "components/molecules/ButtonWithStatus";
-import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
-import { stringToPrice } from "libs/convert";
-import { updateMonthlyData } from "libs/monthlyData";
-import { updateUser } from "libs/user";
-import type { MonthlyData } from "types/firebase";
+import Input from "@/components/atoms/Input";
+import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import { useAuth } from "@/hooks/auth";
+import { useLocale } from "@/hooks/locale";
+import { useModal } from "@/hooks/useModal";
+import { stringToPrice } from "@/libs/convert";
+import { updateMonthlyData } from "@/libs/monthlyData";
+import { updateUser } from "@/libs/user";
+import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
   budget: number;
@@ -16,15 +17,16 @@ type Props = {
 const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { text } = useLocale();
+  const { setModalContents } = useModal();
   const [editedBudget, setEditedBudget] = useState<number>(budget);
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
 
   // edit the budget
   const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const price = stringToPrice(e.target.value.substring(2));
-    setEditedBudget(price);
-    setIsReady(price !== thisMonthData.budget);
+    const newBudget = stringToPrice(e.target.value);
+    setEditedBudget(newBudget);
+    setIsReady(newBudget !== thisMonthData.budget);
   };
 
   // save the budget
@@ -37,6 +39,7 @@ const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
       updateMonthlyData(dbUser, { ...thisMonthData, budget: editedBudget });
     }
     setIsUpdateLoading(false);
+    setModalContents(null);
   };
 
   return (
@@ -45,8 +48,8 @@ const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
         <Input
           name="budget"
           type="text"
-          inputMode="text"
-          value={`¥ ${editedBudget.toLocaleString()}`}
+          inputMode="numeric"
+          value={editedBudget.toLocaleString()}
           onChange={changeBudget}
           small
           right

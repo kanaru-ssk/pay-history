@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
-import SortIcon from "components/atoms/icons/SortIcon";
-import { useLocale } from "hooks/locale";
+import SortIcon from "@/components/atoms/icons/SortIcon";
+import { useLocale } from "@/hooks/locale";
 
 type Props = {
   isSortDate: boolean;

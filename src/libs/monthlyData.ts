@@ -1,7 +1,7 @@
 import { logEvent } from "firebase/analytics";
 import { onSnapshot, doc } from "firebase/firestore";
-import { db, analytics } from "libs/firebase";
-import type { MonthlyData, Payment, DBUser } from "types/firebase";
+import { db, analytics } from "@/libs/firebase";
+import type { MonthlyData, Payment, DBUser } from "@/types/firebase";
 
 // listen to monthly data
 export const getMonthlyData = (

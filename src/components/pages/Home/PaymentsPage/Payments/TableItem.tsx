@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Payment } from "types/firebase";
+import type { Payment } from "@/types/firebase";
 
 type Props = {
   payment: Payment;

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Heading1 from "components/atoms/Heading1";
-import Heading2 from "components/atoms/Heading2";
-import { useLocale } from "hooks/locale";
 import CtaBtn from "./CtaBtn";
+import Heading1 from "@/components/atoms/Heading1";
+import Heading2 from "@/components/atoms/Heading2";
+import { useLocale } from "@/hooks/locale";
 
 const LandingPage = () => {
   const { text } = useLocale();

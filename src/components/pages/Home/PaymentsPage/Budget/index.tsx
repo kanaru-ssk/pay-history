@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import ArrowIcon from "components/atoms/icons/ArrowIcon";
-import { useLocale } from "hooks/locale";
-import { useModal } from "hooks/useModal";
-import type { MonthlyData } from "types/firebase";
 import BudgetEditForm from "./BudgetEditForm";
+import ArrowIcon from "@/components/atoms/icons/ArrowIcon";
+import { useLocale } from "@/hooks/locale";
+import { useModal } from "@/hooks/useModal";
+import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;

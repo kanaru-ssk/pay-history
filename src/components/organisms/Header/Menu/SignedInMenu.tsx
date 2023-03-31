@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
-import { signOut } from "libs/auth";
 import MenuItem from "./MenuItem";
+import { useAuth } from "@/hooks/auth";
+import { useLocale } from "@/hooks/locale";
+import { signOut } from "@/libs/auth";
 
 type Props = {
   onClick: () => void;

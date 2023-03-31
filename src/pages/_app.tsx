@@ -1,17 +1,17 @@
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
-import Header from "components/organisms/Header";
-import "styles/globals.css";
+import Header from "@/components/organisms/Header";
+import "@/styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // turn off SSR to use sessionStorage
-  const DynamicAuthProvider = dynamic(() => import("hooks/auth"), {
+  const DynamicAuthProvider = dynamic(() => import("@/hooks/auth"), {
     ssr: false,
   });
-  const DynamicTabStatusProvider = dynamic(() => import("hooks/tabStatus"), {
+  const DynamicTabStatusProvider = dynamic(() => import("@/hooks/tabStatus"), {
     ssr: false,
   });
-  const DynamicModalProvider = dynamic(() => import("hooks/useModal"), {
+  const DynamicModalProvider = dynamic(() => import("@/hooks/useModal"), {
     ssr: false,
   });
 

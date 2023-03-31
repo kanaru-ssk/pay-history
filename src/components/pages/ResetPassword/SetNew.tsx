@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Heading1 from "components/atoms/Heading1";
-import Heading3 from "components/atoms/Heading3";
-import Input from "components/atoms/Input";
-import LinkText from "components/atoms/LinkText";
-import ButtonWithStatus from "components/molecules/ButtonWithStatus";
-import Notification from "components/molecules/Notification";
-import Head from "components/organisms/Head";
-import { useLocale } from "hooks/locale";
-import { resetPasswordSetNew } from "libs/auth";
-import { validatePassword, validateReenterPassword } from "libs/validation";
+import Heading1 from "@/components/atoms/Heading1";
+import Heading3 from "@/components/atoms/Heading3";
+import Input from "@/components/atoms/Input";
+import LinkText from "@/components/atoms/LinkText";
+import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import Notification from "@/components/molecules/Notification";
+import Head from "@/components/organisms/Head";
+import { useLocale } from "@/hooks/locale";
+import { resetPasswordSetNew } from "@/libs/auth";
+import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
 const SetNew = () => {
   const { push } = useRouter();

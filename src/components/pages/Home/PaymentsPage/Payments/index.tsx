@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useModal } from "hooks/useModal";
-import type { MonthlyData } from "types/firebase";
 import PaymentsTable from "./PaymentsTable";
 import SortBar from "./SortBar";
+import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData;

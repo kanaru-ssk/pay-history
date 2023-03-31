@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Heading1 from "components/atoms/Heading1";
-import Heading3 from "components/atoms/Heading3";
-import Input from "components/atoms/Input";
-import LinkText from "components/atoms/LinkText";
-import ButtonWithStatus from "components/molecules/ButtonWithStatus";
-import Notification from "components/molecules/Notification";
-import Head from "components/organisms/Head";
-import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
-import { signIn } from "libs/auth";
-import { validateEmail, validatePassword } from "libs/validation";
+import Heading1 from "@/components/atoms/Heading1";
+import Heading3 from "@/components/atoms/Heading3";
+import Input from "@/components/atoms/Input";
+import LinkText from "@/components/atoms/LinkText";
+import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import Notification from "@/components/molecules/Notification";
+import Head from "@/components/organisms/Head";
+import { useAuth } from "@/hooks/auth";
+import { useLocale } from "@/hooks/locale";
+import { signIn } from "@/libs/auth";
+import { validateEmail, validatePassword } from "@/libs/validation";
 
 const SignIn = () => {
   const { push } = useRouter();

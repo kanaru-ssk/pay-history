@@ -1,5 +1,5 @@
-import { isTabStatus } from "types/tabStatus";
 import TabItem from "./TabItem";
+import { isTabStatus } from "@/types/tabStatus";
 
 const Tab = () => {
   const tmp = new Date().getMonth() + 1;

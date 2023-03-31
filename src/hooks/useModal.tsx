@@ -8,7 +8,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import CloseIcon from "components/atoms/icons/CloseIcon";
+import CloseIcon from "@/components/atoms/icons/CloseIcon";
 
 type ModalContextProps = {
   setModalContents: Dispatch<SetStateAction<ReactNode>>;
