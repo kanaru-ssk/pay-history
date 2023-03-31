@@ -15,6 +15,7 @@ const Budget = ({ thisMonthData }: Props) => {
   const [budget, setBudget] = useState<number>(0);
   const [totalSpending, setTotalSpending] = useState<number>(0);
   const [remaining, setRemaining] = useState<number>(0);
+  const [remainRatio, setRemainRatio] = useState<number>(0);
 
   // load the budget
   useEffect(() => {
@@ -31,51 +32,46 @@ const Budget = ({ thisMonthData }: Props) => {
 
   // remaining
   useEffect(() => {
+    const tmpRatio = (1 - totalSpending / budget) * 100;
+    const newRemainRatio = tmpRatio < 0 ? 0 : tmpRatio;
+    setRemainRatio(newRemainRatio);
     setRemaining(budget - totalSpending);
   }, [totalSpending, budget]);
 
   return (
     <div>
-      <div className="flex h-28 items-center px-2">
-        <button>
-          <ArrowIcon direction="left" />
-        </button>
-        <div className="w-full space-y-1">
-          <div className="flex items-end justify-between">
-            <span>2023 / 03</span>
-            <div className="flex flex-col items-end">
-              <div>
-                ¥{" "}
-                <span className="text-3xl font-medium">
-                  {remaining.toLocaleString()}
-                </span>
-                {" / "}
-                <span
-                  onClick={() =>
-                    setModalContents(
-                      <BudgetEditForm
-                        budget={budget}
-                        thisMonthData={thisMonthData}
-                      />
-                    )
-                  }
-                  className="font-medium"
-                >
-                  {budget.toLocaleString()}
-                </span>
-              </div>
+      <div className="flex h-28 items-center px-12">
+        <div className="w-full">
+          <div>2023 / 03</div>
+          <div className="flex flex-col items-end">
+            <div>
+              ¥{" "}
+              <span className="text-3xl font-medium">
+                {remaining.toLocaleString()}
+              </span>
+              {" / "}
+              <span
+                onClick={() =>
+                  setModalContents(
+                    <BudgetEditForm
+                      budget={budget}
+                      thisMonthData={thisMonthData}
+                    />
+                  )
+                }
+                className="font-medium"
+              >
+                {budget.toLocaleString()}
+              </span>
             </div>
           </div>
           <div className="h-3 rounded-sm border border-black p-px">
             <div
               className="h-2 rounded-sm bg-black"
-              style={{ width: `${(1 - totalSpending / budget) * 100}%` }}
+              style={{ width: `${remainRatio}%` }}
             ></div>
           </div>
         </div>
-        <button>
-          <ArrowIcon direction="right" />
-        </button>
       </div>
       <div>
         <div
