@@ -1,0 +1,68 @@
+import { useState } from "react";
+import Input from "components/atoms/Input";
+import ButtonWithStatus from "components/molecules/ButtonWithStatus";
+import { useAuth } from "hooks/auth";
+import { useLocale } from "hooks/locale";
+import { stringToPrice } from "libs/convert";
+import { updateMonthlyData } from "libs/monthlyData";
+import { updateUser } from "libs/user";
+import type { MonthlyData } from "types/firebase";
+
+type Props = {
+  budget: number;
+  thisMonthData: MonthlyData;
+};
+
+const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
+  const { dbUser } = useAuth();
+  const { text } = useLocale();
+  const [editedBudget, setEditedBudget] = useState<number>(budget);
+  const [isReady, setIsReady] = useState<boolean>(false);
+  const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
+
+  // edit the budget
+  const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const price = stringToPrice(e.target.value.substring(2));
+    setEditedBudget(price);
+    setIsReady(price !== thisMonthData.budget);
+  };
+
+  // save the budget
+  const submitSaveBudget = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isReady) {
+      setIsReady(false);
+      setIsUpdateLoading(true);
+      updateUser(dbUser, { budget: editedBudget });
+      updateMonthlyData(dbUser, { ...thisMonthData, budget: editedBudget });
+    }
+    setIsUpdateLoading(false);
+  };
+
+  return (
+    <form onSubmit={submitSaveBudget} className="bg-white">
+      <div className="space-y-4 py-2">
+        <Input
+          name="budget"
+          type="text"
+          inputMode="text"
+          value={`¥ ${editedBudget.toLocaleString()}`}
+          onChange={changeBudget}
+          small
+          right
+        />
+
+        <ButtonWithStatus
+          name="edit"
+          type="submit"
+          isReady={isReady}
+          isLoading={isUpdateLoading}
+        >
+          {text.CHANGE_BUDGET}
+        </ButtonWithStatus>
+      </div>
+    </form>
+  );
+};
+
+export default BudgetEditForm;

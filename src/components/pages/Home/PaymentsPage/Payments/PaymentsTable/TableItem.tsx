@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import type { Payment } from "types/firebase";
+import { useModal } from "hooks/useModal";
+import type { MonthlyData, Payment } from "types/firebase";
+import PaymentEditForm from "./PaymentEditForm";
 
 type Props = {
+  thisMonthData: MonthlyData;
   payment: Payment;
-  setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
-const TableItem = ({ payment, setPayment }: Props) => {
+const TableItem = ({ thisMonthData, payment }: Props) => {
+  const { setModalContents } = useModal();
   const [bgColor, setBgColor] = useState<"bg-white" | "bg-gray-400">(
     "bg-gray-400"
   );
@@ -17,9 +20,15 @@ const TableItem = ({ payment, setPayment }: Props) => {
     }, 100);
   }, []);
 
+  const startEditPayment = () => {
+    setModalContents(
+      <PaymentEditForm thisMonthData={thisMonthData} payment={payment} />
+    );
+  };
+
   return (
     <div
-      onClick={() => setPayment(payment)}
+      onClick={() => startEditPayment()}
       className={`${bgColor} flex h-12 cursor-pointer items-center px-4 duration-500 hover:bg-gray-200`}
     >
       <div className="flex-1 text-left">

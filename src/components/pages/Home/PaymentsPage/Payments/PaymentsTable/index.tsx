@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { useLocale } from "hooks/locale";
 import { MonthlyData, Payment } from "types/firebase";
 import TableItem from "./TableItem";
@@ -8,7 +8,6 @@ type Props = {
   isAcsDate: boolean;
   isAcsPrice: boolean;
   thisMonthData: MonthlyData;
-  setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
 };
 
 const PaymentsTable = ({
@@ -16,7 +15,6 @@ const PaymentsTable = ({
   isAcsDate,
   isAcsPrice,
   thisMonthData,
-  setPayment,
 }: Props) => {
   const { text } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
@@ -81,8 +79,8 @@ const PaymentsTable = ({
         .map((value) => {
           return (
             <TableItem
+              thisMonthData={thisMonthData}
               payment={value}
-              setPayment={setPayment}
               key={value.atCreated.toString()}
             />
           );

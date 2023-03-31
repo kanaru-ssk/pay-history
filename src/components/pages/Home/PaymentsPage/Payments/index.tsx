@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { MonthlyData, Payment } from "types/firebase";
-import PaymentsModal from "./PaymentsModal";
+import { useModal } from "hooks/useModal";
+import type { MonthlyData } from "types/firebase";
 import PaymentsTable from "./PaymentsTable";
 import SortBar from "./SortBar";
 
@@ -9,7 +9,6 @@ type Props = {
 };
 
 const Payments = ({ thisMonthData }: Props) => {
-  const [payment, setPayment] = useState<Payment | null>(null);
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
   const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
@@ -34,12 +33,6 @@ const Payments = ({ thisMonthData }: Props) => {
         isAcsDate={isAcsDate}
         isAcsPrice={isAcsPrice}
         thisMonthData={thisMonthData}
-        setPayment={setPayment}
-      />
-      <PaymentsModal
-        thisMonthData={thisMonthData}
-        payment={payment}
-        setPayment={setPayment}
       />
     </div>
   );

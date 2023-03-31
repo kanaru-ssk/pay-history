@@ -11,14 +11,19 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const DynamicTabStatusProvider = dynamic(() => import("hooks/tabStatus"), {
     ssr: false,
   });
+  const DynamicModalProvider = dynamic(() => import("hooks/useModal"), {
+    ssr: false,
+  });
 
   return (
     <DynamicAuthProvider>
       <DynamicTabStatusProvider>
-        <Header />
-        <main className="mx-auto max-w-2xl font-light">
-          <Component {...pageProps} />
-        </main>
+        <DynamicModalProvider>
+          <Header />
+          <main className="mx-auto max-w-2xl font-light">
+            <Component {...pageProps} />
+          </main>
+        </DynamicModalProvider>
       </DynamicTabStatusProvider>
     </DynamicAuthProvider>
   );
