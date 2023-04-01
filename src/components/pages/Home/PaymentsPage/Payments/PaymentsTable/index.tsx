@@ -72,19 +72,21 @@ const PaymentsTable = ({
   };
 
   return (
-    <div className="flex flex-col-reverse" ref={ref} data-cy="payments-table">
-      {thisMonthData.payments
-        .sort(isSortDate ? sortPrice : sortDate)
-        .sort(isSortDate ? sortDate : sortPrice)
-        .map((value) => {
-          return (
-            <TableItem
-              thisMonthData={thisMonthData}
-              payment={value}
-              key={value.atCreated.toString()}
-            />
-          );
-        })}
+    <div>
+      <div className="flex flex-col-reverse" ref={ref} data-cy="payments-table">
+        {thisMonthData.payments
+          .sort(isSortDate ? sortPrice : sortDate)
+          .sort(isSortDate ? sortDate : sortPrice)
+          .map((value) => {
+            return (
+              <TableItem
+                thisMonthData={thisMonthData}
+                payment={value}
+                key={value.atCreated.toString()}
+              />
+            );
+          })}
+      </div>
       {thisMonthData.payments && thisMonthData.payments.length === 0 && (
         <div className="py-4 text-center text-gray-400">
           {text.NO_PAYMENT_DATA}

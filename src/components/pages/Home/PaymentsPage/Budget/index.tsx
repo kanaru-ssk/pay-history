@@ -46,7 +46,7 @@ const Budget = ({ thisMonthData }: Props) => {
           <div className="flex flex-col items-end">
             <div>
               ¥{" "}
-              <span className="text-3xl font-medium">
+              <span className="text-3xl font-medium" data-cy="remaining">
                 {remaining.toLocaleString()}
               </span>
               {" / "}
@@ -60,6 +60,7 @@ const Budget = ({ thisMonthData }: Props) => {
                   )
                 }
                 className="font-medium"
+                data-cy="budget"
               >
                 {budget.toLocaleString()}
               </span>
@@ -79,7 +80,9 @@ const Budget = ({ thisMonthData }: Props) => {
           className="flex h-12 items-center justify-between px-4"
         >
           <div>{text.TOTAL_SPENDING}</div>
-          <div className="font-medium">¥ {totalSpending.toLocaleString()}</div>
+          <div className="font-medium" data-cy="total-spending">
+            ¥ {totalSpending.toLocaleString()}
+          </div>
         </div>
       </div>
     </div>

@@ -42,7 +42,10 @@ const ModalProvider = ({ children }: Props) => {
     <ModalContext.Provider value={{ setModalContents }}>
       {children}
       {modalContents && (
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-trans-black p-4">
+        <div
+          className="fixed inset-0 z-20 flex items-center justify-center bg-trans-black p-4"
+          data-cy="modal"
+        >
           <div
             ref={modalRef}
             className="max-w-md overflow-hidden rounded-xl bg-white p-4 shadow-xl"
