@@ -25,7 +25,6 @@ const AddForm = ({ thisMonthData }: Props) => {
   useEffect(() => {
     const now = new Date();
     const docDate = new Date("2023-04");
-    console.log(docId, docDate);
     if (docDate.getMonth() === now.getMonth()) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
@@ -54,23 +53,22 @@ const AddForm = ({ thisMonthData }: Props) => {
   // add payment
   const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // if (isReady) {
-    //   if (thisMonthData === null) {
-    //     setIsReady(false);
-    //     const newPayment = createPayment({ price, date: new Date(date) });
-    //     await createMonthlyData({
-    //       user: dbUser,
-    //       docId,
-    //       payments: [newPayment],
-    //     });
-    //     setPrice(0);
-    //   } else {
-    //     setIsReady(false);
-    //     await addPayment(dbUser, thisMonthData, price, new Date(date));
-    //     setPrice(0);
-    //   }
-    // }
+    if (isReady) {
+      if (thisMonthData === null) {
+        setIsReady(false);
+        const newPayment = createPayment({ price, date: new Date(date) });
+        await createMonthlyData({
+          user: dbUser,
+          docId,
+          payments: [newPayment],
+        });
+        setPrice(0);
+      } else {
+        setIsReady(false);
+        await addPayment(dbUser, thisMonthData, price, new Date(date));
+        setPrice(0);
+      }
+    }
   };
 
   return (

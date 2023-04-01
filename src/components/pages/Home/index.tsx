@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import LandingPage from "./LandingPage";
 import LoadingPage from "./LoadingPage";
 import PaymentsPage from "./PaymentsPage";
 import Notification from "@/components/molecules/Notification";
@@ -42,8 +41,6 @@ const Home = () => {
         ) : (
           <PaymentsPage thisMonthData={thisMonthData} />
         )}
-        {/* {thisMonthData === null && <LandingPage />} */}
-        {/* {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />} */}
       </div>
     </>
   );
