@@ -7,9 +7,7 @@ const isValidDate = (date: Date) => !Number.isNaN(date.getTime());
 
 export const dateToDocId = (date: Date) => {
   const YYYY = date.getFullYear();
-  // const MM = ('0' + (d.getUTCMonth() + 1)).slice(-2);
-  const MM = date.getMonth() + 1;
-  // console.log(date, MM);
+  const MM = ("0" + (date.getMonth() + 1)).slice(-2);
   return `${YYYY}-${MM}`;
 };
 

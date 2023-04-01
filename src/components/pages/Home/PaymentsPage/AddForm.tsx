@@ -4,11 +4,11 @@ import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useDocId } from "@/hooks/useDocId";
 import { dateToInputData, stringToPrice } from "@/libs/convert";
-import { addPayment } from "@/libs/firebase";
+import { addPayment, createMonthlyData, createPayment } from "@/libs/firebase";
 import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
 const AddForm = ({ thisMonthData }: Props) => {
@@ -24,7 +24,8 @@ const AddForm = ({ thisMonthData }: Props) => {
   // set initial date
   useEffect(() => {
     const now = new Date();
-    const docDate = new Date(docId);
+    const docDate = new Date("2023-04");
+    console.log(docId, docDate);
     if (docDate.getMonth() === now.getMonth()) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
@@ -53,11 +54,23 @@ const AddForm = ({ thisMonthData }: Props) => {
   // add payment
   const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isReady) {
-      setIsReady(false);
-      await addPayment(dbUser, thisMonthData, price, new Date(date));
-      setPrice(0);
-    }
+
+    // if (isReady) {
+    //   if (thisMonthData === null) {
+    //     setIsReady(false);
+    //     const newPayment = createPayment({ price, date: new Date(date) });
+    //     await createMonthlyData({
+    //       user: dbUser,
+    //       docId,
+    //       payments: [newPayment],
+    //     });
+    //     setPrice(0);
+    //   } else {
+    //     setIsReady(false);
+    //     await addPayment(dbUser, thisMonthData, price, new Date(date));
+    //     setPrice(0);
+    //   }
+    // }
   };
 
   return (

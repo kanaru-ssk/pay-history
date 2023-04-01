@@ -2,6 +2,7 @@ export * from "./addPayment";
 export * from "./changePassword";
 export * from "./client";
 export * from "./createMonthlyData";
+export * from "./createPayment";
 export * from "./createUser";
 export * from "./getMonthlyData";
 export * from "./resetPasswordSendLink";

@@ -1,5 +1,5 @@
 import { logEvent } from "firebase/analytics";
-import { db, analytics } from "@/libs/firebase";
+import { db, analytics, createPayment } from "@/libs/firebase";
 import type { MonthlyData, Payment, DBUser } from "@/types/firebase";
 
 // add payment data
@@ -16,12 +16,8 @@ export const addPayment = async (
   );
 
   const now = Timestamp.now();
-  const newPayment: Payment = {
-    atCreated: now,
-    atUpdated: now,
-    atPaid: Timestamp.fromDate(date),
-    price: price,
-  };
+  const newPayment = createPayment({ price, date });
+
   const newMonthlyData = {
     atUpdated: now,
     payments: arrayUnion(newPayment),

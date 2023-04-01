@@ -9,11 +9,11 @@ const CtaBtn = () => {
   const { docId } = useDocId();
   const { text } = useLocale();
   const onClickHandler = () => {
-    createMonthlyData(dbUser, docId);
+    // createMonthlyData(dbUser, docId);
   };
 
   return (
-    <Button name="cta" onClick={onClickHandler} color="blue" large>
+    <Button name="cta" onClick={onClickHandler} color="black" large>
       {text.START_BUDGETING}
     </Button>
   );

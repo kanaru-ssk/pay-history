@@ -4,7 +4,7 @@ import Payments from "./Payments";
 import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
 const PaymentsPage = ({ thisMonthData }: Props) => {

@@ -7,7 +7,7 @@ type Props = {
   isSortDate: boolean;
   isAcsDate: boolean;
   isAcsPrice: boolean;
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
 const PaymentsTable = ({
@@ -23,7 +23,7 @@ const PaymentsTable = ({
     if (ref.current) {
       ref.current.scrollTo({ top: 0 });
     }
-  }, [ref, thisMonthData.payments]);
+  }, [ref, thisMonthData?.payments]);
 
   // sort by payment date
   const sortDate = (a: Payment, b: Payment): number => {
@@ -74,24 +74,26 @@ const PaymentsTable = ({
   return (
     <div>
       <div className="flex flex-col-reverse" ref={ref} data-cy="payments-table">
-        {thisMonthData.payments
-          .sort(isSortDate ? sortPrice : sortDate)
-          .sort(isSortDate ? sortDate : sortPrice)
-          .map((value) => {
-            return (
-              <TableItem
-                thisMonthData={thisMonthData}
-                payment={value}
-                key={value.atCreated.toString()}
-              />
-            );
-          })}
+        {thisMonthData &&
+          thisMonthData.payments
+            .sort(isSortDate ? sortPrice : sortDate)
+            .sort(isSortDate ? sortDate : sortPrice)
+            .map((value) => {
+              return (
+                <TableItem
+                  thisMonthData={thisMonthData}
+                  payment={value}
+                  key={value.atCreated.toString()}
+                />
+              );
+            })}
       </div>
-      {thisMonthData.payments && thisMonthData.payments.length === 0 && (
-        <div className="py-4 text-center text-gray-400">
-          {text.NO_PAYMENT_DATA}
-        </div>
-      )}
+      {!thisMonthData ||
+        (thisMonthData.payments && thisMonthData.payments.length === 0 && (
+          <div className="py-4 text-center text-gray-400">
+            {text.NO_PAYMENT_DATA}
+          </div>
+        ))}
     </div>
   );
 };

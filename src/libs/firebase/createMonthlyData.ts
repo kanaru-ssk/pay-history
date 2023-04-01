@@ -1,9 +1,18 @@
 import { logEvent } from "firebase/analytics";
 import { db, analytics } from "@/libs/firebase";
-import type { MonthlyData, DBUser } from "@/types/firebase";
+import type { MonthlyData, DBUser, Payment } from "@/types/firebase";
 
+type Props = {
+  user: DBUser | null;
+  docId: string;
+  payments?: Payment[];
+};
 // create monthly data
-export const createMonthlyData = async (user: DBUser | null, docId: string) => {
+export const createMonthlyData = async ({
+  user,
+  docId,
+  payments = [],
+}: Props) => {
   if (!user) return null;
 
   const { setDoc, doc, Timestamp } = await import("firebase/firestore");
@@ -13,7 +22,7 @@ export const createMonthlyData = async (user: DBUser | null, docId: string) => {
     atCreated: now,
     atUpdated: now,
     budget: user.budget,
-    payments: [],
+    payments,
   };
 
   await setDoc(

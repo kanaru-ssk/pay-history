@@ -4,7 +4,7 @@ import SortBar from "./SortBar";
 import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
 const Payments = ({ thisMonthData }: Props) => {

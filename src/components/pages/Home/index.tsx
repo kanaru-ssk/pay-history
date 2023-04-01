@@ -37,9 +37,13 @@ const Home = () => {
           text={text.PASSWORD_CHANGED}
           show={!!changePasswordSuccess}
         />
-        {thisMonthData === undefined && <LoadingPage />}
-        {thisMonthData === null && <LandingPage />}
-        {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />}
+        {thisMonthData === undefined ? (
+          <LoadingPage />
+        ) : (
+          <PaymentsPage thisMonthData={thisMonthData} />
+        )}
+        {/* {thisMonthData === null && <LandingPage />} */}
+        {/* {thisMonthData && <PaymentsPage thisMonthData={thisMonthData} />} */}
       </div>
     </>
   );

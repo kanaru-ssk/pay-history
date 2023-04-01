@@ -2,17 +2,19 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import BudgetEditForm from "./BudgetEditForm";
 import ArrowIcon from "@/components/atoms/icons/ArrowIcon";
+import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useDocId } from "@/hooks/useDocId";
 import { useModal } from "@/hooks/useModal";
 import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
 const Budget = ({ thisMonthData }: Props) => {
-  const { prevDocId, nextDocId } = useDocId();
+  const { dbUser } = useAuth();
+  const { docId, prevDocId, nextDocId } = useDocId();
   const { text } = useLocale();
   const { setModalContents } = useModal();
   const [budget, setBudget] = useState<number>(0);
@@ -20,18 +22,22 @@ const Budget = ({ thisMonthData }: Props) => {
   const [remaining, setRemaining] = useState<number>(0);
   const [remainRatio, setRemainRatio] = useState<number>(0);
 
-  // load the budget
   useEffect(() => {
-    setBudget(thisMonthData.budget);
-  }, [thisMonthData.budget]);
-
-  // calculate amount spent
-  useEffect(() => {
-    const total = thisMonthData.payments.reduce((sum, value) => {
-      return sum + value.price;
-    }, 0);
-    setTotalSpending(total);
-  }, [thisMonthData.payments]);
+    if (dbUser) {
+      if (thisMonthData) {
+        // load the budget
+        setBudget(thisMonthData.budget);
+        // calculate amount spent
+        const total = thisMonthData.payments.reduce((sum, value) => {
+          return sum + value.price;
+        }, 0);
+        setTotalSpending(total);
+      } else {
+        setBudget(dbUser.budget);
+        setTotalSpending(0);
+      }
+    }
+  }, [thisMonthData, dbUser]);
 
   // remaining
   useEffect(() => {
@@ -48,7 +54,7 @@ const Budget = ({ thisMonthData }: Props) => {
           <ArrowIcon direction="left" />
         </Link>
         <div className="w-full">
-          <div>{thisMonthData.docId.replace("-", " / ")}</div>
+          <div>{docId.replace("-", " / ")}</div>
           <div className="flex flex-col items-end">
             <div>
               ¥{" "}
@@ -57,14 +63,15 @@ const Budget = ({ thisMonthData }: Props) => {
               </span>
               {" / "}
               <span
-                onClick={() =>
-                  setModalContents(
-                    <BudgetEditForm
-                      budget={budget}
-                      thisMonthData={thisMonthData}
-                    />
-                  )
-                }
+                onClick={() => {
+                  if (thisMonthData)
+                    setModalContents(
+                      <BudgetEditForm
+                        budget={budget}
+                        thisMonthData={thisMonthData}
+                      />
+                    );
+                }}
                 className="font-medium"
                 data-cy="budget"
               >
