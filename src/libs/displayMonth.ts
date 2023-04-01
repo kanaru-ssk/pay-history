@@ -1,5 +1,5 @@
-import { englishMonths, japaneseMonths } from "constants/months";
-import { isTabStatus } from "types/tabStatus";
+import { englishMonths, japaneseMonths } from "@/constants/months";
+import { isTabStatus } from "@/types/tabStatus";
 
 export const displayMonth = (month: number, locale?: string): string => {
   if (!isTabStatus(month)) return "";

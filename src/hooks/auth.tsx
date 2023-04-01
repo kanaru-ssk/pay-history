@@ -3,8 +3,8 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot, doc } from "firebase/firestore";
 import { createContext, useContext, useState, useEffect } from "react";
-import { auth, db } from "libs/firebase";
-import type { User, DBUser } from "types/firebase";
+import { auth, db } from "@/libs/firebase";
+import type { User, DBUser } from "@/types/firebase";
 
 type AuthContextProps = {
   authUser: User | null;
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }: Node) => {
             localStorage.setItem(key, JSON.stringify(user));
           } else {
             // create new user
-            const { createUser } = await import("libs/user");
+            const { createUser } = await import("@/libs/firebase");
             createUser(auth.currentUser);
           }
         }

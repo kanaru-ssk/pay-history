@@ -1,18 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import SettingIcon from "components/atoms/icons/SettingIcon";
-import { useLocale } from "hooks/locale";
-import { useTabStatus } from "hooks/tabStatus";
-import { displayMonth } from "libs/displayMonth";
 import Menu from "./Menu";
-import Tab from "./Tab";
+import SettingIcon from "@/components/atoms/icons/SettingIcon";
 
 const Header = () => {
-  const { locale } = useLocale();
-  const { tabStatus } = useTabStatus();
-
-  const [isTabOpen, setIsTabOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
@@ -29,31 +21,12 @@ const Header = () => {
             />
           </Link>
         </div>
-
         <div className="flex items-center gap-4">
-          <details>
-            <summary
-              onClick={() => {
-                setIsTabOpen(!isTabOpen);
-              }}
-              className="cursor-pointer"
-            >
-              {displayMonth(tabStatus, locale)}
-            </summary>
-          </details>
-
-          <button
-            className="p-4"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            name="menu-open"
-          >
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} name="menu-open">
             <SettingIcon />
           </button>
         </div>
       </header>
-
-      {isTabOpen && <Tab />}
-
       <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </>
   );

@@ -9,12 +9,12 @@ module.exports = {
       "module-resolver",
       {
         alias: {
-          components: "./src/components",
-          constants: "./src/constants",
-          hooks: "./src/hooks",
-          libs: "./src/libs",
-          styles: "./src/styles",
-          types: "./src/types",
+          "@/components": "./src/components",
+          "@/constants": "./src/constants",
+          "@/hooks": "./src/hooks",
+          "@/libs": "./src/libs",
+          "@/styles": "./src/styles",
+          "@/types": "./src/types",
         },
         extensions: [".js", ".ts", ".tsx"],
       },
