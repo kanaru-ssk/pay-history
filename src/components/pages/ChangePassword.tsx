@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Heading1 from "components/atoms/Heading1";
-import Heading3 from "components/atoms/Heading3";
-import Input from "components/atoms/Input";
-import LinkText from "components/atoms/LinkText";
-import ButtonWithStatus from "components/molecules/ButtonWithStatus";
-import Notification from "components/molecules/Notification";
-import Head from "components/organisms/Head";
-import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
-import { changePassword } from "libs/auth";
-import { validatePassword, validateReenterPassword } from "libs/validation";
+import Heading1 from "@/components/atoms/Heading1";
+import Heading3 from "@/components/atoms/Heading3";
+import Input from "@/components/atoms/Input";
+import LinkText from "@/components/atoms/LinkText";
+import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import Notification from "@/components/molecules/Notification";
+import Head from "@/components/organisms/Head";
+import { useAuth } from "@/hooks/auth";
+import { useLocale } from "@/hooks/locale";
+import { changePassword } from "@/libs/firebase";
+import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
 const ChangePassword = () => {
   const { push } = useRouter();
@@ -103,7 +103,7 @@ const ChangePassword = () => {
   return (
     <>
       <Head title={`${text.CHANGE_PASSWORD} | Pay History`} />
-      <div>
+      <div className="px-4">
         <Heading1>{text.CHANGE_PASSWORD}</Heading1>
 
         <Notification text={errorMessage} isError />

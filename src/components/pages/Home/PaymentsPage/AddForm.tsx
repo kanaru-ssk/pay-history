@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
-import Input from "components/atoms/Input";
-import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
-import { useTabStatus } from "hooks/tabStatus";
-import { tabToDocId, dateToInputData, stringToPrice } from "libs/convert";
-import { addPayment } from "libs/monthlyData";
-import type { MonthlyData } from "types/firebase";
+import Input from "@/components/atoms/Input";
+import { useAuth } from "@/hooks/auth";
+import { useLocale } from "@/hooks/locale";
+import { useDocId } from "@/hooks/useDocId";
+import { dateToInputData, stringToPrice } from "@/libs/convert";
+import { addPayment, createMonthlyData, createPayment } from "@/libs/firebase";
+import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
-const PaymentsForm = ({ thisMonthData }: Props) => {
+const AddForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
+  const { docId } = useDocId();
   const { text } = useLocale();
-  const { tabStatus } = useTabStatus();
-
   const [date, setDate] = useState<string>("");
   const [minDate, setMinDate] = useState<string>("");
   const [maxDate, setMaxDate] = useState<string>("");
@@ -25,22 +24,19 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   // set initial date
   useEffect(() => {
     const now = new Date();
-    if (tabStatus === now.getMonth() + 1) {
+    const docDate = new Date("2023-04");
+    if (docDate.getMonth() === now.getMonth()) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     } else {
-      const split = tabToDocId(tabStatus).split("-");
-      const toNum = split.map((value) => {
-        return Number(value);
-      });
-      const inputMonthData = dateToInputData(new Date(toNum[0], toNum[1], 0));
+      const inputMonthData = dateToInputData(docDate);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     }
-  }, [tabStatus]);
+  }, [docId]);
 
   // enter payment amount
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,14 +54,25 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
-      setIsReady(false);
-      await addPayment(dbUser, thisMonthData, price, new Date(date));
-      setPrice(0);
+      if (thisMonthData === null) {
+        setIsReady(false);
+        const newPayment = createPayment({ price, date: new Date(date) });
+        await createMonthlyData({
+          user: dbUser,
+          docId,
+          payments: [newPayment],
+        });
+        setPrice(0);
+      } else {
+        setIsReady(false);
+        await addPayment(dbUser, thisMonthData, price, new Date(date));
+        setPrice(0);
+      }
     }
   };
 
   return (
-    <form onSubmit={submitAddPayment} className="bg-white">
+    <form onSubmit={submitAddPayment}>
       <div className="flex w-full items-center gap-2 py-2">
         <Input
           name="date"
@@ -76,7 +83,6 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           onChange={changeDate}
           small
         />
-
         <Input
           name="amount"
           type="text"
@@ -87,8 +93,11 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
           right
           small
         />
-
-        <button name="add" className={isReady ? "text-black" : "text-gray-400"}>
+        <button
+          name="add"
+          type="submit"
+          className={isReady ? "font-semibold text-black" : "text-gray-400"}
+        >
           {text.ADD}
         </button>
       </div>
@@ -96,4 +105,4 @@ const PaymentsForm = ({ thisMonthData }: Props) => {
   );
 };
 
-export default PaymentsForm;
+export default AddForm;

@@ -1,21 +1,21 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Heading1 from "components/atoms/Heading1";
-import Heading3 from "components/atoms/Heading3";
-import Input from "components/atoms/Input";
-import LinkText from "components/atoms/LinkText";
-import ButtonWithStatus from "components/molecules/ButtonWithStatus";
-import Notification from "components/molecules/Notification";
-import Head from "components/organisms/Head";
-import { useAuth } from "hooks/auth";
-import { useLocale } from "hooks/locale";
-import { signUp } from "libs/auth";
-import { updateUser } from "libs/user";
+import Heading1 from "@/components/atoms/Heading1";
+import Heading3 from "@/components/atoms/Heading3";
+import Input from "@/components/atoms/Input";
+import LinkText from "@/components/atoms/LinkText";
+import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import Notification from "@/components/molecules/Notification";
+import Head from "@/components/organisms/Head";
+import { useAuth } from "@/hooks/auth";
+import { useLocale } from "@/hooks/locale";
+import { signUp } from "@/libs/firebase";
+import { updateUser } from "@/libs/firebase";
 import {
   validateEmail,
   validatePassword,
   validateReenterPassword,
-} from "libs/validation";
+} from "@/libs/validation";
 
 const SignUp = () => {
   const { push } = useRouter();
@@ -104,7 +104,7 @@ const SignUp = () => {
   return (
     <>
       <Head title={`${text.SIGN_UP} | Pay History`} />
-      <div>
+      <div className="px-4">
         <Heading1>{text.CREATE_ACCOUNT}</Heading1>
 
         <Notification text={errorMessage} isError />

@@ -1,7 +1,27 @@
-import { texts } from "constants/texts";
-import type { ErrorMessage } from "types/errorMessage";
-import { isAuthError } from "types/firebase";
-import type { TabStatus } from "types/tabStatus";
+import { texts } from "@/constants/texts";
+import type { ErrorMessage } from "@/types/errorMessage";
+import { isAuthError } from "@/types/firebase";
+import type { TabStatus } from "@/types/tabStatus";
+
+const isValidDate = (date: Date) => !Number.isNaN(date.getTime());
+
+export const dateToDocId = (date: Date) => {
+  const YYYY = date.getFullYear();
+  const MM = ("0" + (date.getMonth() + 1)).slice(-2);
+  return `${YYYY}-${MM}`;
+};
+
+export const queryToDocId = (query: string | string[] | undefined) => {
+  if (typeof query === "string") {
+    const queryDate = new Date(query);
+
+    if (isValidDate(queryDate)) {
+      return dateToDocId(queryDate);
+    }
+  }
+  const today = new Date();
+  return dateToDocId(today);
+};
 
 export const tabToDocId = (tabStatus: TabStatus): string => {
   const date = new Date();

@@ -1,13 +1,13 @@
 import Image from "next/image";
-import Heading1 from "components/atoms/Heading1";
-import Heading2 from "components/atoms/Heading2";
-import { useLocale } from "hooks/locale";
 import CtaBtn from "./CtaBtn";
+import Heading1 from "@/components/atoms/Heading1";
+import Heading2 from "@/components/atoms/Heading2";
+import { useLocale } from "@/hooks/locale";
 
 const LandingPage = () => {
   const { text } = useLocale();
   return (
-    <>
+    <div className="px-4">
       <Heading1>Pay History</Heading1>
 
       <p>{text.LP_TEXT_01}</p>
@@ -33,7 +33,7 @@ const LandingPage = () => {
       <div className="my-12">
         <CtaBtn />
       </div>
-    </>
+    </div>
   );
 };
 

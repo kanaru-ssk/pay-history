@@ -22,7 +22,7 @@ describe("e2e test", () => {
 
     // check whether already started budgeting
     cy.get("main").then((main) => {
-      if (main.find("input").length) {
+      if (main.find("form").length) {
         cy.task("log", "already started budgeting");
       } else {
         cy.task("log", "start budgeting");
@@ -34,8 +34,9 @@ describe("e2e test", () => {
     cy.get('div[data-cy="payments-table"]').then((table) => {
       if (0 < table.children().length) {
         table.children().each(() => {
-          cy.get('button[name="edit-menu"]').first().click();
+          cy.get('div[data-cy="payments-table"]').children().first().click();
           cy.get('button[name="delete"]').click();
+          cy.get('div[data-cy="modal"]').should("not.exist");
         });
       }
       cy.contains("支払いデータがありません。");
@@ -43,14 +44,16 @@ describe("e2e test", () => {
     cy.task("log", "delete all payment data");
 
     // edit budget
+    cy.get('span[data-cy="budget"').click();
     cy.get('input[name="budget"]').clear();
     cy.get('input[name="budget"]').focus().type("1000000");
+    cy.get('button[name="edit"]').click();
     cy.task("log", "edit budget");
 
     // check budget table value
-    cy.get('input[name="budget"]').should("have.value", "¥ 1,000,000");
-    cy.get('td[data-cy="total-spending"]').contains("¥ 0");
-    cy.get('td[data-cy="remaining"]').contains("¥ 1,000,000");
+    cy.get('span[data-cy="budget"]').contains("1,000,000");
+    cy.get('span[data-cy="remaining"]').contains("1,000,000");
+    cy.get('div[data-cy="total-spending"]').contains("¥ 0");
     cy.task("log", "budget table displays correctly");
 
     // add payment data
@@ -71,18 +74,18 @@ describe("e2e test", () => {
     cy.task("log", "payments table displays correctly");
 
     // check budget table value
-    cy.get('input[name="budget"]').should("have.value", "¥ 1,000,000");
-    cy.get('td[data-cy="total-spending"]').contains("¥ 11,100");
-    cy.get('td[data-cy="remaining"]').contains("¥ 988,900");
+    cy.get('span[data-cy="budget"]').contains("1,000,000");
+    cy.get('span[data-cy="remaining"]').contains("988,900");
+    cy.get('div[data-cy="total-spending"]').contains("11,100");
     cy.task("log", "budget table displays correctly");
 
     // delete a payment data
-    cy.get('button[name="edit-menu"]').first().click();
+    cy.get('div[data-cy="payments-table"]').children().first().click();
     cy.get('button[name="delete"]').click();
     cy.task("log", "delete payment data");
 
     // edit a payment data
-    cy.get('button[name="edit-menu"]').first().click();
+    cy.get('div[data-cy="payments-table"]').children().first().click();
     cy.get('input[name="edit"]').clear();
     cy.get('input[name="edit"]').focus().type("100000");
     cy.get('button[name="edit"]').click();
@@ -94,9 +97,9 @@ describe("e2e test", () => {
     cy.task("log", "payments table displays correctly");
 
     // check budget table value
-    cy.get('input[name="budget"]').should("have.value", "¥ 1,000,000");
-    cy.get('td[data-cy="total-spending"]').contains("¥ 110,000");
-    cy.get('td[data-cy="remaining"]').contains("¥ 890,000");
+    cy.get('span[data-cy="budget"]').contains("1,000,000");
+    cy.get('span[data-cy="remaining"]').contains("890,000");
+    cy.get('div[data-cy="total-spending"]').contains("110,000");
     cy.task("log", "budget table displays correctly");
   });
 });
