@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useTabStatus } from "@/hooks/tabStatus";
 import { tabToDocId } from "@/libs/convert";
-import { getMonthlyData } from "@/libs/monthlyData";
+import { getMonthlyData } from "@/libs/firebase";
 import type { MonthlyData } from "@/types/firebase";
 
 const Home = () => {

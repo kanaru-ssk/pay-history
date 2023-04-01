@@ -9,7 +9,7 @@ import Notification from "@/components/molecules/Notification";
 import Head from "@/components/organisms/Head";
 import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
-import { signIn } from "@/libs/auth";
+import { signIn } from "@/libs/firebase";
 import { validateEmail, validatePassword } from "@/libs/validation";
 
 const SignIn = () => {

@@ -9,8 +9,8 @@ import Notification from "@/components/molecules/Notification";
 import Head from "@/components/organisms/Head";
 import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
-import { signUp } from "@/libs/auth";
-import { updateUser } from "@/libs/user";
+import { signUp } from "@/libs/firebase";
+import { updateUser } from "@/libs/firebase";
 import {
   validateEmail,
   validatePassword,

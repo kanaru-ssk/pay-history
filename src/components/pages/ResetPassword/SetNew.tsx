@@ -8,7 +8,7 @@ import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
 import Notification from "@/components/molecules/Notification";
 import Head from "@/components/organisms/Head";
 import { useLocale } from "@/hooks/locale";
-import { resetPasswordSetNew } from "@/libs/auth";
+import { resetPasswordSetNew } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
 const SetNew = () => {

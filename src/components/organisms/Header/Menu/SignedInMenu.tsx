@@ -2,7 +2,7 @@ import Link from "next/link";
 import MenuItem from "./MenuItem";
 import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
-import { signOut } from "@/libs/auth";
+import { signOut } from "@/libs/firebase";
 
 type Props = {
   onClick: () => void;

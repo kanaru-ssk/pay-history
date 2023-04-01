@@ -57,7 +57,7 @@ const AuthProvider = ({ children }: Node) => {
             localStorage.setItem(key, JSON.stringify(user));
           } else {
             // create new user
-            const { createUser } = await import("@/libs/user");
+            const { createUser } = await import("@/libs/firebase");
             createUser(auth.currentUser);
           }
         }

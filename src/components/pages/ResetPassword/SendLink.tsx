@@ -7,7 +7,7 @@ import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
 import Notification from "@/components/molecules/Notification";
 import Head from "@/components/organisms/Head";
 import { useLocale } from "@/hooks/locale";
-import { resetPasswordSendLink } from "@/libs/auth";
+import { resetPasswordSendLink } from "@/libs/firebase";
 import { validateEmail } from "@/libs/validation";
 
 const SetLink = () => {

@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useModal } from "@/hooks/useModal";
 import { dateToInputData, stringToPrice } from "@/libs/convert";
-import { updateMonthlyData } from "@/libs/monthlyData";
+import { updateMonthlyData } from "@/libs/firebase";
 import type { MonthlyData, Payment } from "@/types/firebase";
 
 type Props = {

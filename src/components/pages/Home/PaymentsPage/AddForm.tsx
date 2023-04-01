@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useTabStatus } from "@/hooks/tabStatus";
 import { tabToDocId, dateToInputData, stringToPrice } from "@/libs/convert";
-import { addPayment } from "@/libs/monthlyData";
+import { addPayment } from "@/libs/firebase";
 import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
