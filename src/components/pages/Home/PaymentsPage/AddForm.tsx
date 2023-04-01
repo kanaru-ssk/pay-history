@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Input from "@/components/atoms/Input";
 import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
-import { useTabStatus } from "@/hooks/tabStatus";
-import { tabToDocId, dateToInputData, stringToPrice } from "@/libs/convert";
+import { useDocId } from "@/hooks/useDocId";
+import { dateToInputData, stringToPrice } from "@/libs/convert";
 import { addPayment } from "@/libs/firebase";
 import type { MonthlyData } from "@/types/firebase";
 
@@ -13,9 +13,8 @@ type Props = {
 
 const AddForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
+  const { docId } = useDocId();
   const { text } = useLocale();
-  const { tabStatus } = useTabStatus();
-
   const [date, setDate] = useState<string>("");
   const [minDate, setMinDate] = useState<string>("");
   const [maxDate, setMaxDate] = useState<string>("");
@@ -25,22 +24,19 @@ const AddForm = ({ thisMonthData }: Props) => {
   // set initial date
   useEffect(() => {
     const now = new Date();
-    if (tabStatus === now.getMonth() + 1) {
+    const docDate = new Date(docId);
+    if (docDate.getMonth() === now.getMonth()) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     } else {
-      const split = tabToDocId(tabStatus).split("-");
-      const toNum = split.map((value) => {
-        return Number(value);
-      });
-      const inputMonthData = dateToInputData(new Date(toNum[0], toNum[1], 0));
+      const inputMonthData = dateToInputData(docDate);
       setDate(inputMonthData.value);
       setMinDate(inputMonthData.min);
       setMaxDate(inputMonthData.max);
     }
-  }, [tabStatus]);
+  }, [docId]);
 
   // enter payment amount
   const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {

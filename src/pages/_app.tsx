@@ -8,23 +8,18 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const DynamicAuthProvider = dynamic(() => import("@/hooks/auth"), {
     ssr: false,
   });
-  const DynamicTabStatusProvider = dynamic(() => import("@/hooks/tabStatus"), {
-    ssr: false,
-  });
   const DynamicModalProvider = dynamic(() => import("@/hooks/useModal"), {
     ssr: false,
   });
 
   return (
     <DynamicAuthProvider>
-      <DynamicTabStatusProvider>
-        <DynamicModalProvider>
-          <Header />
-          <main className="mx-auto max-w-2xl font-light">
-            <Component {...pageProps} />
-          </main>
-        </DynamicModalProvider>
-      </DynamicTabStatusProvider>
+      <DynamicModalProvider>
+        <Header />
+        <main className="mx-auto max-w-2xl font-light">
+          <Component {...pageProps} />
+        </main>
+      </DynamicModalProvider>
     </DynamicAuthProvider>
   );
 };

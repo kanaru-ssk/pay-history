@@ -1,17 +1,14 @@
 import Button from "@/components/atoms/Button";
 import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
-import { useTabStatus } from "@/hooks/tabStatus";
-import { tabToDocId } from "@/libs/convert";
+import { useDocId } from "@/hooks/useDocId";
 import { createMonthlyData } from "@/libs/firebase";
 
 const CtaBtn = () => {
   const { dbUser } = useAuth();
-  const { tabStatus } = useTabStatus();
+  const { docId } = useDocId();
   const { text } = useLocale();
-
   const onClickHandler = () => {
-    const docId = tabToDocId(tabStatus);
     createMonthlyData(dbUser, docId);
   };
 

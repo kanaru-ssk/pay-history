@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import BudgetEditForm from "./BudgetEditForm";
 import ArrowIcon from "@/components/atoms/icons/ArrowIcon";
 import { useLocale } from "@/hooks/locale";
+import { useDocId } from "@/hooks/useDocId";
 import { useModal } from "@/hooks/useModal";
 import type { MonthlyData } from "@/types/firebase";
 
@@ -10,6 +12,7 @@ type Props = {
 };
 
 const Budget = ({ thisMonthData }: Props) => {
+  const { prevDocId, nextDocId } = useDocId();
   const { text } = useLocale();
   const { setModalContents } = useModal();
   const [budget, setBudget] = useState<number>(0);
@@ -40,7 +43,10 @@ const Budget = ({ thisMonthData }: Props) => {
 
   return (
     <div>
-      <div className="flex h-28 items-center px-12">
+      <div className="flex h-28 items-center px-2">
+        <Link href={{ query: { month: prevDocId } }} shallow>
+          <ArrowIcon direction="left" />
+        </Link>
         <div className="w-full">
           <div>{thisMonthData.docId.replace("-", " / ")}</div>
           <div className="flex flex-col items-end">
@@ -73,6 +79,9 @@ const Budget = ({ thisMonthData }: Props) => {
             ></div>
           </div>
         </div>
+        <Link href={{ query: { month: nextDocId } }} shallow>
+          <ArrowIcon direction="right" />
+        </Link>
       </div>
       <div>
         <div
