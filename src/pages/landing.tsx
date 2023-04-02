@@ -1,4 +1,4 @@
-import { Landing } from "@/components/pages/LandingPage";
+import { Landing } from "@/components/pages/Landing";
 
 const LandingPage = () => <Landing />;
 
