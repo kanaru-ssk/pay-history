@@ -3,7 +3,7 @@ import CtaBtn from "./CtaBtn";
 import Heading1 from "@/components/atoms/Heading1";
 import Heading2 from "@/components/atoms/Heading2";
 import Head from "@/components/organisms/Head";
-import { useLocale } from "@/hooks/locale";
+import { useLocale } from "@/hooks/useLocale";
 
 const LandingPage = () => {
   const { text } = useLocale();

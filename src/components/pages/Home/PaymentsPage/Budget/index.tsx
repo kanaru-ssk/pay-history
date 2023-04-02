@@ -2,9 +2,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import BudgetEditForm from "./BudgetEditForm";
 import ArrowIcon from "@/components/atoms/icons/ArrowIcon";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
+import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
 import { type MonthlyData } from "@/types/firebase";
 

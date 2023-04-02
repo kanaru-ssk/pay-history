@@ -4,9 +4,9 @@ import LoadingPage from "./LoadingPage";
 import PaymentsPage from "./PaymentsPage";
 import Notification from "@/components/molecules/Notification";
 import Head from "@/components/organisms/Head";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
+import { useLocale } from "@/hooks/useLocale";
 import { getMonthlyData } from "@/libs/firebase";
 import { type MonthlyData } from "@/types/firebase";
 

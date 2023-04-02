@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useLocale } from "@/hooks/locale";
+import { useLocale } from "@/hooks/useLocale";
 
 const CtaBtn = () => {
   const { text } = useLocale();

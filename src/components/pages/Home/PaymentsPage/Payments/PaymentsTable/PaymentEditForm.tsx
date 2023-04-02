@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from "react";
 import Input from "@/components/atoms/Input";
 import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
 import { dateToInputData, stringToPrice } from "@/libs/convert";
 import { updateMonthlyData } from "@/libs/firebase";

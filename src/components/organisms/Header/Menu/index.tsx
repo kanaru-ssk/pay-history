@@ -2,7 +2,7 @@ import AnonymousMenu from "./AnonymousMenu";
 import LanguageMenu from "./LanguageMenu";
 import SignedInMenu from "./SignedInMenu";
 import SlideIn from "@/components/molecules/SlideIn";
-import { useAuth } from "@/hooks/auth";
+import { useAuth } from "@/hooks/useAuth";
 
 type Props = {
   isMenuOpen: boolean;

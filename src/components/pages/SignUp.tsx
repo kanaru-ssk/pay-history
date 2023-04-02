@@ -7,8 +7,8 @@ import LinkText from "@/components/atoms/LinkText";
 import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
 import Notification from "@/components/molecules/Notification";
 import Head from "@/components/organisms/Head";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { signUp } from "@/libs/firebase";
 import { updateUser } from "@/libs/firebase";
 import {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import MenuItem from "./MenuItem";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { signOut } from "@/libs/firebase";
 
 type Props = {

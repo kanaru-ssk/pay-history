@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Input from "@/components/atoms/Input";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
+import { useLocale } from "@/hooks/useLocale";
 import { dateToInputData, stringToPrice } from "@/libs/convert";
 import { addPayment, createMonthlyData, createPayment } from "@/libs/firebase";
 import { type MonthlyData } from "@/types/firebase";

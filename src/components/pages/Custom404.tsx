@@ -1,7 +1,7 @@
 import Heading1 from "@/components/atoms/Heading1";
 import LinkText from "@/components/atoms/LinkText";
 import Head from "@/components/organisms/Head";
-import { useLocale } from "@/hooks/locale";
+import { useLocale } from "@/hooks/useLocale";
 
 const Custom404 = () => {
   const { text } = useLocale();
