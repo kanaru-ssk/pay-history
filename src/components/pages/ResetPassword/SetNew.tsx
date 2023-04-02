@@ -1,5 +1,11 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
+} from "react";
 import Heading1 from "@/components/atoms/Heading1";
 import Heading3 from "@/components/atoms/Heading3";
 import Input from "@/components/atoms/Input";
@@ -45,7 +51,7 @@ const SetNew = () => {
   }, [newPassword, newPasswordConfirm]);
 
   // reset password
-  const submitSetNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSetNewPassword = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -60,9 +66,7 @@ const SetNew = () => {
     }
   };
 
-  const validationNewPassword = (
-    e: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
+  const validationNewPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
@@ -73,9 +77,7 @@ const SetNew = () => {
     }
   };
 
-  const validationReenterNewPassword = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const validationReenterNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,

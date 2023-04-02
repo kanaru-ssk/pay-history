@@ -1,3 +1,4 @@
+import { type Dispatch, type SetStateAction } from "react";
 import AnonymousMenu from "./AnonymousMenu";
 import LanguageMenu from "./LanguageMenu";
 import SignedInMenu from "./SignedInMenu";
@@ -6,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 type Props = {
   isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {

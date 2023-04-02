@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FocusEvent, type FormEvent } from "react";
 import Heading1 from "@/components/atoms/Heading1";
 import Heading3 from "@/components/atoms/Heading3";
 import Input from "@/components/atoms/Input";
@@ -25,9 +25,7 @@ const SetLink = () => {
   }, [email]);
 
   // send password reset link
-  const submitSendResetPasswordLink = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const submitSendResetPasswordLink = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -43,7 +41,7 @@ const SetLink = () => {
     }
   };
 
-  const validationEmail = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(

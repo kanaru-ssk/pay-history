@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Input from "@/components/atoms/Input";
 import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
 import { useAuth } from "@/hooks/useAuth";
@@ -23,14 +23,14 @@ const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
 
   // edit the budget
-  const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeBudget = (e: ChangeEvent<HTMLInputElement>) => {
     const newBudget = stringToPrice(e.target.value);
     setEditedBudget(newBudget);
     setIsReady(newBudget !== thisMonthData.budget);
   };
 
   // save the budget
-  const submitSaveBudget = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSaveBudget = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsReady(false);

@@ -2,7 +2,13 @@
 
 import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot, doc } from "firebase/firestore";
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { auth, db } from "@/libs/firebase";
 import { type User, type DBUser } from "@/types/firebase";
 
@@ -14,7 +20,7 @@ type AuthContextProps = {
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 type Node = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const AuthProvider = ({ children }: Node) => {

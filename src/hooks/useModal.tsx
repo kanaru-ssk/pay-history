@@ -1,12 +1,12 @@
 import {
   createContext,
   useContext,
-  useState,
   useEffect,
-  ReactNode,
   useRef,
-  Dispatch,
-  SetStateAction,
+  useState,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
 } from "react";
 import CloseIcon from "@/components/atoms/icons/CloseIcon";
 

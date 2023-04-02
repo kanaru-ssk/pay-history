@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { type Payment } from "@/types/firebase";
 
 type Props = {
   payment: Payment;
-  setPayment: React.Dispatch<React.SetStateAction<Payment | null>>;
+  setPayment: Dispatch<SetStateAction<Payment | null>>;
 };
 
 const TableItem = ({ payment, setPayment }: Props) => {

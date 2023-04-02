@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import Input from "@/components/atoms/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
@@ -39,19 +39,19 @@ const AddForm = ({ thisMonthData }: Props) => {
   }, [docId]);
 
   // enter payment amount
-  const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changePrice = (e: ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price);
   };
 
   // enter payment date
-  const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
 
   // add payment
-  const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitAddPayment = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       if (thisMonthData === null) {
