@@ -2,9 +2,6 @@ import NextHead from "next/head";
 
 type Props = {
   title?: string;
-  description?: string;
-  image?: string;
-  path?: string;
 };
 
 const Head = ({ title }: Props) => {
