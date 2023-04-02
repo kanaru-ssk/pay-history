@@ -22,7 +22,7 @@ const Notification = ({
     <div
       className={
         (isError
-          ? "border-red-400 bg-red-400 text-red-400"
+          ? "border-red-800 bg-red-100 text-red-800"
           : "border-black bg-gray-100 text-black") +
         " flex justify-between gap-2 rounded border p-4"
       }
