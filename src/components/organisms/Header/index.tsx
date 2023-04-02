@@ -9,7 +9,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20">
+      <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20 md:px-16">
         <div className="px-4">
           <Link href="/" title="go to top page">
             <Image
@@ -22,7 +22,11 @@ export const Header = () => {
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} name="menu-open">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            name="menu-open"
+            className="px-4 py-3"
+          >
             <SettingIcon />
           </button>
         </div>
