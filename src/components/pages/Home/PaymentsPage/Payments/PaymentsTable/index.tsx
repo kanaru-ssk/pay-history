@@ -73,7 +73,7 @@ const PaymentsTable = ({
 
   return (
     <div>
-      <div className="flex flex-col-reverse" ref={ref} data-cy="payments-table">
+      <div ref={ref} data-cy="payments-table">
         {thisMonthData &&
           thisMonthData.payments
             .sort(isSortDate ? sortPrice : sortDate)

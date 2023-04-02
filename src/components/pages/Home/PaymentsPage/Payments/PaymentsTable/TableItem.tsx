@@ -29,7 +29,7 @@ const TableItem = ({ thisMonthData, payment }: Props) => {
   return (
     <div
       onClick={() => startEditPayment()}
-      className={`${bgColor} flex h-12 cursor-pointer items-center px-4 duration-500 hover:bg-gray-200`}
+      className={`${bgColor} flex h-12 cursor-pointer items-center px-4 duration-500 hover:bg-gray-100`}
     >
       <div className="flex-1 text-left">
         {String(payment.atPaid.toDate().getMonth() + 1).padStart(2, "0")}/
