@@ -85,7 +85,7 @@ export const SignIn = () => {
           <div className="my-4">
             <Heading3>{text.EMAIL_ADDRESS}</Heading3>
             {errorMessageEmail && (
-              <div className="text-red">{errorMessageEmail}</div>
+              <div className="text-red-400">{errorMessageEmail}</div>
             )}
             <Input
               type="email"
@@ -99,7 +99,7 @@ export const SignIn = () => {
           <div className="my-4">
             <Heading3>{text.PASSWORD}</Heading3>
             {errorMessagePassword && (
-              <div className="text-red">{errorMessagePassword}</div>
+              <div className="text-red-400">{errorMessagePassword}</div>
             )}
             <Input
               type="password"
@@ -127,7 +127,7 @@ export const SignIn = () => {
             text={text.FORGET_PASSWORD}
             href="/reset-password/send-link"
           />
-          <LinkText text="Return To Home" href="/" />
+          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
       </div>
     </>

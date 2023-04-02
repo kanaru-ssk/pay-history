@@ -115,7 +115,7 @@ export const SignUp = () => {
           <div className="my-4">
             <Heading3>{text.EMAIL_ADDRESS}</Heading3>
             {errorMessageEmail && (
-              <div className="text-red">{errorMessageEmail}</div>
+              <div className="text-red-400">{errorMessageEmail}</div>
             )}
             <Input
               type="email"
@@ -129,7 +129,7 @@ export const SignUp = () => {
           <div className="my-4">
             <Heading3>{text.PASSWORD}</Heading3>
             {errorMessagePassword && (
-              <div className="text-red">{errorMessagePassword}</div>
+              <div className="text-red-400">{errorMessagePassword}</div>
             )}
             <Input
               type="password"
@@ -143,7 +143,7 @@ export const SignUp = () => {
           <div className="my-4">
             <Heading3>{text.REENTER_PASSWORD}</Heading3>
             {errorMessagePasswordConfirm && (
-              <div className="text-red">{errorMessagePasswordConfirm}</div>
+              <div className="text-red-400">{errorMessagePasswordConfirm}</div>
             )}
             <Input
               type="password"
@@ -162,6 +162,7 @@ export const SignUp = () => {
 
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText text={text.ALREADY_HAVE_AN_ACCOUNT} href="/signIn" />
+          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
       </div>
     </>

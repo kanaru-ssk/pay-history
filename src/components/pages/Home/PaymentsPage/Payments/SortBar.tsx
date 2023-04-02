@@ -1,5 +1,5 @@
 import { type MouseEventHandler } from "react";
-import { SortIcon } from "@/components/atoms/icons/SortIcon";
+import { SortIcon } from "./SortIcon";
 import { useLocale } from "@/hooks/useLocale";
 
 type Props = {

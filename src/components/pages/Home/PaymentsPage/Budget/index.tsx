@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ArrowIcon } from "./ArrowIcon";
 import { BudgetEditForm } from "./BudgetEditForm";
-import { ArrowIcon } from "@/components/atoms/icons/ArrowIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";

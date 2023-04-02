@@ -114,7 +114,7 @@ export const ChangePassword = () => {
           <div className="my-4">
             <Heading3>{text.CURRENT_PASSWORD}</Heading3>
             {errorCurrentPassword && (
-              <div className="text-red">{errorCurrentPassword}</div>
+              <div className="text-red-400">{errorCurrentPassword}</div>
             )}
             <Input
               type="password"
@@ -132,7 +132,7 @@ export const ChangePassword = () => {
               {text.CHARACTERS_6_to_20}
             </div>
             {errorMessagePassword && (
-              <div className="text-red">{errorMessagePassword}</div>
+              <div className="text-red-400">{errorMessagePassword}</div>
             )}
             <Input
               type="password"
@@ -145,7 +145,9 @@ export const ChangePassword = () => {
           <div className="my-4">
             <Heading3>{text.REENTER_NEW_PASSWORD}</Heading3>
             {errorMessageReenterNewPassword && (
-              <div className="text-red">{errorMessageReenterNewPassword}</div>
+              <div className="text-red-400">
+                {errorMessageReenterNewPassword}
+              </div>
             )}
             <Input
               type="password"

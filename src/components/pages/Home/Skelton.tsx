@@ -1,5 +1,5 @@
-import { ArrowIcon } from "@/components/atoms/icons/ArrowIcon";
-import { SortIcon } from "@/components/atoms/icons/SortIcon";
+import { ArrowIcon } from "./PaymentsPage/Budget/ArrowIcon";
+import { SortIcon } from "./PaymentsPage/Payments/SortIcon";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 
