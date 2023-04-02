@@ -1,7 +1,7 @@
 import AddForm from "./AddForm";
 import Budget from "./Budget";
 import Payments from "./Payments";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;

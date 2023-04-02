@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PaymentsTable from "./PaymentsTable";
 import SortBar from "./SortBar";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;

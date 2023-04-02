@@ -1,6 +1,6 @@
 import { logEvent } from "firebase/analytics";
 import { db, analytics, createPayment } from "@/libs/firebase";
-import type { MonthlyData, Payment, DBUser } from "@/types/firebase";
+import { type MonthlyData, type DBUser } from "@/types/firebase";
 
 // add payment data
 export const addPayment = async (

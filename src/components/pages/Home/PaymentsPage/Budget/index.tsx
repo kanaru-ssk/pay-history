@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useDocId } from "@/hooks/useDocId";
 import { useModal } from "@/hooks/useModal";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;

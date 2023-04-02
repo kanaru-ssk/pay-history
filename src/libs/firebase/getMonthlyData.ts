@@ -1,6 +1,6 @@
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "@/libs/firebase";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 // listen to monthly data
 export const getMonthlyData = (

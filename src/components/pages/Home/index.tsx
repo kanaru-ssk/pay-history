@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/auth";
 import { useLocale } from "@/hooks/locale";
 import { useDocId } from "@/hooks/useDocId";
 import { getMonthlyData } from "@/libs/firebase";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 const Home = () => {
   const { docId } = useDocId();

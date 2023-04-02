@@ -1,5 +1,5 @@
 import { db, analytics } from "@/libs/firebase";
-import type { User, DBUser } from "@/types/firebase";
+import { type User, type DBUser } from "@/types/firebase";
 
 // create user data
 export const createUser = async (authUser: User | null) => {
