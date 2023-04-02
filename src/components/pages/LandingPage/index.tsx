@@ -1,11 +1,11 @@
 import Image from "next/image";
-import CtaBtn from "./CtaBtn";
-import Heading1 from "@/components/atoms/Heading1";
-import Heading2 from "@/components/atoms/Heading2";
-import Head from "@/components/organisms/Head";
+import { CtaBtn } from "./CtaBtn";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { Heading2 } from "@/components/atoms/Heading2";
+import { Head } from "@/components/organisms/Head";
 import { useLocale } from "@/hooks/useLocale";
 
-const LandingPage = () => {
+export const Landing = () => {
   const { text } = useLocale();
   return (
     <>
@@ -40,5 +40,3 @@ const LandingPage = () => {
     </>
   );
 };
-
-export default LandingPage;

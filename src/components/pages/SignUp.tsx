@@ -6,13 +6,13 @@ import {
   type FocusEvent,
   type FormEvent,
 } from "react";
-import Heading1 from "@/components/atoms/Heading1";
-import Heading3 from "@/components/atoms/Heading3";
-import Input from "@/components/atoms/Input";
-import LinkText from "@/components/atoms/LinkText";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import Notification from "@/components/molecules/Notification";
-import Head from "@/components/organisms/Head";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { Heading3 } from "@/components/atoms/Heading3";
+import { Input } from "@/components/atoms/Input";
+import { LinkText } from "@/components/atoms/LinkText";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { Notification } from "@/components/molecules/Notification";
+import { Head } from "@/components/organisms/Head";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { signUp } from "@/libs/firebase";
@@ -23,7 +23,7 @@ import {
   validateReenterPassword,
 } from "@/libs/validation";
 
-const SignUp = () => {
+export const SignUp = () => {
   const { push } = useRouter();
   const { dbUser } = useAuth();
   const { locale, text } = useLocale();
@@ -167,5 +167,3 @@ const SignUp = () => {
     </>
   );
 };
-
-export default SignUp;

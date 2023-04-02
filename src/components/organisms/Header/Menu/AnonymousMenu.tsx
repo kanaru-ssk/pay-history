@@ -4,7 +4,7 @@ type Props = {
   onClick: () => void;
 };
 
-const AnonymousMenu = ({ onClick }: Props) => {
+export const AnonymousMenu = ({ onClick }: Props) => {
   return (
     <div>
       <Link href="/signUp" onClick={onClick} className="font-bold">
@@ -17,5 +17,3 @@ const AnonymousMenu = ({ onClick }: Props) => {
     </div>
   );
 };
-
-export default AnonymousMenu;

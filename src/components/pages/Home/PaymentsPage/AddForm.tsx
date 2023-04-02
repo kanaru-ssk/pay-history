@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import Input from "@/components/atoms/Input";
+import { Input } from "@/components/atoms/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
@@ -11,7 +11,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const AddForm = ({ thisMonthData }: Props) => {
+export const AddForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { docId } = useDocId();
   const { text } = useLocale();
@@ -104,5 +104,3 @@ const AddForm = ({ thisMonthData }: Props) => {
     </form>
   );
 };
-
-export default AddForm;

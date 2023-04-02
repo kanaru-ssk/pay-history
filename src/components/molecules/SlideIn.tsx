@@ -1,5 +1,5 @@
 import { type ReactNode, useRef, useEffect } from "react";
-import CloseIcon from "@/components/atoms/icons/CloseIcon";
+import { CloseIcon } from "@/components/atoms/icons/CloseIcon";
 
 type Props = {
   children: ReactNode;
@@ -7,7 +7,7 @@ type Props = {
   onHide: () => void;
 };
 
-const SlideIn = ({ children, isShown, onHide }: Props) => {
+export const SlideIn = ({ children, isShown, onHide }: Props) => {
   const slideInRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -49,5 +49,3 @@ const SlideIn = ({ children, isShown, onHide }: Props) => {
     </div>
   );
 };
-
-export default SlideIn;

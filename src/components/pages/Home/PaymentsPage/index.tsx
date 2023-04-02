@@ -1,13 +1,13 @@
-import AddForm from "./AddForm";
-import Budget from "./Budget";
-import Payments from "./Payments";
+import { AddForm } from "./AddForm";
+import { Budget } from "./Budget";
+import { Payments } from "./Payments";
 import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const PaymentsPage = ({ thisMonthData }: Props) => {
+export const PaymentsPage = ({ thisMonthData }: Props) => {
   return (
     <div className="pb-16">
       <div className="sticky top-12 bg-white">
@@ -20,5 +20,3 @@ const PaymentsPage = ({ thisMonthData }: Props) => {
     </div>
   );
 };
-
-export default PaymentsPage;

@@ -1,9 +1,9 @@
-import ArrowIcon from "@/components/atoms/icons/ArrowIcon";
-import SortIcon from "@/components/atoms/icons/SortIcon";
+import { ArrowIcon } from "@/components/atoms/icons/ArrowIcon";
+import { SortIcon } from "@/components/atoms/icons/SortIcon";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 
-const LoadingPage = () => {
+export const LoadingPage = () => {
   return (
     <div className="pb-16">
       <BudgetSkelton />
@@ -19,8 +19,6 @@ const LoadingPage = () => {
     </div>
   );
 };
-
-export default LoadingPage;
 
 const BudgetSkelton = () => {
   const { docId } = useDocId();

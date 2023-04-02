@@ -6,19 +6,19 @@ import {
   type FocusEvent,
   type FormEvent,
 } from "react";
-import Heading1 from "@/components/atoms/Heading1";
-import Heading3 from "@/components/atoms/Heading3";
-import Input from "@/components/atoms/Input";
-import LinkText from "@/components/atoms/LinkText";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import Notification from "@/components/molecules/Notification";
-import Head from "@/components/organisms/Head";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { Heading3 } from "@/components/atoms/Heading3";
+import { Input } from "@/components/atoms/Input";
+import { LinkText } from "@/components/atoms/LinkText";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { Notification } from "@/components/molecules/Notification";
+import { Head } from "@/components/organisms/Head";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { changePassword } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-const ChangePassword = () => {
+export const ChangePassword = () => {
   const { push } = useRouter();
   const { authUser } = useAuth();
   const { locale, text } = useLocale();
@@ -172,5 +172,3 @@ const ChangePassword = () => {
     </>
   );
 };
-
-export default ChangePassword;

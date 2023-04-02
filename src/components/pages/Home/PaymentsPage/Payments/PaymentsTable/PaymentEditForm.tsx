@@ -5,8 +5,8 @@ import {
   type FormEvent,
   type MouseEvent,
 } from "react";
-import Input from "@/components/atoms/Input";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import { Input } from "@/components/atoms/Input";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
@@ -19,7 +19,7 @@ type Props = {
   payment: Payment | null;
 };
 
-const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
+export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const { setModalContents } = useModal();
@@ -144,5 +144,3 @@ const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
     </form>
   );
 };
-
-export default PaymentEditForm;

@@ -4,7 +4,7 @@ type Props = {
   title?: string;
 };
 
-const Head = ({ title }: Props) => {
+export const Head = ({ title }: Props) => {
   return (
     <NextHead>
       <title>{title ?? "Pay History"}</title>
@@ -45,5 +45,3 @@ const Head = ({ title }: Props) => {
     </NextHead>
   );
 };
-
-export default Head;

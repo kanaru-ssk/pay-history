@@ -2,7 +2,7 @@ type Props = {
   red?: boolean;
 };
 
-const LoadingIcon = ({ red }: Props) => {
+export const LoadingIcon = ({ red }: Props) => {
   const color = red
     ? "border-red-400 border-t-red-400"
     : "border-black border-t-gray-400";
@@ -13,5 +13,3 @@ const LoadingIcon = ({ red }: Props) => {
     ></svg>
   );
 };
-
-export default LoadingIcon;

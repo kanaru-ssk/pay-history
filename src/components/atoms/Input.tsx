@@ -5,7 +5,7 @@ type Props = {
   right?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const Input = ({ small, right, ...rest }: Props) => {
+export const Input = ({ small, right, ...rest }: Props) => {
   return (
     <input
       className={`h-12 w-full rounded-lg border-gray-400 ${
@@ -15,5 +15,3 @@ const Input = ({ small, right, ...rest }: Props) => {
     />
   );
 };
-
-export default Input;

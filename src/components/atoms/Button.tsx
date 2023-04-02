@@ -5,7 +5,7 @@ export type ButtonProps = {
   large?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({ color = "gray", large, ...rest }: ButtonProps) => {
+export const Button = ({ color = "gray", large, ...rest }: ButtonProps) => {
   const buttonColor = (() => {
     if (color === "red") return "text-white bg-red-400 hover:bg-gray-400";
     else if (color === "black") return "text-white bg-black hover:bg-gray-400";
@@ -21,5 +21,3 @@ const Button = ({ color = "gray", large, ...rest }: ButtonProps) => {
     />
   );
 };
-
-export default Button;

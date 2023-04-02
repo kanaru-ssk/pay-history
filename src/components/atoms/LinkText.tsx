@@ -5,12 +5,10 @@ type Props = {
   href: string;
 };
 
-const LinkText = ({ text, href }: Props) => {
+export const LinkText = ({ text, href }: Props) => {
   return (
     <Link href={href} className="text-black underline hover:text-gray-400">
       {text}
     </Link>
   );
 };
-
-export default LinkText;

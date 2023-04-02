@@ -1,9 +1,9 @@
-import Heading1 from "@/components/atoms/Heading1";
-import LinkText from "@/components/atoms/LinkText";
-import Head from "@/components/organisms/Head";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { LinkText } from "@/components/atoms/LinkText";
+import { Head } from "@/components/organisms/Head";
 import { useLocale } from "@/hooks/useLocale";
 
-const Custom404 = () => {
+export const Custom404 = () => {
   const { text } = useLocale();
   return (
     <>
@@ -16,5 +16,3 @@ const Custom404 = () => {
     </>
   );
 };
-
-export default Custom404;

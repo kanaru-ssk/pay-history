@@ -1,5 +1,5 @@
-import ResetPassword from "@/components/pages/ResetPassword/SendLink";
+import { SendLink } from "@/components/pages/ResetPassword/SendLink";
 
-const ResetPasswordPage = () => <ResetPassword />;
+const ResetPasswordPage = () => <SendLink />;
 
 export default ResetPasswordPage;

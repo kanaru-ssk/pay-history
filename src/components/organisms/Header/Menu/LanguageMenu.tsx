@@ -1,9 +1,9 @@
 import Link from "next/link";
-import LanguageIcon from "@/components/atoms/icons/LanguageIcon";
+import { LanguageIcon } from "@/components/atoms/icons/LanguageIcon";
 import { languages } from "@/constants/languages";
 import { useLocale } from "@/hooks/useLocale";
 
-const LanguageMenu = () => {
+export const LanguageMenu = () => {
   const { locale } = useLocale();
   return (
     <details className="w-48 rounded-lg border border-gray-400 px-8">
@@ -30,5 +30,3 @@ const LanguageMenu = () => {
     </details>
   );
 };
-
-export default LanguageMenu;

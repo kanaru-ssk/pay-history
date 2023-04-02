@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import CloseIcon from "@/components/atoms/icons/CloseIcon";
+import { CloseIcon } from "@/components/atoms/icons/CloseIcon";
 
 type Props = {
   text: string;
@@ -8,7 +8,7 @@ type Props = {
   canHide?: boolean;
 };
 
-const Notification = ({
+export const Notification = ({
   text,
   show = true,
   isError,
@@ -36,5 +36,3 @@ const Notification = ({
     </div>
   );
 };
-
-export default Notification;

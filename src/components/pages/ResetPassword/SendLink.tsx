@@ -1,16 +1,16 @@
 import { useEffect, useState, type FocusEvent, type FormEvent } from "react";
-import Heading1 from "@/components/atoms/Heading1";
-import Heading3 from "@/components/atoms/Heading3";
-import Input from "@/components/atoms/Input";
-import LinkText from "@/components/atoms/LinkText";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import Notification from "@/components/molecules/Notification";
-import Head from "@/components/organisms/Head";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { Heading3 } from "@/components/atoms/Heading3";
+import { Input } from "@/components/atoms/Input";
+import { LinkText } from "@/components/atoms/LinkText";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { Notification } from "@/components/molecules/Notification";
+import { Head } from "@/components/organisms/Head";
 import { useLocale } from "@/hooks/useLocale";
 import { resetPasswordSendLink } from "@/libs/firebase";
 import { validateEmail } from "@/libs/validation";
 
-const SetLink = () => {
+export const SendLink = () => {
   const { locale, text } = useLocale();
   const [email, setEmail] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
@@ -89,5 +89,3 @@ const SetLink = () => {
     </>
   );
 };
-
-export default SetLink;

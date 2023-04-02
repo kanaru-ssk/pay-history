@@ -1,5 +1,5 @@
 import Link from "next/link";
-import MenuItem from "./MenuItem";
+import { MenuItem } from "./MenuItem";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { signOut } from "@/libs/firebase";
@@ -8,7 +8,7 @@ type Props = {
   onClick: () => void;
 };
 
-const SignedInMenu = ({ onClick }: Props) => {
+export const SignedInMenu = ({ onClick }: Props) => {
   const { authUser } = useAuth();
   const { text } = useLocale();
 
@@ -36,5 +36,3 @@ const SignedInMenu = ({ onClick }: Props) => {
     </div>
   );
 };
-
-export default SignedInMenu;

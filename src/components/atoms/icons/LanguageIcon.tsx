@@ -1,4 +1,4 @@
-const LanguageIcon = () => {
+export const LanguageIcon = () => {
   return (
     <svg width="18" height="18" className="mb-1 inline">
       <path
@@ -8,5 +8,3 @@ const LanguageIcon = () => {
     </svg>
   );
 };
-
-export default LanguageIcon;

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import TableItem from "./TableItem";
+import { TableItem } from "./TableItem";
 import { useLocale } from "@/hooks/useLocale";
 import { MonthlyData, Payment } from "@/types/firebase";
 
@@ -10,7 +10,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const PaymentsTable = ({
+export const PaymentsTable = ({
   isSortDate,
   isAcsDate,
   isAcsPrice,
@@ -97,5 +97,3 @@ const PaymentsTable = ({
     </div>
   );
 };
-
-export default PaymentsTable;

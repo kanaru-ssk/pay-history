@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PaymentEditForm from "./PaymentEditForm";
+import { PaymentEditForm } from "./PaymentEditForm";
 import { useModal } from "@/hooks/useModal";
 import { type MonthlyData, type Payment } from "@/types/firebase";
 
@@ -8,7 +8,7 @@ type Props = {
   payment: Payment;
 };
 
-const TableItem = ({ thisMonthData, payment }: Props) => {
+export const TableItem = ({ thisMonthData, payment }: Props) => {
   const { setModalContents } = useModal();
   const [bgColor, setBgColor] = useState<"bg-white" | "bg-gray-400">(
     "bg-gray-400"
@@ -41,4 +41,3 @@ const TableItem = ({ thisMonthData, payment }: Props) => {
     </div>
   );
 };
-export default TableItem;

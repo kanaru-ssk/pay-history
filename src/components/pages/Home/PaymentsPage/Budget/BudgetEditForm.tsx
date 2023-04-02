@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import Input from "@/components/atoms/Input";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
+import { Input } from "@/components/atoms/Input";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
@@ -14,7 +14,7 @@ type Props = {
   thisMonthData: MonthlyData;
 };
 
-const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
+export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const { setModalContents } = useModal();
@@ -67,5 +67,3 @@ const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
     </form>
   );
 };
-
-export default BudgetEditForm;

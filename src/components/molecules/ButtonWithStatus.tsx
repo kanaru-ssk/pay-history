@@ -1,12 +1,12 @@
-import Button, { type ButtonProps } from "@/components/atoms/Button";
-import LoadingIcon from "@/components/atoms/icons/LoadingIcon";
+import { Button, type ButtonProps } from "@/components/atoms/Button";
+import { LoadingIcon } from "@/components/atoms/icons/LoadingIcon";
 
 type Props = {
   isReady?: boolean;
   isLoading?: boolean;
 } & ButtonProps;
 
-const ButtonWithStatus = ({
+export const ButtonWithStatus = ({
   isReady = true,
   isLoading,
   children,
@@ -21,5 +21,3 @@ const ButtonWithStatus = ({
     </Button>
   );
 };
-
-export default ButtonWithStatus;

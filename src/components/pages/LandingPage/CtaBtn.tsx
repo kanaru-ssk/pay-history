@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useLocale } from "@/hooks/useLocale";
 
-const CtaBtn = () => {
+export const CtaBtn = () => {
   const { text } = useLocale();
 
   return (
@@ -12,5 +12,3 @@ const CtaBtn = () => {
     </Link>
   );
 };
-
-export default CtaBtn;

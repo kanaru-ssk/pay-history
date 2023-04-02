@@ -1,5 +1,5 @@
 import { type AppProps } from "next/app";
-import Header from "@/components/organisms/Header";
+import { Header } from "@/components/organisms/Header";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ModalProvider } from "@/hooks/useModal";
 import "@/styles/globals.css";

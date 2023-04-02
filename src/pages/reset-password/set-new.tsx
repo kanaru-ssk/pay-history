@@ -1,4 +1,4 @@
-import SetNew from "@/components/pages/ResetPassword/SetNew";
+import { SetNew } from "@/components/pages/ResetPassword/SetNew";
 
 const ResetPasswordPage = () => <SetNew />;
 

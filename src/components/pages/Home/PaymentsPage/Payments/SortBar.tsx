@@ -1,5 +1,5 @@
 import { type MouseEventHandler } from "react";
-import SortIcon from "@/components/atoms/icons/SortIcon";
+import { SortIcon } from "@/components/atoms/icons/SortIcon";
 import { useLocale } from "@/hooks/useLocale";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   onClickSortPrice: MouseEventHandler<HTMLButtonElement>;
 };
 
-const SortBar = ({
+export const SortBar = ({
   isSortDate,
   isAcsDate,
   isAcsPrice,
@@ -31,5 +31,3 @@ const SortBar = ({
     </div>
   );
 };
-
-export default SortBar;
