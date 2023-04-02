@@ -1,7 +1,7 @@
 import { user } from "../fixtures/user";
 
 describe("e2e test", () => {
-  it("can budgeting in japanese mode", () => {
+  it("can budgeting", () => {
     // visit
     cy.visit("/");
     cy.task("log", "visit");
@@ -18,7 +18,7 @@ describe("e2e test", () => {
 
     // check loading is done
     cy.get("header").should("exist");
-    cy.get(".animate-spin").should("not.exist");
+    cy.get('div[data-cy="skelton"]').should("not.exist");
 
     // check whether already started budgeting
     cy.get("main").then((main) => {
@@ -39,7 +39,7 @@ describe("e2e test", () => {
           cy.get('div[data-cy="modal"]').should("not.exist");
         });
       }
-      cy.contains("支払いデータがありません。");
+      cy.contains("No payment data");
     });
     cy.task("log", "delete all payment data");
 

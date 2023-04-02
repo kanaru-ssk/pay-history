@@ -5,7 +5,7 @@ import { useLocale } from "@/hooks/useLocale";
 
 export const Skelton = () => {
   return (
-    <div>
+    <div data-cy="skelton">
       <BudgetSkelton />
       <div>
         <SortBarSkelton />
