@@ -17,7 +17,7 @@ type Node = {
   children: React.ReactNode;
 };
 
-const AuthProvider = ({ children }: Node) => {
+export const AuthProvider = ({ children }: Node) => {
   const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
@@ -67,6 +67,5 @@ const AuthProvider = ({ children }: Node) => {
     </AuthContext.Provider>
   );
 };
-export default AuthProvider;
 
 export const useAuth = () => useContext(AuthContext);

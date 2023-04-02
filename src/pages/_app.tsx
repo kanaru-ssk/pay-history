@@ -1,7 +1,7 @@
 import { type AppProps } from "next/app";
 import Header from "@/components/organisms/Header";
-import AuthProvider from "@/hooks/useAuth";
-import ModalProvider from "@/hooks/useModal";
+import { AuthProvider } from "@/hooks/useAuth";
+import { ModalProvider } from "@/hooks/useModal";
 import "@/styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
