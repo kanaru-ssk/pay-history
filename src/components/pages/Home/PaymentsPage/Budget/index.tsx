@@ -55,7 +55,7 @@ export const Budget = ({ thisMonthData }: Props) => {
         </Link>
         <div className="w-full">
           <div>{docId.replace("-", " / ")}</div>
-          <div className="flex flex-col items-end">
+          <div className="flex justify-end">
             <div>
               ¥{" "}
               <span className="text-3xl font-medium" data-cy="remaining">
