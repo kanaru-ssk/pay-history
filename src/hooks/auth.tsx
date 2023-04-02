@@ -18,12 +18,8 @@ type Node = {
 };
 
 const AuthProvider = ({ children }: Node) => {
-  const key = "dbUser";
   const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
-  const [dbUser, setDBUser] = useState<DBUser | null>(() => {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
-  });
+  const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
   // update authenticated user
   useEffect(() => {
@@ -54,7 +50,6 @@ const AuthProvider = ({ children }: Node) => {
               isAnonymous: doc.data().isAnonymous,
             };
             setDBUser(user);
-            localStorage.setItem(key, JSON.stringify(user));
           } else {
             // create new user
             const { createUser } = await import("@/libs/firebase");
