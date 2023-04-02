@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { LoadingPage } from "./LoadingPage";
 import { PaymentsPage } from "./PaymentsPage";
+import { Skelton } from "./Skelton";
 import { Notification } from "@/components/molecules/Notification";
 import { Head } from "@/components/organisms/Head";
 import { useAuth } from "@/hooks/useAuth";
@@ -37,7 +37,7 @@ export const Home = () => {
           show={!!changePasswordSuccess}
         />
         {thisMonthData === undefined ? (
-          <LoadingPage />
+          <Skelton />
         ) : (
           <PaymentsPage thisMonthData={thisMonthData} />
         )}

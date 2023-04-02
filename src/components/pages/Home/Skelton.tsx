@@ -3,9 +3,9 @@ import { SortIcon } from "@/components/atoms/icons/SortIcon";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 
-export const LoadingPage = () => {
+export const Skelton = () => {
   return (
-    <div className="pb-16">
+    <div>
       <BudgetSkelton />
       <div>
         <SortBarSkelton />
