@@ -17,7 +17,7 @@ export const ButtonWithStatus = ({
 
   return (
     <Button color={buttonColor} large {...rest}>
-      {isLoading ? <LoadingIcon red={color === "red"} /> : children}
+      {isLoading ? <LoadingIcon /> : children}
     </Button>
   );
 };
