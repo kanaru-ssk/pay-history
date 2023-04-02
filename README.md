@@ -1,6 +1,6 @@
 # Pay History
 
-Spend management tool
+financial management tool of in a household.
 
 ## URL
 
@@ -59,11 +59,13 @@ Since it is a tool that you use on a daily basis, it supports PWA and can be ins
 ## Site Map
 
 - /
+  - /landing
   - /signIn
   - /signUp
   - /change-password
   - /reset-password
-    - /set
+    - /send-link
+    - /set-new
 
 ## FireStore Data Model
 
@@ -75,7 +77,7 @@ Since it is a tool that you use on a daily basis, it supports PWA and can be ins
     - email: string
     - isAnonymous: boolean
     - monthlyData: sub collection
-      - '2022-8'
+      - '2022-08'
         - atCreated: timestamp
         - atUpdated: timestamp
         - budget: number
