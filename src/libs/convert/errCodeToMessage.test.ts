@@ -1,45 +1,4 @@
-import { dateToInputData, stringToPrice, errCodeToMessage } from "./convert";
-
-describe("dateToInputData function", () => {
-  beforeAll(() => {
-    const mockDate = new Date(2020, 1, 15);
-    jest.useFakeTimers();
-    jest.setSystemTime(mockDate);
-  });
-
-  test("return correct value for current month", () => {
-    expect(dateToInputData(new Date(2020, 1, 10))).toEqual({
-      value: "2020-02-10",
-      min: "2020-02-01",
-      max: "2020-02-15",
-    });
-  });
-  test("return correct value for previous month", () => {
-    expect(dateToInputData(new Date(2020, 0, 10))).toEqual({
-      value: "2020-01-10",
-      min: "2020-01-01",
-      max: "2020-01-31",
-    });
-  });
-});
-
-describe("stringToPrice function", () => {
-  test("return correct value for 1 million", () => {
-    expect(stringToPrice("1,000,000")).toEqual(1000000);
-  });
-  test("return correct value for Double-byte character", () => {
-    expect(stringToPrice("100,０００")).toEqual(100000);
-  });
-  test("return correct value for Double-byte character", () => {
-    expect(stringToPrice("100,０００")).toEqual(100000);
-  });
-  test("return 0 for invalid character", () => {
-    expect(stringToPrice("100,0++")).toEqual(0);
-  });
-  test("return 0 for negative number", () => {
-    expect(stringToPrice("-100,00")).toEqual(0);
-  });
-});
+import { errCodeToMessage } from "./errCodeToMessage";
 
 describe("errCodeToMessage function", () => {
   test("return unknown for error is not AuthError", () => {
@@ -111,7 +70,7 @@ describe("errCodeToMessage function", () => {
       })
     ).toEqual({
       en: "Sorry, this email address is already in use. Please try signing in or use a different email address to create a new account.",
-      ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスでサインアップして下さい。",
+      ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスで新規登録して下さい。",
     });
   });
   test("return message for errorCode is weak-password", () => {
@@ -133,7 +92,7 @@ describe("errCodeToMessage function", () => {
       })
     ).toEqual({
       en: "Sorry, this email address is already in use. Please try signing in or use a different email address to create a new account.",
-      ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスでサインアップして下さい。",
+      ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスで新規登録して下さい。",
     });
   });
   test("return message for errorCode is invalid-action-code", () => {
