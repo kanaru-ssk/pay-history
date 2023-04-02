@@ -13,12 +13,12 @@ const Head = ({ title }: Props) => {
       <title>{title ?? "Pay History"}</title>
       <meta
         name="description"
-        content="With the budget management tool 'Pay History', you can manage your monthly budget, amount spent, and budget remaining in the simplest way."
+        content="Keep your household finances in check with real-time budget tracking."
       />
       <meta property="og:title" content="Pay History" />
       <meta
         property="og:description"
-        content="With the budget management tool 'Pay History', you can manage your monthly budget, amount spent, and budget remaining in the simplest way."
+        content="Keep your household finances in check with real-time budget tracking."
       />
       <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
       <meta
