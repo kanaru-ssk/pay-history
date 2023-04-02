@@ -41,7 +41,10 @@ const Head = ({ title }: Props) => {
       <meta name="msapplication-tap-highlight" content="no" />
       <link rel="apple-touch-icon" href="/icon-180.png" />
       <link rel="manifest" href="/manifest.json" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta
+        name="viewport"
+        content="initial-scale=1.0, width=device-width viewport-fit=cover"
+      />
     </NextHead>
   );
 };

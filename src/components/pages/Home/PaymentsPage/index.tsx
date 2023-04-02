@@ -14,7 +14,7 @@ const PaymentsPage = ({ thisMonthData }: Props) => {
         <Budget thisMonthData={thisMonthData} />
       </div>
       <Payments thisMonthData={thisMonthData} />
-      <div className="fixed bottom-0 left-0 w-full bg-white px-4 drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)]">
+      <div className="fixed bottom-0 left-0 w-full bg-white px-4 pb-[env(safe-area-inset-bottom)] drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)]">
         <AddForm thisMonthData={thisMonthData} />
       </div>
     </div>
