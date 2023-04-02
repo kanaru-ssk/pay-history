@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import LoadingPage from "./LoadingPage";
-import PaymentsPage from "./PaymentsPage";
-import Notification from "@/components/molecules/Notification";
-import Head from "@/components/organisms/Head";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { PaymentsPage } from "./PaymentsPage";
+import { Skelton } from "./Skelton";
+import { Notification } from "@/components/molecules/Notification";
+import { Head } from "@/components/organisms/Head";
+import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
+import { useLocale } from "@/hooks/useLocale";
 import { getMonthlyData } from "@/libs/firebase";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
-const Home = () => {
+export const Home = () => {
   const { docId } = useDocId();
   const { query } = useRouter();
   const { changePasswordSuccess } = query;
@@ -37,7 +37,7 @@ const Home = () => {
           show={!!changePasswordSuccess}
         />
         {thisMonthData === undefined ? (
-          <LoadingPage />
+          <Skelton />
         ) : (
           <PaymentsPage thisMonthData={thisMonthData} />
         )}
@@ -45,5 +45,3 @@ const Home = () => {
     </>
   );
 };
-
-export default Home;

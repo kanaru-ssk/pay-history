@@ -1,14 +1,13 @@
 import { onSnapshot, doc } from "firebase/firestore";
+import { type Dispatch, type SetStateAction } from "react";
 import { db } from "@/libs/firebase";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 // listen to monthly data
 export const getMonthlyData = (
   uid: string | undefined,
   docId: string,
-  setMonthData: React.Dispatch<
-    React.SetStateAction<MonthlyData | null | undefined>
-  >
+  setMonthData: Dispatch<SetStateAction<MonthlyData | null | undefined>>
 ) => {
   if (uid === undefined) return null;
 

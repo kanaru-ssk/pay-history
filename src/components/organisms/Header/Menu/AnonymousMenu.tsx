@@ -1,21 +1,21 @@
 import Link from "next/link";
+import { useLocale } from "@/hooks/useLocale";
 
 type Props = {
   onClick: () => void;
 };
 
-const AnonymousMenu = ({ onClick }: Props) => {
+export const AnonymousMenu = ({ onClick }: Props) => {
+  const { text } = useLocale();
   return (
     <div>
       <Link href="/signUp" onClick={onClick} className="font-bold">
-        Sign Up
+        {text.SIGN_UP}
       </Link>
       <span className="mx-4">/</span>
       <Link href="/signIn" onClick={onClick} className="font-bold">
-        Sign In
+        {text.SIGN_IN}
       </Link>
     </div>
   );
 };
-
-export default AnonymousMenu;

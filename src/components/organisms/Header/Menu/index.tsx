@@ -1,15 +1,16 @@
-import AnonymousMenu from "./AnonymousMenu";
-import LanguageMenu from "./LanguageMenu";
-import SignedInMenu from "./SignedInMenu";
-import SlideIn from "@/components/molecules/SlideIn";
-import { useAuth } from "@/hooks/auth";
+import { type Dispatch, type SetStateAction } from "react";
+import { AnonymousMenu } from "./AnonymousMenu";
+import { LanguageMenu } from "./LanguageMenu";
+import { SignedInMenu } from "./SignedInMenu";
+import { SlideIn } from "@/components/molecules/SlideIn";
+import { useAuth } from "@/hooks/useAuth";
 
 type Props = {
   isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
+export const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
   const { authUser } = useAuth();
 
   return (
@@ -27,5 +28,3 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: Props) => {
     </SlideIn>
   );
 };
-
-export default Menu;

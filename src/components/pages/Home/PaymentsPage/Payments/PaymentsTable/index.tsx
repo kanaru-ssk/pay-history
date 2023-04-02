@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import TableItem from "./TableItem";
-import { useLocale } from "@/hooks/locale";
+import { TableItem } from "./TableItem";
+import { useLocale } from "@/hooks/useLocale";
 import { MonthlyData, Payment } from "@/types/firebase";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const PaymentsTable = ({
+export const PaymentsTable = ({
   isSortDate,
   isAcsDate,
   isAcsPrice,
@@ -73,7 +73,7 @@ const PaymentsTable = ({
 
   return (
     <div>
-      <div className="flex flex-col-reverse" ref={ref} data-cy="payments-table">
+      <div ref={ref} data-cy="payments-table">
         {thisMonthData &&
           thisMonthData.payments
             .sort(isSortDate ? sortPrice : sortDate)
@@ -97,5 +97,3 @@ const PaymentsTable = ({
     </div>
   );
 };
-
-export default PaymentsTable;

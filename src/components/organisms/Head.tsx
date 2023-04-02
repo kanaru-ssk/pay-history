@@ -2,12 +2,9 @@ import NextHead from "next/head";
 
 type Props = {
   title?: string;
-  description?: string;
-  image?: string;
-  path?: string;
 };
 
-const Head = ({ title }: Props) => {
+export const Head = ({ title }: Props) => {
   return (
     <NextHead>
       <title>{title ?? "Pay History"}</title>
@@ -48,5 +45,3 @@ const Head = ({ title }: Props) => {
     </NextHead>
   );
 };
-
-export default Head;

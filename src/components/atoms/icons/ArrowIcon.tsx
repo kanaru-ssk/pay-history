@@ -3,7 +3,7 @@ type Props = {
   disable?: boolean;
 };
 
-const ArrowIcon = ({ direction, disable }: Props) => {
+export const ArrowIcon = ({ direction, disable }: Props) => {
   const scale = direction === "right" ? "scale-x-[-1]" : undefined;
   const color = disable ? "#ddd" : "#000";
   return (
@@ -18,5 +18,3 @@ const ArrowIcon = ({ direction, disable }: Props) => {
     </svg>
   );
 };
-
-export default ArrowIcon;

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import PaymentsTable from "./PaymentsTable";
-import SortBar from "./SortBar";
-import type { MonthlyData } from "@/types/firebase";
+import { PaymentsTable } from "./PaymentsTable";
+import { SortBar } from "./SortBar";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const Payments = ({ thisMonthData }: Props) => {
+export const Payments = ({ thisMonthData }: Props) => {
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
   const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
@@ -36,5 +36,3 @@ const Payments = ({ thisMonthData }: Props) => {
     </div>
   );
 };
-
-export default Payments;

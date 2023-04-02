@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import Input from "@/components/atoms/Input";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { Input } from "@/components/atoms/Input";
+import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
+import { useLocale } from "@/hooks/useLocale";
 import { dateToInputData, stringToPrice } from "@/libs/convert";
 import { addPayment, createMonthlyData, createPayment } from "@/libs/firebase";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const AddForm = ({ thisMonthData }: Props) => {
+export const AddForm = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { docId } = useDocId();
   const { text } = useLocale();
@@ -39,19 +39,19 @@ const AddForm = ({ thisMonthData }: Props) => {
   }, [docId]);
 
   // enter payment amount
-  const changePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changePrice = (e: ChangeEvent<HTMLInputElement>) => {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price);
   };
 
   // enter payment date
-  const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
 
   // add payment
-  const submitAddPayment = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitAddPayment = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       if (thisMonthData === null) {
@@ -104,5 +104,3 @@ const AddForm = ({ thisMonthData }: Props) => {
     </form>
   );
 };
-
-export default AddForm;

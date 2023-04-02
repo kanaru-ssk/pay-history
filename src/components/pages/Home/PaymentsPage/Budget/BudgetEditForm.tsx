@@ -1,20 +1,20 @@
-import { useState } from "react";
-import Input from "@/components/atoms/Input";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Input } from "@/components/atoms/Input";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
 import { stringToPrice } from "@/libs/convert";
 import { updateMonthlyData } from "@/libs/firebase";
 import { updateUser } from "@/libs/firebase";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   budget: number;
   thisMonthData: MonthlyData;
 };
 
-const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
+export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const { setModalContents } = useModal();
@@ -23,14 +23,14 @@ const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
 
   // edit the budget
-  const changeBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeBudget = (e: ChangeEvent<HTMLInputElement>) => {
     const newBudget = stringToPrice(e.target.value);
     setEditedBudget(newBudget);
     setIsReady(newBudget !== thisMonthData.budget);
   };
 
   // save the budget
-  const submitSaveBudget = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSaveBudget = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsReady(false);
@@ -67,5 +67,3 @@ const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
     </form>
   );
 };
-
-export default BudgetEditForm;

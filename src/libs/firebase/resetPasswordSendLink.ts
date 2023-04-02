@@ -1,7 +1,7 @@
 import { logEvent } from "firebase/analytics";
 import { errCodeToMessage } from "@/libs/convert";
 import { auth, analytics } from "@/libs/firebase";
-import type { ErrorMessage } from "@/types/errorMessage";
+import { type ErrorMessage } from "@/types/errorMessage";
 
 export const resetPasswordSendLink = async (
   email: string

@@ -1,6 +1,6 @@
 import { logEvent } from "firebase/analytics";
 import { db, analytics } from "@/libs/firebase";
-import type { MonthlyData, DBUser, Payment } from "@/types/firebase";
+import { type MonthlyData, type DBUser, type Payment } from "@/types/firebase";
 
 type Props = {
   user: DBUser | null;

@@ -1,14 +1,14 @@
 import {
   createContext,
   useContext,
-  useState,
   useEffect,
-  ReactNode,
   useRef,
-  Dispatch,
-  SetStateAction,
+  useState,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
 } from "react";
-import CloseIcon from "@/components/atoms/icons/CloseIcon";
+import { CloseIcon } from "@/components/atoms/icons/CloseIcon";
 
 type ModalContextProps = {
   setModalContents: Dispatch<SetStateAction<ReactNode>>;
@@ -20,7 +20,7 @@ type Props = {
   children: ReactNode;
 };
 
-const ModalProvider = ({ children }: Props) => {
+export const ModalProvider = ({ children }: Props) => {
   const [modalContents, setModalContents] = useState<ReactNode>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -62,7 +62,5 @@ const ModalProvider = ({ children }: Props) => {
     </ModalContext.Provider>
   );
 };
-
-export default ModalProvider;
 
 export const useModal = () => useContext(ModalContext);

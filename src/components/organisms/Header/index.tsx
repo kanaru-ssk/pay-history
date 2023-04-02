@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Menu from "./Menu";
-import SettingIcon from "@/components/atoms/icons/SettingIcon";
+import { Menu } from "./Menu";
+import { SettingIcon } from "@/components/atoms/icons/SettingIcon";
 
-const Header = () => {
+export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
@@ -31,5 +31,3 @@ const Header = () => {
     </>
   );
 };
-
-export default Header;

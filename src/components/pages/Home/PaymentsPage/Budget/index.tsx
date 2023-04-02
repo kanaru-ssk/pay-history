@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import BudgetEditForm from "./BudgetEditForm";
-import ArrowIcon from "@/components/atoms/icons/ArrowIcon";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { BudgetEditForm } from "./BudgetEditForm";
+import { ArrowIcon } from "@/components/atoms/icons/ArrowIcon";
+import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
+import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
-import type { MonthlyData } from "@/types/firebase";
+import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-const Budget = ({ thisMonthData }: Props) => {
+export const Budget = ({ thisMonthData }: Props) => {
   const { dbUser } = useAuth();
   const { docId, prevDocId, nextDocId } = useDocId();
   const { text } = useLocale();
@@ -104,5 +104,3 @@ const Budget = ({ thisMonthData }: Props) => {
     </div>
   );
 };
-
-export default Budget;

@@ -1,6 +1,11 @@
 // init firebase
 import { getAnalytics } from "firebase/analytics";
-import { initializeApp, getApp, getApps } from "firebase/app";
+import {
+  initializeApp,
+  getApp,
+  getApps,
+  type FirebaseOptions,
+} from "firebase/app";
 import {
   browserLocalPersistence,
   getAuth,
@@ -8,7 +13,7 @@ import {
 } from "firebase/auth";
 import { initializeFirestore, getFirestore } from "firebase/firestore";
 
-const config = {
+const config: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,

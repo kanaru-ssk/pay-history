@@ -1,18 +1,18 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Heading1 from "@/components/atoms/Heading1";
-import Heading3 from "@/components/atoms/Heading3";
-import Input from "@/components/atoms/Input";
-import LinkText from "@/components/atoms/LinkText";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import Notification from "@/components/molecules/Notification";
-import Head from "@/components/organisms/Head";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import { useEffect, useState, type FocusEvent, type FormEvent } from "react";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { Heading3 } from "@/components/atoms/Heading3";
+import { Input } from "@/components/atoms/Input";
+import { LinkText } from "@/components/atoms/LinkText";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { Notification } from "@/components/molecules/Notification";
+import { Head } from "@/components/organisms/Head";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { signIn } from "@/libs/firebase";
 import { validateEmail, validatePassword } from "@/libs/validation";
 
-const SignIn = () => {
+export const SignIn = () => {
   const { push } = useRouter();
   const { authUser } = useAuth();
   const { locale, text } = useLocale();
@@ -38,7 +38,7 @@ const SignIn = () => {
   }, [email, password]);
 
   // sign in
-  const submitSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSignIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -51,7 +51,7 @@ const SignIn = () => {
     }
   };
 
-  const validationEmail = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
@@ -62,9 +62,7 @@ const SignIn = () => {
     }
   };
 
-  const validationPassword = (
-    e: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
+  const validationPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessagePassword(
@@ -135,5 +133,3 @@ const SignIn = () => {
     </>
   );
 };
-
-export default SignIn;

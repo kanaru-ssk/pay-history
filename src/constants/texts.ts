@@ -149,7 +149,7 @@ export const texts: {
   },
   SIGN_UP: {
     en: "Sign up",
-    ja: "サインアップ",
+    ja: "新規登録",
   },
   // error
   ONLY_ALPHANUMERIC_CHARACTERS: {
@@ -315,7 +315,7 @@ export const texts: {
   },
   EMAIL_ALREADY_USE: {
     en: "Sorry, this email address is already in use. Please try signing in or use a different email address to create a new account.",
-    ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスでサインアップして下さい。",
+    ja: "このメールアドレスは既に使用されています。お手数ですが、サインインするか、別のメールアドレスで新規登録して下さい。",
   },
   WEAK_PASSWORD: {
     en: "Oops, password needs to be between 6 to 20 characters. Please try again with a password that meets this requirement.",

@@ -1,18 +1,24 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Heading1 from "@/components/atoms/Heading1";
-import Heading3 from "@/components/atoms/Heading3";
-import Input from "@/components/atoms/Input";
-import LinkText from "@/components/atoms/LinkText";
-import ButtonWithStatus from "@/components/molecules/ButtonWithStatus";
-import Notification from "@/components/molecules/Notification";
-import Head from "@/components/organisms/Head";
-import { useAuth } from "@/hooks/auth";
-import { useLocale } from "@/hooks/locale";
+import {
+  useEffect,
+  useState,
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
+} from "react";
+import { Heading1 } from "@/components/atoms/Heading1";
+import { Heading3 } from "@/components/atoms/Heading3";
+import { Input } from "@/components/atoms/Input";
+import { LinkText } from "@/components/atoms/LinkText";
+import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { Notification } from "@/components/molecules/Notification";
+import { Head } from "@/components/organisms/Head";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocale } from "@/hooks/useLocale";
 import { changePassword } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-const ChangePassword = () => {
+export const ChangePassword = () => {
   const { push } = useRouter();
   const { authUser } = useAuth();
   const { locale, text } = useLocale();
@@ -38,7 +44,7 @@ const ChangePassword = () => {
   }, [currentPassword, newPassword, reenterNewPassword]);
 
   // change password
-  const submitChangePassword = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitChangePassword = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -58,7 +64,7 @@ const ChangePassword = () => {
   };
 
   const validationCurrentPassword = (
-    e: React.FocusEvent<HTMLInputElement, Element>
+    e: FocusEvent<HTMLInputElement, Element>
   ) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
@@ -70,9 +76,7 @@ const ChangePassword = () => {
     }
   };
 
-  const validationNewPassword = (
-    e: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
+  const validationNewPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
@@ -83,9 +87,7 @@ const ChangePassword = () => {
     }
   };
 
-  const validationReenterNewPassword = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const validationReenterNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
@@ -170,5 +172,3 @@ const ChangePassword = () => {
     </>
   );
 };
-
-export default ChangePassword;
