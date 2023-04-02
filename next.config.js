@@ -10,7 +10,7 @@ const nextConfig = withPWA({
   swcMinify: true,
   i18n: {
     locales: ["en", "ja"],
-    defaultLocale: "ja",
+    defaultLocale: "en",
     localeDetection: false,
   },
   async redirects() {
@@ -21,7 +21,7 @@ const nextConfig = withPWA({
         permanent: true,
       },
       {
-        source: "/jp",
+        source: "/en",
         destination: "/",
         permanent: true,
       },
