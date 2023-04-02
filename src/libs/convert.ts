@@ -1,7 +1,6 @@
 import { texts } from "@/constants/texts";
 import type { ErrorMessage } from "@/types/errorMessage";
 import { isAuthError } from "@/types/firebase";
-import type { TabStatus } from "@/types/tabStatus";
 
 const isValidDate = (date: Date) => !Number.isNaN(date.getTime());
 
@@ -21,15 +20,6 @@ export const queryToDocId = (query: string | string[] | undefined) => {
   }
   const today = new Date();
   return dateToDocId(today);
-};
-
-export const tabToDocId = (tabStatus: TabStatus): string => {
-  const date = new Date();
-  const thisYear = date.getFullYear();
-  const thisMonth = date.getMonth() + 1;
-  const year = thisMonth < tabStatus ? thisYear - 1 : thisYear;
-  const docId = year.toString() + "-" + tabStatus.toString();
-  return docId;
 };
 
 type InputMonthData = {

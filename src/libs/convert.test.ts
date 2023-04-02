@@ -1,21 +1,4 @@
-import {
-  tabToDocId,
-  dateToInputData,
-  stringToPrice,
-  errCodeToMessage,
-} from "./convert";
-
-describe("tabToDocId function", () => {
-  beforeAll(() => {
-    const mockDate = new Date(2020, 0);
-    jest.useFakeTimers();
-    jest.setSystemTime(mockDate);
-  });
-
-  test("return 2020-1 for 1", () => {
-    expect(tabToDocId(1)).toEqual("2020-1");
-  });
-});
+import { dateToInputData, stringToPrice, errCodeToMessage } from "./convert";
 
 describe("dateToInputData function", () => {
   beforeAll(() => {
