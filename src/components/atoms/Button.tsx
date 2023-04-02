@@ -16,7 +16,7 @@ export const Button = ({ color = "gray", large, ...rest }: ButtonProps) => {
 
   return (
     <button
-      className={`rounded-full text-center ${buttonSize} ${buttonColor}`}
+      className={`${buttonSize} ${buttonColor} rounded-full text-center`}
       {...rest}
     />
   );

@@ -8,9 +8,9 @@ type Props = {
 export const Input = ({ small, right, ...rest }: Props) => {
   return (
     <input
-      className={`h-12 w-full rounded-lg border-gray-400 ${
-        right && "text-right"
-      } ${small ? "h-10 border px-2" : "h-12 border-2 px-5"}`}
+      className={`${right && "text-right"} ${
+        small ? "h-10 border px-2" : "h-12 border-2 px-5"
+      } h-12 w-full flex-1 rounded-lg border-gray-400`}
       {...rest}
     />
   );
