@@ -1,16 +1,15 @@
 import { type InputHTMLAttributes } from "react";
 
 type Props = {
-  small?: boolean;
   right?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = ({ small, right, ...rest }: Props) => {
+export const Input = ({ right, ...rest }: Props) => {
   return (
     <input
-      className={`h-12 w-full rounded-lg border-gray-400 ${
-        right && "text-right"
-      } ${small ? "h-10 border px-2" : "h-12 border-2 px-5"}`}
+      className={`${
+        right ? "text-right" : "text-left"
+      } h-12 w-full flex-1 rounded-lg border border-gray-400 bg-white px-4`}
       {...rest}
     />
   );

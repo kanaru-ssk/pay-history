@@ -51,7 +51,6 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
           inputMode="numeric"
           value={editedBudget.toLocaleString()}
           onChange={changeBudget}
-          small
           right
         />
 
