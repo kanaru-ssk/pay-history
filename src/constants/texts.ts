@@ -224,7 +224,7 @@ export const texts: {
   },
   RETURN_TO_HOME: {
     en: "Return To Home",
-    ja: "Homeへ戻る",
+    ja: "ホームへ戻る",
   },
   // lp
   START_BUDGETING: {

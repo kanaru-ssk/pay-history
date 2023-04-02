@@ -29,7 +29,7 @@ export const SignedInMenu = ({ onClick }: Props) => {
       </MenuItem>
 
       <MenuItem>
-        <button onClick={clickSignOut} className="text-red">
+        <button onClick={clickSignOut} className="text-red-400">
           {text.SIGN_OUT}
         </button>
       </MenuItem>

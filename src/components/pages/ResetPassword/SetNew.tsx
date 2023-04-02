@@ -104,7 +104,7 @@ export const SetNew = () => {
           <div className="my-4">
             <Heading3>{text.NEW_PASSWORD}</Heading3>
             {errorMessagePassword && (
-              <div className="text-red">{errorMessagePassword}</div>
+              <div className="text-red-400">{errorMessagePassword}</div>
             )}
             <Input
               type="password"
@@ -118,7 +118,9 @@ export const SetNew = () => {
           <div className="my-4">
             <Heading3>{text.REENTER_NEW_PASSWORD}</Heading3>
             {errorMessageReenterNewPassword && (
-              <div className="text-red">{errorMessageReenterNewPassword}</div>
+              <div className="text-red-400">
+                {errorMessageReenterNewPassword}
+              </div>
             )}
             <Input
               type="password"
@@ -140,7 +142,7 @@ export const SetNew = () => {
             text={text.RESEND_RESET_LINK}
             href="/reset-password/send-link"
           />
-          <LinkText text="Return To Home" href="/" />
+          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
       </div>
     </>
