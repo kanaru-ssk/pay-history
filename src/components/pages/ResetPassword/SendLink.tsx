@@ -35,9 +35,10 @@ const SetLink = () => {
       setIsLoading(false);
       if (result === null) {
         setNoticeMessage(text.PASSWORD_RESET_LINK_SENT);
+        setIsError(false);
       } else {
         setNoticeMessage(locale === "en" ? result.en : result.ja);
-        setIsError(result !== null);
+        setIsError(true);
       }
     }
   };
@@ -59,7 +60,7 @@ const SetLink = () => {
       <div className="px-4">
         <Heading1>{text.RESET_PASSWORD}</Heading1>
 
-        <Notification text={noticeMessage} isError />
+        <Notification text={noticeMessage} isError={isError} />
 
         <form onSubmit={submitSendResetPasswordLink}>
           <div className="my-4">
