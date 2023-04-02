@@ -81,7 +81,6 @@ export const AddForm = ({ thisMonthData }: Props) => {
           max={maxDate}
           value={date}
           onChange={changeDate}
-          small
         />
         <Input
           name="amount"
@@ -91,7 +90,6 @@ export const AddForm = ({ thisMonthData }: Props) => {
           value={price === 0 ? "" : price.toLocaleString()}
           onChange={changePrice}
           right
-          small
         />
         <button
           name="add"
