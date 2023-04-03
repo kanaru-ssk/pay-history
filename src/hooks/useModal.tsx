@@ -48,7 +48,7 @@ export const ModalProvider = ({ children }: Props) => {
         >
           <div
             ref={modalRef}
-            className="max-w-md overflow-hidden rounded-xl bg-white p-4 shadow-xl"
+            className="max-w-md overflow-hidden rounded bg-white p-4 shadow-xl"
           >
             <div className="text-right">
               <button className="p-2" onClick={() => setModalContents(null)}>

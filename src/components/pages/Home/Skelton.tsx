@@ -84,8 +84,8 @@ const FormSkelton = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-white px-4 pb-[env(safe-area-inset-bottom)] drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)]">
       <div className="flex w-full items-center gap-2 py-2">
-        <div className="h-12 flex-1 animate-pulse rounded-lg border border-gray-400 bg-gray-100"></div>
-        <div className="h-12 flex-1 animate-pulse rounded-lg border border-gray-400 bg-gray-100"></div>
+        <div className="h-12 flex-1 animate-pulse rounded border border-gray-400 bg-gray-100"></div>
+        <div className="h-12 flex-1 animate-pulse rounded border border-gray-400 bg-gray-100"></div>
         <span className="text-gray-400">{text.ADD}</span>
       </div>
     </div>
