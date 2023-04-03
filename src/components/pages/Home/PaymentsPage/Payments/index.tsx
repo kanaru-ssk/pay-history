@@ -9,7 +9,7 @@ type Props = {
 
 export const Payments = ({ thisMonthData }: Props) => {
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
-  const [isAcsDate, setIsAcsDate] = useState<boolean>(false);
+  const [isAcsDate, setIsAcsDate] = useState<boolean>(true);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
 
   return (
