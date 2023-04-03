@@ -62,26 +62,26 @@ export const SendLink = () => {
 
         <form onSubmit={submitSendResetPasswordLink}>
           <div className="my-4">
-            <Heading3>{text.EMAIL_ADDRESS}</Heading3>
-            {errorMessageEmail && (
-              <div className="text-red-400">{errorMessageEmail}</div>
-            )}
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={validationEmail}
-              placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
-            />
+            <label>
+              <Heading3>{text.EMAIL_ADDRESS}</Heading3>
+              {errorMessageEmail && (
+                <div className="text-red-400">{errorMessageEmail}</div>
+              )}
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={validationEmail}
+                placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
+              />
+            </label>
           </div>
-
           <div className="my-8">
             <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
               {noticeMessage === "" ? text.SEND : text.RESEND}
             </ButtonWithStatus>
           </div>
         </form>
-
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText text={text.SIGN_IN} href="/signIn" />
           <LinkText text={text.RETURN_TO_HOME} href="/" />

@@ -59,6 +59,7 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
           value={editedBudget.toLocaleString()}
           onChange={changeBudget}
           right
+          aria-label="budget"
         />
         <div className="ml-auto w-fit">
           <ButtonWithStatus

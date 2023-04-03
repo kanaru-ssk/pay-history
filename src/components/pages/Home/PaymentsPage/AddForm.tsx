@@ -81,6 +81,7 @@ export const AddForm = ({ thisMonthData }: Props) => {
           max={maxDate}
           value={date}
           onChange={changeDate}
+          aria-label="spent date"
         />
         <Input
           name="amount"
@@ -90,11 +91,13 @@ export const AddForm = ({ thisMonthData }: Props) => {
           value={price === 0 ? "" : price.toLocaleString()}
           onChange={changePrice}
           right
+          aria-label="spent amount"
         />
         <button
           name="add"
           type="submit"
-          className={isReady ? "font-semibold text-black" : "text-gray-400"}
+          className={isReady ? "font-semibold text-black" : "text-gray-600"}
+          aria-disabled={!isReady}
         >
           {text.ADD}
         </button>
