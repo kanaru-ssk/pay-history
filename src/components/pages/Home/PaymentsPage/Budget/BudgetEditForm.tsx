@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Input } from "@/components/atoms/Input";
 import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
 import { useAuth } from "@/hooks/useAuth";
+import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
 import { stringToPrice } from "@/libs/convert";
@@ -16,7 +17,8 @@ type Props = {
 
 export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const { dbUser } = useAuth();
-  const { text } = useLocale();
+  const { docId } = useDocId();
+  const { locale, text } = useLocale();
   const { setModalContents } = useModal();
   const [editedBudget, setEditedBudget] = useState<number>(budget);
   const [isReady, setIsReady] = useState<boolean>(false);
@@ -45,6 +47,11 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   return (
     <form onSubmit={submitSaveBudget} className="bg-white">
       <div className="space-y-4 py-2">
+        <p className="mx-2">
+          {locale === "en"
+            ? `${text.CHANGE_BUDGET_MESSAGE} ${docId.replace("-", " / ")} ?`
+            : `${docId.replace("-", " / ")} ${text.CHANGE_BUDGET_MESSAGE} ?`}
+        </p>
         <Input
           name="budget"
           type="text"
@@ -53,15 +60,16 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
           onChange={changeBudget}
           right
         />
-
-        <ButtonWithStatus
-          name="edit"
-          type="submit"
-          isReady={isReady}
-          isLoading={isUpdateLoading}
-        >
-          {text.CHANGE_BUDGET}
-        </ButtonWithStatus>
+        <div className="ml-auto w-fit">
+          <ButtonWithStatus
+            name="edit"
+            type="submit"
+            isReady={isReady}
+            isLoading={isUpdateLoading}
+          >
+            {text.CHANGE_BUDGET}
+          </ButtonWithStatus>
+        </div>
       </div>
     </form>
   );

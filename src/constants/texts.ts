@@ -27,7 +27,8 @@ const textKeys = [
   "BUDGET",
   "DELETE",
   "ENTER_AMOUNT",
-  "FIX_AMOUNT",
+  "FIX_PAYMENT",
+  "CHANGE_BUDGET_MESSAGE",
   "CHANGE_BUDGET",
   "NO_PAYMENT_DATA",
   "REMAINING",
@@ -185,12 +186,16 @@ export const texts: {
     en: "Enter amount",
     ja: "支出額を入力",
   },
-  FIX_AMOUNT: {
-    en: "Fix amount",
+  FIX_PAYMENT: {
+    en: "Fix data",
     ja: "支払データ修正",
   },
+  CHANGE_BUDGET_MESSAGE: {
+    en: "What is your budget for",
+    ja: "の予算はいくらですか",
+  },
   CHANGE_BUDGET: {
-    en: "change budget",
+    en: "Change budget",
     ja: "予算変更",
   },
   NO_PAYMENT_DATA: {
