@@ -108,6 +108,7 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
           max={maxDate}
           value={date}
           onChange={changeDate}
+          aria-label="spent date"
         />
 
         <Input
@@ -118,6 +119,7 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
           value={price.toLocaleString()}
           onChange={changePrice}
           right
+          aria-label="spent amount"
         />
       </div>
 

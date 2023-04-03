@@ -51,7 +51,11 @@ export const Budget = ({ thisMonthData }: Props) => {
   return (
     <div>
       <div className="flex h-28 items-center px-2">
-        <Link href={{ query: { month: prevDocId } }} shallow>
+        <Link
+          href={{ query: { month: prevDocId } }}
+          shallow
+          aria-label="previous month"
+        >
           <ArrowIcon direction="left" />
         </Link>
         <div className="w-full">
@@ -90,7 +94,11 @@ export const Budget = ({ thisMonthData }: Props) => {
             ></div>
           </div>
         </div>
-        <Link href={{ query: { month: nextDocId } }} shallow>
+        <Link
+          href={{ query: { month: nextDocId } }}
+          shallow
+          aria-label="next month"
+        >
           <ArrowIcon direction="right" />
         </Link>
       </div>

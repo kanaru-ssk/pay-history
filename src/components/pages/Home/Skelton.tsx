@@ -32,8 +32,10 @@ const BudgetSkelton = () => {
           </span>
           <div className="w-full">
             <div>{docId.replace("-", " / ")}</div>
-            <div className="flex justify-end py-0.5">
-              <span className="inline-block h-8 w-44 animate-pulse rounded bg-gray-100"></span>
+            <div className="flex justify-end">
+              <div className="h-9">
+                <span className="my-0.5 inline-block h-8 w-44 animate-pulse rounded bg-gray-100"></span>
+              </div>
             </div>
             <div className="h-3 rounded-sm border border-black p-px">
               <div className="h-2 animate-pulse rounded-sm bg-gray-100"></div>

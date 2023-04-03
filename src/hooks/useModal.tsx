@@ -51,7 +51,11 @@ export const ModalProvider = ({ children }: Props) => {
             className="max-w-md overflow-hidden rounded bg-white p-4 shadow-xl"
           >
             <div className="text-right">
-              <button className="p-2" onClick={() => setModalContents(null)}>
+              <button
+                className="p-2"
+                onClick={() => setModalContents(null)}
+                aria-label="close modal"
+              >
                 <CloseIcon />
               </button>
             </div>

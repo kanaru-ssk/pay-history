@@ -29,7 +29,7 @@ export const Notification = ({
     >
       {text}
       {canHide && (
-        <button onClick={onHide}>
+        <button onClick={onHide} aria-label="hide notification">
           <CloseIcon />
         </button>
       )}

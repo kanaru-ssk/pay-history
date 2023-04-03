@@ -83,33 +83,36 @@ export const SignIn = () => {
 
         <form onSubmit={submitSignIn}>
           <div className="my-4">
-            <Heading3>{text.EMAIL_ADDRESS}</Heading3>
-            {errorMessageEmail && (
-              <div className="text-red-400">{errorMessageEmail}</div>
-            )}
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={validationEmail}
-              placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
-            />
+            <label>
+              <Heading3>{text.EMAIL_ADDRESS}</Heading3>
+              {errorMessageEmail && (
+                <div className="text-red-400">{errorMessageEmail}</div>
+              )}
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={validationEmail}
+                placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
+              />
+            </label>
           </div>
-
           <div className="my-4">
-            <Heading3>{text.PASSWORD}</Heading3>
-            {errorMessagePassword && (
-              <div className="text-red-400">{errorMessagePassword}</div>
-            )}
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onBlur={validationPassword}
-              placeholder={text.PASSWORD_PLACEHOLDER}
-            />
+            {" "}
+            <label>
+              <Heading3>{text.PASSWORD}</Heading3>
+              {errorMessagePassword && (
+                <div className="text-red-400">{errorMessagePassword}</div>
+              )}
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onBlur={validationPassword}
+                placeholder={text.PASSWORD_PLACEHOLDER}
+              />
+            </label>
           </div>
-
           <div className="my-8">
             <ButtonWithStatus
               type="submit"
@@ -120,7 +123,6 @@ export const SignIn = () => {
             </ButtonWithStatus>
           </div>
         </form>
-
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText text={text.NEW_REGISTRATION} href="/signUp" />
           <LinkText

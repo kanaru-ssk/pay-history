@@ -11,7 +11,7 @@ export const Header = () => {
     <>
       <header className="sticky top-0 z-10 flex h-12 items-center justify-between bg-white md:h-20 md:px-16">
         <div className="px-4">
-          <Link href="/" title="go to top page">
+          <Link href="/" aria-label="go to top page">
             <Image
               src="/logo.svg"
               alt="logo"
@@ -26,6 +26,7 @@ export const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             name="menu-open"
             className="px-4 py-3"
+            aria-label="menu"
           >
             <SettingIcon />
           </button>

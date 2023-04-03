@@ -113,53 +113,57 @@ export const SignUp = () => {
 
         <form onSubmit={submitSignUp}>
           <div className="my-4">
-            <Heading3>{text.EMAIL_ADDRESS}</Heading3>
-            {errorMessageEmail && (
-              <div className="text-red-400">{errorMessageEmail}</div>
-            )}
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={validationEmail}
-              placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
-            />
+            <label>
+              <Heading3>{text.EMAIL_ADDRESS}</Heading3>
+              {errorMessageEmail && (
+                <div className="text-red-400">{errorMessageEmail}</div>
+              )}
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={validationEmail}
+                placeholder={text.EMAIL_ADDRESS_PLACEHOLDER}
+              />
+            </label>
           </div>
-
           <div className="my-4">
-            <Heading3>{text.PASSWORD}</Heading3>
-            {errorMessagePassword && (
-              <div className="text-red-400">{errorMessagePassword}</div>
-            )}
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onBlur={validationPassword}
-              placeholder={text.PASSWORD_PLACEHOLDER}
-            />
+            <label>
+              <Heading3>{text.PASSWORD}</Heading3>
+              {errorMessagePassword && (
+                <div className="text-red-400">{errorMessagePassword}</div>
+              )}
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onBlur={validationPassword}
+                placeholder={text.PASSWORD_PLACEHOLDER}
+              />
+            </label>
           </div>
-
           <div className="my-4">
-            <Heading3>{text.REENTER_PASSWORD}</Heading3>
-            {errorMessagePasswordConfirm && (
-              <div className="text-red-400">{errorMessagePasswordConfirm}</div>
-            )}
-            <Input
-              type="password"
-              value={reenterPassword}
-              onChange={validationReenterPassword}
-              placeholder={text.PASSWORD_PLACEHOLDER}
-            />
+            <label>
+              <Heading3>{text.REENTER_PASSWORD}</Heading3>
+              {errorMessagePasswordConfirm && (
+                <div className="text-red-400">
+                  {errorMessagePasswordConfirm}
+                </div>
+              )}
+              <Input
+                type="password"
+                value={reenterPassword}
+                onChange={validationReenterPassword}
+                placeholder={text.PASSWORD_PLACEHOLDER}
+              />
+            </label>
           </div>
-
           <div className="my-8">
             <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
               {text.CREATE_ACCOUNT}
             </ButtonWithStatus>
           </div>
         </form>
-
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText text={text.ALREADY_HAVE_AN_ACCOUNT} href="/signIn" />
           <LinkText text={text.RETURN_TO_HOME} href="/" />

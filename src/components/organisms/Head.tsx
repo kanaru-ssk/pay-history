@@ -42,6 +42,17 @@ export const Head = ({ title }: Props) => {
         name="viewport"
         content="initial-scale=1.0, width=device-width viewport-fit=cover"
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            url: process.env.NEXT_PUBLIC_URL,
+            logo: process.env.NEXT_PUBLIC_URL + "/icon-512.png",
+          }),
+        }}
+      />
     </NextHead>
   );
 };

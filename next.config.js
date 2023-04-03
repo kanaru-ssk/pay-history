@@ -13,6 +13,7 @@ const nextConfig = withPWA({
     defaultLocale: "en",
     localeDetection: false,
   },
+  productionBrowserSourceMaps: true,
   async redirects() {
     return [
       {

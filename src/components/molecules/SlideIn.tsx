@@ -40,7 +40,7 @@ export const SlideIn = ({ children, isShown, onHide }: Props) => {
         } absolute right-0 top-0 z-20 h-screen w-[80%] bg-white duration-300`}
       >
         <header className="flex h-12 flex-row-reverse items-center border-b border-gray-200 bg-white md:h-20 md:px-16">
-          <button className="p-4" onClick={onHide}>
+          <button className="p-4" onClick={onHide} aria-label="close menu">
             <CloseIcon />
           </button>
         </header>
