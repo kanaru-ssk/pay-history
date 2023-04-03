@@ -57,20 +57,20 @@ describe("e2e test", () => {
     cy.task("log", "budget table displays correctly");
 
     // add payment data
-    cy.get('input[name="amount"]').focus().type("10000");
+    cy.get('input[name="amount"]').focus().type("100");
     cy.get('button[name="add"]').click();
     cy.get('input[name="amount"]').clear();
     cy.get('input[name="amount"]').focus().type("1000");
     cy.get('button[name="add"]').click();
     cy.get('input[name="amount"]').clear();
-    cy.get('input[name="amount"]').focus().type("100");
+    cy.get('input[name="amount"]').focus().type("10,000");
     cy.get('button[name="add"]').click();
     cy.task("log", "add payment data");
 
     // check payments table display
-    cy.get('div[data-cy="payments-table"]').contains("10,000");
-    cy.get('div[data-cy="payments-table"]').contains("1,000");
     cy.get('div[data-cy="payments-table"]').contains("100");
+    cy.get('div[data-cy="payments-table"]').contains("1,000");
+    cy.get('div[data-cy="payments-table"]').contains("10,000");
     cy.task("log", "payments table displays correctly");
 
     // check budget table value
