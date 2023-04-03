@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowIcon } from "./ArrowIcon";
 import { BudgetEditForm } from "./BudgetEditForm";
+import { PenIcon } from "@/components/atoms/icons/PenIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
@@ -72,10 +73,13 @@ export const Budget = ({ thisMonthData }: Props) => {
                       />
                     );
                 }}
-                className="font-medium"
+                className="cursor-pointer font-medium"
                 data-cy="budget"
               >
                 {budget.toLocaleString()}
+                <span className="pl-1">
+                  <PenIcon />
+                </span>
               </span>
             </div>
           </div>

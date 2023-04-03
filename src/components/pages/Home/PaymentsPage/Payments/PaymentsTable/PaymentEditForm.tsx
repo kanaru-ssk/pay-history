@@ -138,7 +138,7 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
           isReady={isReady}
           isLoading={isUpdateLoading}
         >
-          {text.FIX_AMOUNT}
+          {text.FIX_PAYMENT}
         </ButtonWithStatus>
       </div>
     </form>

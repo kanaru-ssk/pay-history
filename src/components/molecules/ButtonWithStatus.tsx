@@ -16,7 +16,7 @@ export const ButtonWithStatus = ({
   const buttonColor = !isReady || isLoading ? "grayOut" : color;
 
   return (
-    <Button color={buttonColor} large {...rest}>
+    <Button color={buttonColor} {...rest}>
       {isLoading ? <LoadingIcon /> : children}
     </Button>
   );
