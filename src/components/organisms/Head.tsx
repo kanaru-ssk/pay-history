@@ -20,7 +20,7 @@ export const Head = ({ title }: Props) => {
       <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
       <meta
         property="og:image"
-        content={process.env.NEXT_PUBLIC_URL + "/img/ogp.png"}
+        content={`${process.env.NEXT_PUBLIC_URL}/img/ogp.png`}
       />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
