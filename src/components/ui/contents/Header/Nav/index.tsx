@@ -7,8 +7,10 @@ import { useSlideIn } from "@/hooks/useSlideIn";
 export const Nav = () => {
   const { setSlideInContents } = useSlideIn();
   const { authUser } = useAuth();
+
+  if (!authUser) return null;
   const onClickHandler = () => {
-    if (authUser?.isAnonymous)
+    if (!authUser || authUser.isAnonymous)
       setSlideInContents(
         <AnonymousMenu onClick={() => setSlideInContents(null)} />
       );
@@ -19,7 +21,12 @@ export const Nav = () => {
   };
 
   return (
-    <button onClick={onClickHandler} className="px-4">
+    <button
+      name="menu-open"
+      aria-label="menu-open"
+      onClick={onClickHandler}
+      className="px-4"
+    >
       <SettingIcon />
     </button>
   );

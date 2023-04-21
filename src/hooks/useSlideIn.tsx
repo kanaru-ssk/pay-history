@@ -57,9 +57,10 @@ export const SlideInProvider = ({ children }: SlideInProviderProps) => {
         >
           <header className="flex h-12 flex-row-reverse items-center border-b border-gray-200 bg-white md:h-20 md:px-16">
             <button
-              className="p-4"
+              name="menu-close"
+              aria-label="menu-close"
               onClick={() => setSlideInContents(null)}
-              aria-label="close menu"
+              className="p-4"
             >
               <CloseIcon />
             </button>
