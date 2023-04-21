@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LanguageMenu } from "./LanguageMenu";
 import { MenuItem } from "./MenuItem";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
@@ -19,20 +20,21 @@ export const SignedInMenu = ({ onClick }: Props) => {
   };
 
   return (
-    <div>
+    <div className="p-8">
       <div>{authUser?.email}</div>
-
       <MenuItem>
         <Link href="/change-password" onClick={onClick}>
           {text.CHANGE_PASSWORD}
         </Link>
       </MenuItem>
-
       <MenuItem>
         <button onClick={clickSignOut} className="text-red-400">
           {text.SIGN_OUT}
         </button>
       </MenuItem>
+      <div className="mt-8">
+        <LanguageMenu />
+      </div>
     </div>
   );
 };
