@@ -1,4 +1,4 @@
-import { ChangePassword } from "@/components/pages/ChangePassword";
+import { ChangePassword } from "@/components/templates/ChangePassword";
 
 const ChangePasswordPage = () => <ChangePassword />;
 

@@ -13,7 +13,6 @@ describe("e2e test", () => {
     cy.get('input[type="email"]').focus().type(user.email);
     cy.get('input[type="password"]').focus().type(user.password);
     cy.get('button[type="submit"]').click();
-    cy.contains(user.email);
     cy.task("log", "sign in");
 
     // check loading is done

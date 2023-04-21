@@ -1,4 +1,4 @@
-import { SignUp } from "@/components/pages/SignUp";
+import { SignUp } from "@/components/templates/SignUp";
 
 const SignUpPage = () => <SignUp />;
 
