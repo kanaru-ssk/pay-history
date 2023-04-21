@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { Input } from "@/components/atoms/Input";
+import { Input } from "@/components/ui/input/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";

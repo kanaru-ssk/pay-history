@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Input } from "@/components/atoms/Input";
-import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { ButtonWithStatus } from "@/components/ui/button/ButtonWithStatus";
+import { Input } from "@/components/ui/input/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";

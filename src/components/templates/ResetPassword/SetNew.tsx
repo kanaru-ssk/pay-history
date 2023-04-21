@@ -6,73 +6,63 @@ import {
   type FocusEvent,
   type FormEvent,
 } from "react";
-import { Heading1 } from "@/components/atoms/Heading1";
-import { Heading3 } from "@/components/atoms/Heading3";
-import { Input } from "@/components/atoms/Input";
-import { LinkText } from "@/components/atoms/LinkText";
-import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
-import { Notification } from "@/components/molecules/Notification";
-import { Head } from "@/components/organisms/Head";
-import { useAuth } from "@/hooks/useAuth";
+import { ButtonWithStatus } from "@/components/ui/button/ButtonWithStatus";
+import { Head } from "@/components/ui/contents/Head";
+import { Notification } from "@/components/ui/contents/Notification";
+import { Input } from "@/components/ui/input/Input";
+import { Heading1 } from "@/components/ui/text/Heading1";
+import { Heading3 } from "@/components/ui/text/Heading3";
+import { LinkText } from "@/components/ui/text/LinkText";
 import { useLocale } from "@/hooks/useLocale";
-import { changePassword } from "@/libs/firebase";
+import { resetPasswordSetNew } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-export const ChangePassword = () => {
+export const SetNew = () => {
   const { push } = useRouter();
-  const { authUser } = useAuth();
   const { locale, text } = useLocale();
 
-  const [currentPassword, setCurrentPassword] = useState<string>("");
+  const [oobCode, setOobCode] = useState<string>("");
+  const [continueUrl, setContinueUrl] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
-  const [reenterNewPassword, setReenterNewPassword] = useState<string>("");
+  const [newPasswordConfirm, setReenterNewPassword] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorCurrentPassword, setErrorCurrentPassword] = useState<string>("");
   const [errorMessagePassword, setErrorMessageNewPassword] =
     useState<string>("");
   const [errorMessageReenterNewPassword, setErrorMessageReenterNewPassword] =
     useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  // get GET parameters
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const oobCodeValue = queryParams.get("oobCode") || "";
+    const continueUrlValue = queryParams.get("continueUrl") || "";
+    setOobCode(oobCodeValue);
+    setContinueUrl(continueUrlValue);
+  }, []);
+
+  // validation check
   useEffect(() => {
     setIsReady(
-      validatePassword(currentPassword) === null &&
-        validatePassword(newPassword) === null &&
-        validateReenterPassword(newPassword, reenterNewPassword) === null
+      validatePassword(newPassword) === null &&
+        validateReenterPassword(newPassword, newPasswordConfirm) === null
     );
-  }, [currentPassword, newPassword, reenterNewPassword]);
+  }, [newPassword, newPasswordConfirm]);
 
-  // change password
-  const submitChangePassword = async (e: FormEvent<HTMLFormElement>) => {
+  // reset password
+  const submitSetNewPassword = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
-      const result = await changePassword(
-        authUser?.email,
-        currentPassword,
-        newPassword
-      );
+      const result = await resetPasswordSetNew(oobCode, newPassword);
 
       if (result !== null) {
         setErrorMessage(locale === "en" ? result.en : result.ja);
         setIsLoading(false);
       } else {
-        push("/?changePasswordSuccess=true");
+        push(continueUrl);
       }
-    }
-  };
-
-  const validationCurrentPassword = (
-    e: FocusEvent<HTMLInputElement, Element>
-  ) => {
-    const validationResult = validatePassword(e.target.value);
-    if (validationResult) {
-      setErrorCurrentPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
-      );
-    } else {
-      setErrorCurrentPassword("");
     }
   };
 
@@ -104,33 +94,15 @@ export const ChangePassword = () => {
 
   return (
     <>
-      <Head title={`${text.CHANGE_PASSWORD} | Pay History`} />
+      <Head title={`${text.RESET_PASSWORD} | Pay History`} />
       <div className="px-4">
-        <Heading1>{text.CHANGE_PASSWORD}</Heading1>
+        <Heading1>{text.RESET_PASSWORD}</Heading1>
 
         <Notification text={errorMessage} isError />
 
-        <form onSubmit={submitChangePassword}>
-          <div className="my-4">
-            <Heading3>{text.CURRENT_PASSWORD}</Heading3>
-            {errorCurrentPassword && (
-              <div className="text-red-400">{errorCurrentPassword}</div>
-            )}
-            <Input
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              onBlur={validationCurrentPassword}
-            />
-          </div>
-
+        <form onSubmit={submitSetNewPassword}>
           <div className="my-4">
             <Heading3>{text.NEW_PASSWORD}</Heading3>
-            <div className="pb-2 leading-5 text-gray-500">
-              {text.ONLY_ALPHANUMERIC_CHARACTERS}
-              <br />
-              {text.CHARACTERS_6_to_20}
-            </div>
             {errorMessagePassword && (
               <div className="text-red-400">{errorMessagePassword}</div>
             )}
@@ -139,6 +111,7 @@ export const ChangePassword = () => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               onBlur={validationNewPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
@@ -151,21 +124,22 @@ export const ChangePassword = () => {
             )}
             <Input
               type="password"
-              value={reenterNewPassword}
+              value={newPasswordConfirm}
               onChange={validationReenterNewPassword}
+              placeholder={text.PASSWORD_PLACEHOLDER}
             />
           </div>
 
           <div className="my-8">
             <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
-              {text.CHANGE}
+              {text.RESET}
             </ButtonWithStatus>
           </div>
         </form>
 
         <div className="my-16 flex flex-col items-center gap-4">
           <LinkText
-            text={text.FORGET_PASSWORD}
+            text={text.RESEND_RESET_LINK}
             href="/reset-password/send-link"
           />
           <LinkText text={text.RETURN_TO_HOME} href="/" />

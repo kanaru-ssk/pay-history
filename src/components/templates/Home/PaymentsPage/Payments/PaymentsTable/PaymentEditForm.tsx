@@ -5,8 +5,8 @@ import {
   type FormEvent,
   type MouseEvent,
 } from "react";
-import { Input } from "@/components/atoms/Input";
-import { ButtonWithStatus } from "@/components/molecules/ButtonWithStatus";
+import { ButtonWithStatus } from "@/components/ui/button/ButtonWithStatus";
+import { Input } from "@/components/ui/input/Input";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";

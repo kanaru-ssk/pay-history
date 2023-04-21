@@ -1,6 +1,6 @@
-import { Heading1 } from "@/components/atoms/Heading1";
-import { LinkText } from "@/components/atoms/LinkText";
-import { Head } from "@/components/organisms/Head";
+import { Head } from "@/components/ui/contents/Head";
+import { Heading1 } from "@/components/ui/text/Heading1";
+import { LinkText } from "@/components/ui/text/LinkText";
 import { useLocale } from "@/hooks/useLocale";
 
 export const Custom404 = () => {

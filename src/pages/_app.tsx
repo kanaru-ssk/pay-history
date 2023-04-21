@@ -1,5 +1,5 @@
 import { type AppProps } from "next/app";
-import { Header } from "@/components/organisms/Header";
+import { Header } from "@/components/ui/contents/Header";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ModalProvider } from "@/hooks/useModal";
 import { SlideInProvider } from "@/hooks/useSlideIn";

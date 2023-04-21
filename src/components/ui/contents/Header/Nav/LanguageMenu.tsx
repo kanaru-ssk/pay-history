@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LanguageIcon } from "@/components/atoms/icons/LanguageIcon";
+import { LanguageIcon } from "@/components/ui/icon/LanguageIcon";
 import { languages } from "@/constants/languages";
 import { useLocale } from "@/hooks/useLocale";
 

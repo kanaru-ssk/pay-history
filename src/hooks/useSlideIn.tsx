@@ -8,7 +8,7 @@ import {
   type ReactNode,
   type SetStateAction,
 } from "react";
-import { CloseIcon } from "@/components/atoms/icons/CloseIcon";
+import { CloseIcon } from "@/components/ui/icon/CloseIcon";
 
 type SlideInContextProps = {
   setSlideInContents: Dispatch<SetStateAction<ReactNode>>;

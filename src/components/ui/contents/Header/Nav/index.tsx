@@ -1,6 +1,6 @@
 import { AnonymousMenu } from "./AnonymousMenu";
 import { SignedInMenu } from "./SignedInMenu";
-import { SettingIcon } from "@/components/atoms/icons/SettingIcon";
+import { SettingIcon } from "@/components/ui/icon/SettingIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { useSlideIn } from "@/hooks/useSlideIn";
 

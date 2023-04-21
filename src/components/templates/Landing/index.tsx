@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { CtaBtn } from "./CtaBtn";
-import { Heading1 } from "@/components/atoms/Heading1";
-import { Heading2 } from "@/components/atoms/Heading2";
-import { Head } from "@/components/organisms/Head";
+import { Head } from "@/components/ui/contents/Head";
+import { Heading1 } from "@/components/ui/text/Heading1";
+import { Heading2 } from "@/components/ui/text/Heading2";
 import { useLocale } from "@/hooks/useLocale";
 
 export const Landing = () => {

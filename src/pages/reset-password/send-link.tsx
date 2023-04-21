@@ -1,4 +1,4 @@
-import { SendLink } from "@/components/pages/ResetPassword/SendLink";
+import { SendLink } from "@/components/templates/ResetPassword/SendLink";
 
 const ResetPasswordPage = () => <SendLink />;
 
