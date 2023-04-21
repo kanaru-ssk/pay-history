@@ -16,21 +16,17 @@ type ModalContextProps = {
 
 const ModalContext = createContext<ModalContextProps>({} as ModalContextProps);
 
-type Props = {
+type ModalProviderProps = {
   children: ReactNode;
 };
 
-export const ModalProvider = ({ children }: Props) => {
+export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [modalContents, setModalContents] = useState<ReactNode>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node))
         setModalContents(null);
-      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
