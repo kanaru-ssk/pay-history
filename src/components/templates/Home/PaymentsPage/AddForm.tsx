@@ -24,7 +24,7 @@ export const AddForm = ({ thisMonthData }: Props) => {
   // set initial date
   useEffect(() => {
     const now = new Date();
-    const docDate = new Date("2023-04");
+    const docDate = new Date(docId);
     if (docDate.getMonth() === now.getMonth()) {
       const inputMonthData = dateToInputData(now);
       setDate(inputMonthData.value);

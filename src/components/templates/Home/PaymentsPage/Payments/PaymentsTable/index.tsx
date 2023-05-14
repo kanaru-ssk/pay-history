@@ -88,12 +88,12 @@ export const PaymentsTable = ({
               );
             })}
       </div>
-      {!thisMonthData ||
-        (thisMonthData.payments && thisMonthData.payments.length === 0 && (
-          <div className="py-4 text-center text-gray-400">
-            {text.NO_PAYMENT_DATA}
-          </div>
-        ))}
+      {(!thisMonthData ||
+        (thisMonthData.payments && thisMonthData.payments.length === 0)) && (
+        <div className="py-4 text-center text-gray-400">
+          {text.NO_PAYMENT_DATA}
+        </div>
+      )}
     </div>
   );
 };

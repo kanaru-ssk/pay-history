@@ -5,12 +5,14 @@ import { type MonthlyData, type DBUser, type Payment } from "@/types/firebase";
 type Props = {
   user: DBUser | null;
   docId: string;
+  budget?: number;
   payments?: Payment[];
 };
 // create monthly data
 export const createMonthlyData = async ({
   user,
   docId,
+  budget,
   payments = [],
 }: Props) => {
   if (!user) return null;
@@ -21,7 +23,7 @@ export const createMonthlyData = async ({
   const newMonthlyData: Omit<MonthlyData, "docId"> = {
     atCreated: now,
     atUpdated: now,
-    budget: user.budget,
+    budget: budget ?? user.budget,
     payments,
   };
 
