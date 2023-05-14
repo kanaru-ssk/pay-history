@@ -6,13 +6,13 @@ import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
 import { stringToPrice } from "@/libs/convert";
-import { updateMonthlyData } from "@/libs/firebase";
+import { createMonthlyData, updateMonthlyData } from "@/libs/firebase";
 import { updateUser } from "@/libs/firebase";
 import { type MonthlyData } from "@/types/firebase";
 
 type Props = {
   budget: number;
-  thisMonthData: MonthlyData;
+  thisMonthData: MonthlyData | null;
 };
 
 export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
@@ -28,7 +28,11 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   const changeBudget = (e: ChangeEvent<HTMLInputElement>) => {
     const newBudget = stringToPrice(e.target.value);
     setEditedBudget(newBudget);
-    setIsReady(newBudget !== thisMonthData.budget);
+    if (thisMonthData === null) {
+      setIsReady(newBudget !== dbUser?.budget);
+    } else {
+      setIsReady(newBudget !== thisMonthData.budget);
+    }
   };
 
   // save the budget
@@ -37,8 +41,19 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
     if (isReady) {
       setIsReady(false);
       setIsUpdateLoading(true);
-      updateUser(dbUser, { budget: editedBudget });
-      updateMonthlyData(dbUser, { ...thisMonthData, budget: editedBudget });
+      await updateUser(dbUser, { budget: editedBudget });
+      if (thisMonthData === null) {
+        await createMonthlyData({
+          user: dbUser,
+          docId,
+          budget: editedBudget,
+        });
+      } else {
+        await updateMonthlyData(dbUser, {
+          ...thisMonthData,
+          budget: editedBudget,
+        });
+      }
     }
     setIsUpdateLoading(false);
     setModalContents(null);

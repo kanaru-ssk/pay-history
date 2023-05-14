@@ -62,20 +62,19 @@ export const Budget = ({ thisMonthData }: Props) => {
           <div>{docId.replace("-", " / ")}</div>
           <div className="flex justify-end">
             <div>
-              ¥{" "}
+              {"¥ "}
               <span className="text-3xl font-medium" data-cy="remaining">
                 {remaining.toLocaleString()}
               </span>
               {" / "}
               <span
                 onClick={() => {
-                  if (thisMonthData)
-                    setModalContents(
-                      <BudgetEditForm
-                        budget={budget}
-                        thisMonthData={thisMonthData}
-                      />
-                    );
+                  setModalContents(
+                    <BudgetEditForm
+                      budget={budget}
+                      thisMonthData={thisMonthData}
+                    />
+                  );
                 }}
                 className="cursor-pointer font-medium"
                 data-cy="budget"
