@@ -86,9 +86,9 @@ export const Budget = ({ thisMonthData }: Props) => {
               </span>
             </div>
           </div>
-          <div className="h-3 rounded-sm border border-black p-px">
+          <div className="h-3 rounded-sm border border-black p-px dark:border-gray-300">
             <div
-              className="h-2 rounded-sm bg-black"
+              className="h-2 rounded-sm bg-black dark:bg-gray-300"
               style={{ width: `${remainRatio}%` }}
             ></div>
           </div>
