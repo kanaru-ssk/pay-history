@@ -100,7 +100,7 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
   };
 
   return (
-    <form onSubmit={submitSavePayment} className="bg-white">
+    <form onSubmit={submitSavePayment} className="bg-white dark:bg-gray-950">
       <div className="flex w-full items-center gap-2 py-2">
         <Input
           type="date"

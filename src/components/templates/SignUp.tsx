@@ -49,7 +49,7 @@ export const SignUp = () => {
     setIsReady(
       validateEmail(email) === null &&
         validatePassword(password) === null &&
-        validateReenterPassword(password, reenterPassword) === null
+        validateReenterPassword(password, reenterPassword) === null,
     );
   }, [email, password, reenterPassword]);
 
@@ -73,7 +73,7 @@ export const SignUp = () => {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageEmail("");
@@ -84,7 +84,7 @@ export const SignUp = () => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessagePassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessagePassword("");
@@ -96,7 +96,7 @@ export const SignUp = () => {
     const validationResult = validateReenterPassword(password, e.target.value);
     if (validationResult) {
       setErrorMessageReenterPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageReenterPassword("");

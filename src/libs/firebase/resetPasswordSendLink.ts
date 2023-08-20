@@ -4,7 +4,7 @@ import { auth, analytics } from "@/libs/firebase";
 import { type ErrorMessage } from "@/types/errorMessage";
 
 export const resetPasswordSendLink = async (
-  email: string
+  email: string,
 ): Promise<ErrorMessage | null> => {
   try {
     const { sendPasswordResetEmail } = await import("firebase/auth");

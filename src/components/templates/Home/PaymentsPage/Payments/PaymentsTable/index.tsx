@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import { TableItem } from "./TableItem";
 import { useLocale } from "@/hooks/useLocale";
 import { MonthlyData, Payment } from "@/types/firebase";
+import { TableItem } from "./TableItem";
 
 type Props = {
   isSortDate: boolean;

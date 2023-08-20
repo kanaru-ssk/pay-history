@@ -33,7 +33,7 @@ export const SignIn = () => {
   // validation check
   useEffect(() => {
     setIsReady(
-      validateEmail(email) === null && validatePassword(password) === null
+      validateEmail(email) === null && validatePassword(password) === null,
     );
   }, [email, password]);
 
@@ -55,7 +55,7 @@ export const SignIn = () => {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageEmail("");
@@ -66,7 +66,7 @@ export const SignIn = () => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessagePassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessagePassword("");

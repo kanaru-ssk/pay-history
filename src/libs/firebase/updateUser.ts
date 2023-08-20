@@ -4,7 +4,7 @@ import { type DBUser } from "@/types/firebase";
 // update user data
 export const updateUser = async (
   dbUser: DBUser | null,
-  data: Partial<DBUser>
+  data: Partial<DBUser>,
 ) => {
   if (dbUser === null) return;
 

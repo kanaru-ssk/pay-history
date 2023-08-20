@@ -5,7 +5,7 @@ import { type ErrorMessage } from "@/types/errorMessage";
 
 export const resetPasswordSetNew = async (
   oobCode: string,
-  newPassword: string
+  newPassword: string,
 ): Promise<ErrorMessage | null> => {
   try {
     const { verifyPasswordResetCode, confirmPasswordReset } = await import(

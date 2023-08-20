@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }: Node) => {
             const { createUser } = await import("@/libs/firebase");
             createUser(auth.currentUser);
           }
-        }
+        },
       );
       return () => unsubscribe();
     }

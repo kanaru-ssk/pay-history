@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { PaymentsPage } from "./PaymentsPage";
-import { Skelton } from "./Skelton";
 import { Head } from "@/components/ui/contents/Head";
 import { Notification } from "@/components/ui/contents/Notification";
 import { useAuth } from "@/hooks/useAuth";
@@ -9,6 +7,8 @@ import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { getMonthlyData } from "@/libs/firebase";
 import { type MonthlyData } from "@/types/firebase";
+import { PaymentsPage } from "./PaymentsPage";
+import { Skelton } from "./Skelton";
 
 export const Home = () => {
   const { docId } = useDocId();

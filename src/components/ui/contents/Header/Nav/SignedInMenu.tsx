@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { LanguageMenu } from "./LanguageMenu";
-import { MenuItem } from "./MenuItem";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocale } from "@/hooks/useLocale";
 import { signOut } from "@/libs/firebase";
+import { LanguageMenu } from "./LanguageMenu";
+import { MenuItem } from "./MenuItem";
 
 type Props = {
   onClick: () => void;

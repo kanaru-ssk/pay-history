@@ -44,7 +44,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
         >
           <div
             ref={modalRef}
-            className="max-w-md overflow-hidden rounded bg-white p-4 shadow-xl"
+            className="max-w-md overflow-hidden rounded bg-white p-4 shadow-xl dark:bg-gray-950"
           >
             <div className="text-right">
               <button

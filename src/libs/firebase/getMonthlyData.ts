@@ -7,7 +7,7 @@ import { type MonthlyData } from "@/types/firebase";
 export const getMonthlyData = (
   uid: string | undefined,
   docId: string,
-  setMonthData: Dispatch<SetStateAction<MonthlyData | null | undefined>>
+  setMonthData: Dispatch<SetStateAction<MonthlyData | null | undefined>>,
 ) => {
   if (uid === undefined) return null;
 

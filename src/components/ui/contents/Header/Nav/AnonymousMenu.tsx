@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { LanguageMenu } from "./LanguageMenu";
 import { useLocale } from "@/hooks/useLocale";
+import { LanguageMenu } from "./LanguageMenu";
 
 type Props = {
   onClick: () => void;

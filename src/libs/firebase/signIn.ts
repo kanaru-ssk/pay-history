@@ -6,7 +6,7 @@ import { type ErrorMessage } from "@/types/errorMessage";
 
 export const signIn = async (
   email: string,
-  password: string
+  password: string,
 ): Promise<ErrorMessage | null> => {
   try {
     const { signInWithEmailAndPassword, fetchSignInMethodsForEmail } =
