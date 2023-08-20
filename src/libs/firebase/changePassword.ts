@@ -7,7 +7,7 @@ import { type ErrorMessage } from "@/types/errorMessage";
 export const changePassword = async (
   email: string | null | undefined,
   oldPassword: string,
-  newPassword: string
+  newPassword: string,
 ): Promise<ErrorMessage | null> => {
   try {
     if (!auth.currentUser) return texts.UNKNOWN_ERROR;

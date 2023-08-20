@@ -60,7 +60,7 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
   };
 
   return (
-    <form onSubmit={submitSaveBudget} className="bg-white">
+    <form onSubmit={submitSaveBudget} className="bg-white dark:bg-gray-950">
       <div className="space-y-4 py-2">
         <p className="mx-2">
           {locale === "en"

@@ -5,7 +5,7 @@ import { type MonthlyData, type DBUser } from "@/types/firebase";
 // update monthly data
 export const updateMonthlyData = async (
   user: DBUser | null,
-  data: Partial<MonthlyData>
+  data: Partial<MonthlyData>,
 ) => {
   if (!user || !data.docId) return null;
 
@@ -19,7 +19,7 @@ export const updateMonthlyData = async (
 
   await updateDoc(
     doc(db, "users", user.docId, "monthlyData", data.docId),
-    newMonthlyData
+    newMonthlyData,
   );
   if (analytics) logEvent(analytics, "updateMonthlyData");
   return newMonthlyData;

@@ -39,7 +39,7 @@ export const ChangePassword = () => {
     setIsReady(
       validatePassword(currentPassword) === null &&
         validatePassword(newPassword) === null &&
-        validateReenterPassword(newPassword, reenterNewPassword) === null
+        validateReenterPassword(newPassword, reenterNewPassword) === null,
     );
   }, [currentPassword, newPassword, reenterNewPassword]);
 
@@ -51,7 +51,7 @@ export const ChangePassword = () => {
       const result = await changePassword(
         authUser?.email,
         currentPassword,
-        newPassword
+        newPassword,
       );
 
       if (result !== null) {
@@ -64,12 +64,12 @@ export const ChangePassword = () => {
   };
 
   const validationCurrentPassword = (
-    e: FocusEvent<HTMLInputElement, Element>
+    e: FocusEvent<HTMLInputElement, Element>,
   ) => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorCurrentPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorCurrentPassword("");
@@ -80,7 +80,7 @@ export const ChangePassword = () => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageNewPassword("");
@@ -91,11 +91,11 @@ export const ChangePassword = () => {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
-      e.target.value
+      e.target.value,
     );
     if (validationResult) {
       setErrorMessageReenterNewPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageReenterNewPassword("");

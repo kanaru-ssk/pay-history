@@ -7,7 +7,7 @@ export const addPayment = async (
   user: DBUser | null,
   month: MonthlyData,
   price: number,
-  date: Date
+  date: Date,
 ) => {
   if (!user) return false;
 
@@ -25,7 +25,7 @@ export const addPayment = async (
 
   await updateDoc(
     doc(db, "users", user.docId, "monthlyData", month.docId),
-    newMonthlyData
+    newMonthlyData,
   );
   if (analytics) logEvent(analytics, "addPayment");
   return true;

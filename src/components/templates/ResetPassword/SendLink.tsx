@@ -45,7 +45,7 @@ export const SendLink = () => {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageEmail("");

@@ -15,7 +15,7 @@ type SlideInContextProps = {
 };
 
 const SlideInContext = createContext<SlideInContextProps>(
-  {} as SlideInContextProps
+  {} as SlideInContextProps,
 );
 
 type SlideInProviderProps = {
@@ -53,9 +53,9 @@ export const SlideInProvider = ({ children }: SlideInProviderProps) => {
           ref={slideInRef}
           className={`${
             slideInContents === null ? "translate-x-full" : ""
-          } absolute right-0 top-0 z-20 h-screen w-[80%] bg-white duration-300`}
+          } absolute right-0 top-0 z-20 h-screen w-[80%] bg-white duration-300 dark:bg-gray-950`}
         >
-          <header className="flex h-12 flex-row-reverse items-center border-b border-gray-200 bg-white md:h-20 md:px-16">
+          <header className="flex h-12 flex-row-reverse items-center border-b border-gray-200 bg-white dark:bg-gray-950 md:h-20 md:px-16">
             <button
               name="menu-close"
               aria-label="menu-close"

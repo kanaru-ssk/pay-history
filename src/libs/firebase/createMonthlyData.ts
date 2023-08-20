@@ -30,7 +30,7 @@ export const createMonthlyData = async ({
   await setDoc(
     doc(db, "users", user.docId, "monthlyData", docId),
     newMonthlyData,
-    { merge: true }
+    { merge: true },
   );
   if (analytics) logEvent(analytics, "createMonthlyData");
   return newMonthlyData;

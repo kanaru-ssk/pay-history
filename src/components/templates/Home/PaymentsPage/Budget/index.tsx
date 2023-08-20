@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowIcon } from "./ArrowIcon";
-import { BudgetEditForm } from "./BudgetEditForm";
 import { PenIcon } from "@/components/ui/icon/PenIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
 import { type MonthlyData } from "@/types/firebase";
+import { ArrowIcon } from "./ArrowIcon";
+import { BudgetEditForm } from "./BudgetEditForm";
 
 type Props = {
   thisMonthData: MonthlyData | null;
@@ -73,7 +73,7 @@ export const Budget = ({ thisMonthData }: Props) => {
                     <BudgetEditForm
                       budget={budget}
                       thisMonthData={thisMonthData}
-                    />
+                    />,
                   );
                 }}
                 className="cursor-pointer font-medium"

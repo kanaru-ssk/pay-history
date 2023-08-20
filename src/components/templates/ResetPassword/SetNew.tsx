@@ -46,7 +46,7 @@ export const SetNew = () => {
   useEffect(() => {
     setIsReady(
       validatePassword(newPassword) === null &&
-        validateReenterPassword(newPassword, newPasswordConfirm) === null
+        validateReenterPassword(newPassword, newPasswordConfirm) === null,
     );
   }, [newPassword, newPasswordConfirm]);
 
@@ -70,7 +70,7 @@ export const SetNew = () => {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageNewPassword("");
@@ -81,11 +81,11 @@ export const SetNew = () => {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
-      e.target.value
+      e.target.value,
     );
     if (validationResult) {
       setErrorMessageReenterNewPassword(
-        locale === "en" ? validationResult.en : validationResult.ja
+        locale === "en" ? validationResult.en : validationResult.ja,
       );
     } else {
       setErrorMessageReenterNewPassword("");
