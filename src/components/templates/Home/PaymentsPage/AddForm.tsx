@@ -96,7 +96,11 @@ export const AddForm = ({ thisMonthData }: Props) => {
         <button
           name="add"
           type="submit"
-          className={isReady ? "font-semibold text-black" : "text-gray-600"}
+          className={
+            isReady
+              ? "font-semibold text-black dark:text-white"
+              : "text-gray-600"
+          }
           aria-disabled={!isReady}
         >
           {text.ADD}
