@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Head } from "@/components/ui/contents/Head";
 import { Heading1 } from "@/components/ui/text/Heading1";

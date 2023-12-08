@@ -1,3 +1,5 @@
+"use client";
+
 import { SettingIcon } from "@/components/ui/icon/SettingIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { useSlideIn } from "@/hooks/useSlideIn";

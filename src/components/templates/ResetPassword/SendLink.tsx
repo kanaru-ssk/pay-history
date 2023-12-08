@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, type FocusEvent, type FormEvent } from "react";
 import { ButtonWithStatus } from "@/components/ui/button/ButtonWithStatus";
 import { Head } from "@/components/ui/contents/Head";
