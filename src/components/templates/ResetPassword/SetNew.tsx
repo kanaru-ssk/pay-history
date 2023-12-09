@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import {
   useEffect,
   useState,
@@ -17,7 +19,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { resetPasswordSetNew } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-export const SetNew = () => {
+export function SetNew() {
   const { push } = useRouter();
   const { locale, text } = useLocale();
 
@@ -51,7 +53,7 @@ export const SetNew = () => {
   }, [newPassword, newPasswordConfirm]);
 
   // reset password
-  const submitSetNewPassword = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSetNewPassword(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -64,9 +66,9 @@ export const SetNew = () => {
         push(continueUrl);
       }
     }
-  };
+  }
 
-  const validationNewPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationNewPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
@@ -75,9 +77,9 @@ export const SetNew = () => {
     } else {
       setErrorMessageNewPassword("");
     }
-  };
+  }
 
-  const validationReenterNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  function validationReenterNewPassword(e: ChangeEvent<HTMLInputElement>) {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
@@ -90,7 +92,7 @@ export const SetNew = () => {
     } else {
       setErrorMessageReenterNewPassword("");
     }
-  };
+  }
 
   return (
     <>
@@ -147,4 +149,4 @@ export const SetNew = () => {
       </div>
     </>
   );
-};
+}

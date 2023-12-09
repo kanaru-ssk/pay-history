@@ -4,7 +4,7 @@ type Props = {
   title?: string;
 };
 
-export const Head = ({ title }: Props) => {
+export function Head({ title }: Props) {
   return (
     <NextHead>
       <title>{title ?? "Pay History"}</title>
@@ -55,4 +55,4 @@ export const Head = ({ title }: Props) => {
       />
     </NextHead>
   );
-};
+}

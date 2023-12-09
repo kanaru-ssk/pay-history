@@ -3,9 +3,9 @@ import { errCodeToMessage } from "@/libs/convert";
 import { auth, analytics } from "@/libs/firebase";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const resetPasswordSendLink = async (
+export async function resetPasswordSendLink(
   email: string,
-): Promise<ErrorMessage | null> => {
+): Promise<ErrorMessage | null> {
   try {
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
@@ -20,4 +20,4 @@ export const resetPasswordSendLink = async (
   } catch (error) {
     return errCodeToMessage(error);
   }
-};
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, type FocusEvent, type FormEvent } from "react";
 import { ButtonWithStatus } from "@/components/ui/button/ButtonWithStatus";
 import { Head } from "@/components/ui/contents/Head";
@@ -10,7 +12,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { resetPasswordSendLink } from "@/libs/firebase";
 import { validateEmail } from "@/libs/validation";
 
-export const SendLink = () => {
+export function SendLink() {
   const { locale, text } = useLocale();
   const [email, setEmail] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
@@ -25,7 +27,7 @@ export const SendLink = () => {
   }, [email]);
 
   // send password reset link
-  const submitSendResetPasswordLink = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSendResetPasswordLink(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -39,9 +41,9 @@ export const SendLink = () => {
         setIsError(true);
       }
     }
-  };
+  }
 
-  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationEmail(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
@@ -50,7 +52,7 @@ export const SendLink = () => {
     } else {
       setErrorMessageEmail("");
     }
-  };
+  }
 
   return (
     <>
@@ -89,4 +91,4 @@ export const SendLink = () => {
       </div>
     </>
   );
-};
+}

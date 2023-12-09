@@ -4,7 +4,7 @@ type Props = {
   right?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = ({ right, ...rest }: Props) => {
+export function Input({ right, ...rest }: Props) {
   return (
     <input
       className={`${
@@ -13,4 +13,4 @@ export const Input = ({ right, ...rest }: Props) => {
       {...rest}
     />
   );
-};
+}

@@ -1,4 +1,4 @@
-import { dateToInputData } from "./dateToInputData";
+import { dateToInputData } from "../../../src/libs/convert/dateToInputData";
 
 describe("dateToInputData function", () => {
   beforeAll(() => {

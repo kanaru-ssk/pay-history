@@ -3,10 +3,10 @@ import { db, analytics } from "@/libs/firebase";
 import { type MonthlyData, type DBUser } from "@/types/firebase";
 
 // update monthly data
-export const updateMonthlyData = async (
+export async function updateMonthlyData(
   user: DBUser | null,
   data: Partial<MonthlyData>,
-) => {
+) {
   if (!user || !data.docId) return null;
 
   const { updateDoc, doc, Timestamp } = await import("firebase/firestore");
@@ -23,4 +23,4 @@ export const updateMonthlyData = async (
   );
   if (analytics) logEvent(analytics, "updateMonthlyData");
   return newMonthlyData;
-};
+}

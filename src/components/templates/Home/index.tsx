@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Head } from "@/components/ui/contents/Head";
 import { Notification } from "@/components/ui/contents/Notification";
@@ -10,10 +12,12 @@ import { type MonthlyData } from "@/types/firebase";
 import { PaymentsPage } from "./PaymentsPage";
 import { Skelton } from "./Skelton";
 
-export const Home = () => {
+export function Home() {
   const { docId } = useDocId();
-  const { query } = useRouter();
-  const { changePasswordSuccess } = query;
+  const searchParams = useSearchParams();
+  const changePasswordSuccess = searchParams
+    .get("changePasswordSuccess")
+    ?.toString();
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const [thisMonthData, setThisMonthData] = useState<
@@ -44,4 +48,4 @@ export const Home = () => {
       </div>
     </>
   );
-};
+}

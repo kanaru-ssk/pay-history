@@ -4,11 +4,11 @@ import { errCodeToMessage } from "@/libs/convert";
 import { auth, analytics } from "@/libs/firebase";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const changePassword = async (
+export async function changePassword(
   email: string | null | undefined,
   oldPassword: string,
   newPassword: string,
-): Promise<ErrorMessage | null> => {
+): Promise<ErrorMessage | null> {
   try {
     if (!auth.currentUser) return texts.UNKNOWN_ERROR;
     if (typeof email !== "string") return texts.UNKNOWN_ERROR;
@@ -24,4 +24,4 @@ export const changePassword = async (
   } catch (error) {
     return errCodeToMessage(error);
   }
-};
+}

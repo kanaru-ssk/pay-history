@@ -6,7 +6,7 @@ type Props = {
   date: Date;
 };
 
-export const createPayment = ({ price, date }: Props): Payment => {
+export function createPayment({ price, date }: Props): Payment {
   const now = Timestamp.now();
   return {
     atCreated: now,
@@ -14,4 +14,4 @@ export const createPayment = ({ price, date }: Props): Payment => {
     atPaid: Timestamp.fromDate(date),
     price: price,
   };
-};
+}

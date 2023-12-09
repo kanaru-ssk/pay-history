@@ -1,9 +1,11 @@
+"use client";
+
 import { Head } from "@/components/ui/contents/Head";
 import { Heading1 } from "@/components/ui/text/Heading1";
 import { LinkText } from "@/components/ui/text/LinkText";
 import { useLocale } from "@/hooks/useLocale";
 
-export const Custom404 = () => {
+export function Custom404() {
   const { text } = useLocale();
   return (
     <>
@@ -15,4 +17,4 @@ export const Custom404 = () => {
       </div>
     </>
   );
-};
+}

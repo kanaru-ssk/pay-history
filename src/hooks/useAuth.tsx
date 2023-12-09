@@ -1,3 +1,5 @@
+"use client";
+
 // share authentication state with useContext
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -23,7 +25,7 @@ type Node = {
   children: ReactNode;
 };
 
-export const AuthProvider = ({ children }: Node) => {
+export function AuthProvider({ children }: Node) {
   const [authUser, setAuthUser] = useState<User | null>(auth.currentUser);
   const [dbUser, setDBUser] = useState<DBUser | null>(null);
 
@@ -72,6 +74,6 @@ export const AuthProvider = ({ children }: Node) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export const useAuth = () => useContext(AuthContext);

@@ -4,10 +4,10 @@ import { errCodeToMessage } from "@/libs/convert";
 import { auth, analytics } from "@/libs/firebase";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const signIn = async (
+export async function signIn(
   email: string,
   password: string,
-): Promise<ErrorMessage | null> => {
+): Promise<ErrorMessage | null> {
   try {
     const { signInWithEmailAndPassword, fetchSignInMethodsForEmail } =
       await import("firebase/auth");
@@ -21,4 +21,4 @@ export const signIn = async (
   } catch (error) {
     return errCodeToMessage(error);
   }
-};
+}

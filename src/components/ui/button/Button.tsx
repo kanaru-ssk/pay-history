@@ -4,7 +4,7 @@ export type ButtonProps = {
   color?: "red" | "black" | "gray" | "grayOut";
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = ({ color = "gray", ...rest }: ButtonProps) => {
+export function Button({ color = "gray", ...rest }: ButtonProps) {
   const buttonColor = (() => {
     if (color === "red") return "text-white bg-red-400 hover:bg-gray-400";
     else if (color === "black") return "text-white bg-black hover:bg-gray-400";
@@ -19,4 +19,4 @@ export const Button = ({ color = "gray", ...rest }: ButtonProps) => {
       {...rest}
     />
   );
-};
+}

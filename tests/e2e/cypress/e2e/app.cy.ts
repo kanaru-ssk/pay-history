@@ -62,7 +62,7 @@ describe("e2e test", () => {
     cy.get('input[name="amount"]').focus().type("1000");
     cy.get('button[name="add"]').click();
     cy.get('input[name="amount"]').clear();
-    cy.get('input[name="amount"]').focus().type("10,000");
+    cy.get('input[name="amount"]').focus().type("10000");
     cy.get('button[name="add"]').click();
     cy.task("log", "add payment data");
 

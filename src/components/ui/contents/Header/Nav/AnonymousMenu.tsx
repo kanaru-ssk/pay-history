@@ -6,7 +6,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const AnonymousMenu = ({ onClick }: Props) => {
+export function AnonymousMenu({ onClick }: Props) {
   const { text } = useLocale();
   return (
     <div className="p-8">
@@ -22,4 +22,4 @@ export const AnonymousMenu = ({ onClick }: Props) => {
       </div>
     </div>
   );
-};
+}

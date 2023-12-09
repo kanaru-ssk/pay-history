@@ -1,4 +1,4 @@
-import { validateReenterPassword } from "./validateReenterPassword";
+import { validateReenterPassword } from "../../../src/libs/validation/validateReenterPassword";
 
 describe("validateReenterPassword function", () => {
   test("return null for reenterPassword equal to password", () => {

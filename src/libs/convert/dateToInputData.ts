@@ -4,7 +4,7 @@ type InputMonthData = {
   max: string;
 };
 
-export const dateToInputData = (date: Date): InputMonthData => {
+export function dateToInputData(date: Date): InputMonthData {
   const dateString = new Date(Number(date) - date.getTimezoneOffset() * 60000)
     .toISOString()
     .split("T")[0];
@@ -31,4 +31,4 @@ export const dateToInputData = (date: Date): InputMonthData => {
     max: maxDateString,
   };
   return inputMonthData;
-};
+}

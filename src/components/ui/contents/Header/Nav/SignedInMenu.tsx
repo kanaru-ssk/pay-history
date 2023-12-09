@@ -9,15 +9,15 @@ type Props = {
   onClick: () => void;
 };
 
-export const SignedInMenu = ({ onClick }: Props) => {
+export function SignedInMenu({ onClick }: Props) {
   const { authUser } = useAuth();
   const { text } = useLocale();
 
   // sign out
-  const clickSignOut = () => {
+  function clickSignOut() {
     signOut();
     onClick();
-  };
+  }
 
   return (
     <div className="p-8">
@@ -37,4 +37,4 @@ export const SignedInMenu = ({ onClick }: Props) => {
       </div>
     </div>
   );
-};
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Head } from "@/components/ui/contents/Head";
 import { Heading1 } from "@/components/ui/text/Heading1";
@@ -5,7 +7,7 @@ import { Heading2 } from "@/components/ui/text/Heading2";
 import { useLocale } from "@/hooks/useLocale";
 import { CtaBtn } from "./CtaBtn";
 
-export const Landing = () => {
+export function Landing() {
   const { text } = useLocale();
   return (
     <>
@@ -39,4 +41,4 @@ export const Landing = () => {
       </div>
     </>
   );
-};
+}

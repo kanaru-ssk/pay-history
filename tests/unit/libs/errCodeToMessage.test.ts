@@ -1,4 +1,4 @@
-import { errCodeToMessage } from "./errCodeToMessage";
+import { errCodeToMessage } from "../../../src/libs/convert/errCodeToMessage";
 
 describe("errCodeToMessage function", () => {
   test("return unknown for error is not AuthError", () => {

@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import {
   useEffect,
   useState,
@@ -23,7 +25,7 @@ import {
   validateReenterPassword,
 } from "@/libs/validation";
 
-export const SignUp = () => {
+export function SignUp() {
   const { push } = useRouter();
   const { dbUser } = useAuth();
   const { locale, text } = useLocale();
@@ -54,7 +56,7 @@ export const SignUp = () => {
   }, [email, password, reenterPassword]);
 
   // sign up
-  const submitSignUp = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSignUp(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -67,9 +69,9 @@ export const SignUp = () => {
         setErrorMessage(locale === "en" ? result.en : result.ja);
       }
     }
-  };
+  }
 
-  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationEmail(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
@@ -78,9 +80,9 @@ export const SignUp = () => {
     } else {
       setErrorMessageEmail("");
     }
-  };
+  }
 
-  const validationPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessagePassword(
@@ -89,9 +91,9 @@ export const SignUp = () => {
     } else {
       setErrorMessagePassword("");
     }
-  };
+  }
 
-  const validationReenterPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  function validationReenterPassword(e: ChangeEvent<HTMLInputElement>) {
     setReenterPassword(e.target.value);
     const validationResult = validateReenterPassword(password, e.target.value);
     if (validationResult) {
@@ -101,7 +103,7 @@ export const SignUp = () => {
     } else {
       setErrorMessageReenterPassword("");
     }
-  };
+  }
 
   return (
     <>
@@ -171,4 +173,4 @@ export const SignUp = () => {
       </div>
     </>
   );
-};
+}
