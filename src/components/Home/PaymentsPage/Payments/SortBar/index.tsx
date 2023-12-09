@@ -1,6 +1,6 @@
 import { type MouseEventHandler } from "react";
 import { useLocale } from "@/hooks/useLocale";
-import { SortIcon } from "./SortIcon";
+import { SortIcon } from "../SortIcon";
 
 type Props = {
   isSortDate: boolean;

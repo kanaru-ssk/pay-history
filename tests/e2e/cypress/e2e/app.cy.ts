@@ -8,8 +8,8 @@ describe("e2e test", () => {
 
     // sign in
     cy.get('button[name="menu-open"]').click();
-    cy.get('a[href="/signIn"]').click();
-    cy.location("pathname").should("include", "/signIn");
+    cy.get('a[href="/sign-in"]').click();
+    cy.location("pathname").should("include", "/sign-in");
     cy.get('input[type="email"]').focus().type(user.email);
     cy.get('input[type="password"]').focus().type(user.password);
     cy.get('button[type="submit"]').click();

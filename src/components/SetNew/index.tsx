@@ -9,7 +9,6 @@ import {
   type FormEvent,
 } from "react";
 import { ButtonWithStatus } from "@/components/ui/button/ButtonWithStatus";
-import { Head } from "@/components/ui/contents/Head";
 import { Notification } from "@/components/ui/contents/Notification";
 import { Input } from "@/components/ui/input/Input";
 import { Heading1 } from "@/components/ui/text/Heading1";
@@ -95,58 +94,53 @@ export function SetNew() {
   }
 
   return (
-    <>
-      <Head title={`${text.RESET_PASSWORD} | Pay History`} />
-      <div className="px-4">
-        <Heading1>{text.RESET_PASSWORD}</Heading1>
+    <div className="px-4">
+      <Heading1>{text.RESET_PASSWORD}</Heading1>
 
-        <Notification text={errorMessage} isError />
+      <Notification text={errorMessage} isError />
 
-        <form onSubmit={submitSetNewPassword}>
-          <div className="my-4">
-            <Heading3>{text.NEW_PASSWORD}</Heading3>
-            {errorMessagePassword && (
-              <div className="text-red-400">{errorMessagePassword}</div>
-            )}
-            <Input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              onBlur={validationNewPassword}
-              placeholder={text.PASSWORD_PLACEHOLDER}
-            />
-          </div>
-
-          <div className="my-4">
-            <Heading3>{text.REENTER_NEW_PASSWORD}</Heading3>
-            {errorMessageReenterNewPassword && (
-              <div className="text-red-400">
-                {errorMessageReenterNewPassword}
-              </div>
-            )}
-            <Input
-              type="password"
-              value={newPasswordConfirm}
-              onChange={validationReenterNewPassword}
-              placeholder={text.PASSWORD_PLACEHOLDER}
-            />
-          </div>
-
-          <div className="my-8">
-            <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
-              {text.RESET}
-            </ButtonWithStatus>
-          </div>
-        </form>
-
-        <div className="my-16 flex flex-col items-center gap-4">
-          <LinkText
-            text={text.RESEND_RESET_LINK}
-            href="/reset-password/send-link"
+      <form onSubmit={submitSetNewPassword}>
+        <div className="my-4">
+          <Heading3>{text.NEW_PASSWORD}</Heading3>
+          {errorMessagePassword && (
+            <div className="text-red-400">{errorMessagePassword}</div>
+          )}
+          <Input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            onBlur={validationNewPassword}
+            placeholder={text.PASSWORD_PLACEHOLDER}
           />
-          <LinkText text={text.RETURN_TO_HOME} href="/" />
         </div>
+
+        <div className="my-4">
+          <Heading3>{text.REENTER_NEW_PASSWORD}</Heading3>
+          {errorMessageReenterNewPassword && (
+            <div className="text-red-400">{errorMessageReenterNewPassword}</div>
+          )}
+          <Input
+            type="password"
+            value={newPasswordConfirm}
+            onChange={validationReenterNewPassword}
+            placeholder={text.PASSWORD_PLACEHOLDER}
+          />
+        </div>
+
+        <div className="my-8">
+          <ButtonWithStatus isReady={isReady} isLoading={isLoading}>
+            {text.RESET}
+          </ButtonWithStatus>
+        </div>
+      </form>
+
+      <div className="my-16 flex flex-col items-center gap-4">
+        <LinkText
+          text={text.RESEND_RESET_LINK}
+          href="/reset-password/send-link"
+        />
+        <LinkText text={text.RETURN_TO_HOME} href="/" />
       </div>
-    </>
+    </div>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Head } from "@/components/ui/contents/Head";
 import { Notification } from "@/components/ui/contents/Notification";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
@@ -33,19 +32,16 @@ export function Home() {
   }, [dbUser, docId]);
 
   return (
-    <>
-      <Head />
-      <div>
-        <Notification
-          text={text.PASSWORD_CHANGED}
-          show={!!changePasswordSuccess}
-        />
-        {thisMonthData === undefined ? (
-          <Skelton />
-        ) : (
-          <PaymentsPage thisMonthData={thisMonthData} />
-        )}
-      </div>
-    </>
+    <div>
+      <Notification
+        text={text.PASSWORD_CHANGED}
+        show={!!changePasswordSuccess}
+      />
+      {thisMonthData === undefined ? (
+        <Skelton />
+      ) : (
+        <PaymentsPage thisMonthData={thisMonthData} />
+      )}
+    </div>
   );
 }

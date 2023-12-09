@@ -1,7 +1,7 @@
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
-import { ArrowIcon } from "./PaymentsPage/Budget/ArrowIcon";
-import { SortIcon } from "./PaymentsPage/Payments/SortIcon";
+import { ArrowIcon } from "../PaymentsPage/Budget/ArrowIcon";
+import { SortIcon } from "../PaymentsPage/Payments/SortIcon";
 
 export function Skelton() {
   return (
