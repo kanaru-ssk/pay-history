@@ -20,7 +20,7 @@ export function Skelton() {
   );
 }
 
-const BudgetSkelton = () => {
+function BudgetSkelton() {
   const { docId } = useDocId();
   const { text } = useLocale();
   return (
@@ -54,9 +54,9 @@ const BudgetSkelton = () => {
       </div>
     </div>
   );
-};
+}
 
-const SortBarSkelton = () => {
+function SortBarSkelton() {
   const { text } = useLocale();
   return (
     <div className="sticky top-52 flex h-9 justify-between border-gray-400 bg-gray-100 px-4 text-xs dark:bg-gray-800">
@@ -70,18 +70,18 @@ const SortBarSkelton = () => {
       </span>
     </div>
   );
-};
+}
 
-const TableItemSkelton = () => {
+function TableItemSkelton() {
   return (
     <div className="flex h-12 items-center justify-between px-3.5">
       <div className="h-6 w-12 animate-pulse rounded bg-gray-100 dark:bg-gray-800"></div>
       <div className="h-6 w-16 animate-pulse rounded bg-gray-100 dark:bg-gray-800"></div>
     </div>
   );
-};
+}
 
-const FormSkelton = () => {
+function FormSkelton() {
   const { text } = useLocale();
   return (
     <div className="fixed bottom-0 left-0 w-full px-4 pb-[env(safe-area-inset-bottom)] drop-shadow-[0_-2px_4px_rgba(0,0,0,0.1)] dark:bg-gray-950">
@@ -92,4 +92,4 @@ const FormSkelton = () => {
       </div>
     </div>
   );
-};
+}

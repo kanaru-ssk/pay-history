@@ -27,7 +27,7 @@ export function SendLink() {
   }, [email]);
 
   // send password reset link
-  const submitSendResetPasswordLink = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSendResetPasswordLink(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -41,9 +41,9 @@ export function SendLink() {
         setIsError(true);
       }
     }
-  };
+  }
 
-  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationEmail(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
@@ -52,7 +52,7 @@ export function SendLink() {
     } else {
       setErrorMessageEmail("");
     }
-  };
+  }
 
   return (
     <>

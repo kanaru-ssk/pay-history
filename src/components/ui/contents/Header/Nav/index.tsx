@@ -11,7 +11,7 @@ export function Nav() {
   const { authUser } = useAuth();
 
   if (!authUser) return null;
-  const onClickHandler = () => {
+  function onClickHandler() {
     if (!authUser || authUser.isAnonymous)
       setSlideInContents(
         <AnonymousMenu onClick={() => setSlideInContents(null)} />,

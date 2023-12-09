@@ -53,7 +53,7 @@ export function SetNew() {
   }, [newPassword, newPasswordConfirm]);
 
   // reset password
-  const submitSetNewPassword = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSetNewPassword(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -66,9 +66,9 @@ export function SetNew() {
         push(continueUrl);
       }
     }
-  };
+  }
 
-  const validationNewPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationNewPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
@@ -77,9 +77,9 @@ export function SetNew() {
     } else {
       setErrorMessageNewPassword("");
     }
-  };
+  }
 
-  const validationReenterNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  function validationReenterNewPassword(e: ChangeEvent<HTMLInputElement>) {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
@@ -92,7 +92,7 @@ export function SetNew() {
     } else {
       setErrorMessageReenterNewPassword("");
     }
-  };
+  }
 
   return (
     <>

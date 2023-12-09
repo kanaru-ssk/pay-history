@@ -25,7 +25,7 @@ export function BudgetEditForm({ budget, thisMonthData }: Props) {
   const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
 
   // edit the budget
-  const changeBudget = (e: ChangeEvent<HTMLInputElement>) => {
+  function changeBudget(e: ChangeEvent<HTMLInputElement>) {
     const newBudget = stringToPrice(e.target.value);
     setEditedBudget(newBudget);
     if (thisMonthData === null) {
@@ -33,10 +33,10 @@ export function BudgetEditForm({ budget, thisMonthData }: Props) {
     } else {
       setIsReady(newBudget !== thisMonthData.budget);
     }
-  };
+  }
 
   // save the budget
-  const submitSaveBudget = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSaveBudget(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsReady(false);
@@ -57,7 +57,7 @@ export function BudgetEditForm({ budget, thisMonthData }: Props) {
     }
     setIsUpdateLoading(false);
     setModalContents(null);
-  };
+  }
 
   return (
     <form onSubmit={submitSaveBudget} className="bg-white dark:bg-gray-950">

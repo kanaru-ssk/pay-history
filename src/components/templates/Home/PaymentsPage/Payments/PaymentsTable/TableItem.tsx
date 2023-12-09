@@ -18,11 +18,11 @@ export function TableItem({ thisMonthData, payment }: Props) {
     }, 100);
   }, []);
 
-  const startEditPayment = () => {
+  function startEditPayment() {
     setModalContents(
       <PaymentEditForm thisMonthData={thisMonthData} payment={payment} />,
     );
-  };
+  }
 
   return (
     <div

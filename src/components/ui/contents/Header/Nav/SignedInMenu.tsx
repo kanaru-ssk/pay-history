@@ -14,10 +14,10 @@ export function SignedInMenu({ onClick }: Props) {
   const { text } = useLocale();
 
   // sign out
-  const clickSignOut = () => {
+  function clickSignOut() {
     signOut();
     onClick();
-  };
+  }
 
   return (
     <div className="p-8">

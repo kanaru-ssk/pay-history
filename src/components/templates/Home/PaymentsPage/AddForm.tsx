@@ -39,19 +39,19 @@ export function AddForm({ thisMonthData }: Props) {
   }, [docId]);
 
   // enter payment amount
-  const changePrice = (e: ChangeEvent<HTMLInputElement>) => {
+  function changePrice(e: ChangeEvent<HTMLInputElement>) {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price);
-  };
+  }
 
   // enter payment date
-  const changeDate = (e: ChangeEvent<HTMLInputElement>) => {
+  function changeDate(e: ChangeEvent<HTMLInputElement>) {
     setDate(e.target.value);
-  };
+  }
 
   // add payment
-  const submitAddPayment = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitAddPayment(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       if (thisMonthData === null) {
@@ -69,7 +69,7 @@ export function AddForm({ thisMonthData }: Props) {
         setPrice(0);
       }
     }
-  };
+  }
 
   return (
     <form onSubmit={submitAddPayment}>
