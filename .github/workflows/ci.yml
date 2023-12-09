@@ -46,5 +46,6 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v4
         with:
+          project: ./tests/e2e
           start: pnpm start
           wait-on: "http://localhost:3000"
