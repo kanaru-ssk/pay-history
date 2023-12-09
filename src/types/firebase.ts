@@ -28,9 +28,9 @@ export type Payment = {
   price: number;
 };
 
-export const isAuthError = (arg: any): arg is AuthError => {
+export function isAuthError(arg: any): arg is AuthError {
   if ("code" in arg && "message" in arg) {
     return true;
   }
   return false;
-};
+}

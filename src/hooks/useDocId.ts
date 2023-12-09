@@ -2,7 +2,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { queryToDocId, dateToDocId } from "@/libs/convert";
 
-export const useDocId = () => {
+export function useDocId() {
   const searchParams = useSearchParams();
   const month = searchParams.get("month")?.toString();
   const [docId, setDocId] = useState<string>(() => queryToDocId(month));
@@ -30,4 +30,4 @@ export const useDocId = () => {
   }, [docId]);
 
   return { docId, prevDocId, nextDocId };
-};
+}

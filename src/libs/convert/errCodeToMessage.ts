@@ -2,7 +2,7 @@ import { texts } from "@/constants/texts";
 import { type ErrorMessage } from "@/types/errorMessage";
 import { isAuthError } from "@/types/firebase";
 
-export const errCodeToMessage = (error: unknown): ErrorMessage => {
+export function errCodeToMessage(error: unknown): ErrorMessage {
   if (isAuthError(error)) {
     if (error.code === "auth/invalid-email") {
       return texts.INVALID_EMAIL;
@@ -30,4 +30,4 @@ export const errCodeToMessage = (error: unknown): ErrorMessage => {
     return texts.UNKNOWN_ERROR;
   }
   return texts.UNKNOWN_ERROR;
-};
+}

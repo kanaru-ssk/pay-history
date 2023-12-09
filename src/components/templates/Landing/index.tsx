@@ -7,7 +7,7 @@ import { Heading2 } from "@/components/ui/text/Heading2";
 import { useLocale } from "@/hooks/useLocale";
 import { CtaBtn } from "./CtaBtn";
 
-export const Landing = () => {
+export function Landing() {
   const { text } = useLocale();
   return (
     <>
@@ -41,4 +41,4 @@ export const Landing = () => {
       </div>
     </>
   );
-};
+}

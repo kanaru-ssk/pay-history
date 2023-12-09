@@ -20,7 +20,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { changePassword } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-export const ChangePassword = () => {
+export function ChangePassword() {
   const { push } = useRouter();
   const { authUser } = useAuth();
   const { locale, text } = useLocale();
@@ -46,7 +46,7 @@ export const ChangePassword = () => {
   }, [currentPassword, newPassword, reenterNewPassword]);
 
   // change password
-  const submitChangePassword = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitChangePassword(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -63,11 +63,9 @@ export const ChangePassword = () => {
         push("/?changePasswordSuccess=true");
       }
     }
-  };
+  }
 
-  const validationCurrentPassword = (
-    e: FocusEvent<HTMLInputElement, Element>,
-  ) => {
+  function validationCurrentPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorCurrentPassword(
@@ -76,9 +74,9 @@ export const ChangePassword = () => {
     } else {
       setErrorCurrentPassword("");
     }
-  };
+  }
 
-  const validationNewPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationNewPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
@@ -87,9 +85,9 @@ export const ChangePassword = () => {
     } else {
       setErrorMessageNewPassword("");
     }
-  };
+  }
 
-  const validationReenterNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  function validationReenterNewPassword(e: ChangeEvent<HTMLInputElement>) {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
@@ -102,7 +100,7 @@ export const ChangePassword = () => {
     } else {
       setErrorMessageReenterNewPassword("");
     }
-  };
+  }
 
   return (
     <>
@@ -175,4 +173,4 @@ export const ChangePassword = () => {
       </div>
     </>
   );
-};
+}

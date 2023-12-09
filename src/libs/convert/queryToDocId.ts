@@ -1,8 +1,10 @@
 import { dateToDocId } from "./dateToDocId";
 
-const isValidDate = (date: Date) => !Number.isNaN(date.getTime());
+function isValidDate(date: Date) {
+  return !Number.isNaN(date.getTime());
+}
 
-export const queryToDocId = (query: string | string[] | undefined) => {
+export function queryToDocId(query: string | string[] | undefined) {
   if (typeof query === "string") {
     const queryDate = new Date(query);
 
@@ -12,4 +14,4 @@ export const queryToDocId = (query: string | string[] | undefined) => {
   }
   const today = new Date();
   return dateToDocId(today);
-};
+}

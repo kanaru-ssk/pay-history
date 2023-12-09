@@ -8,12 +8,12 @@ type Props = {
   canHide?: boolean;
 };
 
-export const Notification = ({
+export function Notification({
   text,
   show = true,
   isError,
   canHide = !isError,
-}: Props) => {
+}: Props) {
   const [hide, onHide] = useReducer(() => true, false);
 
   if (!text || !show || hide) return null;
@@ -35,4 +35,4 @@ export const Notification = ({
       )}
     </div>
   );
-};
+}

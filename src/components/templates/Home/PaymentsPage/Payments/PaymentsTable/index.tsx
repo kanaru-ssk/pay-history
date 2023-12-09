@@ -10,12 +10,12 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const PaymentsTable = ({
+export function PaymentsTable({
   isSortDate,
   isAcsDate,
   isAcsPrice,
   thisMonthData,
-}: Props) => {
+}: Props) {
   const { text } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -26,7 +26,7 @@ export const PaymentsTable = ({
   }, [ref, thisMonthData?.payments]);
 
   // sort by payment date
-  const sortDate = (a: Payment, b: Payment): number => {
+  function sortDate(a: Payment, b: Payment): number {
     if (isAcsDate) {
       if (b.atPaid.isEqual(a.atPaid)) {
         if (b.atCreated < a.atCreated) {
@@ -52,10 +52,10 @@ export const PaymentsTable = ({
         return -1;
       }
     }
-  };
+  }
 
   // sort by payment amount
-  const sortPrice = (a: Payment, b: Payment): number => {
+  function sortPrice(a: Payment, b: Payment): number {
     if (isAcsPrice) {
       if (b.price < a.price) {
         return 1;
@@ -69,7 +69,7 @@ export const PaymentsTable = ({
         return -1;
       }
     }
-  };
+  }
 
   return (
     <div>
@@ -96,4 +96,4 @@ export const PaymentsTable = ({
       )}
     </div>
   );
-};
+}

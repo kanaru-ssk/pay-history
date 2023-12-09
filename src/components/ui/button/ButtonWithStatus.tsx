@@ -6,13 +6,13 @@ type Props = {
   isLoading?: boolean;
 } & ButtonProps;
 
-export const ButtonWithStatus = ({
+export function ButtonWithStatus({
   isReady = true,
   isLoading,
   children,
   color,
   ...rest
-}: Props) => {
+}: Props) {
   const buttonColor = !isReady || isLoading ? "grayOut" : color;
 
   return (
@@ -20,4 +20,4 @@ export const ButtonWithStatus = ({
       {isLoading ? <LoadingIcon /> : children}
     </Button>
   );
-};
+}

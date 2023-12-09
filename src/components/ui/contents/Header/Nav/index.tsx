@@ -6,12 +6,12 @@ import { useSlideIn } from "@/hooks/useSlideIn";
 import { AnonymousMenu } from "./AnonymousMenu";
 import { SignedInMenu } from "./SignedInMenu";
 
-export const Nav = () => {
+export function Nav() {
   const { setSlideInContents } = useSlideIn();
   const { authUser } = useAuth();
 
   if (!authUser) return null;
-  const onClickHandler = () => {
+  function onClickHandler() {
     if (!authUser || authUser.isAnonymous)
       setSlideInContents(
         <AnonymousMenu onClick={() => setSlideInContents(null)} />,
@@ -32,4 +32,4 @@ export const Nav = () => {
       <SettingIcon />
     </button>
   );
-};
+}

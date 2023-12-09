@@ -10,13 +10,13 @@ type Props = {
   onClickSortPrice: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const SortBar = ({
+export function SortBar({
   isSortDate,
   isAcsDate,
   isAcsPrice,
   onClickSortDate,
   onClickSortPrice,
-}: Props) => {
+}: Props) {
   const { text } = useLocale();
   return (
     <div className="sticky top-52 flex h-9 justify-between border-gray-400 bg-gray-100 px-4 text-xs dark:bg-gray-800">
@@ -30,4 +30,4 @@ export const SortBar = ({
       </button>
     </div>
   );
-};
+}

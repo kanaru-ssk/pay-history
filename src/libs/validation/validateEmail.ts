@@ -1,7 +1,7 @@
 import { texts } from "@/constants/texts";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const validateEmail = (email: string): ErrorMessage | null => {
+export function validateEmail(email: string): ErrorMessage | null {
   if (!email) return texts.ENTER_YOUR_EMAIL_ADDRESS;
 
   const emailFormat =
@@ -9,4 +9,4 @@ export const validateEmail = (email: string): ErrorMessage | null => {
   if (!emailFormat.test(email)) return texts.INVALID_EMAIL;
 
   return null;
-};
+}

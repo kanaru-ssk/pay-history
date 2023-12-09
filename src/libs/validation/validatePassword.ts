@@ -1,7 +1,7 @@
 import { texts } from "@/constants/texts";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const validatePassword = (password: string): ErrorMessage | null => {
+export function validatePassword(password: string): ErrorMessage | null {
   if (!password) return texts.ENTER_PASSWORD;
 
   const passwordFormat1 = /^[A-Za-z0-9]*$/;
@@ -12,4 +12,4 @@ export const validatePassword = (password: string): ErrorMessage | null => {
   if (!passwordFormat2.test(password)) return texts.CHARACTERS_6_to_20;
 
   return null;
-};
+}

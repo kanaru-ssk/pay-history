@@ -13,7 +13,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const Budget = ({ thisMonthData }: Props) => {
+export function Budget({ thisMonthData }: Props) {
   const { dbUser } = useAuth();
   const { docId, prevDocId, nextDocId } = useDocId();
   const { text } = useLocale();
@@ -114,4 +114,4 @@ export const Budget = ({ thisMonthData }: Props) => {
       </div>
     </div>
   );
-};
+}

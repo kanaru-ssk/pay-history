@@ -9,12 +9,12 @@ type Props = {
   payments?: Payment[];
 };
 // create monthly data
-export const createMonthlyData = async ({
+export async function createMonthlyData({
   user,
   docId,
   budget,
   payments = [],
-}: Props) => {
+}: Props) {
   if (!user) return null;
 
   const { setDoc, doc, Timestamp } = await import("firebase/firestore");
@@ -34,4 +34,4 @@ export const createMonthlyData = async ({
   );
   if (analytics) logEvent(analytics, "createMonthlyData");
   return newMonthlyData;
-};
+}

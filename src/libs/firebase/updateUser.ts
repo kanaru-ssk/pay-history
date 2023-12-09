@@ -2,10 +2,7 @@ import { db, analytics } from "@/libs/firebase";
 import { type DBUser } from "@/types/firebase";
 
 // update user data
-export const updateUser = async (
-  dbUser: DBUser | null,
-  data: Partial<DBUser>,
-) => {
+export async function updateUser(dbUser: DBUser | null, data: Partial<DBUser>) {
   if (dbUser === null) return;
 
   const { doc, updateDoc, Timestamp } = await import("firebase/firestore");
@@ -19,4 +16,4 @@ export const updateUser = async (
 
   if (analytics) logEvent(analytics, "updateUser");
   updateDoc(doc(db, "users", dbUser.docId), newData);
-};
+}

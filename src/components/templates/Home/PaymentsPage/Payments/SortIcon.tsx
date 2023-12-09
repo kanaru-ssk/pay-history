@@ -3,7 +3,7 @@ type Props = {
   disable?: boolean;
 };
 
-export const SortIcon = ({ isAcs, disable }: Props) => {
+export function SortIcon({ isAcs, disable }: Props) {
   return (
     <svg width="12" height="14" className="inline">
       <path
@@ -26,4 +26,4 @@ export const SortIcon = ({ isAcs, disable }: Props) => {
       />
     </svg>
   );
-};
+}

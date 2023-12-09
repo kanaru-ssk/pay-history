@@ -7,7 +7,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const PaymentsPage = ({ thisMonthData }: Props) => {
+export function PaymentsPage({ thisMonthData }: Props) {
   return (
     <div className="pb-16">
       <div className="sticky top-12 bg-white dark:bg-gray-950">
@@ -19,4 +19,4 @@ export const PaymentsPage = ({ thisMonthData }: Props) => {
       </div>
     </div>
   );
-};
+}

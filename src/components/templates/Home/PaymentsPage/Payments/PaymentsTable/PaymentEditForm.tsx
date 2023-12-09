@@ -19,7 +19,7 @@ type Props = {
   payment: Payment | null;
 };
 
-export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
+export function PaymentEditForm({ thisMonthData, payment }: Props) {
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const { setModalContents } = useModal();
@@ -43,24 +43,24 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
   }, [payment]);
 
   // edit payment amount
-  const changePrice = (e: ChangeEvent<HTMLInputElement>) => {
+  function changePrice(e: ChangeEvent<HTMLInputElement>) {
     const price = stringToPrice(e.target.value);
     setPrice(price);
     setIsReady(0 < price && price !== payment?.price);
-  };
+  }
 
   // edit payment date
-  const changeDate = (e: ChangeEvent<HTMLInputElement>) => {
+  function changeDate(e: ChangeEvent<HTMLInputElement>) {
     setDate(e.target.value);
     if (payment && new Date(e.target.value) !== payment.atPaid.toDate()) {
       setIsReady(true);
     } else {
       setIsReady(false);
     }
-  };
+  }
 
   // save edit
-  const submitSavePayment = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSavePayment(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady && payment) {
       setIsReady(false);
@@ -81,10 +81,10 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
       setIsUpdateLoading(false);
     }
     setModalContents(null);
-  };
+  }
 
   // delete payment
-  const deletePayment = async (e: MouseEvent<HTMLButtonElement>) => {
+  async function deletePayment(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (payment) {
       setIsDeleteLoading(true);
@@ -97,7 +97,7 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
       setIsDeleteLoading(false);
       setModalContents(null);
     }
-  };
+  }
 
   return (
     <form onSubmit={submitSavePayment} className="bg-white dark:bg-gray-950">
@@ -145,4 +145,4 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
       </div>
     </form>
   );
-};
+}
