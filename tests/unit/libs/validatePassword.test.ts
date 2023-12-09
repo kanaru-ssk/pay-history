@@ -1,4 +1,4 @@
-import { validatePassword } from "./validatePassword";
+import { validatePassword } from "../../../src/libs/validation/validatePassword";
 
 describe("validatePassword function", () => {
   test("return null for correct password", () => {

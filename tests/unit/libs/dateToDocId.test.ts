@@ -1,4 +1,4 @@
-import { dateToDocId } from "./dateToDocId";
+import { dateToDocId } from "../../../src/libs/convert/dateToDocId";
 
 describe("dateToDocId function", () => {
   test("return correct value for january", () => {

@@ -1,5 +1,5 @@
-import { dateToDocId } from "./dateToDocId";
-import { queryToDocId } from "./queryToDocId";
+import { dateToDocId } from "../../../src/libs/convert/dateToDocId";
+import { queryToDocId } from "../../../src/libs/convert/queryToDocId";
 
 describe("queryToDocId function", () => {
   test("return correct value for undefined", () => {

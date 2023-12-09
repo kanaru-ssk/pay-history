@@ -9,8 +9,8 @@
     "lint": "next lint",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}' && pnpm lint --fix",
     "test": "jest",
-    "cypress": "cypress open",
-    "e2e": "cypress run"
+    "cypress": "cypress open --project tests/e2e",
+    "e2e": "cypress run --project tests/e2e"
   },
   "dependencies": {
     "firebase": "^10.2.0",

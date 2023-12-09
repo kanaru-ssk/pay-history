@@ -1,4 +1,4 @@
-import { validateEmail } from "./validateEmail";
+import { validateEmail } from "../../../src/libs/validation/validateEmail";
 
 describe("validateEmail function", () => {
   test("return null for correct email", () => {

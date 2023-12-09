@@ -1,4 +1,4 @@
-import { stringToPrice } from "./stringToPrice";
+import { stringToPrice } from "../../../src/libs/convert/stringToPrice";
 
 describe("stringToPrice function", () => {
   test("return correct value for 1 million", () => {
