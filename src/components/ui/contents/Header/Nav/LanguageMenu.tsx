@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { LanguageIcon } from "@/components/ui/icon/LanguageIcon";
 import { languages } from "@/constants/languages";
 import { useLocale } from "@/hooks/useLocale";
 
 export const LanguageMenu = () => {
-  const { locale } = useLocale();
+  const { locale, setLocale } = useLocale();
+
   return (
     <details className="w-48 rounded border border-gray-400 px-8">
       <summary className="cursor-pointer p-1 font-bold">
@@ -16,14 +16,13 @@ export const LanguageMenu = () => {
       <div className="mt-2">
         {languages.map((language) => {
           return (
-            <Link
-              href="/"
-              locale={language.locale}
-              passHref
+            <button
               key={language.locale}
+              onClick={() => setLocale(language.locale)}
+              className="m-1 block text-center"
             >
-              <div className="m-1 text-center">{language.name}</div>
-            </Link>
+              {language.name}
+            </button>
           );
         })}
       </div>

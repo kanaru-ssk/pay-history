@@ -1,3 +1,5 @@
+"use client";
+
 import { Head } from "@/components/ui/contents/Head";
 import { Heading1 } from "@/components/ui/text/Heading1";
 import { LinkText } from "@/components/ui/text/LinkText";

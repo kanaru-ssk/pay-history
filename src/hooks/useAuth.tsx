@@ -1,3 +1,5 @@
+"use client";
+
 // share authentication state with useContext
 
 import { onAuthStateChanged } from "firebase/auth";

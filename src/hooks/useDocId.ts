@@ -1,11 +1,10 @@
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { queryToDocId, dateToDocId } from "@/libs/convert";
 
 export const useDocId = () => {
-  const {
-    query: { month },
-  } = useRouter();
+  const searchParams = useSearchParams();
+  const month = searchParams.get("month")?.toString();
   const [docId, setDocId] = useState<string>(() => queryToDocId(month));
   const [prevDocId, setPrevDocId] = useState<string>(() => {
     const thisDate = new Date(docId);
