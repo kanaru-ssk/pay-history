@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Header } from "@/components/ui/contents/Header";
 import { AuthProvider } from "@/hooks/useAuth";
@@ -13,9 +13,7 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(NEXT_PUBLIC_URL),
-  // themeColor: "#fff",
   icons: { icon: "/favicon.svg", apple: "/icon-180.png" },
-  // viewport: "initial-scale=1.0, width=device-width viewport-fit=cover",
   title: {
     template: `%s | ${TITLE}`,
     default: TITLE,
@@ -39,7 +37,14 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
   },
   formatDetection: { telephone: false },
-  // manifest: `${NEXT_PUBLIC_URL}/manifest.json`,
+  manifest: `${NEXT_PUBLIC_URL}/manifest.json`,
+};
+
+export const viewport: Viewport = {
+  themeColor: "#fff",
+  viewportFit: "cover",
+  initialScale: 1.0,
+  width: "device-width",
 };
 
 export default function RootLayout({
