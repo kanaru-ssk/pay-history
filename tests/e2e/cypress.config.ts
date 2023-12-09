@@ -13,6 +13,5 @@ export default defineConfig({
         },
       });
     },
-    supportFile: "./cypress/support/e2e.ts",
   },
 });
