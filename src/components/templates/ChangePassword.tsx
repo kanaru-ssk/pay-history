@@ -46,7 +46,7 @@ export function ChangePassword() {
   }, [currentPassword, newPassword, reenterNewPassword]);
 
   // change password
-  const submitChangePassword = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitChangePassword(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -63,11 +63,9 @@ export function ChangePassword() {
         push("/?changePasswordSuccess=true");
       }
     }
-  };
+  }
 
-  const validationCurrentPassword = (
-    e: FocusEvent<HTMLInputElement, Element>,
-  ) => {
+  function validationCurrentPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorCurrentPassword(
@@ -76,9 +74,9 @@ export function ChangePassword() {
     } else {
       setErrorCurrentPassword("");
     }
-  };
+  }
 
-  const validationNewPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationNewPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessageNewPassword(
@@ -87,9 +85,9 @@ export function ChangePassword() {
     } else {
       setErrorMessageNewPassword("");
     }
-  };
+  }
 
-  const validationReenterNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  function validationReenterNewPassword(e: ChangeEvent<HTMLInputElement>) {
     setReenterNewPassword(e.target.value);
     const validationResult = validateReenterPassword(
       newPassword,
@@ -102,7 +100,7 @@ export function ChangePassword() {
     } else {
       setErrorMessageReenterNewPassword("");
     }
-  };
+  }
 
   return (
     <>

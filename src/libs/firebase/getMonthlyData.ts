@@ -4,11 +4,11 @@ import { db } from "@/libs/firebase";
 import { type MonthlyData } from "@/types/firebase";
 
 // listen to monthly data
-export const getMonthlyData = (
+export function getMonthlyData(
   uid: string | undefined,
   docId: string,
   setMonthData: Dispatch<SetStateAction<MonthlyData | null | undefined>>,
-) => {
+) {
   if (uid === undefined) return null;
 
   const docRef = doc(db, "users", uid, "monthlyData", docId);
@@ -27,4 +27,4 @@ export const getMonthlyData = (
       setMonthData(null);
     }
   });
-};
+}

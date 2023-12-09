@@ -26,10 +26,10 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [modalContents, setModalContents] = useState<ReactNode>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function handleClickOutside(event: MouseEvent) {
       if (modalRef.current && !modalRef.current.contains(event.target as Node))
         setModalContents(null);
-    };
+    }
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

@@ -1,11 +1,11 @@
 import { texts } from "@/constants/texts";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const validateReenterPassword = (
+export function validateReenterPassword(
   password: string,
   reenterPassword: string,
-): ErrorMessage | null => {
+): ErrorMessage | null {
   if (password !== reenterPassword) return texts.NOT_CORRECT_PASSWORD;
 
   return null;
-};
+}

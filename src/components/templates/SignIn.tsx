@@ -40,7 +40,7 @@ export function SignIn() {
   }, [email, password]);
 
   // sign in
-  const submitSignIn = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSignIn(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -51,9 +51,9 @@ export function SignIn() {
         setIsLoading(false);
       }
     }
-  };
+  }
 
-  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationEmail(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
@@ -62,9 +62,9 @@ export function SignIn() {
     } else {
       setErrorMessageEmail("");
     }
-  };
+  }
 
-  const validationPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessagePassword(
@@ -73,7 +73,7 @@ export function SignIn() {
     } else {
       setErrorMessagePassword("");
     }
-  };
+  }
 
   return (
     <>

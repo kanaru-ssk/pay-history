@@ -26,7 +26,7 @@ export function PaymentsTable({
   }, [ref, thisMonthData?.payments]);
 
   // sort by payment date
-  const sortDate = (a: Payment, b: Payment): number => {
+  function sortDate(a: Payment, b: Payment): number {
     if (isAcsDate) {
       if (b.atPaid.isEqual(a.atPaid)) {
         if (b.atCreated < a.atCreated) {
@@ -52,10 +52,10 @@ export function PaymentsTable({
         return -1;
       }
     }
-  };
+  }
 
   // sort by payment amount
-  const sortPrice = (a: Payment, b: Payment): number => {
+  function sortPrice(a: Payment, b: Payment): number {
     if (isAcsPrice) {
       if (b.price < a.price) {
         return 1;
@@ -69,7 +69,7 @@ export function PaymentsTable({
         return -1;
       }
     }
-  };
+  }
 
   return (
     <div>

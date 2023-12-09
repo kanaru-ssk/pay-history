@@ -56,7 +56,7 @@ export function SignUp() {
   }, [email, password, reenterPassword]);
 
   // sign up
-  const submitSignUp = async (e: FormEvent<HTMLFormElement>) => {
+  async function submitSignUp(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isReady) {
       setIsLoading(true);
@@ -69,9 +69,9 @@ export function SignUp() {
         setErrorMessage(locale === "en" ? result.en : result.ja);
       }
     }
-  };
+  }
 
-  const validationEmail = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationEmail(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validateEmail(e.target.value);
     if (validationResult) {
       setErrorMessageEmail(
@@ -80,9 +80,9 @@ export function SignUp() {
     } else {
       setErrorMessageEmail("");
     }
-  };
+  }
 
-  const validationPassword = (e: FocusEvent<HTMLInputElement, Element>) => {
+  function validationPassword(e: FocusEvent<HTMLInputElement, Element>) {
     const validationResult = validatePassword(e.target.value);
     if (validationResult) {
       setErrorMessagePassword(
@@ -91,9 +91,9 @@ export function SignUp() {
     } else {
       setErrorMessagePassword("");
     }
-  };
+  }
 
-  const validationReenterPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  function validationReenterPassword(e: ChangeEvent<HTMLInputElement>) {
     setReenterPassword(e.target.value);
     const validationResult = validateReenterPassword(password, e.target.value);
     if (validationResult) {
@@ -103,7 +103,7 @@ export function SignUp() {
     } else {
       setErrorMessageReenterPassword("");
     }
-  };
+  }
 
   return (
     <>

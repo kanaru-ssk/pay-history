@@ -28,13 +28,13 @@ export function SlideInProvider({ children }: SlideInProviderProps) {
   const [slideInContents, setSlideInContents] = useState<ReactNode>(null);
   const slideInRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function handleClickOutside(event: MouseEvent) {
       if (
         slideInRef.current &&
         !slideInRef.current.contains(event.target as Node)
       )
         setSlideInContents(null);
-    };
+    }
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

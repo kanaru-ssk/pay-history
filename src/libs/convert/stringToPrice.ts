@@ -1,12 +1,12 @@
-const stringToHalfWidth = (value: string): string => {
+function stringToHalfWidth(value: string): string {
   if (!value) return value;
 
   return String(value).replace(/[！-～]/g, (all: string): string => {
     return String.fromCharCode(all.charCodeAt(0) - 0xfee0);
   });
-};
+}
 
-export const stringToPrice = (value: string): number => {
+export function stringToPrice(value: string): number {
   const half = stringToHalfWidth(value);
   const removed = half.replace(/,/g, "");
   const pattern = /^\d*$/;
@@ -17,4 +17,4 @@ export const stringToPrice = (value: string): number => {
     }
   }
   return 0;
-};
+}

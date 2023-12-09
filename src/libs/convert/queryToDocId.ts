@@ -1,6 +1,8 @@
 import { dateToDocId } from "./dateToDocId";
 
-const isValidDate = (date: Date) => !Number.isNaN(date.getTime());
+function isValidDate(date: Date) {
+  return !Number.isNaN(date.getTime());
+}
 
 export function queryToDocId(query: string | string[] | undefined) {
   if (typeof query === "string") {

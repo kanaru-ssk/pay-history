@@ -3,10 +3,10 @@ import { errCodeToMessage } from "@/libs/convert";
 import { auth, analytics } from "@/libs/firebase";
 import { type ErrorMessage } from "@/types/errorMessage";
 
-export const resetPasswordSetNew = async (
+export async function resetPasswordSetNew(
   oobCode: string,
   newPassword: string,
-): Promise<ErrorMessage | null> => {
+): Promise<ErrorMessage | null> {
   try {
     const { verifyPasswordResetCode, confirmPasswordReset } = await import(
       "firebase/auth"
@@ -19,4 +19,4 @@ export const resetPasswordSetNew = async (
   } catch (error) {
     return errCodeToMessage(error);
   }
-};
+}
