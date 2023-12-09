@@ -7,7 +7,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const Payments = ({ thisMonthData }: Props) => {
+export function Payments({ thisMonthData }: Props) {
   const [isSortDate, setIsSortDate] = useState<boolean>(true);
   const [isAcsDate, setIsAcsDate] = useState<boolean>(true);
   const [isAcsPrice, setIsAcsPrice] = useState<boolean>(true);
@@ -35,4 +35,4 @@ export const Payments = ({ thisMonthData }: Props) => {
       />
     </div>
   );
-};
+}

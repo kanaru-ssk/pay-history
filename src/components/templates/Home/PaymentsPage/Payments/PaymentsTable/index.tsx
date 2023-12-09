@@ -10,12 +10,12 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const PaymentsTable = ({
+export function PaymentsTable({
   isSortDate,
   isAcsDate,
   isAcsPrice,
   thisMonthData,
-}: Props) => {
+}: Props) {
   const { text } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -96,4 +96,4 @@ export const PaymentsTable = ({
       )}
     </div>
   );
-};
+}

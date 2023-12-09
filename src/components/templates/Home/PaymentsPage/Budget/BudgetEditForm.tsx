@@ -15,7 +15,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
+export function BudgetEditForm({ budget, thisMonthData }: Props) {
   const { dbUser } = useAuth();
   const { docId } = useDocId();
   const { locale, text } = useLocale();
@@ -89,4 +89,4 @@ export const BudgetEditForm = ({ budget, thisMonthData }: Props) => {
       </div>
     </form>
   );
-};
+}

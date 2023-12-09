@@ -19,7 +19,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { resetPasswordSetNew } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-export const SetNew = () => {
+export function SetNew() {
   const { push } = useRouter();
   const { locale, text } = useLocale();
 
@@ -149,4 +149,4 @@ export const SetNew = () => {
       </div>
     </>
   );
-};
+}

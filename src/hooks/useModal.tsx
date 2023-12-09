@@ -22,7 +22,7 @@ type ModalProviderProps = {
   children: ReactNode;
 };
 
-export const ModalProvider = ({ children }: ModalProviderProps) => {
+export function ModalProvider({ children }: ModalProviderProps) {
   const [modalContents, setModalContents] = useState<ReactNode>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -63,6 +63,6 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
       )}
     </ModalContext.Provider>
   );
-};
+}
 
 export const useModal = () => useContext(ModalContext);

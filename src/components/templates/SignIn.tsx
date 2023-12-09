@@ -14,7 +14,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { signIn } from "@/libs/firebase";
 import { validateEmail, validatePassword } from "@/libs/validation";
 
-export const SignIn = () => {
+export function SignIn() {
   const { push } = useRouter();
   const { authUser } = useAuth();
   const { locale, text } = useLocale();
@@ -136,4 +136,4 @@ export const SignIn = () => {
       </div>
     </>
   );
-};
+}

@@ -12,7 +12,7 @@ import { type MonthlyData } from "@/types/firebase";
 import { PaymentsPage } from "./PaymentsPage";
 import { Skelton } from "./Skelton";
 
-export const Home = () => {
+export function Home() {
   const { docId } = useDocId();
   const searchParams = useSearchParams();
   const changePasswordSuccess = searchParams
@@ -48,4 +48,4 @@ export const Home = () => {
       </div>
     </>
   );
-};
+}

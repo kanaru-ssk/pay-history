@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useLocale } from "@/hooks/useLocale";
 
-export const CtaBtn = () => {
+export function CtaBtn() {
   const { text } = useLocale();
 
   return (
@@ -11,4 +11,4 @@ export const CtaBtn = () => {
       </div>
     </Link>
   );
-};
+}

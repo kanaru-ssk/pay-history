@@ -19,7 +19,7 @@ type Props = {
   payment: Payment | null;
 };
 
-export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
+export function PaymentEditForm({ thisMonthData, payment }: Props) {
   const { dbUser } = useAuth();
   const { text } = useLocale();
   const { setModalContents } = useModal();
@@ -145,4 +145,4 @@ export const PaymentEditForm = ({ thisMonthData, payment }: Props) => {
       </div>
     </form>
   );
-};
+}

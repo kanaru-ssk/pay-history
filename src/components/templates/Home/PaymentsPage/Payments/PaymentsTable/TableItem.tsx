@@ -8,7 +8,7 @@ type Props = {
   payment: Payment;
 };
 
-export const TableItem = ({ thisMonthData, payment }: Props) => {
+export function TableItem({ thisMonthData, payment }: Props) {
   const { setModalContents } = useModal();
   const [isActive, setIsActive] = useState<boolean>(true);
 
@@ -40,4 +40,4 @@ export const TableItem = ({ thisMonthData, payment }: Props) => {
       <div>{`¥ ${payment.price.toLocaleString()}`}</div>
     </div>
   );
-};
+}

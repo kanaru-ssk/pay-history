@@ -4,6 +4,6 @@ type Props = {
   children: ReactNode;
 };
 
-export const MenuItem = ({ children }: Props) => {
+export function MenuItem({ children }: Props) {
   return <div className="mt-4 font-bold">{children}</div>;
-};
+}

@@ -20,7 +20,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { changePassword } from "@/libs/firebase";
 import { validatePassword, validateReenterPassword } from "@/libs/validation";
 
-export const ChangePassword = () => {
+export function ChangePassword() {
   const { push } = useRouter();
   const { authUser } = useAuth();
   const { locale, text } = useLocale();
@@ -175,4 +175,4 @@ export const ChangePassword = () => {
       </div>
     </>
   );
-};
+}

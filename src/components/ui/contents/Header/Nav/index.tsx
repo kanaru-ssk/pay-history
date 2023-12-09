@@ -6,7 +6,7 @@ import { useSlideIn } from "@/hooks/useSlideIn";
 import { AnonymousMenu } from "./AnonymousMenu";
 import { SignedInMenu } from "./SignedInMenu";
 
-export const Nav = () => {
+export function Nav() {
   const { setSlideInContents } = useSlideIn();
   const { authUser } = useAuth();
 
@@ -32,4 +32,4 @@ export const Nav = () => {
       <SettingIcon />
     </button>
   );
-};
+}

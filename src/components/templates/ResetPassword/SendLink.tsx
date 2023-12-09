@@ -12,7 +12,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { resetPasswordSendLink } from "@/libs/firebase";
 import { validateEmail } from "@/libs/validation";
 
-export const SendLink = () => {
+export function SendLink() {
   const { locale, text } = useLocale();
   const [email, setEmail] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
@@ -91,4 +91,4 @@ export const SendLink = () => {
       </div>
     </>
   );
-};
+}

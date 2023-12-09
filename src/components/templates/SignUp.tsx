@@ -25,7 +25,7 @@ import {
   validateReenterPassword,
 } from "@/libs/validation";
 
-export const SignUp = () => {
+export function SignUp() {
   const { push } = useRouter();
   const { dbUser } = useAuth();
   const { locale, text } = useLocale();
@@ -173,4 +173,4 @@ export const SignUp = () => {
       </div>
     </>
   );
-};
+}

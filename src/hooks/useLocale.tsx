@@ -4,7 +4,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import { locales, defaultLocale } from "@/constants/languages";
 import { englishText, japaneseText } from "@/constants/texts";
 
-export const useLocale = () => {
+export function useLocale() {
   const { locale } = useParams();
   const pathname = usePathname();
   const { push } = useRouter();
@@ -28,4 +28,4 @@ export const useLocale = () => {
   }
 
   return { locale, text, setLocale };
-};
+}

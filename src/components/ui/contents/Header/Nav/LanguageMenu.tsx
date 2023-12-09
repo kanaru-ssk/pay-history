@@ -2,7 +2,7 @@ import { LanguageIcon } from "@/components/ui/icon/LanguageIcon";
 import { languages } from "@/constants/languages";
 import { useLocale } from "@/hooks/useLocale";
 
-export const LanguageMenu = () => {
+export function LanguageMenu() {
   const { locale, setLocale } = useLocale();
 
   return (
@@ -28,4 +28,4 @@ export const LanguageMenu = () => {
       </div>
     </details>
   );
-};
+}

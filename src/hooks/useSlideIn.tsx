@@ -24,7 +24,7 @@ type SlideInProviderProps = {
   children: ReactNode;
 };
 
-export const SlideInProvider = ({ children }: SlideInProviderProps) => {
+export function SlideInProvider({ children }: SlideInProviderProps) {
   const [slideInContents, setSlideInContents] = useState<ReactNode>(null);
   const slideInRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -72,6 +72,6 @@ export const SlideInProvider = ({ children }: SlideInProviderProps) => {
       </div>
     </SlideInContext.Provider>
   );
-};
+}
 
 export const useSlideIn = () => useContext(SlideInContext);

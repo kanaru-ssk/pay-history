@@ -9,7 +9,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const SignedInMenu = ({ onClick }: Props) => {
+export function SignedInMenu({ onClick }: Props) {
   const { authUser } = useAuth();
   const { text } = useLocale();
 
@@ -37,4 +37,4 @@ export const SignedInMenu = ({ onClick }: Props) => {
       </div>
     </div>
   );
-};
+}

@@ -11,7 +11,7 @@ type Props = {
   thisMonthData: MonthlyData | null;
 };
 
-export const AddForm = ({ thisMonthData }: Props) => {
+export function AddForm({ thisMonthData }: Props) {
   const { dbUser } = useAuth();
   const { docId } = useDocId();
   const { text } = useLocale();
@@ -108,4 +108,4 @@ export const AddForm = ({ thisMonthData }: Props) => {
       </div>
     </form>
   );
-};
+}

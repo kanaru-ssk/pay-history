@@ -3,7 +3,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { ArrowIcon } from "./PaymentsPage/Budget/ArrowIcon";
 import { SortIcon } from "./PaymentsPage/Payments/SortIcon";
 
-export const Skelton = () => {
+export function Skelton() {
   return (
     <div data-cy="skelton">
       <BudgetSkelton />
@@ -18,7 +18,7 @@ export const Skelton = () => {
       <FormSkelton />
     </div>
   );
-};
+}
 
 const BudgetSkelton = () => {
   const { docId } = useDocId();
