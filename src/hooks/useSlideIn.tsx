@@ -49,7 +49,7 @@ export function SlideInProvider({ children }: SlideInProviderProps) {
           slideInContents === null
             ? "pointer-events-none opacity-0"
             : "opacity-100"
-        } fixed left-0 top-0 z-20 h-screen w-screen bg-trans-black duration-300`}
+        } fixed left-0 top-0 z-20 h-screen w-screen bg-black/60 duration-300`}
       >
         <div
           ref={slideInRef}
