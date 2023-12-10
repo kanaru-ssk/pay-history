@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
   },
   formatDetection: { telephone: false },
-  manifest: `${NEXT_PUBLIC_URL}/manifest.json`,
 };
 
 export const viewport: Viewport = {
