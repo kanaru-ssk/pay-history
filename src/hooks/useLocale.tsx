@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { locales, defaultLocale } from "@/constants/languages";
+import { locales } from "@/constants/languages";
 import { englishText, japaneseText } from "@/constants/texts";
 
 export function useLocale() {
