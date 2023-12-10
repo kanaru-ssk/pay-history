@@ -10,7 +10,7 @@ export async function resetPasswordSendLink(
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
     const actionCodeSettings = {
-      url: `${process.env.NEXT_PUBLIC_URL}/signIn`,
+      url: `${process.env.NEXT_PUBLIC_URL}/sign-in`,
       handleCodeInApp: false,
     };
 

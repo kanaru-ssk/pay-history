@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { SendLink } from "@/components/SendLink";
+import { SignIn } from "@/components/SignIn";
 
 export const metadata: Metadata = {
-  title: "send reset link",
+  title: "sign in",
 };
 
 export default function Page() {
-  return <SendLink />;
+  return <SignIn />;
 }

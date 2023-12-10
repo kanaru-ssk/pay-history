@@ -20,7 +20,7 @@ export function Nav() {
       setSlideInContents(
         <SignedInMenu onClick={() => setSlideInContents(null)} />,
       );
-  };
+  }
 
   return (
     <button

@@ -5,7 +5,7 @@ export default defineConfig({
     baseUrl: "http://localhost:3000",
     video: false,
     defaultCommandTimeout: 10000,
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on) {
       on("task", {
         log(message) {
           console.log("    ", message);

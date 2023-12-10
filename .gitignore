@@ -43,5 +43,5 @@ yarn-error.log*
 **/public/worker-*.js.map
 
 # cypress
-/cypress/videos
-/cypress/screenshots
+**/cypress/videos
+**/cypress/screenshots
