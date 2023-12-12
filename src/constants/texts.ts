@@ -1,4 +1,4 @@
-export const textKeys = [
+const textKeys = [
   "CHANGE",
   "CHANGE_PASSWORD",
   "CREATE_ACCOUNT",
@@ -64,7 +64,7 @@ export const textKeys = [
   "EXPIRED_ACTION_CODE",
 ] as const;
 
-export type TextKeys = (typeof textKeys)[number];
+type TextKeys = (typeof textKeys)[number];
 
 type Text = { en: string; ja: string };
 

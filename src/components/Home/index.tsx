@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { getMonthlyData } from "@/libs/firebase";
-import { type MonthlyData } from "@/types/firebase";
+import type { MonthlyData } from "@/types/firebase";
 import { PaymentsPage } from "./PaymentsPage";
 import { Skelton } from "./Skelton";
 
