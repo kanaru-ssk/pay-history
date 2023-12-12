@@ -1,5 +1,5 @@
 import { texts } from "@/constants/texts";
-import { type ErrorMessage } from "@/types/errorMessage";
+import type { ErrorMessage } from "@/types/errorMessage";
 
 export function validatePassword(password: string): ErrorMessage | null {
   if (!password) return texts.ENTER_PASSWORD;
@@ -9,7 +9,7 @@ export function validatePassword(password: string): ErrorMessage | null {
     return texts.ONLY_ALPHANUMERIC_CHARACTERS;
 
   const passwordFormat2 = /^[a-z\d]{6,20}$/i;
-  if (!passwordFormat2.test(password)) return texts.CHARACTERS_6_to_20;
+  if (!passwordFormat2.test(password)) return texts.CHARACTERS_6_TO_20;
 
   return null;
 }

@@ -1,30 +1,33 @@
 "use client";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { locales } from "@/constants/languages";
 import { englishText, japaneseText } from "@/constants/texts";
 
+export const languages = [
+  { locale: "en", name: "English" },
+  { locale: "ja", name: "日本語" },
+] as const;
+
+export const locales = ["en", "ja"] as const;
+export const defaultLocale = "en";
+
+export type Locale = (typeof locales)[number];
+
+export function isLocale(arg: unknown): arg is Locale {
+  return locales.some((locale) => locale === arg);
+}
+
 export function useLocale() {
-  const { locale } = useParams();
+  const params = useParams();
   const pathname = usePathname();
   const { push } = useRouter();
 
+  const locale = isLocale(params.locale) ? params.locale : defaultLocale;
   const text = locale === "ja" ? japaneseText : englishText;
 
-  function setLocale(newLocale: "ja" | "en") {
-    const hasLocale = locales.some((locale) =>
-      pathname.startsWith(`/${locale}`),
-    );
-
-    if (hasLocale) {
-      const newPath = `/${newLocale}${pathname.slice(
-        pathname.indexOf("/", 1),
-      )}`;
-      push(newPath);
-    } else {
-      const newPath = `/${newLocale}${pathname}`;
-      push(newPath);
-    }
+  function setLocale(newLocale: Locale) {
+    const newPath = `/${newLocale}${pathname.slice(pathname.indexOf("/", 1))}`;
+    push(newPath);
   }
 
   return { locale, text, setLocale };

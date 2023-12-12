@@ -1,4 +1,4 @@
-const textKeys = [
+export const textKeys = [
   "CHANGE",
   "CHANGE_PASSWORD",
   "CREATE_ACCOUNT",
@@ -20,7 +20,7 @@ const textKeys = [
   "SIGN_OUT",
   "SIGN_UP",
   "ONLY_ALPHANUMERIC_CHARACTERS",
-  "CHARACTERS_6_to_20",
+  "CHARACTERS_6_TO_20",
   "PAGE_NOT_FOUND",
   "ADD",
   "AMOUNT",
@@ -64,7 +64,7 @@ const textKeys = [
   "EXPIRED_ACTION_CODE",
 ] as const;
 
-type TextKeys = (typeof textKeys)[number];
+export type TextKeys = (typeof textKeys)[number];
 
 type Text = { en: string; ja: string };
 
@@ -157,7 +157,7 @@ export const texts: {
     en: "Only alphanumeric characters",
     ja: "半角英数字のみ使用できます。",
   },
-  CHARACTERS_6_to_20: {
+  CHARACTERS_6_TO_20: {
     en: "Use 6 to 20 characters",
     ja: "6から20文字で入力してください。",
   },
