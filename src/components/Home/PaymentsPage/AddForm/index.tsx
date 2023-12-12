@@ -5,7 +5,7 @@ import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { dateToInputData, stringToPrice } from "@/libs/convert";
 import { addPayment, createMonthlyData, createPayment } from "@/libs/firebase";
-import { type MonthlyData } from "@/types/firebase";
+import type { MonthlyData } from "@/types/firebase";
 
 type Props = {
   thisMonthData: MonthlyData | null;

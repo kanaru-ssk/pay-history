@@ -126,7 +126,7 @@ export function ChangePassword() {
           <div className="pb-2 leading-5 text-gray-500">
             {text.ONLY_ALPHANUMERIC_CHARACTERS}
             <br />
-            {text.CHARACTERS_6_to_20}
+            {text.CHARACTERS_6_TO_20}
           </div>
           {errorMessagePassword && (
             <div className="text-red-400">{errorMessagePassword}</div>

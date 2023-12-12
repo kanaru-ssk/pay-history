@@ -1,5 +1,5 @@
 import { texts } from "@/constants/texts";
-import { type ErrorMessage } from "@/types/errorMessage";
+import type { ErrorMessage } from "@/types/errorMessage";
 
 export function validateReenterPassword(
   password: string,

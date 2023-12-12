@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { locales, defaultLocale } from "@/constants/languages";
+import { locales, defaultLocale } from "@/hooks/useLocale";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,8 +10,7 @@ export function middleware(request: NextRequest) {
   if (pathnameHasLocale) return;
 
   request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
-
-  return NextResponse.rewrite(request.nextUrl);
+  return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {

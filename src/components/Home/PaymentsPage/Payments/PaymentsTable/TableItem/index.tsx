@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useModal } from "@/hooks/useModal";
-import { type MonthlyData, type Payment } from "@/types/firebase";
+import type { MonthlyData, Payment } from "@/types/firebase";
 import { PaymentEditForm } from "../PaymentEditForm";
 
 type Props = {

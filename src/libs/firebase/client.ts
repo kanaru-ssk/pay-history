@@ -24,7 +24,7 @@ const config: FirebaseOptions = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = !getApps().length ? initializeApp(config) : getApp();
+const app = getApps()[0] ?? initializeApp(config);
 
 const auth = getAuth();
 

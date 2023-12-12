@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useDocId } from "@/hooks/useDocId";
 import { useLocale } from "@/hooks/useLocale";
 import { useModal } from "@/hooks/useModal";
-import { type MonthlyData } from "@/types/firebase";
+import type { MonthlyData } from "@/types/firebase";
 import { ArrowIcon } from "./ArrowIcon";
 import { BudgetEditForm } from "./BudgetEditForm";
 

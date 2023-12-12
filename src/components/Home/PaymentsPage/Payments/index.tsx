@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type MonthlyData } from "@/types/firebase";
+import type { MonthlyData } from "@/types/firebase";
 import { PaymentsTable } from "./PaymentsTable";
 import { SortBar } from "./SortBar";
 

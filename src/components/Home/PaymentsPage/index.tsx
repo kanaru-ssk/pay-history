@@ -1,4 +1,4 @@
-import { type MonthlyData } from "@/types/firebase";
+import type { MonthlyData } from "@/types/firebase";
 import { AddForm } from "./AddForm";
 import { Budget } from "./Budget";
 import { Payments } from "./Payments";
