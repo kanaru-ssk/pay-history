@@ -17,6 +17,8 @@
         },
         "newlines-between": "never"
       }
-    ]
+    ],
+    "no-unused-expressions": "warn",
+    "no-unused-labels": "warn"
   }
 }

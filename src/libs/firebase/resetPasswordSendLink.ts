@@ -1,7 +1,7 @@
 import { logEvent } from "firebase/analytics";
 import { errCodeToMessage } from "@/libs/convert";
 import { auth, analytics } from "@/libs/firebase";
-import { type ErrorMessage } from "@/types/errorMessage";
+import type { ErrorMessage } from "@/types/errorMessage";
 
 export async function resetPasswordSendLink(
   email: string,
@@ -10,7 +10,7 @@ export async function resetPasswordSendLink(
     const { sendPasswordResetEmail } = await import("firebase/auth");
 
     const actionCodeSettings = {
-      url: `${process.env.NEXT_PUBLIC_URL}/signIn`,
+      url: `${process.env.NEXT_PUBLIC_URL}/sign-in`,
       handleCodeInApp: false,
     };
 

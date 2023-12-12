@@ -41,7 +41,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
       {children}
       {modalContents && (
         <div
-          className="fixed inset-0 z-20 flex items-center justify-center bg-trans-black p-4"
+          className="fixed inset-0 z-20 flex items-center justify-center bg-black/60 p-4"
           data-cy="modal"
         >
           <div

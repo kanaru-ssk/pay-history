@@ -59,9 +59,9 @@ Since it is a tool that you use on a daily basis, it supports PWA and can be ins
 ## Site Map
 
 - /
-  - /landing
-  - /signIn
-  - /signUp
+  - /landing-page
+  - /sign-in
+  - /sign-up
   - /change-password
   - /reset-password
     - /send-link

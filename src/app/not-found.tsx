@@ -1,5 +1,10 @@
-import { Custom404 } from "@/components/templates/Custom404";
+import type { Metadata } from "next";
+import { NotFound } from "@/components/NotFound";
 
-export default function NotFound() {
-  return <Custom404 />;
+export const metadata: Metadata = {
+  title: "404",
+};
+
+export default function Page() {
+  return <NotFound />;
 }

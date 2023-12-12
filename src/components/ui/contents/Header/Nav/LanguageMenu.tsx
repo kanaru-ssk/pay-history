@@ -1,6 +1,5 @@
 import { LanguageIcon } from "@/components/ui/icon/LanguageIcon";
-import { languages } from "@/constants/languages";
-import { useLocale } from "@/hooks/useLocale";
+import { useLocale, languages } from "@/hooks/useLocale";
 
 export function LanguageMenu() {
   const { locale, setLocale } = useLocale();
