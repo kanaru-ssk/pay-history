@@ -21,7 +21,7 @@ export function LandingPage() {
       <p className="mb-4">{text.LP_TEXT_03}</p>
       <p className="mb-8">{text.LP_TEXT_04}</p>
       <Image
-        src="/img/screenshot.png"
+        src="/assets/screenshot.png"
         width={992}
         height={1296}
         alt="screenshot"

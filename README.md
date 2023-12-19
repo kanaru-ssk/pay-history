@@ -32,7 +32,7 @@ Since it is a tool that you use on a daily basis, it supports PWA and can be ins
 
 日常的に使うツールであるため、PWA に対応しておりネイティブアプリのようにインストールが可能。
 
-![screenshot](public/img/screenshot.png)
+![screenshot](public/assets/screenshot.png)
 
 ## How To Use
 

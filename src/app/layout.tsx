@@ -13,7 +13,7 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(NEXT_PUBLIC_URL),
-  icons: { icon: "/favicon.svg", apple: "/icon-180.png" },
+  icons: { icon: "/assets/favicon.svg", apple: "/assets/icon-180.png" },
   title: {
     template: `%s | ${TITLE}`,
     default: TITLE,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     siteName: TITLE,
-    images: [{ url: `${NEXT_PUBLIC_URL}/img/ogp.png` }],
+    images: [{ url: `${NEXT_PUBLIC_URL}/assets/ogp.png` }],
   },
   twitter: {
     card: "summary_large_image",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
   },
   formatDetection: { telephone: false },
-  manifest: `${NEXT_PUBLIC_URL}/manifest.json`,
+  manifest: "/assets/manifest.json",
 };
 
 export const viewport: Viewport = {
