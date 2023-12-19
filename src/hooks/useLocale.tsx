@@ -26,8 +26,7 @@ export function useLocale() {
   const text = locale === "ja" ? japaneseText : englishText;
 
   function setLocale(newLocale: Locale) {
-    const newPath = `/${newLocale}${pathname.slice(pathname.indexOf("/", 1))}`;
-    push(newPath);
+    push(`/${newLocale}${pathname.slice(3)}`);
   }
 
   return { locale, text, setLocale };
